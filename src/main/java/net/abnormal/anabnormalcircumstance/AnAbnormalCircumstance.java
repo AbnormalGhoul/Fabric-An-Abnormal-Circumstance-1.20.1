@@ -1,5 +1,8 @@
 package net.abnormal.anabnormalcircumstance;
 
+import net.abnormal.anabnormalcircumstance.block.ModBlocks;
+import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -12,6 +15,12 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
-	}
+
+        ModItemGroups.registerItemGroups();
+        ModItems.registerModItems();
+        ModBlocks.registerModBlocks();
+
+        LOGGER.info("An Abnormal Circumstance Mod Initialized");
+
+    }
 }
