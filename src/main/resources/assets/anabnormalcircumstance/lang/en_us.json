@@ -1,7 +1,14 @@
 {
-  "itemgroup.ananbnormalcircumstance": "Abnormal Circumstance",
+  "itemgroup.anabnormalcircumstance": "Abnormal Circumstance",
+
+  "effect.anabnormalcircumstance.bleeding": "Bleeding",
+  "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
+    "effect.anabnormalcircumstance.stun": "Stun",
+    "effect.anabnormalcircumstance.stun.desc": "Unable to move or act",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
+
+  "item.anabnormalcircumstance.karambit": "Fanged Karambit",
 
   "item.anabnormalcircumstance.silver_necklace": "Silver Necklace",
   "item.anabnormalcircumstance.golden_earrings": "Golden Earrings",

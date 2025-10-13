@@ -23,7 +23,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
-//        AMETHYST ARROW
+        // TOTEM OF PURITY
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOTEM_OF_PURITY, 1)
                 .pattern("Q#Q")
                 .pattern("#X#")
@@ -31,10 +31,21 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('#', Items.GOLD_INGOT)
                 .input('X', Items.DIAMOND)
                 .input('Q' , Items.OXEYE_DAISY)
-                .group("arrow")
                 .showNotification(true)
                 .criterion("has_diamond", conditionsFromItem(Items.DIAMOND))
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.TOTEM_OF_PURITY)));
+
+        // KARAMBIT
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.KARAMBIT, 1)
+                .pattern("  #")
+                .pattern(" X ")
+                .pattern("Q  ")
+                .input('#', ModItems.ORC_CHAMPION_FANG)
+                .input('X', ModItems.MANA_CLUSTER)
+                .input('Q' , Items.STICK)
+                .showNotification(true)
+                .criterion("has_orc_champion_fang", conditionsFromItem(ModItems.ORC_CHAMPION_FANG))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.KARAMBIT)));
 
         // AMETHYST ARROW
 //        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.AMETHYST_ARROW, 8)

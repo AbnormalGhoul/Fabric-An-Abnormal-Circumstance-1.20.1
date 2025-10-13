@@ -1,10 +1,16 @@
 package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
+import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +25,8 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
+        ModEffects.registerEffects();
+        ModEvents.registerEvents();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 

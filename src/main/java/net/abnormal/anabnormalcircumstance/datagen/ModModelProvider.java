@@ -22,6 +22,9 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
+        // Weapons
+        itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
+
         // Dungeon Loot
         itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GOLDEN_EARRINGS, Models.GENERATED);

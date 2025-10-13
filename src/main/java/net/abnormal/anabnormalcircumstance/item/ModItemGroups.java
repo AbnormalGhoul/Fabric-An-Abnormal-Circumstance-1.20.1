@@ -13,12 +13,15 @@ import net.minecraft.util.Identifier;
 public class ModItemGroups {
 
     public static final ItemGroup AN_ABNORMAL_CIRCUMSTANCE = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(AnAbnormalCircumstance.MOD_ID, "ananbnormalcircumstance"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.ananbnormalcircumstance"))
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "anabnormalcircumstance"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.anabnormalcircumstance"))
                     .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
 
                         // Blocks
                         entries.add(ModBlocks.DARK_SAND);
+
+                        // Weapons
+                        entries.add(ModItems.KARAMBIT);
 
                         // Dungeon Loot
                         entries.add(ModItems.SILVER_NECKLACE);

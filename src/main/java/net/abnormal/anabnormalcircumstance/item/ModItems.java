@@ -1,13 +1,19 @@
 package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
+import net.abnormal.anabnormalcircumstance.item.custom.KarambitItem;
 import net.abnormal.anabnormalcircumstance.item.custom.VillagerTotemItem;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
+
+    // Weapons
+    public static final Item KARAMBIT = registerItem("karambit",
+            new KarambitItem(new FabricItemSettings().maxCount(1)));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
