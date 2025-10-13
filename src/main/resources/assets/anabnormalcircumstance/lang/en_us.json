@@ -1,6 +1,49 @@
 {
-  "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
-  "item.anabnormalcircumstance.amethyst_arrow": "Amethyst Arrow",
+  "itemgroup.ananbnormalcircumstance": "Abnormal Circumstance",
+
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
-  "itemgroup.ananbnormalcircumstance": "Abnormal Circumstance"
+
+  "item.anabnormalcircumstance.silver_necklace": "Silver Necklace",
+  "item.anabnormalcircumstance.golden_earrings": "Golden Earrings",
+  "item.anabnormalcircumstance.diamond_ring": "Diamond Ring",
+  "item.anabnormalcircumstance.rusted_key": "Rusted Key",
+  "item.anabnormalcircumstance.bottled_lightning": "Bottled Lightning",
+  "item.anabnormalcircumstance.orc_hide": "Orc Hide",
+  "item.anabnormalcircumstance.orc_champion_fang": "Orc Champion Fang",
+  "item.anabnormalcircumstance.arachnid_silk": "Arachnid Silk",
+  "item.anabnormalcircumstance.broodmother_egg": "Broodmother Egg",
+
+  "item.anabnormalcircumstance.hydro_catalyst": "Hydromancy Catalyst",
+  "item.anabnormalcircumstance.pyro_catalyst": "Pyromancy Catalyst",
+  "item.anabnormalcircumstance.geo_catalyst": "Geomancy Catalyst",
+  "item.anabnormalcircumstance.aero_catalyst": "Aeromancy Catalyst",
+
+  "item.anabnormalcircumstance.hydro_essence": "Hydromancy Essence",
+  "item.anabnormalcircumstance.pyro_essence": "Pyromancy Essence",
+  "item.anabnormalcircumstance.geo_essence": "Geomancy Essence",
+  "item.anabnormalcircumstance.aero_essence": "Aeromancy Essence",
+  "item.anabnormalcircumstance.orc_champion_soul": "Orc Soul",
+  "item.anabnormalcircumstance.broodmother_soul": "Broodmother Soul",
+
+  "item.anabnormalcircumstance.copper_coin": "Copper Coin",
+  "item.anabnormalcircumstance.silver_coin": "Silver Coin",
+  "item.anabnormalcircumstance.gold_coin": "Gold Coin",
+  "item.anabnormalcircumstance.platinum_coin": "Platinum Coin",
+
+  "item.anabnormalcircumstance.mana_shard": "Mana Shard",
+  "item.anabnormalcircumstance.mana_gem": "Mana Gem",
+  "item.anabnormalcircumstance.mana_cluster": "Mana Cluster",
+  "item.anabnormalcircumstance.mana_core": "Mana Core",
+
+  "item.anabnormalcircumstance.claim_rune": "Claim Rune",
+  "item.anabnormalcircumstance.origin_rune": "Origin Rune",
+  "item.anabnormalcircumstance.spell_rune": "Spell Rune",
+  "item.anabnormalcircumstance.totem_of_purity": "Totem of Purity",
+
+  "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
+  "item.anabnormalcircumstance.hydro_scroll": "Hydromancy Scroll",
+  "item.anabnormalcircumstance.pyro_scroll": "Pyromancy Scroll",
+  "item.anabnormalcircumstance.geo_scroll": "Geomancy Scroll",
+  "item.anabnormalcircumstance.aero_scroll": "Aeromancy Scroll"
+
 }

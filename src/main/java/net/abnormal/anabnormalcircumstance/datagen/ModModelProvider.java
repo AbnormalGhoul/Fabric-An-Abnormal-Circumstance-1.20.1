@@ -21,8 +21,56 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+
+        // Dungeon Loot
+        itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLDEN_EARRINGS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DIAMOND_RING, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RUSTED_KEY, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BOTTLED_LIGHTNING, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ORC_HIDE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ORC_CHAMPION_FANG, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARACHNID_SILK, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BROODMOTHER_EGG, Models.GENERATED);
+
+        // Shrine Loot
+        itemModelGenerator.register(ModItems.HYDRO_CATALYST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PYRO_CATALYST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GEO_CATALYST, Models.GENERATED);
+        itemModelGenerator.register(ModItems.AERO_CATALYST, Models.GENERATED);
+
+        // Consumable Essences/Souls
+        itemModelGenerator.register(ModItems.HYDRO_ESSENCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PYRO_ESSENCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GEO_ESSENCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.AERO_ESSENCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ORC_CHAMPION_SOUL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BROODMOTHER_SOUL, Models.GENERATED);
+
+        // Currency
+        itemModelGenerator.register(ModItems.COPPER_COIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SILVER_COIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GOLD_COIN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PLATINUM_COIN, Models.GENERATED);
+
+        // Mana Crystals
+        itemModelGenerator.register(ModItems.MANA_SHARD, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MANA_GEM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MANA_CLUSTER, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MANA_CORE, Models.GENERATED);
+
+        // Utility
+        itemModelGenerator.register(ModItems.CLAIM_RUNE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ORIGIN_RUNE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPELL_RUNE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TOTEM_OF_PURITY, Models.GENERATED);
+
+        // Scrolls
         itemModelGenerator.register(ModItems.BLANK_SCROLL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.AMETHYST_ARROW, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HYDRO_SCROLL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PYRO_SCROLL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.GEO_SCROLL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.AERO_SCROLL, Models.GENERATED);
 
     }
 }

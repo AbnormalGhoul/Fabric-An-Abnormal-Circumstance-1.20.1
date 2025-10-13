@@ -1,20 +1,62 @@
 package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
-import net.fabricmc.fabric.impl.itemgroup.FabricItemGroup;
+import net.abnormal.anabnormalcircumstance.item.custom.VillagerTotemItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
 public class ModItems {
 
-    public static final Item BLANK_SCROLL = registerItem("blank_scroll", new Item(new Item.Settings()));
-    public static final Item AMETHYST_ARROW = registerItem("amethyst_arrow", new Item(new Item.Settings()));
+    // Dungeon Loot
+    public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
+    public static final Item GOLDEN_EARRINGS = registerItem("golden_earrings", new Item(new Item.Settings()));
+    public static final Item DIAMOND_RING = registerItem("diamond_ring", new Item(new Item.Settings()));
+    public static final Item RUSTED_KEY = registerItem("rusted_key", new Item(new Item.Settings()));
+    public static final Item BOTTLED_LIGHTNING = registerItem("bottled_lightning", new Item(new Item.Settings()));
+    public static final Item ORC_HIDE = registerItem("orc_hide", new Item(new Item.Settings()));
+    public static final Item ORC_CHAMPION_FANG = registerItem("orc_champion_fang", new Item(new Item.Settings()));
+    public static final Item ARACHNID_SILK = registerItem("arachnid_silk", new Item(new Item.Settings()));
+    public static final Item BROODMOTHER_EGG = registerItem("broodmother_egg", new Item(new Item.Settings()));
 
+    // Shrine Loot
+    public static final Item HYDRO_CATALYST = registerItem("hydro_catalyst", new Item(new Item.Settings()));
+    public static final Item PYRO_CATALYST = registerItem("pyro_catalyst", new Item(new Item.Settings()));
+    public static final Item GEO_CATALYST = registerItem("geo_catalyst", new Item(new Item.Settings()));
+    public static final Item AERO_CATALYST = registerItem("aero_catalyst", new Item(new Item.Settings()));
+
+    // Consumable Essences/Souls
+    public static final Item HYDRO_ESSENCE = registerItem("hydro_essence", new SoundFoodItem(ModFoodComponents.HYDRO_ESSENCE, new Item.Settings().maxCount(16)));
+    public static final Item PYRO_ESSENCE = registerItem("pyro_essence", new SoundFoodItem(ModFoodComponents.PYRO_ESSENCE, new Item.Settings().maxCount(16)));
+    public static final Item GEO_ESSENCE = registerItem("geo_essence", new SoundFoodItem(ModFoodComponents.GEO_ESSENCE, new Item.Settings().maxCount(16)));
+    public static final Item AERO_ESSENCE = registerItem("aero_essence", new SoundFoodItem(ModFoodComponents.AERO_ESSENCE, new Item.Settings().maxCount(16)));
+    public static final Item ORC_CHAMPION_SOUL = registerItem("orc_champion_soul", new SoundFoodItem(ModFoodComponents.ORC_CHAMPION_SOUL, new Item.Settings().maxCount(16)));
+    public static final Item BROODMOTHER_SOUL = registerItem("broodmother_soul", new SoundFoodItem(ModFoodComponents.BROODMOTHER_SOUL, new Item.Settings().maxCount(16)));
+    // Currency
+    public static final Item COPPER_COIN = registerItem("copper_coin", new Item(new Item.Settings()));
+    public static final Item SILVER_COIN = registerItem("silver_coin", new Item(new Item.Settings()));
+    public static final Item GOLD_COIN = registerItem("gold_coin", new Item(new Item.Settings()));
+    public static final Item PLATINUM_COIN = registerItem("platinum_coin", new Item(new Item.Settings()));
+
+    // Mana Crystals
+    public static final Item MANA_SHARD = registerItem("mana_shard", new Item(new Item.Settings()));
+    public static final Item MANA_GEM = registerItem("mana_gem", new Item(new Item.Settings()));
+    public static final Item MANA_CLUSTER = registerItem("mana_cluster", new Item(new Item.Settings()));
+    public static final Item MANA_CORE = registerItem("mana_core", new Item(new Item.Settings()));
+
+    // Utility
+    public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
+    public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
+    public static final Item SPELL_RUNE = registerItem("spell_rune", new Item(new Item.Settings()));
+    public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
+
+    // Scrolls, Will have to revisit later for unique spells
+    public static final Item BLANK_SCROLL = registerItem("blank_scroll", new Item(new Item.Settings()));
+    public static final Item HYDRO_SCROLL = registerItem("hydro_scroll", new Item(new Item.Settings()));
+    public static final Item PYRO_SCROLL = registerItem("pyro_scroll", new Item(new Item.Settings()));
+    public static final Item GEO_SCROLL = registerItem("geo_scroll", new Item(new Item.Settings()));
+    public static final Item AERO_SCROLL = registerItem("aero_scroll", new Item(new Item.Settings()));
 
 
     private static Item registerItem(String name, Item item) {
