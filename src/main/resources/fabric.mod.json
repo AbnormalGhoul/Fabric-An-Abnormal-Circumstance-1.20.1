@@ -26,8 +26,8 @@
 		]
 	},
 	"mixins": [
-		"anabnormalcircumstance.mixins.json"
-	],
+      "anabnormalcircumstance.mixins.json"
+    ],
 	"depends": {
 		"fabricloader": ">=0.17.3",
 		"minecraft": "~1.20.1",

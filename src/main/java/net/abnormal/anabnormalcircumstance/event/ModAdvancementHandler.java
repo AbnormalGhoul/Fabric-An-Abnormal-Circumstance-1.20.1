@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance;
+package net.abnormal.anabnormalcircumstance.event;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;

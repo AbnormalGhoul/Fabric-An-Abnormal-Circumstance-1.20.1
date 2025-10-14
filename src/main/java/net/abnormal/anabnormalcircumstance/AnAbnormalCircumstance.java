@@ -3,6 +3,7 @@ package net.abnormal.anabnormalcircumstance;
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
+import net.abnormal.anabnormalcircumstance.event.ModAdvancementHandler;
 import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
@@ -31,7 +32,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         ModAdvancementHandler.register();
 
-//        ModRecipes.registerRecipes();
+//      ModRecipes.registerRecipes();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 

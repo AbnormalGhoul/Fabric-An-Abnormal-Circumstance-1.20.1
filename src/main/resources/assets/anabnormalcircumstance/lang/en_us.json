@@ -3,21 +3,28 @@
 
   "effect.anabnormalcircumstance.bleeding": "Bleeding",
   "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
-    "effect.anabnormalcircumstance.stun": "Stun",
-    "effect.anabnormalcircumstance.stun.desc": "Unable to move or act",
+  "effect.anabnormalcircumstance.stun": "Stun",
+  "effect.anabnormalcircumstance.stun.desc": "Unable to move or act",
+  "effect.anabnormalcircumstance.confusion": "Confusion",
+  "effect.anabnormalcircumstance.confusion.desc": "Controls are reversed",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
 
   "item.anabnormalcircumstance.karambit": "Fanged Karambit",
 
+  "item.anabnormalcircumstance.totem_of_purity": "Totem of Purity",
+
   "item.anabnormalcircumstance.silver_necklace": "Silver Necklace",
   "item.anabnormalcircumstance.golden_earrings": "Golden Earrings",
   "item.anabnormalcircumstance.diamond_ring": "Diamond Ring",
+
   "item.anabnormalcircumstance.rusted_key": "Rusted Key",
   "item.anabnormalcircumstance.bottled_lightning": "Bottled Lightning",
+
   "item.anabnormalcircumstance.orc_hide": "Orc Hide",
   "item.anabnormalcircumstance.orc_champion_fang": "Orc Champion Fang",
+
   "item.anabnormalcircumstance.arachnid_silk": "Arachnid Silk",
   "item.anabnormalcircumstance.broodmother_egg": "Broodmother Egg",
 
@@ -30,6 +37,7 @@
   "item.anabnormalcircumstance.pyro_essence": "Pyromancy Essence",
   "item.anabnormalcircumstance.geo_essence": "Geomancy Essence",
   "item.anabnormalcircumstance.aero_essence": "Aeromancy Essence",
+
   "item.anabnormalcircumstance.orc_champion_soul": "Orc Soul",
   "item.anabnormalcircumstance.broodmother_soul": "Broodmother Soul",
 
@@ -46,7 +54,6 @@
   "item.anabnormalcircumstance.claim_rune": "Claim Rune",
   "item.anabnormalcircumstance.origin_rune": "Origin Rune",
   "item.anabnormalcircumstance.spell_rune": "Spell Rune",
-  "item.anabnormalcircumstance.totem_of_purity": "Totem of Purity",
 
   "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
   "item.anabnormalcircumstance.hydro_scroll": "Hydromancy Scroll",
