@@ -18,6 +18,7 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
 
                         // Blocks
+//                        entries.add(ModBlocks.HEPHAESTUS_ALTAR);
                         entries.add(ModBlocks.DARK_SAND);
 
                         // Weapons

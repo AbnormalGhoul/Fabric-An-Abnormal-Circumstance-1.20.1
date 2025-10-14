@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance.block;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.block.custom.DarkSandBlock;
+import net.abnormal.anabnormalcircumstance.block.custom.HephaestusAltarBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -19,7 +20,8 @@ public class ModBlocks {
     public static final Block DARK_SAND = registerBlock("dark_sand",
             new DarkSandBlock(FabricBlockSettings.copyOf(Blocks.SOUL_SAND)));
 
-
+    public static final Block HEPHAESTUS_ALTAR = registerBlock("hephaestus_altar",
+            new HephaestusAltarBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

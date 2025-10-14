@@ -23,6 +23,40 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+        // SHULKER_BOX
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.LIGHT_BLUE_SHULKER_BOX, 1)
+                .pattern("Q#Q")
+                .pattern("#X#")
+                .pattern("Q#Q")
+                .input('#', Items.BLAZE_POWDER)
+                .input('X', Items.DIAMOND_BLOCK)
+                .input('Q', Items.CHORUS_FRUIT)
+                .showNotification(true)
+                .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.LIGHT_BLUE_SHULKER_BOX)));
+
+        // CHORUS_FRUIT
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, Items.CHORUS_FRUIT, 1)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('#', Items.APPLE)
+                .input('X', Items.ENDER_PEARL)
+                .showNotification(true)
+                .criterion("has_apple", conditionsFromItem(Items.APPLE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.CHORUS_FRUIT)));
+
+        // ENDSTONE
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.END_STONE, 1)
+                .pattern("###")
+                .pattern("#X#")
+                .pattern("###")
+                .input('#', Items.COBBLESTONE)
+                .input('X', Items.ENDER_PEARL)
+                .showNotification(true)
+                .criterion("has_ender_pearl", conditionsFromItem(Items.ENDER_PEARL))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.END_STONE)));
+
         // TOTEM OF PURITY
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.TOTEM_OF_PURITY, 1)
                 .pattern("Q#Q")
@@ -30,9 +64,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern("Q#Q")
                 .input('#', Items.GOLD_INGOT)
                 .input('X', Items.DIAMOND)
-                .input('Q' , Items.OXEYE_DAISY)
+                .input('Q' , Items.BLAZE_POWDER)
                 .showNotification(true)
-                .criterion("has_diamond", conditionsFromItem(Items.DIAMOND))
+                .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.TOTEM_OF_PURITY)));
 
         // KARAMBIT
@@ -100,7 +134,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('#', ModItems.MANA_CLUSTER)
                 .criterion("has_mana_cluster", conditionsFromItem(ModItems.MANA_CLUSTER))
                 .offerTo(consumer);
-
 
         // Copper Coin -> Silver Coin
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SILVER_COIN)

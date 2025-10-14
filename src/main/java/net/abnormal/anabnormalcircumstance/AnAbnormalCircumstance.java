@@ -1,10 +1,13 @@
 package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
+import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
+import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
@@ -25,8 +28,14 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
+
         ModEffects.registerEffects();
         ModEvents.registerEvents();
+
+        ModBlockEntities.registerBlockEntities();
+        ModScreenHandlers.registerScreenHandlers();
+
+//        ModRecipes.registerRecipes();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
