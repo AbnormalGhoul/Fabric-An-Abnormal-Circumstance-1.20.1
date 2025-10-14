@@ -6,14 +6,8 @@ import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
-
-import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,6 +28,8 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         ModBlockEntities.registerBlockEntities();
         ModScreenHandlers.registerScreenHandlers();
+
+        ModAdvancementHandler.register();
 
 //        ModRecipes.registerRecipes();
 

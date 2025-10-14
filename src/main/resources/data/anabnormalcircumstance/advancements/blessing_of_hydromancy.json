@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:hydro_essence" },
+    "title": { "text": "Blessing of Hydromancy" },
+    "description": { "text": "You have embraced the essence of water." },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_hydro_essence": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:hydro_essence"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_hydro_essence"]
+  ]
+}

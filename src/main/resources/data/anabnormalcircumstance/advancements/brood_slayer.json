@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:broodmother_soul" },
+    "title": { "text": "Brood Slayer" },
+    "description": { "text": "You have consumed the soul of the Broodmother." },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_brood_soul": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:broodmother_soul"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_brood_soul"]
+  ]
+}

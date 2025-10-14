@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:aero_essence" },
+    "title": { "text": "Blessing of Aeromancy" },
+    "description": { "text": "You have embraced the essence of air." },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_aero_essence": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:aero_essence"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_aero_essence"]
+  ]
+}

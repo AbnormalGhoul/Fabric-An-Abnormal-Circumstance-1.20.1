@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:geo_essence" },
+    "title": { "text": "Blessing of Geomancy" },
+    "description": { "text": "You have embraced the essence of earth." },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_geo_essence": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:geo_essence"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_geo_essence"]
+  ]
+}

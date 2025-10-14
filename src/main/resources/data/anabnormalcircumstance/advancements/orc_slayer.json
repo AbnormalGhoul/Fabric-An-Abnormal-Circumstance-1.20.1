@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:orc_champion_soul" },
+    "title": { "text": "Orc Slayer" },
+    "description": { "text": "You have consumed the soul of an Orc Champion." },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_orc_soul": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:orc_champion_soul"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_orc_soul"]
+  ]
+}

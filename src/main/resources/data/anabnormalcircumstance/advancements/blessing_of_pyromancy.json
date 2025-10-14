@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "icon": { "item": "anabnormalcircumstance:pyro_essence" },
+    "title": { "text": "Blessing of Pyromancy" },
+    "description": { "text": "You have embraced the essence of fire." },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "consume_pyro_essence": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": { "items": ["anabnormalcircumstance:pyro_essence"] }
+      }
+    }
+  },
+  "requirements": [
+    ["consume_pyro_essence"]
+  ]
+}
