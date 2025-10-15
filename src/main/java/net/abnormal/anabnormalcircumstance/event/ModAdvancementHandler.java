@@ -11,6 +11,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ModAdvancementHandler {
@@ -53,7 +54,7 @@ public class ModAdvancementHandler {
     }
 
     private static void checkAndReward(ServerPlayerEntity player, Identifier id, UUID boostId, String name, String tagKey) {
-        Advancement adv = player.getServer().getAdvancementLoader().get(id);
+        Advancement adv = Objects.requireNonNull(player.getServer()).getAdvancementLoader().get(id);
         if (adv == null) return;
 
         NbtCompound data = new NbtCompound();

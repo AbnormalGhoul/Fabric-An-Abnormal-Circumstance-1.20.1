@@ -80,34 +80,34 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_SWIFTNESS, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_STRONG_SWIFTNESS, Models.GENERATED);
 
-// Strength
+        // Strength
         itemModelGenerator.register(ModItems.SPARK_OF_STRENGTH, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_STRENGTH, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_STRONG_STRENGTH, Models.GENERATED);
 
-// Regeneration
+        // Regeneration
         itemModelGenerator.register(ModItems.SPARK_OF_REGENERATION, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_REGENERATION, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_STRONG_REGENERATION, Models.GENERATED);
 
-// Slow Falling (no strong variant)
+        // Slow Falling
         itemModelGenerator.register(ModItems.SPARK_OF_SLOW_FALLING, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_SLOW_FALLING, Models.GENERATED);
 
-// Invisibility (no strong variant)
+        // Invisibility
         itemModelGenerator.register(ModItems.SPARK_OF_INVISIBILITY, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_INVISIBILITY, Models.GENERATED);
 
-// Jump Boost
+        // Jump Boost
         itemModelGenerator.register(ModItems.SPARK_OF_JUMP_BOOST, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_JUMP_BOOST, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_STRONG_JUMP_BOOST, Models.GENERATED);
 
-// Night Vision
+        // Night Vision
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_NIGHT_VISION, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_NIGHT_VISION, Models.GENERATED);
 
-// Awkward Spark base
+        // Awkward & Water Sparks
         itemModelGenerator.register(ModItems.AWKWARD_SPARK, Models.GENERATED);
         itemModelGenerator.register(ModItems.WATER_SPARK, Models.GENERATED);
 

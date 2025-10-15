@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SparkItem extends Item {
     private final StatusEffect effect;
-    private final int duration; // in ticks
+    private final int duration;
     private final int amplifier;
 
     public SparkItem(Settings settings, StatusEffect effect, int duration, int amplifier) {

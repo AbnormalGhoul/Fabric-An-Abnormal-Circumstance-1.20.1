@@ -10,6 +10,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ModAttackEvent {
@@ -44,7 +45,7 @@ public class ModAttackEvent {
             instance.addTemporaryModifier(KARAMBIT_MODIFIER);
 
             // Schedule its removal right after this tick
-            world.getServer().execute(() -> instance.removeModifier(KARAMBIT_UUID));
+            Objects.requireNonNull(world.getServer()).execute(() -> instance.removeModifier(KARAMBIT_UUID));
         }
     }
 }

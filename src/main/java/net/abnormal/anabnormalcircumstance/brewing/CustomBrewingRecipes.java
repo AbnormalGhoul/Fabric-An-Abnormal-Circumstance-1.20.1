@@ -8,6 +8,7 @@ import net.minecraft.potion.Potions;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class CustomBrewingRecipes {
         if (registered) return;
         registered = true;
 
-        // Water → Water Spark
+        // Water to Water Spark
         addPotionRecipe(Potions.WATER, Items.ENDER_PEARL, "water_spark");
         addPotionRecipe(Potions.AWKWARD, Items.ENDER_PEARL, "awkward_spark");
 
@@ -78,7 +79,7 @@ public class CustomBrewingRecipes {
         addItemRecipe("spark_of_night_vision", Items.REDSTONE, "spark_of_long_night_vision");
     }
 
-    // ----- Recipe registration helpers -----
+    // Recipe registration helpers
 
     private static void addPotionRecipe(Potion inputPotion, Item ingredient, String resultId) {
         RECIPES.put(new RecipeKey(inputPotion, ingredient),
@@ -90,7 +91,7 @@ public class CustomBrewingRecipes {
                 new Identifier("anabnormalcircumstance", resultId));
     }
 
-    // ----- Runtime lookup -----
+    // Runtime lookup
 
     public static Identifier getResult(ItemStack input, ItemStack ingredient) {
         if (input == null || ingredient == null) return null;
@@ -121,7 +122,7 @@ public class CustomBrewingRecipes {
         return false;
     }
 
-    // ----- Inner key type -----
+    // Inner key type
     private record RecipeKey(Object input, Item ingredient) {
         @Override
         public boolean equals(Object o) {
@@ -136,7 +137,7 @@ public class CustomBrewingRecipes {
         }
 
         @Override
-        public String toString() {
+        public @NotNull String toString() {
             return "RecipeKey{" + input + " + " + Registries.ITEM.getId(ingredient) + "}";
         }
     }
