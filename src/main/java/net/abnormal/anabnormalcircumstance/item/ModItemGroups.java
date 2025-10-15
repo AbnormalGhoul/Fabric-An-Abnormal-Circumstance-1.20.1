@@ -12,9 +12,9 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
 
-    public static final ItemGroup AN_ABNORMAL_CIRCUMSTANCE = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(AnAbnormalCircumstance.MOD_ID, "anabnormalcircumstance"),
-            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.anabnormalcircumstance"))
+    public static final ItemGroup ABNORMAL_Trinkets = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_trinkets_group"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_trinkets_group"))
                     .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
 
                         // Blocks
@@ -73,6 +73,41 @@ public class ModItemGroups {
                         entries.add(ModItems.PYRO_SCROLL);
                         entries.add(ModItems.GEO_SCROLL);
                         entries.add(ModItems.AERO_SCROLL);
+
+                    }).build());
+
+    public static final ItemGroup SPARKS = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "sparks_group"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.sparks_group"))
+                    .icon(() -> new ItemStack(ModItems.SPARK_OF_REGENERATION)).entries((displayContext, entries) -> {
+
+                        entries.add(ModItems.WATER_SPARK);
+                        entries.add(ModItems.AWKWARD_SPARK);
+
+                        entries.add(ModItems.SPARK_OF_SWIFTNESS);
+                        entries.add(ModItems.SPARK_OF_LONG_SWIFTNESS);
+                        entries.add(ModItems.SPARK_OF_STRONG_SWIFTNESS);
+
+                        entries.add(ModItems.SPARK_OF_STRENGTH);
+                        entries.add(ModItems.SPARK_OF_LONG_STRENGTH);
+                        entries.add(ModItems.SPARK_OF_STRONG_STRENGTH);
+
+                        entries.add(ModItems.SPARK_OF_REGENERATION);
+                        entries.add(ModItems.SPARK_OF_LONG_REGENERATION);
+                        entries.add(ModItems.SPARK_OF_STRONG_REGENERATION);
+
+                        entries.add(ModItems.SPARK_OF_SLOW_FALLING);
+                        entries.add(ModItems.SPARK_OF_LONG_SLOW_FALLING);
+
+                        entries.add(ModItems.SPARK_OF_INVISIBILITY);
+                        entries.add(ModItems.SPARK_OF_LONG_INVISIBILITY);
+
+                        entries.add(ModItems.SPARK_OF_JUMP_BOOST);
+                        entries.add(ModItems.SPARK_OF_LONG_JUMP_BOOST);
+                        entries.add(ModItems.SPARK_OF_STRONG_JUMP_BOOST);
+
+                        entries.add(ModItems.SPARK_OF_NIGHT_VISION);
+                        entries.add(ModItems.SPARK_OF_LONG_NIGHT_VISION);
 
                     }).build());
 

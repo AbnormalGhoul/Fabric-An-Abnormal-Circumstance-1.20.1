@@ -11,5 +11,9 @@
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  },
+  "mixins": [
+    "BrewingRecipeRegistryMixin",
+    "BrewingStandPotionSlotMixin"
+  ]
 }

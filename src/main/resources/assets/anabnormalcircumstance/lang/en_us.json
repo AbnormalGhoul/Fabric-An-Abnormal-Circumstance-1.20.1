@@ -1,5 +1,6 @@
 {
-  "itemgroup.anabnormalcircumstance": "Abnormal Circumstance",
+  "itemgroup.abnormal_trinkets_group": "Abnormal's Trinkets",
+  "itemgroup.sparks_group": "Sparks",
 
   "effect.anabnormalcircumstance.bleeding": "Bleeding",
   "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
@@ -59,6 +60,34 @@
   "item.anabnormalcircumstance.hydro_scroll": "Hydromancy Scroll",
   "item.anabnormalcircumstance.pyro_scroll": "Pyromancy Scroll",
   "item.anabnormalcircumstance.geo_scroll": "Geomancy Scroll",
-  "item.anabnormalcircumstance.aero_scroll": "Aeromancy Scroll"
+  "item.anabnormalcircumstance.aero_scroll": "Aeromancy Scroll",
+
+  "item.anabnormalcircumstance.awkward_spark": "Awkward Spark",
+  "item.anabnormalcircumstance.water_spark": "Water Spark",
+
+  "item.anabnormalcircumstance.spark_of_swiftness": "Spark of Swiftness",
+  "item.anabnormalcircumstance.spark_of_long_swiftness": "Spark of Swiftness",
+  "item.anabnormalcircumstance.spark_of_strong_swiftness": "Spark of Swiftness",
+
+  "item.anabnormalcircumstance.spark_of_strength": "Spark of Strength",
+  "item.anabnormalcircumstance.spark_of_long_strength": "Spark of Strength",
+  "item.anabnormalcircumstance.spark_of_strong_strength": "Spark of Strength",
+
+  "item.anabnormalcircumstance.spark_of_regeneration": "Spark of Regeneration",
+  "item.anabnormalcircumstance.spark_of_long_regeneration": "Spark of Regeneration",
+  "item.anabnormalcircumstance.spark_of_strong_regeneration": "Spark of Regeneration",
+
+  "item.anabnormalcircumstance.spark_of_slow_falling": "Spark of Slow Falling",
+  "item.anabnormalcircumstance.spark_of_long_slow_falling": "Spark of Slow Falling",
+
+  "item.anabnormalcircumstance.spark_of_invisibility": "Spark of Invisibility",
+  "item.anabnormalcircumstance.spark_of_long_invisibility": "Spark of Invisibility",
+
+  "item.anabnormalcircumstance.spark_of_jump_boost": "Spark of Jump Boost",
+  "item.anabnormalcircumstance.spark_of_long_jump_boost": "Spark of Jump Boost",
+  "item.anabnormalcircumstance.spark_of_strong_jump_boost": "Spark of Jump Boost",
+
+  "item.anabnormalcircumstance.spark_of_long_night_vision": "Spark of Night Vision",
+  "item.anabnormalcircumstance.spark_of_night_vision": "Spark of Night Vision"
 
 }
