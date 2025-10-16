@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.item.custom.KarambitItem;
+import net.abnormal.anabnormalcircumstance.item.custom.SilverArrowItem;
 import net.abnormal.anabnormalcircumstance.item.custom.SparkItem;
 import net.abnormal.anabnormalcircumstance.item.custom.VillagerTotemItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -16,6 +17,7 @@ public class ModItems {
     // Weapons
     public static final Item KARAMBIT = registerItem("karambit",
             new KarambitItem(new FabricItemSettings().maxCount(1)));
+    public static final Item SILVER_ARROW = registerItem("silver_arrow", new SilverArrowItem(new Item.Settings()));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
