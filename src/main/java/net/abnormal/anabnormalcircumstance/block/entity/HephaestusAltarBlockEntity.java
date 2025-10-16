@@ -33,6 +33,10 @@ import net.minecraft.entity.boss.BossBar;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.boss.BossBar.Color;
 import net.minecraft.entity.boss.BossBar.Style;
+import net.abnormal.anabnormalcircumstance.recipe.AltarRecipe;
+import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
+import net.minecraft.recipe.RecipeManager;
+import net.minecraft.recipe.RecipeType;
 import java.util.List;
 
 public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
@@ -45,6 +49,9 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
     private int creationTicks = 0;
     private static final int CREATION_DURATION_TICKS = 15 * 20; // 15 minutes
     private ServerBossBar bossBar;
+
+    // Store the recipe being crafted during the creation phase
+    private AltarRecipe currentRecipe = null;
 
     public HephaestusAltarBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, pos, state);
@@ -68,18 +75,16 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         bossBar.setVisible(false);
     }
 
-    // Recipe: 4 diamonds + 4 gold in any orientation -> totem of undying
-    private boolean matchesRecipe() {
-        int diamonds = 0, gold = 0;
-        for (int i = 0; i < 9; i++) {
-            if (i == 4) continue; // skip center slot
-            ItemStack stack = inventory.get(i);
-            if (stack.getItem() == Items.DIAMOND) diamonds += stack.getCount();
-            else if (stack.getItem() == Items.GOLD_INGOT) gold += stack.getCount();
-            else if (!stack.isEmpty()) return false;
+    // Find a matching AltarRecipe from the static recipe list
+    private AltarRecipe getMatchingRecipe(World world) {
+        for (AltarRecipe recipe : net.abnormal.anabnormalcircumstance.recipe.ModRecipes.ALTAR_RECIPES) {
+            if (recipe.matches(this, world)) {
+                return recipe;
+            }
         }
-        return diamonds == 4 && gold == 4;
+        return null;
     }
+
 
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient) return;
@@ -103,23 +108,30 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
             }
         } else {
             // If not creating, check for recipe and start if possible
-            if (matchesRecipe() && inventory.get(4).isEmpty()) {
-                startCreation(world);
+            AltarRecipe recipe = getMatchingRecipe(world);
+            if (recipe != null && inventory.get(4).isEmpty()) {
+                startCreation(world, recipe);
             }
         }
     }
 
-    private void startCreation(World world) {
+    private void startCreation(World world, AltarRecipe recipe) {
         isCreating = true;
         creationTicks = 0;
         bossBar.setVisible(true);
         updateBossBar(world);
+
+        // Store the recipe for later output
+        currentRecipe = recipe;
 
         // Kick out all users from GUI
         List<ServerPlayerEntity> players = ((ServerWorld)world).getPlayers(player -> player.currentScreenHandler != null && player.currentScreenHandler instanceof net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreenHandler && ((HephaestusAltarScreenHandler)player.currentScreenHandler).blockEntity == this);
         for (ServerPlayerEntity player : players) {
             player.closeHandledScreen();
         }
+
+        // Clear the center slot before starting creation
+        inventory.set(4, ItemStack.EMPTY);
 
         // Send chat message
         world.getServer().getPlayerManager().broadcast(Text.literal("A craft has started at Hephaestus's Altar!"), false);
@@ -138,8 +150,13 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
             if (i == 4) continue;
             inventory.set(i, ItemStack.EMPTY);
         }
-        // Place output in center slot
-        inventory.set(4, new ItemStack(Items.TOTEM_OF_UNDYING));
+        // Place output in center slot using the stored recipe
+        if (currentRecipe != null) {
+            inventory.set(4, currentRecipe.getOutput(world.getRegistryManager()));
+        } else {
+            inventory.set(4, ItemStack.EMPTY);
+        }
+        currentRecipe = null;
         markDirty();
     }
 

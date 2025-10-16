@@ -34,7 +34,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         ModAdvancementHandler.register();
         CustomBrewingRecipes.registerAll();
-//        ModRecipes.registerRecipes();
+        ModRecipes.registerRecipes();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
