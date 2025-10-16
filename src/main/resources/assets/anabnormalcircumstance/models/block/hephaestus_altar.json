@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [64, 64],
 	"textures": {
-		"1": "hephaestus_altar"
+		"1": "anabnormalcircumstance:block/hephaestus_altar"
 	},
 	"elements": [
 		{

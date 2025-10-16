@@ -8,6 +8,7 @@ import net.abnormal.anabnormalcircumstance.event.ModAdvancementHandler;
 import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         ModAdvancementHandler.register();
         CustomBrewingRecipes.registerAll();
-//      ModRecipes.registerRecipes();
+//        ModRecipes.registerRecipes();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
