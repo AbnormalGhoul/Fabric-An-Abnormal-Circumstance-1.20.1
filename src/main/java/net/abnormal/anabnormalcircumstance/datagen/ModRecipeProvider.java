@@ -17,26 +17,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         super(output);
     }
 
-
-
-
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
         // SHULKER_BOX
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.LIGHT_BLUE_SHULKER_BOX, 1)
-                .pattern("Q#Q")
+                .pattern("###")
                 .pattern("#X#")
-                .pattern("Q#Q")
-                .input('#', Items.BLAZE_POWDER)
+                .pattern("###")
                 .input('X', Items.DIAMOND_BLOCK)
-                .input('Q', Items.CHORUS_FRUIT)
+                .input('#', Items.POPPED_CHORUS_FRUIT)
                 .showNotification(true)
-                .criterion("has_blaze_powder", conditionsFromItem(Items.BLAZE_POWDER))
+                .criterion("has_diamond_block", conditionsFromItem(Items.DIAMOND_BLOCK))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.LIGHT_BLUE_SHULKER_BOX)));
 
         // CHORUS_FRUIT
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, Items.CHORUS_FRUIT, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, Items.CHORUS_FRUIT, 4)
                 .pattern(" # ")
                 .pattern("#X#")
                 .pattern(" # ")
@@ -81,32 +77,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_orc_champion_fang", conditionsFromItem(ModItems.ORC_CHAMPION_FANG))
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.KARAMBIT)));
 
-        // AMETHYST ARROW
-//        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.AMETHYST_ARROW, 8)
-//                .pattern("###")
-//                .pattern("#X#")
-//                .pattern("###")
-//                .input('#', Items.ARROW)
-//                .input('X', Items.AMETHYST_SHARD)
-//                .group("arrow")
-//                .showNotification(true)
-//                .criterion("has_amethyst_shard", conditionsFromItem(Items.AMETHYST_SHARD))
-//                .offerTo(consumer, new Identifier(getRecipeName(ModItems.AMETHYST_ARROW)));
-
         // SILVER ARROW
-//        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_ARROW, 8)
-//                .pattern("###")
-//                .pattern("#X#")
-//                .pattern("###")
-//                .input('#', Items.ARROW)
-//                .input('X', Items.IRON_INGOT)
-//                .group("arrow")
-//                .showNotification(true)
-//                .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT)))
-//                .offerTo(consumer, new Identifier(getRecipeName(ModItems.SILVER_ARROW)));
-
-
-
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_ARROW, 8)
+                .pattern("###")
+                .pattern("#X#")
+                .pattern("###")
+                .input('#', Items.ARROW)
+                .input('X', Items.IRON_INGOT)
+                .group("arrow")
+                .showNotification(true)
+                .criterion("has_iron_ingot", conditionsFromItem(Items.IRON_INGOT))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.SILVER_ARROW)));
 
         // Mana Shard -> Mana Gem
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MANA_GEM)

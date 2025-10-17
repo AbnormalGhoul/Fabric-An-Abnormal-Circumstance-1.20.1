@@ -133,8 +133,10 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         // Clear the center slot before starting creation
         inventory.set(4, ItemStack.EMPTY);
 
-        // Send chat message
-        world.getServer().getPlayerManager().broadcast(Text.literal("A craft has started at Hephaestus's Altar!"), false);
+        // Send custom world message
+        world.getServer().getPlayerManager().broadcast(
+                Text.literal("A Divine Forging has been started at the Great Altar"), false
+        );
 
         // Play sound
         world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, net.minecraft.sound.SoundCategory.BLOCKS, 1.0f, 1.0f);
@@ -158,6 +160,7 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         }
         currentRecipe = null;
         markDirty();
+        world.playSound(null, pos, SoundEvents.ENTITY_EVOKER_PREPARE_ATTACK, net.minecraft.sound.SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
     private void updateBossBar(World world) {

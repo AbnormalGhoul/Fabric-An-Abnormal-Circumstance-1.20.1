@@ -4,7 +4,7 @@
     "icon": { "item": "anabnormalcircumstance:pyro_essence" },
     "title": { "text": "Blessing of Pyromancy" },
     "description": { "text": "You have embraced the essence of fire." },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

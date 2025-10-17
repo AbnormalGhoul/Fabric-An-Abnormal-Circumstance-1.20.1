@@ -90,6 +90,9 @@
   "item.anabnormalcircumstance.spark_of_strong_jump_boost": "Spark of Jump Boost",
 
   "item.anabnormalcircumstance.spark_of_long_night_vision": "Spark of Night Vision",
-  "item.anabnormalcircumstance.spark_of_night_vision": "Spark of Night Vision"
+  "item.anabnormalcircumstance.spark_of_night_vision": "Spark of Night Vision",
+
+    "item.anabnormalcircumstance.spark_of_water_breathing": "Spark of Water Breathing",
+    "item.anabnormalcircumstance.spark_of_long_water_breathing": "Spark of Water Breathing"
 
 }

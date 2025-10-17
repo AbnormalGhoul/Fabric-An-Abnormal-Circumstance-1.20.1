@@ -107,6 +107,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_NIGHT_VISION, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_NIGHT_VISION, Models.GENERATED);
 
+        // Water Breathing
+        itemModelGenerator.register(ModItems.SPARK_OF_WATER_BREATHING, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPARK_OF_LONG_WATER_BREATHING, Models.GENERATED);
+
         // Awkward & Water Sparks
         itemModelGenerator.register(ModItems.AWKWARD_SPARK, Models.GENERATED);
         itemModelGenerator.register(ModItems.WATER_SPARK, Models.GENERATED);

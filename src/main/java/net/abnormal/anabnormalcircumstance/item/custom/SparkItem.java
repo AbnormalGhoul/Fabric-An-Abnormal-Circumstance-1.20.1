@@ -67,7 +67,7 @@ public class SparkItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         String effectName = Text.translatable(effect.getTranslationKey()).getString();
-        int seconds = (int) (duration / 20.0);
+        int seconds = (int) ((duration * 0.6667) / 20.0);
 
         // Convert amplifier (0-based) to level (1-based)
         int level = amplifier + 1;

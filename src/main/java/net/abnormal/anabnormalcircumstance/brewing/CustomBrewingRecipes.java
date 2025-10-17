@@ -77,6 +77,12 @@ public class CustomBrewingRecipes {
         addPotionRecipe(Potions.NIGHT_VISION, Items.ENDER_PEARL, "spark_of_night_vision");
         addPotionRecipe(Potions.LONG_NIGHT_VISION, Items.ENDER_PEARL, "spark_of_long_night_vision");
         addItemRecipe("spark_of_night_vision", Items.REDSTONE, "spark_of_long_night_vision");
+
+        // Water Breathing Sparks
+        addItemRecipe("awkward_spark", Items.PUFFERFISH, "spark_of_water_breathing");
+        addPotionRecipe(Potions.WATER_BREATHING, Items.ENDER_PEARL, "spark_of_water_breathing");
+        addPotionRecipe(Potions.LONG_WATER_BREATHING, Items.ENDER_PEARL, "spark_of_long_water_breathing");
+        addItemRecipe("spark_of_water_breathing", Items.REDSTONE, "spark_of_long_water_breathing");
     }
 
     // Recipe registration helpers

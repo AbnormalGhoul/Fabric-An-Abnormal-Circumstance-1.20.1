@@ -110,6 +110,9 @@ public class ModItemGroups {
                         entries.add(ModItems.SPARK_OF_NIGHT_VISION);
                         entries.add(ModItems.SPARK_OF_LONG_NIGHT_VISION);
 
+                        entries.add(ModItems.SPARK_OF_WATER_BREATHING);
+                        entries.add(ModItems.SPARK_OF_LONG_WATER_BREATHING);
+
                     }).build());
 
     public static void registerItemGroups() {

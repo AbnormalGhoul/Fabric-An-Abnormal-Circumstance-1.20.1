@@ -132,6 +132,15 @@ public class ModItems {
             new SparkItem(new FabricItemSettings().maxCount(16),
                     StatusEffects.JUMP_BOOST, 90 * 20, 1));
 
+    // Water Breathing
+    public static final Item SPARK_OF_WATER_BREATHING = registerItem("spark_of_water_breathing",
+            new SparkItem(new FabricItemSettings().maxCount(16),
+                    StatusEffects.WATER_BREATHING, 180 * 20, 0));
+    public static final Item SPARK_OF_LONG_WATER_BREATHING = registerItem("spark_of_long_water_breathing",
+            new SparkItem(new FabricItemSettings().maxCount(16),
+                    StatusEffects.WATER_BREATHING, 480 * 20, 0));
+
+    // Night Vision
     public static final Item SPARK_OF_NIGHT_VISION = registerItem("spark_of_night_vision",
             new SparkItem(new FabricItemSettings().maxCount(16),
                     StatusEffects.NIGHT_VISION, 180 * 20, 0));

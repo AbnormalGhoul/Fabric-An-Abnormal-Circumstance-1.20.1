@@ -4,7 +4,7 @@
     "icon": { "item": "anabnormalcircumstance:hydro_essence" },
     "title": { "text": "Blessing of Hydromancy" },
     "description": { "text": "You have embraced the essence of water." },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

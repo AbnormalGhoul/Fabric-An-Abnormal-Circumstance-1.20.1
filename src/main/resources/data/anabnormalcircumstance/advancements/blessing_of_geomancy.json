@@ -4,7 +4,7 @@
     "icon": { "item": "anabnormalcircumstance:geo_essence" },
     "title": { "text": "Blessing of Geomancy" },
     "description": { "text": "You have embraced the essence of earth." },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

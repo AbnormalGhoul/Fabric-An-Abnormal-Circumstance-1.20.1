@@ -4,7 +4,7 @@
     "icon": { "item": "anabnormalcircumstance:aero_essence" },
     "title": { "text": "Blessing of Aeromancy" },
     "description": { "text": "You have embraced the essence of air." },
-    "frame": "task",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },
