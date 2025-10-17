@@ -15,6 +15,7 @@
   "mixins": [
     "BrewingRecipeRegistryMixin",
     "BrewingStandPotionSlotMixin",
-    "EnderPearlItemMixin"
+    "EnderPearlItemMixin",
+    "TripwireDupeFixMixin"
   ]
 }
