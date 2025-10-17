@@ -1,7 +1,9 @@
 package net.abnormal.anabnormalcircumstance.effect;
 
 
-import net.minecraft.entity.effect.StatusEffect;
+import net.abnormal.anabnormalcircumstance.effect.custom.BleedingEffect;
+import net.abnormal.anabnormalcircumstance.effect.custom.ConfuseEffect;
+import net.abnormal.anabnormalcircumstance.effect.custom.StunEffect;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;

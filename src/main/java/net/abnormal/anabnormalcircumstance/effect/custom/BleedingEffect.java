@@ -1,11 +1,10 @@
-package net.abnormal.anabnormalcircumstance.effect;
+package net.abnormal.anabnormalcircumstance.effect.custom;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.server.world.ServerWorld;
 
 public class BleedingEffect extends StatusEffect {
     public BleedingEffect(StatusEffectCategory category, int color) {
@@ -24,7 +23,7 @@ public class BleedingEffect extends StatusEffect {
         if (entity.getWorld().isClient()) return; // Only run on server side
 
         float maxHealth = entity.getMaxHealth();
-        float damage = maxHealth * 0.05f; // 5% of max health
+        float damage = maxHealth * 0.10f; // 10% of max health
 
         DamageSource source = entity.getDamageSources().magic();
         entity.damage(source, damage);

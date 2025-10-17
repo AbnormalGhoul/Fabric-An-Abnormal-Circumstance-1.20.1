@@ -7,6 +7,7 @@ import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.event.ModAdvancementHandler;
 import net.abnormal.anabnormalcircumstance.event.ModEvents;
+import net.abnormal.anabnormalcircumstance.event.StunEventHandler;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
@@ -40,6 +41,9 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModAdvancementHandler.register();
         CustomBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
+
+        StunEventHandler.register();
+
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 

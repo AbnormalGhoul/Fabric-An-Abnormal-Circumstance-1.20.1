@@ -1,5 +1,6 @@
-package net.abnormal.anabnormalcircumstance.effect;
+package net.abnormal.anabnormalcircumstance.effect.custom;
 
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
