@@ -14,6 +14,7 @@
   },
   "mixins": [
     "BrewingRecipeRegistryMixin",
-    "BrewingStandPotionSlotMixin"
+    "BrewingStandPotionSlotMixin",
+    "EnderPearlItemMixin"
   ]
 }
