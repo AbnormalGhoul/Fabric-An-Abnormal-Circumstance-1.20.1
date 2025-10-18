@@ -1,23 +1,28 @@
 package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
-import net.abnormal.anabnormalcircumstance.item.custom.KarambitItem;
-import net.abnormal.anabnormalcircumstance.item.custom.SilverArrowItem;
-import net.abnormal.anabnormalcircumstance.item.custom.SparkItem;
-import net.abnormal.anabnormalcircumstance.item.custom.VillagerTotemItem;
+import net.abnormal.anabnormalcircumstance.item.custom.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 public class ModItems {
 
     // Weapons
     public static final Item KARAMBIT = registerItem("karambit",
-            new KarambitItem(new FabricItemSettings().maxCount(1)));
+            new KarambitItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
     public static final Item SILVER_ARROW = registerItem("silver_arrow", new SilverArrowItem(new Item.Settings()));
+
+    // Blades
+    public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item HYDRO_BLADE = registerItem("hydro_blade", new HydroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item PYRO_BLADE = registerItem("pyro_blade", new PyroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
@@ -37,12 +42,13 @@ public class ModItems {
     public static final Item AERO_CATALYST = registerItem("aero_catalyst", new Item(new Item.Settings()));
 
     // Consumable Essences/Souls
-    public static final Item HYDRO_ESSENCE = registerItem("hydro_essence", new SoundFoodItem(ModFoodComponents.HYDRO_ESSENCE, new Item.Settings().maxCount(16)));
-    public static final Item PYRO_ESSENCE = registerItem("pyro_essence", new SoundFoodItem(ModFoodComponents.PYRO_ESSENCE, new Item.Settings().maxCount(16)));
-    public static final Item GEO_ESSENCE = registerItem("geo_essence", new SoundFoodItem(ModFoodComponents.GEO_ESSENCE, new Item.Settings().maxCount(16)));
-    public static final Item AERO_ESSENCE = registerItem("aero_essence", new SoundFoodItem(ModFoodComponents.AERO_ESSENCE, new Item.Settings().maxCount(16)));
-    public static final Item ORC_CHAMPION_SOUL = registerItem("orc_champion_soul", new SoundFoodItem(ModFoodComponents.ORC_CHAMPION_SOUL, new Item.Settings().maxCount(16)));
-    public static final Item BROODMOTHER_SOUL = registerItem("broodmother_soul", new SoundFoodItem(ModFoodComponents.BROODMOTHER_SOUL, new Item.Settings().maxCount(16)));
+    public static final Item HYDRO_ESSENCE = registerItem("hydro_essence", new SoundFoodItem(ModFoodComponents.HYDRO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
+    public static final Item PYRO_ESSENCE = registerItem("pyro_essence", new SoundFoodItem(ModFoodComponents.PYRO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
+    public static final Item GEO_ESSENCE = registerItem("geo_essence", new SoundFoodItem(ModFoodComponents.GEO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
+    public static final Item AERO_ESSENCE = registerItem("aero_essence", new SoundFoodItem(ModFoodComponents.AERO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
+
+    public static final Item ORC_CHAMPION_SOUL = registerItem("orc_champion_soul", new SoundFoodItem(ModFoodComponents.ORC_CHAMPION_SOUL, new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON)));
+    public static final Item BROODMOTHER_SOUL = registerItem("broodmother_soul", new SoundFoodItem(ModFoodComponents.BROODMOTHER_SOUL, new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON)));
     // Currency
     public static final Item COPPER_COIN = registerItem("copper_coin", new Item(new Item.Settings()));
     public static final Item SILVER_COIN = registerItem("silver_coin", new Item(new Item.Settings()));

@@ -16,6 +16,7 @@
     "BrewingRecipeRegistryMixin",
     "BrewingStandPotionSlotMixin",
     "EnderPearlItemMixin",
+    "LivingEntityMixin",
     "TripwireDupeFixMixin"
   ]
 }

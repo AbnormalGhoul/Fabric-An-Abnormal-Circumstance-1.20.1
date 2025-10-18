@@ -2,6 +2,13 @@
   "itemgroup.abnormal_trinkets_group": "Abnormal's Trinkets",
   "itemgroup.sparks_group": "Sparks",
 
+  "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
+  "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
+  "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
+  "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
+  "key.anabnormalcircumstance.unique_blade_ability": "Unique Blade Ability",
+  "category.anabnormalcircumstance": "An Abnormal Circumstance",
+
   "effect.anabnormalcircumstance.bleeding": "Bleeding",
   "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
   "effect.anabnormalcircumstance.stun": "Stun",

@@ -10,6 +10,7 @@ import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.event.StunEventHandler;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.network.ModPackets;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
@@ -43,6 +44,10 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModRecipes.registerRecipes();
 
         StunEventHandler.register();
+        ModPackets.registerServer();
+        ModPackets.registerClient();
+
+
 
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");

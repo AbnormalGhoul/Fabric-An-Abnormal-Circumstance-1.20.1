@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance.recipe;
 
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
@@ -18,27 +19,54 @@ public class ModRecipes {
 
     public static void registerRecipes() {
         ALTAR_RECIPES.clear();
-        ALTAR_RECIPES.add(createNetherStarRecipe());
-        ALTAR_RECIPES.add(createTotemRecipe());
+        ALTAR_RECIPES.add(createHydoBlade());
+        ALTAR_RECIPES.add(createPyroBlade());
+        ALTAR_RECIPES.add(createGeoBlade());
+        ALTAR_RECIPES.add(createAeroBlade());
     }
 
-    // Example: Register recipes in your mod initializer
-    public static AltarRecipe createNetherStarRecipe() {
-        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "netherstar"))
-            .addInput(Items.DIAMOND, 2)
-            .addInput(Items.GOLD_INGOT, 2)
-            .addInput(Items.IRON_INGOT, 2)
-            .addInput(Items.REDSTONE, 2)
-            .setOutput(new ItemStack(Items.NETHER_STAR))
+    public static AltarRecipe createHydoBlade() {
+        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "hydro_blade"))
+            .addInput(ModItems.HYDRO_CATALYST, 1)
+            .addInput(ModItems.MANA_CORE, 2)
+            .addInput(Items.DIAMOND_BLOCK, 2)
+            .addInput(Items.DIAMOND_SWORD, 1)
+            .addInput(ModItems.BROODMOTHER_EGG, 2)
+            .setOutput(new ItemStack(ModItems.HYDRO_BLADE))
             .build();
     }
 
-    public static AltarRecipe createTotemRecipe() {
-        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "totem_of_undying"))
-            .addInput(Items.DIAMOND, 4)
-            .addInput(Items.GOLD_INGOT, 4)
-            .setOutput(new ItemStack(Items.TOTEM_OF_UNDYING))
-            .build();
+    public static AltarRecipe createPyroBlade() {
+        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "pyro_blade"))
+                .addInput(ModItems.PYRO_CATALYST, 1)
+                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_SWORD, 1)
+                .addInput(ModItems.ORC_CHAMPION_FANG, 2)
+                .setOutput(new ItemStack(ModItems.PYRO_BLADE))
+                .build();
+    }
+    public static AltarRecipe createGeoBlade() {
+        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "geo_blade"))
+                .addInput(ModItems.GEO_CATALYST, 1)
+                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_SWORD, 1)
+                .addInput(ModItems.BROODMOTHER_EGG, 1)
+                .addInput(ModItems.ORC_CHAMPION_FANG, 1)
+                .setOutput(new ItemStack(ModItems.GEO_BLADE))
+                .build();
+    }
+    public static AltarRecipe createAeroBlade() {
+        return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "aero_blade"))
+                .addInput(ModItems.AERO_CATALYST, 1)
+                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_SWORD, 1)
+                .addInput(ModItems.BROODMOTHER_EGG, 1)
+                .addInput(ModItems.ORC_CHAMPION_FANG, 1)
+                .setOutput(new ItemStack(ModItems.AERO_BLADE))
+                .build();
     }
 
 }

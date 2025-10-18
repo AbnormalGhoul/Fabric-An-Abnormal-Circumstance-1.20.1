@@ -75,6 +75,12 @@ public class ModItemGroups {
                         entries.add(ModItems.GEO_SCROLL);
                         entries.add(ModItems.AERO_SCROLL);
 
+                        // Blades
+                        entries.add(ModItems.AERO_BLADE);
+                        entries.add(ModItems.HYDRO_BLADE);
+                        entries.add(ModItems.PYRO_BLADE);
+                        entries.add(ModItems.GEO_BLADE);
+
                     }).build());
 
     public static final ItemGroup SPARKS = Registry.register(Registries.ITEM_GROUP,
