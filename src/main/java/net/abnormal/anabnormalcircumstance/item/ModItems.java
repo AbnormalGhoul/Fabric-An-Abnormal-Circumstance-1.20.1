@@ -23,6 +23,9 @@ public class ModItems {
     public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
     public static final Item PYRO_BLADE = registerItem("pyro_blade", new PyroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
 
+    // Champion Weapons
+    public static final Item FIRST_LEAF = registerItem("first_leaf",
+            new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));

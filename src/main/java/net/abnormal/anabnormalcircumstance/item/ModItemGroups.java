@@ -24,6 +24,7 @@ public class ModItemGroups {
                         // Weapons
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.SILVER_ARROW);
+                        entries.add(ModItems.FIRST_LEAF);
 
                         // Dungeon Loot
                         entries.add(ModItems.SILVER_NECKLACE);

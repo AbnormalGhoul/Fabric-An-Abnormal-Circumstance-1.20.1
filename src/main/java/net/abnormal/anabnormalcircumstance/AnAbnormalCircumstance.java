@@ -14,8 +14,6 @@ import net.abnormal.anabnormalcircumstance.network.ModPackets;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.FlyingItemEntityRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -46,6 +44,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
         StunEventHandler.register();
         ModPackets.registerServer();
         ModPackets.registerClient();
+
 
 
 

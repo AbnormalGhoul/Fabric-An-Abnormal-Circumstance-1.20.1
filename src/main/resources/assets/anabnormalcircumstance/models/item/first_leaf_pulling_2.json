@@ -1,0 +1,6 @@
+{
+  "parent": "anabnormalcircumstance:item/first_leaf",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/first_leaf_pulling_2"
+  }
+}
