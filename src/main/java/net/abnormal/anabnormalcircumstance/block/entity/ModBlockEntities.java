@@ -2,8 +2,7 @@ package net.abnormal.anabnormalcircumstance.block.entity;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
-import net.abnormal.anabnormalcircumstance.block.custom.HephaestusAltarBlock;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.abnormal.anabnormalcircumstance.block.entity.custom.HephaestusAltarBlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

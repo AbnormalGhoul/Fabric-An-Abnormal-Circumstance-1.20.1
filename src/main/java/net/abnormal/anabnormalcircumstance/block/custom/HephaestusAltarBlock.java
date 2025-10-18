@@ -1,6 +1,6 @@
 package net.abnormal.anabnormalcircumstance.block.custom;
 
-import net.abnormal.anabnormalcircumstance.block.entity.HephaestusAltarBlockEntity;
+import net.abnormal.anabnormalcircumstance.block.entity.custom.HephaestusAltarBlockEntity;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;

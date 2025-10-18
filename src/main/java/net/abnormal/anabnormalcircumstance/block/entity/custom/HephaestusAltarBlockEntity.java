@@ -1,5 +1,7 @@
-package net.abnormal.anabnormalcircumstance.block.entity;
+package net.abnormal.anabnormalcircumstance.block.entity.custom;
 
+import net.abnormal.anabnormalcircumstance.block.entity.ImplementedInventory;
+import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -10,12 +12,16 @@ import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.text.Text;
 import net.minecraft.sound.SoundEvents;
@@ -64,7 +70,6 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         bossBar.setVisible(false);
     }
 
-    // Find a matching AltarRecipe from the static recipe list
     private AltarRecipe getMatchingRecipe(World world) {
         for (AltarRecipe recipe : net.abnormal.anabnormalcircumstance.recipe.ModRecipes.ALTAR_RECIPES) {
             if (recipe.matches(this, world)) {
@@ -74,7 +79,6 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         return null;
     }
 
-
     public void tick(World world, BlockPos pos, BlockState state) {
         if (world.isClient) return;
 
@@ -82,7 +86,6 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
             creationTicks++;
             updateBossBar(world);
 
-            // Particle effect: blue particles in a circle
             double radius = 1.5 + Math.sin(world.getTime() / 20.0) * 0.5;
             for (int i = 0; i < 8; i++) {
                 double angle = i * Math.PI * 2 / 8 + (world.getTime() / 20.0);
@@ -96,7 +99,6 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
                 finishCreation(world);
             }
         } else {
-            // If not creating, check for recipe and start if possible
             AltarRecipe recipe = getMatchingRecipe(world);
             if (recipe != null && inventory.get(4).isEmpty()) {
                 startCreation(world, recipe);
@@ -110,24 +112,25 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         bossBar.setVisible(true);
         updateBossBar(world);
 
-        // Store the recipe for later output
         currentRecipe = recipe;
 
-        // Kick out all users from GUI
         List<ServerPlayerEntity> players = ((ServerWorld)world).getPlayers(player -> player.currentScreenHandler != null && player.currentScreenHandler instanceof net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreenHandler && ((HephaestusAltarScreenHandler)player.currentScreenHandler).blockEntity == this);
         for (ServerPlayerEntity player : players) {
             player.closeHandledScreen();
         }
 
-        // Clear the center slot before starting creation
         inventory.set(4, ItemStack.EMPTY);
 
-        // Send custom world message
+        markDirty();
+        if (world != null) {
+            world.updateListeners(this.pos, world.getBlockState(this.pos), world.getBlockState(this.pos), 3);
+            sendBlockEntityUpdateToTrackingPlayers(world);
+        }
+
         world.getServer().getPlayerManager().broadcast(
                 Text.literal("A Divine Forging has been started at the Great Altar"), false
         );
 
-        // Play sound
         world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, net.minecraft.sound.SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
@@ -136,25 +139,30 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         creationTicks = 0;
         bossBar.setVisible(false);
 
-        // Remove input items
         for (int i = 0; i < 9; i++) {
             if (i == 4) continue;
             inventory.set(i, ItemStack.EMPTY);
         }
-        // Place output in center slot using the stored recipe
         if (currentRecipe != null) {
             inventory.set(4, currentRecipe.getOutput(world.getRegistryManager()));
         } else {
             inventory.set(4, ItemStack.EMPTY);
         }
         currentRecipe = null;
+
         markDirty();
+        if (world != null) {
+            world.updateListeners(this.pos, world.getBlockState(this.pos), world.getBlockState(this.pos), 3);
+            sendBlockEntityUpdateToTrackingPlayers(world);
+            // Force a block update for all clients
+            net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltarBlockEntityRenderState.syncToClients(world, pos);
+        }
+
         world.playSound(null, pos, SoundEvents.ENTITY_EVOKER_PREPARE_ATTACK, net.minecraft.sound.SoundCategory.BLOCKS, 1.0f, 1.0f);
     }
 
     private void updateBossBar(World world) {
         bossBar.setPercent(1.0f - (float)creationTicks / CREATION_DURATION_TICKS);
-        // Add all nearby players
         List<ServerPlayerEntity> players = ((ServerWorld)world).getPlayers(player -> player.squaredDistanceTo(Vec3d.ofCenter(pos)) < 150*150);
         bossBar.clearPlayers();
         for (ServerPlayerEntity player : players) {
@@ -200,5 +208,44 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
     @Override
     public @Nullable ScreenHandler createMenu(int syncId, PlayerInventory playerInventory, PlayerEntity player) {
         return new net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreenHandler(syncId, playerInventory, this, this.propertyDelegate);
+    }
+
+    @Override
+    public void markDirty() {
+        super.markDirty();
+        if (this.world != null && !this.world.isClient) {
+            this.world.updateListeners(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 3);
+            sendBlockEntityUpdateToTrackingPlayers(this.world);
+        }
+    }
+
+    private void sendBlockEntityUpdateToTrackingPlayers(World world) {
+        if (world == null || world.isClient) return;
+        if (!(world instanceof ServerWorld)) return;
+
+        Packet<ClientPlayPacketListener> pkt = BlockEntityUpdateS2CPacket.create(this);
+        if (pkt == null) return;
+
+        double radius = 64.0;
+        List<ServerPlayerEntity> players = ((ServerWorld) world).getPlayers(player -> player.squaredDistanceTo(Vec3d.ofCenter(pos)) < radius * radius);
+        for (ServerPlayerEntity player : players) {
+            player.networkHandler.sendPacket(pkt);
+        }
+
+        try {
+            ChunkPos chunkPos = new ChunkPos(pos);
+            ((ServerWorld)world).getChunkManager().threadedAnvilChunkStorage.getPlayersWatchingChunk(chunkPos, true)
+                    .forEach(player -> player.networkHandler.sendPacket(pkt));
+        } catch (Throwable ignored) { }
+    }
+
+    public Packet<ClientPlayPacketListener> toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
+    }
+
+    public NbtCompound toInitialChunkData() {
+        NbtCompound nbt = new NbtCompound();
+        this.writeNbt(nbt);
+        return nbt;
     }
 }

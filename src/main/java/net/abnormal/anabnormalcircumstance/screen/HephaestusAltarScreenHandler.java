@@ -1,6 +1,6 @@
 package net.abnormal.anabnormalcircumstance.screen;
 
-import net.abnormal.anabnormalcircumstance.block.entity.HephaestusAltarBlockEntity;
+import net.abnormal.anabnormalcircumstance.block.entity.custom.HephaestusAltarBlockEntity;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
