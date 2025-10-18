@@ -34,9 +34,6 @@ public class AeroBladeItem extends UniqueBladeItem {
             // Only reset fallDistance if the player is about to take fall damage (i.e., just before landing)
             if (!player.isOnGround() && player.getVelocity().y < 0 && player.fallDistance > 2.5F) {
                 player.fallDistance = 0.0F;
-                if (player instanceof ServerPlayerEntity serverPlayer) {
-                    ModPackets.sendBladeSound(serverPlayer, SoundEvents.ENTITY_PLAYER_SMALL_FALL.getId().toString());
-                }
             }
         }
         super.inventoryTick(stack, world, entity, slot, selected);
