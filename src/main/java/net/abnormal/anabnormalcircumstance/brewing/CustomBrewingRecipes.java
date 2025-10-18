@@ -105,7 +105,6 @@ public class CustomBrewingRecipes {
         // Potion recipes
         var potionKey = new RecipeKey(PotionUtil.getPotion(input), ingredient.getItem());
         if (RECIPES.containsKey(potionKey)) {
-            // System.out.println("[CustomBrewing] Matched potion recipe: " + potionKey);
             return RECIPES.get(potionKey);
         }
 
@@ -113,7 +112,6 @@ public class CustomBrewingRecipes {
         var inputId = Registries.ITEM.getId(input.getItem());
         var itemKey = new RecipeKey(inputId, ingredient.getItem());
         if (RECIPES.containsKey(itemKey)) {
-            // System.out.println("[CustomBrewing] Matched item recipe: " + itemKey);
             return RECIPES.get(itemKey);
         }
 

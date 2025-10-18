@@ -30,9 +30,11 @@ public class HephaestusAltarBlock extends BlockWithEntity {
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return VoxelShapes.union(
-                Block.createCuboidShape(0, 0, 0, 16, 4, 16), // base
-                Block.createCuboidShape(3, 4, 3, 13, 11, 13), // middle
-                Block.createCuboidShape(0.75, 11, 0.75, 15.25, 15, 15.25) // top
+                Block.createCuboidShape(0, 0, 0, 16, 2, 16),
+                Block.createCuboidShape(1, 2, 1, 15, 3, 15),
+                Block.createCuboidShape(3, 3, 3, 13, 11, 13),
+                Block.createCuboidShape(5, 11, 5, 11, 12, 11),
+                Block.createCuboidShape(4, 15, 4, 12, 16, 12)
         );
     }
 

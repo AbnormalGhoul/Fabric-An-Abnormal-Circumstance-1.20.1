@@ -1,7 +1,5 @@
 {
   "variants": {
-    "": {
-      "model": "anabnormalcircumstance:block/hephaestus_altar"
-    }
+    "": { "model": "anabnormalcircumstance:block/hephaestus_altar" }
   }
 }
