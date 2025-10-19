@@ -128,7 +128,7 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
         }
 
         world.getServer().getPlayerManager().broadcast(
-                Text.literal("A Divine Forging has been started at the Great Altar"), false
+                Text.literal("A Divine Forging has been started at the Great Altar").formatted(net.minecraft.util.Formatting.RED), false
         );
 
         world.playSound(null, pos, SoundEvents.BLOCK_END_PORTAL_SPAWN, net.minecraft.sound.SoundCategory.BLOCKS, 1.0f, 1.0f);

@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.item.custom.*;
+import net.abnormal.anabnormalcircumstance.item.custom.unique.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
@@ -18,14 +19,40 @@ public class ModItems {
     public static final Item SILVER_ARROW = registerItem("silver_arrow", new SilverArrowItem(new Item.Settings()));
 
     // Blades
-//    public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
-//    public static final Item HYDRO_BLADE = registerItem("hydro_blade", new HydroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
-//    public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
-//    public static final Item PYRO_BLADE = registerItem("pyro_blade", new PyroBladeItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(
+                    ModToolMaterials.UNIQUE, // Tool Material
+                    8,                       // Attack damage bonus
+                    -2.4f,                   // Attack speed
+                    new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            ));
+    public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(
+            ModToolMaterials.UNIQUE,
+            8,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
+    public static final Item HYDRO_BLADE = registerItem("hydro_blade", new HydroBladeItem(
+            ModToolMaterials.UNIQUE,
+            8,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
+    public static final Item PYRO_BLADE = registerItem("pyro_blade", new PyroBladeItem(
+            ModToolMaterials.UNIQUE,
+            8,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
 
     // Champion Weapons
-//    public static final Item FIRST_LEAF = registerItem("first_leaf",
-//            new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
+            ModToolMaterials.UNIQUE,
+            12,
+            -3f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
+
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));

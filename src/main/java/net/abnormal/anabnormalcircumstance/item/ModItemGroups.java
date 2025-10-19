@@ -12,28 +12,73 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
 
-    public static final ItemGroup ABNORMAL_Trinkets = Registry.register(Registries.ITEM_GROUP,
+    public static final ItemGroup ABNORMAL_TRINKETS = Registry.register(Registries.ITEM_GROUP,
             new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_trinkets_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_trinkets_group"))
-                    .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
+                    .icon(() -> new ItemStack(ModItems.FORGEFATHER_JUDGMENT)).entries((displayContext, entries) -> {
 
-                        // Blocks
-                        entries.add(ModBlocks.HEPHAESTUS_ALTAR);
-                        entries.add(ModBlocks.DARK_SAND);
+                        // Champion Weapons
+                        entries.add(ModItems.FIRST_LEAF);
+                        entries.add(ModItems.FORGEFATHER_JUDGMENT);
 
-                        // Weapons
+                        // Elemental Blades
+                        entries.add(ModItems.AERO_BLADE);
+                        entries.add(ModItems.HYDRO_BLADE);
+                        entries.add(ModItems.PYRO_BLADE);
+                        entries.add(ModItems.GEO_BLADE);
+
+                        // Other Tools
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.SILVER_ARROW);
-                        // Dungeon Loot
-                        entries.add(ModItems.SILVER_NECKLACE);
-                        entries.add(ModItems.GOLDEN_EARRINGS);
-                        entries.add(ModItems.DIAMOND_RING);
-                        entries.add(ModItems.RUSTED_KEY);
-                        entries.add(ModItems.BOTTLED_LIGHTNING);
-                        entries.add(ModItems.ORC_HIDE);
+                        entries.add(ModItems.TOTEM_OF_PURITY);
+                        entries.add(ModItems.CLAIM_RUNE);
+                        entries.add(ModItems.ORIGIN_RUNE);
+                        entries.add(ModItems.SPELL_RUNE);
+
+                    }).build());
+
+    public static final ItemGroup DUNGEON_LOOT = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "dungeon_loot_group"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.dungeon_loot"))
+                    .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
+
+                        // Currency
+                        entries.add(ModItems.PLATINUM_COIN);
+                        entries.add(ModItems.GOLD_COIN);
+                        entries.add(ModItems.SILVER_COIN);
+                        entries.add(ModItems.COPPER_COIN);
+
+                        // Mana Crystals
+                        entries.add(ModItems.MANA_CORE);
+                        entries.add(ModItems.MANA_CLUSTER);
+                        entries.add(ModItems.MANA_GEM);
+                        entries.add(ModItems.MANA_SHARD);
+
+                        // Consumable Souls
+                        entries.add(ModItems.ORC_CHAMPION_SOUL);
+                        entries.add(ModItems.BROODMOTHER_SOUL);
+
+                        // Orc Loot
                         entries.add(ModItems.ORC_CHAMPION_FANG);
-                        entries.add(ModItems.ARACHNID_SILK);
+                        entries.add(ModItems.ORC_HIDE);
+
+                        // Spider Loot
                         entries.add(ModItems.BROODMOTHER_EGG);
+                        entries.add(ModItems.ARACHNID_SILK);
+
+                        // General Dungeon Loot
+                        entries.add(ModItems.RUSTED_KEY);
+                        entries.add(ModItems.BLANK_SCROLL);
+                        entries.add(ModItems.BOTTLED_LIGHTNING);
+                        entries.add(ModItems.DIAMOND_RING);
+                        entries.add(ModItems.GOLDEN_EARRINGS);
+                        entries.add(ModItems.SILVER_NECKLACE);
+
+                        // Consumable Essences
+                        entries.add(ModItems.HYDRO_ESSENCE);
+                        entries.add(ModItems.PYRO_ESSENCE);
+                        entries.add(ModItems.GEO_ESSENCE);
+                        entries.add(ModItems.AERO_ESSENCE);
 
                         // Shrine Loot
                         entries.add(ModItems.HYDRO_CATALYST);
@@ -41,46 +86,9 @@ public class ModItemGroups {
                         entries.add(ModItems.GEO_CATALYST);
                         entries.add(ModItems.AERO_CATALYST);
 
-                        // Consumable Essences/Souls
-                        entries.add(ModItems.HYDRO_ESSENCE);
-                        entries.add(ModItems.PYRO_ESSENCE);
-                        entries.add(ModItems.GEO_ESSENCE);
-                        entries.add(ModItems.AERO_ESSENCE);
-                        entries.add(ModItems.ORC_CHAMPION_SOUL);
-                        entries.add(ModItems.BROODMOTHER_SOUL);
-
-                        // Currency
-                        entries.add(ModItems.COPPER_COIN);
-                        entries.add(ModItems.SILVER_COIN);
-                        entries.add(ModItems.GOLD_COIN);
-                        entries.add(ModItems.PLATINUM_COIN);
-
-                        // Mana Crystals
-                        entries.add(ModItems.MANA_SHARD);
-                        entries.add(ModItems.MANA_GEM);
-                        entries.add(ModItems.MANA_CLUSTER);
-                        entries.add(ModItems.MANA_CORE);
-
-                        // Utility
-                        entries.add(ModItems.CLAIM_RUNE);
-                        entries.add(ModItems.ORIGIN_RUNE);
-                        entries.add(ModItems.SPELL_RUNE);
-                        entries.add(ModItems.TOTEM_OF_PURITY);
-
-                        // Scrolls
-                        entries.add(ModItems.BLANK_SCROLL);
-                        entries.add(ModItems.HYDRO_SCROLL);
-                        entries.add(ModItems.PYRO_SCROLL);
-                        entries.add(ModItems.GEO_SCROLL);
-                        entries.add(ModItems.AERO_SCROLL);
-
-                        // Blades
-//                        entries.add(ModItems.AERO_BLADE);
-//                        entries.add(ModItems.HYDRO_BLADE);
-//                        entries.add(ModItems.PYRO_BLADE);
-//                        entries.add(ModItems.GEO_BLADE);
-//                        entries.add(ModItems.FIRST_LEAF);
-
+                        // Blocks
+                        entries.add(ModBlocks.HEPHAESTUS_ALTAR);
+                        entries.add(ModBlocks.DARK_SAND);
 
                     }).build());
 

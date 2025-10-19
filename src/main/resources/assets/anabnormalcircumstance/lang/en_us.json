@@ -1,13 +1,17 @@
 {
   "itemgroup.abnormal_trinkets_group": "Abnormal's Trinkets",
+  "itemgroup.dungeon_loot": "Dungeon Loot",
   "itemgroup.sparks_group": "Sparks",
+
+  "category.anabnormalcircumstance": "An Abnormal Circumstance",
+  "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
+
+  "key.anabnormalcircumstance.unique_item_ability": "Unique Item Ability",
 
   "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
   "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
   "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
   "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
-  "key.anabnormalcircumstance.unique_item_ability": "Unique Item Ability",
-  "category.anabnormalcircumstance": "An Abnormal Circumstance",
 
   "effect.anabnormalcircumstance.bleeding": "Bleeding",
   "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
@@ -20,6 +24,7 @@
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
 
   "item.anabnormalcircumstance.first_leaf": "The First Leaf",
+    "item.anabnormalcircumstance.forgefather_judgment": "Forgefather's Judgment",
 
   "item.anabnormalcircumstance.karambit": "Fanged Karambit",
   "item.anabnormalcircumstance.silver_arrow": "Silver Arrow",

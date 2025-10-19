@@ -1,7 +1,6 @@
 package net.abnormal.anabnormalcircumstance.util;
 
 import net.fabricmc.api.EnvType;
-import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.world.ClientWorld;
