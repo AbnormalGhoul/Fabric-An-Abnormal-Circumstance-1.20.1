@@ -24,10 +24,10 @@ public class ModModelProvider extends FabricModelProvider {
 
         // Weapons
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.HYDRO_BLADE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.PYRO_BLADE, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.GEO_BLADE, Models.HANDHELD);
+//        itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
+//        itemModelGenerator.register(ModItems.HYDRO_BLADE, Models.HANDHELD);
+//        itemModelGenerator.register(ModItems.PYRO_BLADE, Models.HANDHELD);
+//        itemModelGenerator.register(ModItems.GEO_BLADE, Models.HANDHELD);
 
         // Dungeon Loot
         itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);

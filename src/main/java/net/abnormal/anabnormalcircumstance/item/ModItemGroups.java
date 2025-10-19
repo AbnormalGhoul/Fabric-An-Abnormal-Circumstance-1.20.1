@@ -24,8 +24,6 @@ public class ModItemGroups {
                         // Weapons
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.SILVER_ARROW);
-                        entries.add(ModItems.FIRST_LEAF);
-
                         // Dungeon Loot
                         entries.add(ModItems.SILVER_NECKLACE);
                         entries.add(ModItems.GOLDEN_EARRINGS);
@@ -77,10 +75,12 @@ public class ModItemGroups {
                         entries.add(ModItems.AERO_SCROLL);
 
                         // Blades
-                        entries.add(ModItems.AERO_BLADE);
-                        entries.add(ModItems.HYDRO_BLADE);
-                        entries.add(ModItems.PYRO_BLADE);
-                        entries.add(ModItems.GEO_BLADE);
+//                        entries.add(ModItems.AERO_BLADE);
+//                        entries.add(ModItems.HYDRO_BLADE);
+//                        entries.add(ModItems.PYRO_BLADE);
+//                        entries.add(ModItems.GEO_BLADE);
+//                        entries.add(ModItems.FIRST_LEAF);
+
 
                     }).build());
 

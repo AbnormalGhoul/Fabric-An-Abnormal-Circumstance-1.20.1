@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class UniqueBladeCooldownManager {
+public class UniqueItemCooldownManager {
     private static final Map<UUID, Long> cooldowns = new HashMap<>();
-    private static final String COOLDOWN_KEY = "UniqueBladeCooldown";
+    private static final String COOLDOWN_KEY = "UniqueItemCooldown";
 
     public static boolean isOnCooldown(PlayerEntity player) {
         Long until = cooldowns.get(player.getUuid());

@@ -25,29 +25,23 @@ public class AnAbnormalCircumstance implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
-        ModItemGroups.registerItemGroups();
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
-
         ModEffects.registerEffects();
-        ModEvents.registerEvents();
+        ModItemGroups.registerItemGroups();
 
+        ModEvents.registerEvents();
+        ModEntities.registerModEntities();
         ModBlockEntities.registerBlockEntities();
         ModScreenHandlers.registerScreenHandlers();
 
-        ModEntities.registerModEntities();
-
+        StunEventHandler.register();
         ModAdvancementHandler.register();
         CustomBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
 
-        StunEventHandler.register();
-        ModPackets.registerServer();
-        ModPackets.registerClient();
-
-
-
-
+//        ModPackets.registerServer();
+//        ModPackets.registerClient();
 
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
