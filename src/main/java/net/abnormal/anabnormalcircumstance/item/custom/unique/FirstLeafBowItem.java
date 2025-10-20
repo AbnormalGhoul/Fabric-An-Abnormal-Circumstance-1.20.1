@@ -96,7 +96,7 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Regeneration I").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Passive: Grants Regeneration II").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Next arrow stuns for 7s (R)").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
     }

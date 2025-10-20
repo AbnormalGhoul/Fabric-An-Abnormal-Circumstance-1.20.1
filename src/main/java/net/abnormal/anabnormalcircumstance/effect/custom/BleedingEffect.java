@@ -13,8 +13,8 @@ public class BleedingEffect extends StatusEffect {
 
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        // lv0 = every 30 ticks (1.5 seconds)
-        int interval = Math.max(5, 20 - (amplifier * 5));
+        // lv 0 = every 30 ticks (1.5s)
+        int interval = Math.max(5, 30 - (amplifier * 5));
         return duration % interval == 0;
     }
 
@@ -23,7 +23,7 @@ public class BleedingEffect extends StatusEffect {
         if (entity.getWorld().isClient()) return; // Only run on server side
 
         float maxHealth = entity.getMaxHealth();
-        float damage = maxHealth * 0.10f; // 10% of max health
+        float damage = maxHealth * 0.10f; // 5% of max health
 
         DamageSource source = entity.getDamageSources().magic();
         entity.damage(source, damage);

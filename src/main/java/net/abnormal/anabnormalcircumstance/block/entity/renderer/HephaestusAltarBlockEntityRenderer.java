@@ -3,6 +3,7 @@ package net.abnormal.anabnormalcircumstance.block.entity.renderer;
 import net.abnormal.anabnormalcircumstance.block.entity.custom.HephaestusAltarBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
@@ -125,6 +126,6 @@ public class HephaestusAltarBlockEntityRenderer implements BlockEntityRenderer<H
 
     @SuppressWarnings("deprecation")
     public static void register(net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry registry) {
-        registry.register(net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, HephaestusAltarBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, HephaestusAltarBlockEntityRenderer::new);
     }
 }

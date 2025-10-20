@@ -52,6 +52,24 @@ public class ModItems {
             -3f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));
+    public static final Item WILL_BREAKER = registerItem("will_breaker", new WillBreakerItem(
+            ModToolMaterials.UNIQUE,
+            9,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
+    public static final Item BLACK_SOLIN_BLADE = registerItem("black_solin_blade", new SolinSwordItem(
+            ModToolMaterials.UNIQUE,
+            9,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
+    public static final Item WHITE_SOLIN_BLADE = registerItem("white_solin_blade", new SolinAxeItem(
+            ModToolMaterials.UNIQUE,
+            12,
+            -3f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
 
 
     // Dungeon Loot
@@ -99,10 +117,7 @@ public class ModItems {
 
     // Scrolls, Will have to revisit later for unique spells
     public static final Item BLANK_SCROLL = registerItem("blank_scroll", new Item(new Item.Settings()));
-    public static final Item HYDRO_SCROLL = registerItem("hydro_scroll", new Item(new Item.Settings()));
-    public static final Item PYRO_SCROLL = registerItem("pyro_scroll", new Item(new Item.Settings()));
-    public static final Item GEO_SCROLL = registerItem("geo_scroll", new Item(new Item.Settings()));
-    public static final Item AERO_SCROLL = registerItem("aero_scroll", new Item(new Item.Settings()));
+
 
     // Regular Spark
     public static final Item WATER_SPARK = registerItem("water_spark",  new Item(new Item.Settings().maxCount(16)));

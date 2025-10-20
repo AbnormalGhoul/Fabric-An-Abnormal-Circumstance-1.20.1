@@ -107,7 +107,7 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Haste II").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Causes the next attack to strike multiple lightnings").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 60s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 
 }

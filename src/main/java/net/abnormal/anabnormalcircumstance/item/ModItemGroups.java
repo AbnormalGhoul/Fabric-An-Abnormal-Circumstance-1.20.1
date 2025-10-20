@@ -20,6 +20,9 @@ public class ModItemGroups {
                         // Champion Weapons
                         entries.add(ModItems.FIRST_LEAF);
                         entries.add(ModItems.FORGEFATHER_JUDGMENT);
+                        entries.add(ModItems.WILL_BREAKER);
+                        entries.add(ModItems.WHITE_SOLIN_BLADE);
+                        entries.add(ModItems.BLACK_SOLIN_BLADE);
 
                         // Elemental Blades
                         entries.add(ModItems.AERO_BLADE);

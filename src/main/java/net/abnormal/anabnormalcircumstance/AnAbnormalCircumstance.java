@@ -42,7 +42,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
         CustomBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
 
-        // Register the unique ability packet
+        // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(
                 new Identifier(MOD_ID, "unique_item_ability"),
                 (server, player, handler, buf, responseSender) -> {

@@ -29,6 +29,9 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.PYRO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.GEO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.FORGEFATHER_JUDGMENT, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.WILL_BREAKER, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.WHITE_SOLIN_BLADE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.BLACK_SOLIN_BLADE, Models.HANDHELD);
 
         // Dungeon Loot
         itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);
@@ -75,10 +78,6 @@ public class ModModelProvider extends FabricModelProvider {
 
         // Scrolls
         itemModelGenerator.register(ModItems.BLANK_SCROLL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.HYDRO_SCROLL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PYRO_SCROLL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.GEO_SCROLL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.AERO_SCROLL, Models.GENERATED);
 
         // Speed
         itemModelGenerator.register(ModItems.SPARK_OF_SWIFTNESS, Models.GENERATED);
