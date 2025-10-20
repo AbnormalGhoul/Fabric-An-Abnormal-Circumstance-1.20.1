@@ -46,6 +46,7 @@ public class ModItems {
 
     // Champion Weapons
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
             12,
@@ -70,6 +71,7 @@ public class ModItems {
             -3f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));
+
 
 
     // Dungeon Loot

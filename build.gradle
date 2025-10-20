@@ -14,12 +14,11 @@ tasks.withType(JavaCompile).configureEach {
     options.compilerArgs << "-Xlint:deprecation"
 }
 
+// To retrieve dependencies from custom repositories:
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+    maven {url = "https://api.modrinth.com/maven"}
+    maven {url = 'https://jitpack.io'}
+    maven {url "https://maven.terraformersmc.com/releases/"}
 }
 
 fabricApi {
@@ -33,6 +32,11 @@ dependencies {
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modImplementation "maven.modrinth:shieldlib:${project.shieldlib_version}-fabric"
+    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+    modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
+    modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
 }
 
 processResources {

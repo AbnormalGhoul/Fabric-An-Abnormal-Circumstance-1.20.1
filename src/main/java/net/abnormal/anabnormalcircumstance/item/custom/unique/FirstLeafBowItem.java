@@ -43,9 +43,9 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
         player.getWorld().playSound(
                 null,
                 player.getBlockPos(),
-                SoundEvents.ITEM_TRIDENT_RETURN,
+                SoundEvents.ENTITY_WARDEN_DEATH,
                 SoundCategory.PLAYERS,
-                1.0f,
+                5.0f,
                 1.0f
         );
 

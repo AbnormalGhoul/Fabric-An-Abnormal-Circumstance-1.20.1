@@ -23,6 +23,7 @@ public class ModItemGroups {
                         entries.add(ModItems.WILL_BREAKER);
                         entries.add(ModItems.WHITE_SOLIN_BLADE);
                         entries.add(ModItems.BLACK_SOLIN_BLADE);
+                        entries.add(ModItems.ICICLE_SHARD);
 
                         // Elemental Blades
                         entries.add(ModItems.AERO_BLADE);
