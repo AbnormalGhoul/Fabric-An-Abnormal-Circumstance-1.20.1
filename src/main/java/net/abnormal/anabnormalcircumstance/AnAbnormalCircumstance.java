@@ -2,7 +2,7 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
-import net.abnormal.anabnormalcircumstance.brewing.CustomBrewingRecipes;
+import net.abnormal.anabnormalcircumstance.recipe.ModBrewingRecipes;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.event.ModAdvancementHandler;
@@ -39,7 +39,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         StunEventHandler.register();
         ModAdvancementHandler.register();
-        CustomBrewingRecipes.registerAll();
+        ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
 
         // Register unique ability packet

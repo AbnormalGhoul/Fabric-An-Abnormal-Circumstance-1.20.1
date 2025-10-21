@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.brewing;
+package net.abnormal.anabnormalcircumstance.recipe;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-public class CustomBrewingRecipes {
+public class ModBrewingRecipes {
 
     private static final Map<RecipeKey, Identifier> RECIPES = new HashMap<>();
     private static boolean registered = false;

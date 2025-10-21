@@ -20,10 +20,10 @@ public class ModItems {
 
     // Blades
     public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(
-                    ModToolMaterials.UNIQUE, // Tool Material
-                    8,                       // Attack damage bonus
-                    -2.4f,                   // Attack speed
-                    new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+                ModToolMaterials.UNIQUE, // Tool Material
+                8,                       // Attack damage bonus
+                -2.4f,                   // Attack speed
+                new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
             ));
     public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(
             ModToolMaterials.UNIQUE,
@@ -49,7 +49,7 @@ public class ModItems {
     public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
-            12,
+            11,
             -3f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));
@@ -67,7 +67,7 @@ public class ModItems {
     ));
     public static final Item WHITE_SOLIN_BLADE = registerItem("white_solin_blade", new SolinAxeItem(
             ModToolMaterials.UNIQUE,
-            12,
+            11,
             -3f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));

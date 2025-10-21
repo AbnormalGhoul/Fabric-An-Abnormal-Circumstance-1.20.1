@@ -56,7 +56,7 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
 
         world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS, 5.0F, 1.0F);
         player.sendMessage(Text.literal("§6Inferno Strike unleashed!").formatted(Formatting.GOLD), true);
-        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
+        UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
     }
 
     @Override
@@ -72,6 +72,6 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Causes Bleeding & Fire damage").formatted(net.minecraft.util.Formatting.AQUA));
         tooltip.add(Text.literal("Active: Inferno Strike, Inflicts heavy damage (R)").formatted(net.minecraft.util.Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(net.minecraft.util.Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 30s").formatted(net.minecraft.util.Formatting.GRAY));
     }
 }

@@ -42,8 +42,8 @@ public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
                 5.0f,
                 1.0f
         );
-        player.getMainHandStack().getOrCreateNbt().putInt(IMMUNITY_KEY, 7);
-        player.sendMessage(Text.literal("Next 7 Hits will be Neglected!").formatted(Formatting.GOLD), true);
+        player.getMainHandStack().getOrCreateNbt().putInt(IMMUNITY_KEY, 3);
+        player.sendMessage(Text.literal("Next 3 Hits will be Neglected!").formatted(Formatting.GOLD), true);
         UniqueItemCooldownManager.setCooldown(player, 60 * 1000); // 60 seconds cooldown
 
     }
@@ -61,9 +61,9 @@ public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Regen I while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Grants immunity to next 7 hits (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 60s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Passive: Grants Regeneration I").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Grants immunity to next 3 hits (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 
     public static boolean tryBlockDamage(PlayerEntity player) {

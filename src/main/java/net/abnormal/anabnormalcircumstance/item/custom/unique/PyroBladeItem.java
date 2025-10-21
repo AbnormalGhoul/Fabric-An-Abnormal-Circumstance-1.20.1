@@ -35,7 +35,7 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
             player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
             return;
         }
-        UniqueItemCooldownManager.setCooldown(player, 60 * 1000); // 60 seconds cooldown
+        UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
         player.sendMessage(Text.literal("Magma Swing!").formatted(Formatting.GOLD), true);
         World world = player.getWorld();
         Box area = player.getBoundingBox().expand(3.0);
@@ -76,6 +76,6 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Burns enemies on hit").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Magma Swing - 25 damage in 3-block radius (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 60s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
     }
 }

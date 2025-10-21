@@ -1,6 +1,6 @@
 package net.abnormal.anabnormalcircumstance.mixin;
 
-import net.abnormal.anabnormalcircumstance.brewing.CustomBrewingRecipes;
+import net.abnormal.anabnormalcircumstance.recipe.ModBrewingRecipes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.BrewingRecipeRegistry;
 import net.minecraft.registry.Registries;
@@ -17,10 +17,10 @@ public abstract class BrewingRecipeRegistryMixin {
     // Allow custom ingredients
     @Inject(method = "isValidIngredient", at = @At("HEAD"), cancellable = true)
     private static void anabnormalcircumstance$isValidIngredient(ItemStack stack, CallbackInfoReturnable<Boolean> cir) {
-        CustomBrewingRecipes.registerAll(); // make sure recipes exist
+        ModBrewingRecipes.registerAll(); // make sure recipes exist
 
         Item item = stack.getItem();
-        if (CustomBrewingRecipes.usesIngredient(item)) {
+        if (ModBrewingRecipes.usesIngredient(item)) {
             cir.setReturnValue(true);
         }
     }
@@ -28,7 +28,7 @@ public abstract class BrewingRecipeRegistryMixin {
     // Check for recipe existence
     @Inject(method = "hasRecipe", at = @At("HEAD"), cancellable = true)
     private static void anabnormalcircumstance$hasRecipe(ItemStack input, ItemStack ingredient, CallbackInfoReturnable<Boolean> cir) {
-        if (CustomBrewingRecipes.getResult(input, ingredient) != null) {
+        if (ModBrewingRecipes.getResult(input, ingredient) != null) {
             cir.setReturnValue(true);
         }
     }
@@ -36,7 +36,7 @@ public abstract class BrewingRecipeRegistryMixin {
     // Handle actual brewing output
     @Inject(method = "craft", at = @At("HEAD"), cancellable = true)
     private static void anabnormalcircumstance$craft(ItemStack ingredient, ItemStack input, CallbackInfoReturnable<ItemStack> cir) {
-        var resultId = CustomBrewingRecipes.getResult(input, ingredient);
+        var resultId = ModBrewingRecipes.getResult(input, ingredient);
         if (resultId != null) {
             var item = Registries.ITEM.get(resultId);
             if (item != Items.AIR) {

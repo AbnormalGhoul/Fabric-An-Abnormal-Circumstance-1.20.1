@@ -52,7 +52,7 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
         );
         primedPlayers.add(player.getUuid());
         player.sendMessage(Text.literal("Next strike will call down lightning!").formatted(Formatting.GOLD), true);
-        UniqueItemCooldownManager.setCooldown(player, 45 * 1000); // 45 seconds cooldown
+        UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
     }
 
 //    When the weapon hits an entity, check if the ability was primed
@@ -107,7 +107,7 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Haste II").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Causes the next attack to strike multiple lightnings").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
     }
 
 }
