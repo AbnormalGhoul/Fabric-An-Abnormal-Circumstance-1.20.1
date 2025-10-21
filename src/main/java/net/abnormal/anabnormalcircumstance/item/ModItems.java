@@ -71,6 +71,12 @@ public class ModItems {
             -3f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));
+    public static final Item REEDTHORN = registerItem("reedthorn", new ReedthornItem(
+            ModToolMaterials.UNIQUE,
+            10,
+            -2.6f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+    ));
 
 
 

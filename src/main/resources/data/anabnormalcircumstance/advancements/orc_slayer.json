@@ -4,7 +4,7 @@
     "icon": { "item": "anabnormalcircumstance:orc_champion_soul" },
     "title": { "text": "Orc Slayer" },
     "description": { "text": "You have consumed the soul of an Orc Champion." },
-    "frame": "goal",
+    "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true
   },

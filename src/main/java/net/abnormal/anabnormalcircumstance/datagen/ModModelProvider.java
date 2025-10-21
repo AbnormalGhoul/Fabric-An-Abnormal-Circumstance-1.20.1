@@ -32,6 +32,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.WILL_BREAKER, Models.HANDHELD);
         itemModelGenerator.register(ModItems.WHITE_SOLIN_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.BLACK_SOLIN_BLADE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.REEDTHORN, Models.HANDHELD);
 
         // Dungeon Loot
         itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);

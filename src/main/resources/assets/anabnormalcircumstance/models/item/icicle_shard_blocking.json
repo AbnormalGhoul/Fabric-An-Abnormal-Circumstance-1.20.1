@@ -1,5 +1,5 @@
 {
-  "parent": "item/shield_blocking",
+  "parent": "fabricshieldlib:item/shield_blocking",
   "textures": {
     "particle": "block/ice"
   },
