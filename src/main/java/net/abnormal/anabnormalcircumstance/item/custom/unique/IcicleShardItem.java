@@ -4,7 +4,6 @@ import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
