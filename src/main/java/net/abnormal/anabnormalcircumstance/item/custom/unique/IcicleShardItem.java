@@ -73,7 +73,30 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
 
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
-        if (world.isClient()) return;
+        if (world.isClient()) {
+            if (entity instanceof PlayerEntity player) {
+                boolean holding = selected || player.getOffHandStack() == stack;
+                if (holding) {
+                    // Only spawn particles occasionally
+                    if (world.getTime() % 5 == 0) { // every 0.5s
+                        double offsetX = (world.random.nextDouble() - 0.5) * 1.2;
+                        double offsetY = world.random.nextDouble() * 1.8;
+                        double offsetZ = (world.random.nextDouble() - 0.5) * 1.2;
+
+                        world.addParticle(
+                                net.minecraft.particle.ParticleTypes.SNOWFLAKE,
+                                player.getX() + offsetX,
+                                player.getY() + offsetY,
+                                player.getZ() + offsetZ,
+                                0.0, 0.02, 0.0
+                        );
+                    }
+                }
+            }
+            return; // stop client-side execution here
+        }
+
+        // Effect
         if (entity instanceof PlayerEntity player) {
             boolean holding = selected || player.getOffHandStack() == stack;
             if (holding) {
