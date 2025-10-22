@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance.item.custom.unique;
 
+import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
@@ -8,6 +9,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.sound.SoundCategory;
@@ -20,9 +22,11 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class IcicleShardItem extends ShieldItem implements UniqueAbilityItem {
-    public IcicleShardItem(Settings settings) {
-        super(settings);
+public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityItem {
+
+
+    public IcicleShardItem(Settings settings, int coolDownTicks, int enchantability, Item... repairItems) {
+        super(settings, coolDownTicks, enchantability, repairItems);
     }
 
     @Override

@@ -5,7 +5,7 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.item.Items;
 
 public enum ModToolMaterials implements ToolMaterial {
-    UNIQUE(3, 5000, 10.0F, 0.0F, 10, Ingredient.ofItems(Items.NETHERITE_INGOT));
+    UNIQUE(3, 5000, 20.0F, 0.0F, 10, Ingredient.ofItems(Items.NETHERITE_INGOT));
 
     private final int miningLevel;
     private final int itemDurability;

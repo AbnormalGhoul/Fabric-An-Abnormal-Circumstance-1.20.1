@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.recipe;
 
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.minecraft.item.Item;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.util.Identifier;
@@ -29,9 +30,12 @@ public class ModRecipes {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "hydro_blade"))
             .addInput(ModItems.HYDRO_CATALYST, 1)
             .addInput(ModItems.MANA_CORE, 2)
-            .addInput(Items.DIAMOND_BLOCK, 2)
+            .addInput(Items.DIAMOND_BLOCK, 8)
             .addInput(Items.DIAMOND_SWORD, 1)
             .addInput(ModItems.BROODMOTHER_EGG, 2)
+            .addInput(ModItems.ORC_CHAMPION_FANG, 2)
+            .addInput(Items.GOLD_BLOCK, 16)
+            .addInput(Items.HEART_OF_THE_SEA, 1)
             .setOutput(new ItemStack(ModItems.HYDRO_BLADE))
             .build();
     }
@@ -40,9 +44,12 @@ public class ModRecipes {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "pyro_blade"))
                 .addInput(ModItems.PYRO_CATALYST, 1)
                 .addInput(ModItems.MANA_CORE, 2)
-                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
+                .addInput(ModItems.BROODMOTHER_EGG, 2)
                 .addInput(ModItems.ORC_CHAMPION_FANG, 2)
+                .addInput(Items.GOLD_BLOCK, 16)
+                .addInput(Items.BLAZE_ROD, 64)
                 .setOutput(new ItemStack(ModItems.PYRO_BLADE))
                 .build();
     }
@@ -51,10 +58,12 @@ public class ModRecipes {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "geo_blade"))
                 .addInput(ModItems.GEO_CATALYST, 1)
                 .addInput(ModItems.MANA_CORE, 2)
-                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
-                .addInput(ModItems.BROODMOTHER_EGG, 1)
-                .addInput(ModItems.ORC_CHAMPION_FANG, 1)
+                .addInput(ModItems.BROODMOTHER_EGG, 2)
+                .addInput(ModItems.ORC_CHAMPION_FANG, 2)
+                .addInput(Items.GOLD_BLOCK, 16)
+                .addInput(Items.ECHO_SHARD, 4)
                 .setOutput(new ItemStack(ModItems.GEO_BLADE))
                 .build();
     }
@@ -63,10 +72,12 @@ public class ModRecipes {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "aero_blade"))
                 .addInput(ModItems.AERO_CATALYST, 1)
                 .addInput(ModItems.MANA_CORE, 2)
-                .addInput(Items.DIAMOND_BLOCK, 2)
+                .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
-                .addInput(ModItems.BROODMOTHER_EGG, 1)
-                .addInput(ModItems.ORC_CHAMPION_FANG, 1)
+                .addInput(ModItems.BROODMOTHER_EGG, 2)
+                .addInput(ModItems.ORC_CHAMPION_FANG, 2)
+                .addInput(Items.GOLD_BLOCK, 16)
+                .addInput(Items.AMETHYST_SHARD, 64)
                 .setOutput(new ItemStack(ModItems.AERO_BLADE))
                 .build();
     }

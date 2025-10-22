@@ -6,6 +6,7 @@ import net.abnormal.anabnormalcircumstance.item.custom.unique.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -46,7 +47,7 @@ public class ModItems {
 
     // Champion Weapons
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
-    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC)));
+    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC), 100, 13, Items.NETHERITE_INGOT));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
             11,

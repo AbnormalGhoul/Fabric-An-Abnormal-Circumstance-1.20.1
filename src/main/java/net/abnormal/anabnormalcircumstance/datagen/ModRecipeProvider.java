@@ -20,6 +20,28 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+        // ECHO_SHARD
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.ECHO_SHARD, 4)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('X', Items.ENDER_PEARL)
+                .input('#', Items.SCULK)
+                .showNotification(true)
+                .criterion("has_sculk", conditionsFromItem(Items.SCULK))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.ECHO_SHARD)));
+
+        // HEART_OF_THE_SEA
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.HEART_OF_THE_SEA, 1)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('X', Items.DIAMOND_BLOCK)
+                .input('#', Items.NAUTILUS_SHELL)
+                .showNotification(true)
+                .criterion("has_nautilus_shell", conditionsFromItem(Items.NAUTILUS_SHELL))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.HEART_OF_THE_SEA)));
+
         // SHULKER_BOX
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.LIGHT_BLUE_SHULKER_BOX, 1)
                 .pattern("###")

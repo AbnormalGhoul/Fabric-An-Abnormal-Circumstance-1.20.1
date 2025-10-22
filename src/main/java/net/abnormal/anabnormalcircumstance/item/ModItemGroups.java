@@ -21,10 +21,10 @@ public class ModItemGroups {
                         entries.add(ModItems.FIRST_LEAF);
                         entries.add(ModItems.FORGEFATHER_JUDGMENT);
                         entries.add(ModItems.WILL_BREAKER);
+                        entries.add(ModItems.REEDTHORN);
                         entries.add(ModItems.WHITE_SOLIN_BLADE);
                         entries.add(ModItems.BLACK_SOLIN_BLADE);
                         entries.add(ModItems.ICICLE_SHARD);
-                        entries.add(ModItems.REEDTHORN);
 
                         // Elemental Blades
                         entries.add(ModItems.AERO_BLADE);
