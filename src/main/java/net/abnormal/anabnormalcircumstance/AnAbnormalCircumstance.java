@@ -2,6 +2,10 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
+import net.abnormal.anabnormalcircumstance.component.ModComponents;
+import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
+import net.abnormal.anabnormalcircumstance.magic.spells.WaterVeilSpell;
+import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.recipe.ModBrewingRecipes;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
@@ -42,6 +46,9 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
 
+        PacketHandler.register();
+        registerSpells();
+
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(
                 new Identifier(MOD_ID, "unique_item_ability"),
@@ -56,7 +63,32 @@ public class AnAbnormalCircumstance implements ModInitializer {
                 }
         );
 
+//        ServerTickEvents.END_SERVER_TICK.register(server -> {
+//            SpellCooldownManager.tick();
+//
+//            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
+//                ModComponents.MANA.get(player).tick();
+//            }
+//        });
+
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
     }
+
+    private void registerSpells() {
+        // Example icons (use your actual icon IDs):
+        SpellRegistry.register(new net.abnormal.anabnormalcircumstance.magic.spells.WaterVeilSpell(
+                new Identifier(MOD_ID, "hydro_water_veil"),
+                new Identifier(MOD_ID, "textures/gui/spells/hydro_water_veil.png")
+        ));
+//        SpellRegistry.register(new net.abnormal.anabnormalcircumstance.magic.spells.HealingFluidsSpell(
+//                new Identifier(MOD_ID, "hydro_healing_fluids"),
+//                new Identifier(MOD_ID, "textures/gui/spells/hydro_healing_fluids.png")
+//        ));
+//        SpellRegistry.register(new net.abnormal.anabnormalcircumstance.magic.spells.QuickClawsSpell(
+//                new Identifier(MOD_ID, "geo_quick_claws"),
+//                new Identifier(MOD_ID, "textures/gui/spells/geo_quick_claws.png")
+//        ));
+    }
+
 }

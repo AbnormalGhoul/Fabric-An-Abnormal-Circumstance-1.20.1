@@ -14,6 +14,12 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
+    // Scrolls:
+    public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(64)));
+    public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings().maxCount(16)));
+
+
+
     // Weapons
     public static final Item KARAMBIT = registerItem("karambit",
             new KarambitItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
@@ -121,10 +127,7 @@ public class ModItems {
     // Utility
     public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
-    public static final Item SPELL_RUNE = registerItem("spell_rune", new Item(new Item.Settings()));
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
-
-    // Scrolls, Will have to revisit later for unique spells
     public static final Item BLANK_SCROLL = registerItem("blank_scroll", new Item(new Item.Settings()));
 
 

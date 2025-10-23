@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.util;
 
 import io.netty.buffer.Unpooled;
+import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.minecraft.client.util.InputUtil;
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -16,11 +17,27 @@ import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 public class KeyBindingHandler {
     public static KeyBinding UNIQUE_ITEM_ABILITY;
 
+    public static KeyBinding SPELL_TIER_1;
+    public static KeyBinding SPELL_TIER_2;
+    public static KeyBinding SPELL_TIER_3;
+    public static KeyBinding SPELL_TIER_4;
+    public static KeyBinding SPELL_TIER_5;
+
     public static void register() {
-        UNIQUE_ITEM_ABILITY = KeyBindingHelper.registerKeyBinding(new KeyBinding(
-                "key." + AnAbnormalCircumstance.MOD_ID + ".unique_item_ability",
+        UNIQUE_ITEM_ABILITY = registerKey("unique_item_ability", GLFW.GLFW_KEY_R);
+
+        SPELL_TIER_1 = registerKey("spell_tier_1", GLFW.GLFW_KEY_G);
+        SPELL_TIER_2 = registerKey("spell_tier_2", GLFW.GLFW_KEY_H);
+        SPELL_TIER_3 = registerKey("spell_tier_3", GLFW.GLFW_KEY_B);
+        SPELL_TIER_4 = registerKey("spell_tier_4", GLFW.GLFW_KEY_J);
+        SPELL_TIER_5 = registerKey("spell_tier_5", GLFW.GLFW_KEY_N);
+    }
+
+    private static KeyBinding registerKey(String name, int key) {
+        return KeyBindingHelper.registerKeyBinding(new KeyBinding(
+                "key." + AnAbnormalCircumstance.MOD_ID + "." + name,
                 InputUtil.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                key,
                 "category." + AnAbnormalCircumstance.MOD_ID + ".keys"
         ));
     }
@@ -42,6 +59,22 @@ public class KeyBindingHandler {
                         buf
                 );
             }
+        }
+
+        checkKey(SPELL_TIER_1, player, SpellTier.TIER_1);
+        checkKey(SPELL_TIER_2, player, SpellTier.TIER_2);
+        checkKey(SPELL_TIER_3, player, SpellTier.TIER_3);
+        checkKey(SPELL_TIER_4, player, SpellTier.TIER_4);
+        checkKey(SPELL_TIER_5, player, SpellTier.TIER_5);
+
+    }
+
+
+    private static void checkKey(KeyBinding key, PlayerEntity player, SpellTier tier) {
+        while (key.wasPressed()) {
+            PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
+            buf.writeInt(tier.getLevel()); // send tier to server
+            ClientPlayNetworking.send(new Identifier(AnAbnormalCircumstance.MOD_ID, "cast_spell"), buf);
         }
     }
 }

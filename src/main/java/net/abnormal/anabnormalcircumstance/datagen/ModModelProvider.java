@@ -22,6 +22,12 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
+        // Scrolls
+//        itemModelGenerator.register(ModItems.WATER_VEIL_SCROLL, Models.GENERATED);
+//        itemModelGenerator.register(ModItems.QUICK_CLAWS_SCROLL, Models.GENERATED);
+
+
+
         // Weapons
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);

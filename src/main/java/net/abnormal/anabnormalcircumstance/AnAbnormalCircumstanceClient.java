@@ -5,6 +5,7 @@ import net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltar
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.entity.client.SilverArrowEntityRenderer;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreen;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.abnormal.anabnormalcircumstance.util.KeyBindingHandler;
@@ -14,6 +15,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
 
@@ -30,7 +32,11 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, HephaestusAltarBlockEntityRenderer::new);
 
         KeyBindingHandler.register();
-        ClientTickEvents.END_CLIENT_TICK.register(this::onClientTick);
+        ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
+        HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
+        PacketHandler.register(); // ensure client receiver is registered (PacketHandler.register registers both client & server receivers)
+
+
     }
 
     private void onClientTick(MinecraftClient client) {
