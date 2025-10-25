@@ -7,11 +7,11 @@
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
 
   "key.anabnormalcircumstance.unique_item_ability": "Unique Item Ability",
-
-  "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
-  "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
-  "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
-  "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
+  "key.anabnormalcircumstance.spell_tier_1": "Tier 1 Spell Activation",
+  "key.anabnormalcircumstance.spell_tier_2": "Tier 2 Spell Activation",
+  "key.anabnormalcircumstance.spell_tier_3": "Tier 3 Spell Activation",
+  "key.anabnormalcircumstance.spell_tier_4": "Tier 4 Spell Activation",
+  "key.anabnormalcircumstance.spell_tier_5": "Tier 5 Spell Activation",
 
   "effect.anabnormalcircumstance.bleeding": "Bleeding",
   "effect.anabnormalcircumstance.bleeding.desc": "Losing health over time.",
@@ -23,6 +23,16 @@
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
 
+  "item.anabnormalcircumstance.spell_scroll": "Magic Scroll",
+
+
+
+
+  "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
+  "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
+  "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
+  "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
+
   "item.anabnormalcircumstance.first_leaf": "The First Leaf",
   "item.anabnormalcircumstance.forgefather_judgment": "Forgefather's Judgment",
   "item.anabnormalcircumstance.will_breaker": "Will Breaker",
@@ -31,11 +41,8 @@
   "item.anabnormalcircumstance.icicle_shard": "Icicle Shard",
   "item.anabnormalcircumstance.reedthorn": "Reedthorn",
 
-
   "item.anabnormalcircumstance.karambit": "Fanged Karambit",
   "item.anabnormalcircumstance.silver_arrow": "Silver Arrow",
-  "item.anabnormalcircumstance.amethyst_dagger": "Amethyst Dagger",
-
   "item.anabnormalcircumstance.totem_of_purity": "Totem of Purity",
 
   "item.anabnormalcircumstance.silver_necklace": "Silver Necklace",
@@ -44,6 +51,7 @@
 
   "item.anabnormalcircumstance.rusted_key": "Rusted Key",
   "item.anabnormalcircumstance.bottled_lightning": "Bottled Lightning",
+  "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
 
   "item.anabnormalcircumstance.orc_hide": "Orc Hide",
   "item.anabnormalcircumstance.orc_champion_fang": "Orc Champion Fang",
@@ -77,12 +85,6 @@
   "item.anabnormalcircumstance.claim_rune": "Claim Rune",
   "item.anabnormalcircumstance.origin_rune": "Origin Rune",
   "item.anabnormalcircumstance.spell_rune": "Spell Rune",
-
-  "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
-  "item.anabnormalcircumstance.hydro_scroll": "Hydromancy Scroll",
-  "item.anabnormalcircumstance.pyro_scroll": "Pyromancy Scroll",
-  "item.anabnormalcircumstance.geo_scroll": "Geomancy Scroll",
-  "item.anabnormalcircumstance.aero_scroll": "Aeromancy Scroll",
 
   "item.anabnormalcircumstance.awkward_spark": "Awkward Spark",
   "item.anabnormalcircumstance.water_spark": "Water Spark",

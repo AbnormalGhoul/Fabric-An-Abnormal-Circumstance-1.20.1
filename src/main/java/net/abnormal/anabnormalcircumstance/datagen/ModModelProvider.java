@@ -23,7 +23,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         // Scrolls
-//        itemModelGenerator.register(ModItems.WATER_VEIL_SCROLL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPELL_SCROLL, Models.GENERATED);
 //        itemModelGenerator.register(ModItems.QUICK_CLAWS_SCROLL, Models.GENERATED);
 
 

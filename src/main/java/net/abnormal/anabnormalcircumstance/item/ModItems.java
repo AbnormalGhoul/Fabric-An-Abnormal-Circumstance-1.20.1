@@ -15,8 +15,8 @@ import net.minecraft.util.Rarity;
 public class ModItems {
 
     // Scrolls:
-    public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(64)));
-    public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings().maxCount(16)));
+    public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(16)));
+    public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings()));
 
 
 

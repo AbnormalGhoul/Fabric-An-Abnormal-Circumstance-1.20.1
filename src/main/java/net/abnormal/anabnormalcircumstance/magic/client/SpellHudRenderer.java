@@ -25,25 +25,25 @@ public class SpellHudRenderer implements HudRenderCallback {
         int screenH = client.getWindow().getScaledHeight();
 
         // === Mana Bar ===
-        int x = 10;
+        int x = screenW - 540;
         int hotbarY = screenH - 22;
         int y = hotbarY - 64;
 
         // Frame
         RenderSystem.setShaderTexture(0, MANA_FRAME);
-        context.drawTexture(MANA_FRAME, x, y, 0, 0, 16, 64, 16, 64);
+        context.drawTexture(MANA_FRAME, x, y, 0, 0, 24, 72, 24, 72);
 
         // Fill
         int mana = ClientComponentAccess.getClientMana();
         float ratio = Math.max(0f, Math.min(1f, mana / 100.0f));
-        int fillHeight = (int) (ratio * 60.0f);
-        int fillY = y + (64 - 2) - fillHeight;
+        int fillHeight = (int) (ratio * 68.0f);
+        int fillY = y + (68) - fillHeight;
 
         RenderSystem.setShaderTexture(0, MANA_FILL);
-        context.drawTexture(MANA_FILL, x + 2, fillY, 0, 0, 12, fillHeight, 12, 60);
+        context.drawTexture(MANA_FILL, x+8, fillY+3, 0, 0, 8, fillHeight, 8, 68);
 
         // === Spell Icons ===
-        int iconX = screenW - 24;
+        int iconX = screenW - 325;
         int iconStartY = hotbarY - 4;
         int offset = 0;
 
@@ -57,7 +57,7 @@ public class SpellHudRenderer implements HudRenderCallback {
             if (slot != null && slot.cooldownTicks > 0) {
                 // Cooldown overlay
                 context.fill(iconX, iy, iconX + 16, iy + 16, 0x99000000);
-                String cdText = String.valueOf(slot.cooldownSeconds());
+                String cdText = String.valueOf(slot.getCooldownSeconds());
                 context.drawText(client.textRenderer, cdText, iconX + 4, iy + 4, 0xFFFFFF, true);
             }
             offset += 20;

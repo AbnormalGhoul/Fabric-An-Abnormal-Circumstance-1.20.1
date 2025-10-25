@@ -1,47 +1,50 @@
 {
-	"schemaVersion": 1,
-	"id": "anabnormalcircumstance",
-	"version": "${version}",
-	"name": "AnAbnormalCircumstance",
-	"description": "Orchard of Avalon mod",
-	"authors": [
-		"Abnormal Ghoul"
-	],
-	"contact": {
-		"homepage": "https://discord.gg/HGq2YJDQAM",
-		"sources": "https://github.com/AbnormalGhoul/Fabric-An-Abnormal-Circumstance-1.20.1"
-	},
-	"license": "MIT",
-	"icon": "assets/anabnormalcircumstance/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance"
-		],
-		"client": [
-			"net.abnormal.anabnormalcircumstance.AnAbnormalCircumstanceClient"
-		],
-		"fabric-datagen": [
-			"net.abnormal.anabnormalcircumstance.AnAbnormalCircumstanceDataGenerator"
-		]
-	},
+  "schemaVersion": 1,
+  "id": "anabnormalcircumstance",
+  "version": "${version}",
+  "name": "AnAbnormalCircumstance",
+  "description": "Orchard of Avalon mod",
+  "authors": [
+    "Abnormal Ghoul"
+  ],
+  "contact": {
+    "homepage": "https://discord.gg/HGq2YJDQAM",
+    "sources": "https://github.com/AbnormalGhoul/Fabric-An-Abnormal-Circumstance-1.20.1"
+  },
+  "license": "MIT",
+  "icon": "assets/anabnormalcircumstance/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance"
+    ],
+    "client": [
+      "net.abnormal.anabnormalcircumstance.AnAbnormalCircumstanceClient"
+    ],
+    "fabric-datagen": [
+      "net.abnormal.anabnormalcircumstance.AnAbnormalCircumstanceDataGenerator"
+    ],
     "cardinal-components-entity": [
-    "net.abnormal.anabnormalcircumstance.component.ModComponents"
-    ],
-	"mixins": [
-      "anabnormalcircumstance.mixins.json"
-    ],
-	"depends": {
-        "reach-entity-attributes": "*",
-		"fabricloader": ">=0.17.3",
-		"minecraft": "~1.20.1",
-		"java": ">=17",
-		"fabric-api": "*",
-        "fabric-key-binding-api-v1": "*",
-        "cardinal-components-base": ">=5.2.3",
-        "cardinal-components-entity": ">=5.2.3"
-    },
-	"suggests": {
-		"another-mod": "*"
-	}
+      "net.abnormal.anabnormalcircumstance.component.ModComponents"
+    ]
+  },
+  "custom": {
+    "cardinal-components": [
+      "anabnormalcircumstance:mana",
+      "anabnormalcircumstance:spell_slots"
+    ]
+  },
+  "mixins": [
+    "anabnormalcircumstance.mixins.json"
+  ],
+  "depends": {
+    "reach-entity-attributes": "*",
+    "fabricloader": ">=0.17.3",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*",
+    "fabric-key-binding-api-v1": "*",
+    "cardinal-components-base": ">=5.2.3",
+    "cardinal-components-entity": ">=5.2.3"
+  }
 }

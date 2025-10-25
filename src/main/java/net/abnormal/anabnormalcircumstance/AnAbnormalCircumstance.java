@@ -31,6 +31,9 @@ public class AnAbnormalCircumstance implements ModInitializer {
 	@Override
 	public void onInitialize() {
 
+        PacketHandler.register();
+        registerSpells();
+
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();
         ModEffects.registerEffects();
@@ -46,9 +49,6 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
 
-        PacketHandler.register();
-        registerSpells();
-
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(
                 new Identifier(MOD_ID, "unique_item_ability"),
@@ -63,23 +63,14 @@ public class AnAbnormalCircumstance implements ModInitializer {
                 }
         );
 
-//        ServerTickEvents.END_SERVER_TICK.register(server -> {
-//            SpellCooldownManager.tick();
-//
-//            for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
-//                ModComponents.MANA.get(player).tick();
-//            }
-//        });
-
         LOGGER.info("An Abnormal Circumstance Mod Initialized");
 
     }
 
     private void registerSpells() {
-        // Example icons (use your actual icon IDs):
         SpellRegistry.register(new net.abnormal.anabnormalcircumstance.magic.spells.WaterVeilSpell(
                 new Identifier(MOD_ID, "hydro_water_veil"),
-                new Identifier(MOD_ID, "textures/gui/spells/hydro_water_veil.png")
+                new Identifier(MOD_ID, "textures/gui/spells/icons/hydro_icon.png")
         ));
 //        SpellRegistry.register(new net.abnormal.anabnormalcircumstance.magic.spells.HealingFluidsSpell(
 //                new Identifier(MOD_ID, "hydro_healing_fluids"),

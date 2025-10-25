@@ -8,22 +8,21 @@ import net.abnormal.anabnormalcircumstance.component.SpellSlotsComponent;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
+import net.abnormal.anabnormalcircumstance.magic.client.ClientComponentAccess;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-import java.util.function.BiConsumer;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Small networking helper:
- * - registers server-side receiver for "cast_spell"
- * - has a compact server->client sync packet "sync_spell_state"
+ * Lightweight networking helper for the magic system.
  *
- * Packet formats:
- * - cast_spell (client -> server): int tierLevel
- * - sync_spell_state (server -> client): int mana, for each slot: boolean hasSpell; if has: string spellId; int cooldownTicks
+ * - cast_spell: client -> server (int tierLevel)
+ * - sync_spell_state: server -> client (int mana, int slotCount, for each slot: boolean hasSpell, string spellId, int cooldownTicks)
  */
 public final class PacketHandler {
     public static final Identifier CAST_SPELL = new Identifier(AnAbnormalCircumstance.MOD_ID, "cast_spell");
@@ -32,74 +31,81 @@ public final class PacketHandler {
     private PacketHandler() {}
 
     public static void register() {
-        // server receives cast requests from client
+        // server receiver for casting spells
         ServerPlayNetworking.registerGlobalReceiver(CAST_SPELL, (server, player, handler, buf, responseSender) -> {
             int tierLevel = buf.readInt();
             server.execute(() -> {
+
                 SpellTier tier = tierFromLevel(tierLevel);
                 if (tier == null) return;
+
                 SpellSlotsComponent slots = ModComponents.SLOTS.get(player);
                 ManaComponent mana = ModComponents.MANA.get(player);
-                if (slots == null || mana == null) return;
+
                 Identifier spellId = slots.getSpellForTier(tier);
-                if (spellId == null) return; // no spell in that slot
+                if (spellId == null) {
+                    player.sendMessage(net.minecraft.text.Text.literal("No spell bound to this tier!"), true);
+                    return;
+                }
+
                 Spell spell = SpellRegistry.get(spellId);
-                if (spell == null) return;
+                if (spell == null) {
+                    player.sendMessage(net.minecraft.text.Text.literal("Invalid spell bound to this tier!"), true);
+                    return;
+                }
+
                 int cd = slots.getCooldownTicks(tier);
                 if (cd > 0) return; // still on cooldown
                 if (mana.getMana() < spell.getManaCost()) {
-                    // insufficient mana - optionally send feedback (chat/sound)
+                    // optionally send feedback
                     return;
                 }
-                // perform cast server-side
+                // cast server-side (implement spell casting in Spell.cast(...))
                 boolean success = spell.cast((ServerPlayerEntity) player);
                 if (success) {
                     mana.setMana(mana.getMana() - spell.getManaCost());
                     slots.setCooldownTicks(tier, spell.getCooldownTicks());
-                    // sync HUD/state to client
+                    // Immediately sync server state to client
                     syncSpellStateToClient((ServerPlayerEntity) player, mana, slots);
                 }
             });
         });
 
-        // client receives server sync state
+        // client receiver for the state sync packet
         ClientPlayNetworking.registerGlobalReceiver(SYNC_STATE, (client, handler, buf, responseSender) -> {
-            // client thread
+            // Read on network thread, then schedule client thread update
             int mana = buf.readInt();
-            // slots count assumed to be 5
             int slotCount = buf.readInt();
-            java.util.Map<Integer, SlotData> slots = new java.util.HashMap<>();
+            Map<Integer, ClientComponentAccess.SlotData> newSlots = new HashMap<>();
             for (int i = 0; i < slotCount; i++) {
                 boolean has = buf.readBoolean();
                 String spellId = has ? buf.readString(32767) : null;
                 int cd = buf.readInt();
-                slots.put(i + 1, new SlotData(spellId, cd));
+                newSlots.put(i + 1, new ClientComponentAccess.SlotData(spellId, cd));
             }
             client.execute(() -> {
-                // update client-side cache
-                net.abnormal.anabnormalcircumstance.magic.client.ClientComponentAccess.setClientMana(mana);
-                net.abnormal.anabnormalcircumstance.magic.client.ClientComponentAccess.setClientSlotData(slots);
+                ClientComponentAccess.setClientMana(mana);
+                ClientComponentAccess.updateAllSlots(newSlots);
             });
         });
     }
 
     /**
-     * Server->client: send current mana + equipped spells + cooldowns
+     * Server -> client state sync.
      */
     public static void syncSpellStateToClient(ServerPlayerEntity player, ManaComponent mana, SpellSlotsComponent slots) {
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
         buf.writeInt(mana == null ? 0 : mana.getMana());
-        // write 5 slots
         buf.writeInt(SpellTier.values().length);
         for (SpellTier t : SpellTier.values()) {
-            var id = (slots == null) ? null : slots.getSpellForTier(t);
+            Identifier id = (slots == null) ? null : slots.getSpellForTier(t);
             if (id == null) {
                 buf.writeBoolean(false);
             } else {
                 buf.writeBoolean(true);
                 buf.writeString(id.toString());
             }
-            int cd = slots == null ? 0 : slots.getCooldownTicks(t);
+            int cd = (slots == null) ? 0 : slots.getCooldownTicks(t);
             buf.writeInt(cd);
         }
         ServerPlayNetworking.send(player, SYNC_STATE, buf);
@@ -108,12 +114,5 @@ public final class PacketHandler {
     private static SpellTier tierFromLevel(int level) {
         for (SpellTier s : SpellTier.values()) if (s.getLevel() == level) return s;
         return null;
-    }
-
-    // helper to parse slot info on client
-    private static class SlotData {
-        final String spellId;
-        final int cooldown;
-        SlotData(String spellId, int cooldown) { this.spellId = spellId; this.cooldown = cooldown; }
     }
 }
