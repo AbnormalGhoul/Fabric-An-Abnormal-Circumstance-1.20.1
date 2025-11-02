@@ -14,11 +14,9 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
-    // Scrolls:
+    // Magic Items
     public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(16)));
     public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings()));
-
-
 
     // Weapons
     public static final Item KARAMBIT = registerItem("karambit",
@@ -128,8 +126,6 @@ public class ModItems {
     public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
-    public static final Item BLANK_SCROLL = registerItem("blank_scroll", new Item(new Item.Settings()));
-
 
     // Regular Spark
     public static final Item WATER_SPARK = registerItem("water_spark",  new Item(new Item.Settings().maxCount(16)));

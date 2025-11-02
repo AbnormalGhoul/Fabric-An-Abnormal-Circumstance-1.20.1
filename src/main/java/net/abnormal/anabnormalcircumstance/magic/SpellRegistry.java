@@ -4,10 +4,9 @@ import net.minecraft.util.Identifier;
 
 import java.util.*;
 
-/**
- * Tiny registry for Spell instances. Register all spells at mod init.
- * Uses Identifier -> Spell mapping and provides tier checks.
- */
+// Register all spells at mod init.
+// Uses Identifier to Spell mapping and provides tier checks.
+
 public final class SpellRegistry {
     private static final Map<Identifier, Spell> BY_ID = new LinkedHashMap<>();
     private static final Map<SpellTier, List<Spell>> BY_TIER = new EnumMap<>(SpellTier.class);

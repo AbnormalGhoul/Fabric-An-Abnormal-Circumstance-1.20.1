@@ -77,9 +77,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.SPELL_RUNE, Models.GENERATED);
         itemModelGenerator.register(ModItems.TOTEM_OF_PURITY, Models.GENERATED);
 
-        // Scrolls
-        itemModelGenerator.register(ModItems.BLANK_SCROLL, Models.GENERATED);
-
         // Speed
         itemModelGenerator.register(ModItems.SPARK_OF_SWIFTNESS, Models.GENERATED);
         itemModelGenerator.register(ModItems.SPARK_OF_LONG_SWIFTNESS, Models.GENERATED);

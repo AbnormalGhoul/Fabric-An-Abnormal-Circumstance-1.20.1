@@ -73,7 +73,6 @@ public class ModItemGroups {
 
                         // General Dungeon Loot
                         entries.add(ModItems.RUSTED_KEY);
-                        entries.add(ModItems.BLANK_SCROLL);
                         entries.add(ModItems.BOTTLED_LIGHTNING);
                         entries.add(ModItems.DIAMOND_RING);
                         entries.add(ModItems.GOLDEN_EARRINGS);
@@ -142,9 +141,129 @@ public class ModItemGroups {
 
                         entries.add(ModItems.SPELL_SCROLL);
 
+
+                        // Hydromancy Spells
                         ItemStack hydroScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         hydroScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_water_veil");
                         entries.add(hydroScroll);
+
+                        ItemStack diversGraceScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        diversGraceScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_divers_grace");
+                        entries.add(diversGraceScroll);
+
+                        ItemStack bileWaterScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        bileWaterScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_bile_water");
+                        entries.add(bileWaterScroll);
+
+                        ItemStack icicleShatterScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        icicleShatterScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_icicle_shatter");
+                        entries.add(icicleShatterScroll);
+
+                        ItemStack cleansingFluidsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        cleansingFluidsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_cleansing_fluids");
+                        entries.add(cleansingFluidsScroll);
+
+                        ItemStack healingFluidsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        healingFluidsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_healing_fluids");
+                        entries.add(healingFluidsScroll);
+
+                        ItemStack controlWeatherScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        controlWeatherScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_control_weather");
+                        entries.add(controlWeatherScroll);
+
+
+                        // Pyromancy Spells
+                        ItemStack fireAspectScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        fireAspectScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_fire_aspect");
+                        entries.add(fireAspectScroll);
+
+                        ItemStack cinderCloakingScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        cinderCloakingScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_cinder_cloaking");
+                        entries.add(cinderCloakingScroll);
+
+                        ItemStack fireballScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        fireballScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_fireball");
+                        entries.add(fireballScroll);
+
+                        ItemStack flameChargeScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        flameChargeScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_flame_charge");
+                        entries.add(flameChargeScroll);
+
+                        ItemStack ringOfFireScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        ringOfFireScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_ring_of_fire");
+                        entries.add(ringOfFireScroll);
+
+                        ItemStack bloodPactScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        bloodPactScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_blood_pact");
+                        entries.add(bloodPactScroll);
+
+                        ItemStack moltenFurryScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        moltenFurryScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_molten_furry");
+                        entries.add(moltenFurryScroll);
+
+
+                        // Geomancy Spells
+                        ItemStack rockBlastScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        rockBlastScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_rock_blast");
+                        entries.add(rockBlastScroll);
+
+                        ItemStack quickClawsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        quickClawsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_quick_claws");
+                        entries.add(quickClawsScroll);
+
+                        ItemStack GrowthScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        GrowthScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_growth");
+                        entries.add(GrowthScroll);
+
+                        ItemStack rockPolishScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        rockPolishScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_rock_polish");
+                        entries.add(rockPolishScroll);
+
+                        ItemStack stompScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        stompScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_stomp");
+                        entries.add(stompScroll);
+
+                        ItemStack seismicCrownScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        seismicCrownScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_seismic_crown");
+                        entries.add(seismicCrownScroll);
+
+                        ItemStack earthquakeScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        earthquakeScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_earthquake");
+                        entries.add(earthquakeScroll);
+
+                        ItemStack immovableObjectScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        immovableObjectScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:geo_immovable_object");
+                        entries.add(immovableObjectScroll);
+
+
+                        // Aeromancy Spells
+                        ItemStack lightAsAFeatherScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        lightAsAFeatherScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_light_as_a_feather");
+                        entries.add(lightAsAFeatherScroll);
+
+                        ItemStack windWallScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        windWallScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_wind_wall");
+                        entries.add(windWallScroll);
+
+                        ItemStack silentStepScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        silentStepScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_silent_step");
+                        entries.add(silentStepScroll);
+
+                        ItemStack updraftsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        updraftsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_updrafts");
+                        entries.add(updraftsScroll);
+
+                        ItemStack galeWindsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        galeWindsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_gale_winds");
+                        entries.add(galeWindsScroll);
+
+                        ItemStack hurricanesCallScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        hurricanesCallScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_hurricanes_call");
+                        entries.add(hurricanesCallScroll);
+
+                        ItemStack stormlordsWillScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        stormlordsWillScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_stormlords_will");
+                        entries.add(stormlordsWillScroll);
 
                     }).build());
 

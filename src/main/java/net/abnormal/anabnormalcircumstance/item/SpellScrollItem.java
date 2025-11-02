@@ -87,6 +87,11 @@ public class SpellScrollItem extends Item {
             Spell spell = SpellRegistry.get(id);
             if (spell != null) {
                 tooltip.add(Text.literal("§bBound Spell: §f" + spell.getDisplayName()));
+                tooltip.add(Text.literal("§7" + spell.getTier().name() + " " + spell.getElement().name()));
+                tooltip.add(Text.literal("§3Mana Usage: §f" + spell.getManaCost()));
+                tooltip.add(Text.literal("§3Cooldown: §f" + (spell.getCooldownTicks() / 20.0) + "s"));
+            } else {
+                tooltip.add(Text.literal("§cInvalid Spell Data"));
             }
         } else {
             tooltip.add(Text.literal("§7Blank Scroll"));

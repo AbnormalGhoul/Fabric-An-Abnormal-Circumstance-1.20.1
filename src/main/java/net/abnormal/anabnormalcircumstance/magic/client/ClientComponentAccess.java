@@ -4,10 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Lightweight client-side cache of mana + slot state for HUD rendering.
- * Updated by the PacketHandler client sync receiver (client.execute(...)).
- */
+
+// Lightweight client-side cache of mana + slot state for HUD rendering.
+// Updated by the PacketHandler client sync receiver (client.execute(...)).
+
 public final class ClientComponentAccess {
     private static volatile int clientMana = 100;
 

@@ -16,6 +16,7 @@ import net.minecraft.util.Identifier;
 public final class ModModelPredicate {
     private ModModelPredicate() {}
 
+    // For First Leaf
     public static void registerBow(Item item) {
         ModelPredicateProviderRegistry.register(item, new Identifier("pulling"),
                 (ItemStack stack, ClientWorld world, LivingEntity entity, int seed) ->
@@ -34,6 +35,7 @@ public final class ModModelPredicate {
         );
     }
 
+    // For Magic Scrolls
     public static void registerSpellScrollPredicate() {
         ModelPredicateProviderRegistry.register(ModItems.SPELL_SCROLL,
                     new Identifier("anabnormalcircumstance", "spell_element"), (stack, world, entity, seed) -> {
@@ -47,11 +49,11 @@ public final class ModModelPredicate {
                     if (spell == null) return 0.0F;
 
                     // Map element types to float values used in model overrides
-                    return switch (spell.getElement().toString().toLowerCase()) {
-                        case "hydromancy" -> 1.0F;
-                        case "pyromancy" -> 2.0F;
-                        case "geomancy" -> 3.0F;
-                        case "aeromancy" -> 4.0F;
+                    return switch (spell.getElement()) {
+                        case HYDROMANCY -> 1.0F;
+                        case PYROMANCY -> 2.0F;
+                        case GEOMANCY  -> 3.0F;
+                        case AEROMANCY -> 4.0F;
                         default -> 0.0F;
                     };
                 });
