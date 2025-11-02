@@ -27,8 +27,10 @@ public final class ClientComponentAccess {
     public static synchronized void updateAllSlots(Map<Integer, SlotData> newSlots) {
         slots.clear();
         slots.putAll(newSlots);
-        // Ensure we always have entries 1..5
         for (int i = 1; i <= 5; i++) slots.putIfAbsent(i, new SlotData(null, 0));
+
+        // Update HUD visibility state
+        updateHasAnySpellBound();
     }
 
     /** Update a single slot (delta update). */
@@ -62,5 +64,16 @@ public final class ClientComponentAccess {
         public boolean isEmpty() {
             return spellId == null || spellId.isEmpty();
         }
+    }
+
+    // ---- Utility ----
+    private static volatile boolean hasAnySpellBound = false;
+
+    public static boolean hasAnySpellBound() {
+        return hasAnySpellBound;
+    }
+
+    private static void updateHasAnySpellBound() {
+        hasAnySpellBound = slots.values().stream().anyMatch(s -> s.spellId != null && !s.spellId.isEmpty());
     }
 }

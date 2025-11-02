@@ -6,14 +6,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-/**
- * Right-click to clear all spell slots (server-side).
- */
 public class SpellRuneItem extends Item {
     public SpellRuneItem(Settings settings) {
         super(settings);
@@ -29,6 +28,16 @@ public class SpellRuneItem extends Item {
 
         // Clear all spells
         slots.clearAllSpells();
+
+        // Play sound effect
+        world.playSound(
+                null,                                 // null means all players nearby hear it
+                user.getBlockPos(),                          // sound position
+                SoundEvents.BLOCK_SCULK_SHRIEKER_BREAK,      // pick any fitting sound
+                SoundCategory.BLOCKS,                        // player sound category
+                3.0F,                                        // volume
+                1.0F                                         // pitch
+        );
 
         // Consume rune on use
         stack.decrement(1);

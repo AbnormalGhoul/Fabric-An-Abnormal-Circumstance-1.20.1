@@ -1,5 +1,8 @@
 package net.abnormal.anabnormalcircumstance.util;
 
+import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.magic.Spell;
+import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
@@ -29,5 +32,28 @@ public final class ModModelPredicate {
                     return 0.0F;
                 }
         );
+    }
+
+    public static void registerSpellScrollPredicate() {
+        ModelPredicateProviderRegistry.register(ModItems.SPELL_SCROLL,
+                    new Identifier("anabnormalcircumstance", "spell_element"), (stack, world, entity, seed) -> {
+                    // Default: no spell bound (blank scroll)
+                    if (!stack.hasNbt() || !stack.getNbt().contains("spell_id")) {
+                        return 0.0F;
+                    }
+
+                    Identifier id = Identifier.tryParse(stack.getNbt().getString("spell_id"));
+                    Spell spell = SpellRegistry.get(id);
+                    if (spell == null) return 0.0F;
+
+                    // Map element types to float values used in model overrides
+                    return switch (spell.getElement().toString().toLowerCase()) {
+                        case "hydromancy" -> 1.0F;
+                        case "pyromancy" -> 2.0F;
+                        case "geomancy" -> 3.0F;
+                        case "aeromancy" -> 4.0F;
+                        default -> 0.0F;
+                    };
+                });
     }
 }
