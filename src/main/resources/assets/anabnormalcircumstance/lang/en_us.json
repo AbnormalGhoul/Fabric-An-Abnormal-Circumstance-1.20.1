@@ -2,6 +2,9 @@
   "itemgroup.abnormal_trinkets_group": "Abnormal's Trinkets",
   "itemgroup.dungeon_loot": "Dungeon Loot",
   "itemgroup.sparks_group": "Sparks",
+  "itemgroup.spell_scrolls_group": "Scrolls",
+
+
 
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",

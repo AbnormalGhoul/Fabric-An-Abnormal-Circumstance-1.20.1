@@ -8,9 +8,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-/**
- * Renders mana bar and spell cooldown icons on the player's HUD.
- */
+// Renders mana bar and spell cooldown icons on the player's HUD.
 public class SpellHudRenderer implements HudRenderCallback {
 
     private static final Identifier MANA_FRAME = new Identifier(AnAbnormalCircumstance.MOD_ID, "textures/gui/mana_bar_frame.png");
@@ -25,13 +23,13 @@ public class SpellHudRenderer implements HudRenderCallback {
         int screenH = client.getWindow().getScaledHeight();
 
         // === Mana Bar ===
-        int x = screenW - 540;
-        int hotbarY = screenH - 22;
-        int y = hotbarY - 64;
+        int x = screenW - 329;
+        int hotbarY = screenH - 12;
+        int y = hotbarY - 65;
 
         // Frame
         RenderSystem.setShaderTexture(0, MANA_FRAME);
-        context.drawTexture(MANA_FRAME, x, y, 0, 0, 24, 72, 24, 72);
+        context.drawTexture(MANA_FRAME, x, y, 0, 0, 10, 70, 10, 70);
 
         // Fill
         int mana = ClientComponentAccess.getClientMana();
@@ -40,27 +38,37 @@ public class SpellHudRenderer implements HudRenderCallback {
         int fillY = y + (68) - fillHeight;
 
         RenderSystem.setShaderTexture(0, MANA_FILL);
-        context.drawTexture(MANA_FILL, x+8, fillY+3, 0, 0, 8, fillHeight, 8, 68);
+        context.drawTexture(MANA_FILL, x+1, fillY+1, 0, 0, 8, fillHeight, 8, 68);
 
         // === Spell Icons ===
-        int iconX = screenW - 325;
-        int iconStartY = hotbarY - 4;
-        int offset = 0;
+        if (ClientComponentAccess.hasAnySpellBound()) {
+            int iconX = screenW - 315;
+            int iconStartY = hotbarY - 6;
+            int offset = 0;
 
-        for (int i = 1; i <= 5; i++) {
-            Identifier icon = new Identifier(AnAbnormalCircumstance.MOD_ID, "textures/gui/spells/tier" + i + "_icon.png");
-            RenderSystem.setShaderTexture(0, icon);
-            int iy = iconStartY - offset;
-            context.drawTexture(icon, iconX, iy, 0, 0, 16, 16, 16, 16);
+            for (int i = 1; i <= 5; i++) {
+                var slot = ClientComponentAccess.getSlot(i);
+                if (slot == null || slot.isEmpty()) continue; // 🧠 Skip empty slots (no spell bound)
 
-            var slot = ClientComponentAccess.getSlot(i);
-            if (slot != null && slot.cooldownTicks > 0) {
-                // Cooldown overlay
-                context.fill(iconX, iy, iconX + 16, iy + 16, 0x99000000);
-                String cdText = String.valueOf(slot.getCooldownSeconds());
-                context.drawText(client.textRenderer, cdText, iconX + 4, iy + 4, 0xFFFFFF, true);
+                // Only show the icon corresponding to the spell's tier
+                Identifier icon = new Identifier(
+                        AnAbnormalCircumstance.MOD_ID,
+                        "textures/gui/spells/tier" + i + "_icon.png"
+                );
+
+                RenderSystem.setShaderTexture(0, icon);
+                int iy = iconStartY - offset;
+                context.drawTexture(icon, iconX, iy, 0, 0, 16, 16, 16, 16);
+
+                // Draw cooldown overlay if needed
+                if (slot.cooldownTicks > 0) {
+                    context.fill(iconX, iy, iconX + 16, iy + 16, 0x99000000);
+                    String cdText = String.valueOf(slot.getCooldownSeconds());
+                    context.drawText(client.textRenderer, cdText, iconX + 4, iy + 4, 0xFFFFFF, true);
+                }
+
+                offset += 20; // Move down for next occupied slot
             }
-            offset += 20;
         }
     }
 }

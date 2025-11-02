@@ -135,6 +135,20 @@ public class ModItemGroups {
 
                     }).build());
 
+    public static final ItemGroup SPELL_SCROLLS = Registry.register(Registries.ITEM_GROUP,
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "spell_scrolls_group"),
+            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.spell_scrolls_group"))
+                    .icon(() -> new ItemStack(ModItems.SPELL_SCROLL)).entries((displayContext, entries) -> {
+
+                        entries.add(ModItems.SPELL_SCROLL);
+
+                        ItemStack hydroScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        hydroScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:hydro_water_veil");
+                        entries.add(hydroScroll);
+
+                    }).build());
+
+
     public static void registerItemGroups() {
         AnAbnormalCircumstance.LOGGER.info("Registering Mod Item Groups for " + AnAbnormalCircumstance.MOD_ID);
     }

@@ -13,19 +13,17 @@ import net.abnormal.anabnormalcircumstance.util.ModModelPredicate;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
-
-import static com.github.crimsondawn45.fabricshieldlib.initializers.FabricShieldLibClient.renderBanner;
 
 public class AnAbnormalCircumstanceClient implements ClientModInitializer {
     @Override
     @SuppressWarnings("deprecation")
     public void onInitializeClient() {
 
+        ModModelPredicate.registerSpellScrollPredicate();
         ModModelPredicate.registerBow(ModItems.FIRST_LEAF);
         HandledScreens.register(ModScreenHandlers.HEPHAESTUS_ALTAR_SCREEN_HANDLER, HephaestusAltarScreen::new);
         EntityRendererRegistry.register(ModEntities.SILVER_ARROW, SilverArrowEntityRenderer::new);
@@ -34,8 +32,7 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         KeyBindingHandler.register();
         ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
-        PacketHandler.register(); // ensure client receiver is registered (PacketHandler.register registers both client & server receivers)
-
+        PacketHandler.register();
 
     }
 

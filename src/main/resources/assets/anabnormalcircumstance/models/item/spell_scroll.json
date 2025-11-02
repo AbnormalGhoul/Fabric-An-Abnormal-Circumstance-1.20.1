@@ -1,0 +1,24 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/spell_scroll_blank"
+  },
+  "overrides": [
+    {
+      "predicate": { "anabnormalcircumstance:spell_element": 1 },
+      "model": "anabnormalcircumstance:item/spell_scroll_hydro"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:spell_element": 2 },
+      "model": "anabnormalcircumstance:item/spell_scroll_pyro"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:spell_element": 3 },
+      "model": "anabnormalcircumstance:item/spell_scroll_geo"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:spell_element": 4 },
+      "model": "anabnormalcircumstance:item/spell_scroll_aero"
+    }
+  ]
+}

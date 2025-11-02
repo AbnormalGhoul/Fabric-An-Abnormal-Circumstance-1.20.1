@@ -49,7 +49,7 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.GRAY), true);
+            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.WHITE), true);
             return;
         }
 

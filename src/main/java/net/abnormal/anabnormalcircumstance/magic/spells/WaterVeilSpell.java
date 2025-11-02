@@ -13,7 +13,7 @@ import net.minecraft.util.Identifier;
  */
 public class WaterVeilSpell extends Spell {
     public WaterVeilSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 30, icon);
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 30, icon, "Water Veil");
     }
 
     @Override
