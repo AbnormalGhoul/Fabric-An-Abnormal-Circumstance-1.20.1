@@ -38,17 +38,19 @@ public final class ModModelPredicate {
     // For Magic Scrolls
     public static void registerSpellScrollPredicate() {
         ModelPredicateProviderRegistry.register(ModItems.SPELL_SCROLL,
-                    new Identifier("anabnormalcircumstance", "spell_element"), (stack, world, entity, seed) -> {
-                    // Default: no spell bound (blank scroll)
+                new Identifier("anabnormalcircumstance", "spell_element"),
+                        (stack, world, entity, seed) -> {
                     if (!stack.hasNbt() || !stack.getNbt().contains("spell_id")) {
                         return 0.0F;
                     }
 
-                    Identifier id = Identifier.tryParse(stack.getNbt().getString("spell_id"));
+                    String rawId = stack.getNbt().getString("spell_id");
+                    Identifier id = Identifier.tryParse(rawId);
                     Spell spell = SpellRegistry.get(id);
-                    if (spell == null) return 0.0F;
+                    if (spell == null) {
+                        return 0.0F;
+                    }
 
-                    // Map element types to float values used in model overrides
                     return switch (spell.getElement()) {
                         case HYDROMANCY -> 1.0F;
                         case PYROMANCY -> 2.0F;
@@ -57,5 +59,5 @@ public final class ModModelPredicate {
                         default -> 0.0F;
                     };
                 });
-    }
+     }
 }

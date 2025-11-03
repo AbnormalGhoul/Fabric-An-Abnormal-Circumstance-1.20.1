@@ -20,6 +20,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+        // GREEN_DYE just cuz I feel like it
+        new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.GREEN_DYE, 2)
+                .input(Items.BLUE_DYE)
+                .input(Items.YELLOW_DYE)
+                .criterion("has_blue_dye", conditionsFromItem(Items.BLUE_DYE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.GREEN_DYE)));
+
+
         // ECHO_SHARD
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.ECHO_SHARD, 4)
                 .pattern(" # ")

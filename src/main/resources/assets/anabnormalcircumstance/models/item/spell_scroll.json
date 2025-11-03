@@ -5,19 +5,19 @@
   },
   "overrides": [
     {
-      "predicate": { "anabnormalcircumstance:spell_element": 1 },
+      "predicate": { "anabnormalcircumstance:spell_element": 1.0 },
       "model": "anabnormalcircumstance:item/spell_scroll_hydro"
     },
     {
-      "predicate": { "anabnormalcircumstance:spell_element": 2 },
+      "predicate": { "anabnormalcircumstance:spell_element": 2.0 },
       "model": "anabnormalcircumstance:item/spell_scroll_pyro"
     },
     {
-      "predicate": { "anabnormalcircumstance:spell_element": 3 },
+      "predicate": { "anabnormalcircumstance:spell_element": 3.0 },
       "model": "anabnormalcircumstance:item/spell_scroll_geo"
     },
     {
-      "predicate": { "anabnormalcircumstance:spell_element": 4 },
+      "predicate": { "anabnormalcircumstance:spell_element": 4.0 },
       "model": "anabnormalcircumstance:item/spell_scroll_aero"
     }
   ]

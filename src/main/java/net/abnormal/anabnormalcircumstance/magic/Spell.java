@@ -3,10 +3,10 @@ package net.abnormal.anabnormalcircumstance.magic;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-/**
- * Base immutable Spell definition.
- * Concrete spells implement server-side behavior in cast(ServerPlayerEntity caster).
- */
+
+// Base immutable Spell definition.
+// Concrete spells implement server-side behavior in cast(ServerPlayerEntity caster).
+
 public abstract class Spell {
     private final Identifier id;
     private final SpellElement element;

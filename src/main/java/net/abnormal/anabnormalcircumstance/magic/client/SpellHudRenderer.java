@@ -23,9 +23,8 @@ public class SpellHudRenderer implements HudRenderCallback {
         int screenH = client.getWindow().getScaledHeight();
 
         // === Mana Bar ===
-        int x = screenW - 329;
-        int hotbarY = screenH - 12;
-        int y = hotbarY - 65;
+        int x = screenW - 24;
+        int y = screenH - 80;
 
         // Frame
         RenderSystem.setShaderTexture(0, MANA_FRAME);
@@ -42,13 +41,13 @@ public class SpellHudRenderer implements HudRenderCallback {
 
         // === Spell Icons ===
         if (ClientComponentAccess.hasAnySpellBound()) {
-            int iconX = screenW - 315;
-            int iconStartY = hotbarY - 6;
+            int iconX = screenW - 50;
+            int iconStartY = screenH - 24;
             int offset = 0;
 
             for (int i = 1; i <= 5; i++) {
                 var slot = ClientComponentAccess.getSlot(i);
-                if (slot == null || slot.isEmpty()) continue; // 🧠 Skip empty slots (no spell bound)
+                if (slot == null || slot.isEmpty()) continue; // Skip empty slots (no spell bound)
 
                 // Only show the icon corresponding to the spell's tier
                 Identifier icon = new Identifier(

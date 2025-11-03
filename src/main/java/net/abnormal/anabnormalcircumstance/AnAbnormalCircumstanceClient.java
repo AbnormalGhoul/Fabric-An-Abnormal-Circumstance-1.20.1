@@ -5,6 +5,12 @@ import net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltar
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.entity.client.SilverArrowEntityRenderer;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.magic.ModSpells;
+import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
+import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.*;
+import net.abnormal.anabnormalcircumstance.magic.spells.geomancy.*;
+import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.*;
+import net.abnormal.anabnormalcircumstance.magic.spells.pyromancy.*;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreen;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
@@ -17,12 +23,14 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.Identifier;
 
 public class AnAbnormalCircumstanceClient implements ClientModInitializer {
     @Override
     @SuppressWarnings("deprecation")
     public void onInitializeClient() {
 
+        ModSpells.registerAll();
         ModModelPredicate.registerSpellScrollPredicate();
         ModModelPredicate.registerBow(ModItems.FIRST_LEAF);
         HandledScreens.register(ModScreenHandlers.HEPHAESTUS_ALTAR_SCREEN_HANDLER, HephaestusAltarScreen::new);
