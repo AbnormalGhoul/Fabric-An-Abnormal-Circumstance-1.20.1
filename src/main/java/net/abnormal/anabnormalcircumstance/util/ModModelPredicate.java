@@ -52,10 +52,10 @@ public final class ModModelPredicate {
                     }
 
                     return switch (spell.getElement()) {
-                        case HYDROMANCY -> 1.0F;
-                        case PYROMANCY -> 2.0F;
-                        case GEOMANCY  -> 3.0F;
-                        case AEROMANCY -> 4.0F;
+                        case HYDROMANCY -> 0.2F;
+                        case PYROMANCY -> 0.4F;
+                        case GEOMANCY  -> 0.6F;
+                        case AEROMANCY -> 0.8F;
                         default -> 0.0F;
                     };
                 });
