@@ -10,10 +10,9 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 
-/**
- * Diver’s Grace:
- * Grants Dolphin’s Grace + Water Breathing for 15 seconds.
- */
+
+//  Diver’s Grace:
+//  Grants Dolphin’s Grace + Water Breathing for 15 seconds.
 public class DiversGraceSpell extends Spell {
     public DiversGraceSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 45, icon, "Diver's Grace");
