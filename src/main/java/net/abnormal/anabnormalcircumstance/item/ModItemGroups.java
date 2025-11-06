@@ -190,7 +190,7 @@ public class ModItemGroups {
                         entries.add(flameChargeScroll);
 
                         ItemStack ringOfFireScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        ringOfFireScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_ring_of_fire");
+                        ringOfFireScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_pyroclasm_wave");
                         entries.add(ringOfFireScroll);
 
                         ItemStack bloodPactScroll = new ItemStack(ModItems.SPELL_SCROLL);
@@ -198,7 +198,7 @@ public class ModItemGroups {
                         entries.add(bloodPactScroll);
 
                         ItemStack moltenFurryScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        moltenFurryScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_molten_furry");
+                        moltenFurryScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_molten_fury");
                         entries.add(moltenFurryScroll);
 
 

@@ -3,36 +3,124 @@ package net.abnormal.anabnormalcircumstance.magic.spells.pyromancy;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributes;
+
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+
+import net.minecraft.particle.ParticleTypes;
+
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
+
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
 public class BloodPactSpell extends Spell {
+
     public BloodPactSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 65, 150, icon, "Blood Pact");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3,
+                65,            // Mana cost
+                150,           // Cooldown seconds (2.5 minutes)
+                icon,
+                "Blood Pact");
     }
 
     @Override
     public boolean cast(ServerPlayerEntity caster) {
-        World world = caster.getWorld();
-        caster.damage(world.getDamageSources().magic(), 6.0f); // burns 3 hearts
+        ServerWorld world = caster.getServerWorld();
 
-        List<LivingEntity> allies = world.getEntitiesByClass(LivingEntity.class, caster.getBoundingBox().expand(10), e -> true);
-        for (LivingEntity ally : allies) {
-            if (ally != caster) {
-                // Apply 15% damage increase
-            }
+        // Must have > 6 hearts to sacrifice
+        if (caster.getHealth() <= 12.0f) {
+            caster.sendMessage(net.minecraft.text.Text.literal(
+                    "§cYou are too weak to perform a Blood Pact."), true);
+            return false;
         }
 
-        caster.addStatusEffect(new net.minecraft.entity.effect.StatusEffectInstance(StatusEffects.STRENGTH, 15 * 20, 0, false, false, true));
-        world.playSound(null, caster.getBlockPos(), SoundEvents.ENTITY_BLAZE_HURT, SoundCategory.PLAYERS, 3.0f, 1.0f);
+        // Sacrifice 6 hearts (12 HP)
+        caster.damage(world.getDamageSources().magic(), 12.0f);
+
+        // Sounds
+        world.playSound(
+                null, caster.getBlockPos(),
+                SoundEvents.ENTITY_BLAZE_SHOOT,
+                SoundCategory.PLAYERS,
+                1.8f, 0.8f
+        );
+        world.playSound(
+                null, caster.getBlockPos(),
+                SoundEvents.ENTITY_GENERIC_EXTINGUISH_FIRE,
+                SoundCategory.PLAYERS,
+                1.2f, 1.4f
+        );
+
+        // Blood/fire swirl particles
+        spawnBloodPactParticles(world, caster);
+
+        // Apply Strength III (amplifier = 2)
+        StatusEffectInstance strength =
+                new StatusEffectInstance(StatusEffects.STRENGTH, 20 * 20, 2, false, true, true);
+
+        // Apply to self
+        caster.addStatusEffect(strength);
+
+        // Apply to allies within 3 blocks
+        double radius = 3.0;
+        Vec3d pos = caster.getPos();
+
+        Box area = new Box(
+                pos.x - radius, pos.y - radius, pos.z - radius,
+                pos.x + radius, pos.y + radius, pos.z + radius
+        );
+
+        List<LivingEntity> nearby = world.getEntitiesByClass(
+                LivingEntity.class, area,
+                entity -> entity != caster && caster.isTeammate(entity)
+        );
+
+        for (LivingEntity ally : nearby) {
+            ally.addStatusEffect(new StatusEffectInstance(strength));
+        }
+
         return true;
+    }
+
+    private void spawnBloodPactParticles(ServerWorld world, ServerPlayerEntity caster) {
+        Vec3d pos = caster.getPos().add(0, 1.0, 0);
+
+        // Flame burst
+        world.spawnParticles(
+                ParticleTypes.FLAME,
+                pos.x, pos.y, pos.z,
+                60,
+                0.5, 0.8, 0.5,
+                0.04
+        );
+
+        // Crimson-colored soul fire sparks (visual contrast)
+        world.spawnParticles(
+                ParticleTypes.SOUL_FIRE_FLAME,
+                pos.x, pos.y - 0.2, pos.z,
+                30,
+                0.4, 0.3, 0.4,
+                0.01
+        );
+
+        // Blood-like drips (lava particles)
+        world.spawnParticles(
+                ParticleTypes.DRIPPING_LAVA,
+                pos.x, pos.y + 0.2, pos.z,
+                20,
+                0.25, 0.5, 0.25,
+                0.02
+        );
     }
 }

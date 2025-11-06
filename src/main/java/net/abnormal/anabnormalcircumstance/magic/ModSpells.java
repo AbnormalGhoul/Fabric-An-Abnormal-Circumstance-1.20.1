@@ -28,9 +28,9 @@ public class ModSpells {
         SpellRegistry.register(new CinderCloakingSpell(id("pyro_cinder_cloaking"), icon("pyro_icon")));
         SpellRegistry.register(new FireballSpell(id("pyro_fireball"), icon("pyro_icon")));
         SpellRegistry.register(new FlameChargeSpell(id("pyro_flame_charge"), icon("pyro_icon")));
-        SpellRegistry.register(new RingOfFireSpell(id("pyro_ring_of_fire"), icon("pyro_icon")));
+        SpellRegistry.register(new PyroclasmWaveSpell(id("pyro_pyroclasm_wave"), icon("pyro_icon")));
         SpellRegistry.register(new BloodPactSpell(id("pyro_blood_pact"), icon("pyro_icon")));
-        SpellRegistry.register(new MoltenFurrySpell(id("pyro_molten_furry"), icon("pyro_icon")));
+        SpellRegistry.register(new MoltenFurySpell(id("pyro_molten_fury"), icon("pyro_icon")));
 
         // Geomancy
         SpellRegistry.register(new RockBlastSpell(id("geo_rock_blast"), icon("geo_icon")));
