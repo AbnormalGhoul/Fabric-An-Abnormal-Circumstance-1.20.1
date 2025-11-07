@@ -34,10 +34,5 @@ public abstract class Spell {
     public int getCooldownTicks() { return cooldownTicks; }
     public Identifier getIcon() { return icon; }
 
-    /**
-     * Execute the spell effect. Called server-side only.
-     * Return true if the spell had successful effect (will result in mana spent & cooldown applied).
-     * Implementations MUST perform all world changes on server thread.
-     */
     public abstract boolean cast(ServerPlayerEntity caster);
 }

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class EnderPearlItemMixin {
     // set desired cooldown in ticks (20 ticks = 1 second)
     @Unique
-    private static final int COOLDOWN_TICKS = (60 * 20); // 1 min
+    private static final int COOLDOWN_TICKS = (25 * 20); // 25S
 
     @Inject(method = "use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;", at = @At("TAIL"))
     private void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
