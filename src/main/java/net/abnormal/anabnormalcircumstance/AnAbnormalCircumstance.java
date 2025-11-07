@@ -9,6 +9,7 @@ import net.abnormal.anabnormalcircumstance.magic.spells.geomancy.*;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.*;
 import net.abnormal.anabnormalcircumstance.magic.spells.pyromancy.*;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
+import net.abnormal.anabnormalcircumstance.network.StormlordsWillPacket;
 import net.abnormal.anabnormalcircumstance.recipe.ModBrewingRecipes;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
@@ -35,6 +36,8 @@ public class AnAbnormalCircumstance implements ModInitializer {
 	public void onInitialize() {
 
         PacketHandler.register();
+        StormlordsWillPacket.register();
+
         ModSpells.registerAll();
 
         ModItems.registerModItems();

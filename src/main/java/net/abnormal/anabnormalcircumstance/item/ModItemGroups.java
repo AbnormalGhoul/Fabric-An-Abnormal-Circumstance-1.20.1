@@ -241,17 +241,17 @@ public class ModItemGroups {
                         lightAsAFeatherScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_light_as_a_feather");
                         entries.add(lightAsAFeatherScroll);
 
-                        ItemStack windWallScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        windWallScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_wind_wall");
-                        entries.add(windWallScroll);
+                        ItemStack updraftsScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        updraftsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_updrafts");
+                        entries.add(updraftsScroll);
+
+                        ItemStack soaringStrideScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        soaringStrideScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_soaring_stride");
+                        entries.add(soaringStrideScroll);
 
                         ItemStack silentStepScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         silentStepScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_silent_step");
                         entries.add(silentStepScroll);
-
-                        ItemStack updraftsScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        updraftsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_updrafts");
-                        entries.add(updraftsScroll);
 
                         ItemStack galeWindsScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         galeWindsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_gale_winds");

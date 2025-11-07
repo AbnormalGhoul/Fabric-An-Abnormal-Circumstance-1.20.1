@@ -24,12 +24,12 @@ import java.util.*;
 
 public class EarthquakeSpell extends Spell {
     private static final int DURATION_TICKS = 200; // 10 seconds
-    private static final int DAMAGE_INTERVAL = 120; // every 1 second
+    private static final int DAMAGE_INTERVAL = 20; // every 1 second
     private static final double RADIUS = 15.0;
     private static final float DAMAGE = 5.0f;
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 10, icon, "Earthquake");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 120, icon, "Earthquake");
     }
 
     @Override

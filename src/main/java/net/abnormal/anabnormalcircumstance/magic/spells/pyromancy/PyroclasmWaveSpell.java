@@ -26,7 +26,7 @@ import java.util.*;
 public class PyroclasmWaveSpell extends Spell {
 
     public PyroclasmWaveSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 35, 30, icon, "Pyroclasm Wave");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 35, 50, icon, "Pyroclasm Wave");
     }
 
     @Override

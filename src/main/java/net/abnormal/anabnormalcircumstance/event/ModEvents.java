@@ -1,5 +1,9 @@
 package net.abnormal.anabnormalcircumstance.event;
 
+
+import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.minecraft.entity.damage.DamageSource;
+import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.SoaringStrideSpell;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.BileWaterSpell;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.ControlWeatherSpell;
 import net.abnormal.anabnormalcircumstance.magic.spells.pyromancy.FireAspectSpell;
@@ -10,8 +14,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Identifier;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+
 
 public class ModEvents {
     public static void registerEvents() {
@@ -32,10 +36,25 @@ public class ModEvents {
             return ActionResult.PASS;
         });
 
+        // Cancel fall damage for players under Soaring Stride protection
+        ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+            if (entity instanceof ServerPlayerEntity player) {
+                // Check if the damage source is fall damage
+                DamageSource fall = player.getDamageSources().fall();
+                if (source.getTypeRegistryEntry() == fall.getTypeRegistryEntry()) {
+                    if (SoaringStrideSpell.shouldCancelFallDamage(player)) {
+                        return false; // cancel the damage event entirely
+                    }
+                }
+            }
+            return true; // allow all other damage
+        });
+
         // Tick every world and spawn aura particles for players with active buff
         ServerTickEvents.END_WORLD_TICK.register(world -> {
             // world is a ServerWorld
             for (ServerPlayerEntity player : world.getPlayers()) {
+                SoaringStrideSpell.tick(player);
                 MoltenFurySpell.tick(player);
                 FireAspectSpell.tick(player);
                 ControlWeatherSpell.tick(player);
@@ -73,5 +92,4 @@ public class ModEvents {
 
         return damage;
     }
-
 }

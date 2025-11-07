@@ -6,6 +6,7 @@ import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.entity.client.SilverArrowEntityRenderer;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
+import net.abnormal.anabnormalcircumstance.magic.client.ClientTickHandler;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreen;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
@@ -33,6 +34,7 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, HephaestusAltarBlockEntityRenderer::new);
 
         KeyBindingHandler.register();
+        ClientTickHandler.register();
         ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
         PacketHandler.register();

@@ -10,6 +10,7 @@ public class SilverArrowEntityRenderer extends ProjectileEntityRenderer<SilverAr
         super(context);
     }
 
+
     @Override
     public Identifier getTexture(SilverArrowEntity entity) {
         return new Identifier("anabnormalcircumstance", "textures/entity/silver_arrow.png");
