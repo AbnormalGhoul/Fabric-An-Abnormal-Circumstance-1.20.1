@@ -9,7 +9,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class ManaComponentImpl implements ManaComponent {
     private double mana = MAX_MANA;
     private double fractional = 0.0;
-    private static final double MANA_PER_SECOND = 2.0;
+    private static final double MANA_PER_SECOND = 1.0;
 
     @Override
     public int getMana() {

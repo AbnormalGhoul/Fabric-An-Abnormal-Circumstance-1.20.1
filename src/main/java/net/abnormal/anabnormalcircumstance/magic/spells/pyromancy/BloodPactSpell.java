@@ -27,11 +27,7 @@ import java.util.List;
 public class BloodPactSpell extends Spell {
 
     public BloodPactSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3,
-                65,            // Mana cost
-                150,           // Cooldown seconds (2.5 minutes)
-                icon,
-                "Blood Pact");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 65,150, icon, "Blood Pact", "Sacrifice 6 hearts to gain Strength III for 20 seconds. ");
     }
 
     @Override

@@ -24,7 +24,7 @@ import java.util.List;
 public class IcicleShatterSpell extends Spell {
 
     public IcicleShatterSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_2, 30, 30, icon, "Icicle Shatter");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_2, 30, 30, icon, "Icicle Shatter", "Creates a ring of sharp ice around you that damages and briefly freezes nearby enemies.");
     }
 
     @Override

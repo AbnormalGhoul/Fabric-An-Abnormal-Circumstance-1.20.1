@@ -18,7 +18,7 @@ public class GaleWindsSpell extends Spell {
     private static final int PARTICLE_COUNT = 50;
 
     public GaleWindsSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_3, 20, 30, icon, "Gale Winds");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_3, 20, 30, icon, "Gale Winds", "Dash forward with the power of gale winds, leaving a trail of swirling air.");
     }
 
     @Override

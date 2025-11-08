@@ -26,7 +26,7 @@ public class SeismicCrownSpell extends Spell {
     private static final double KNOCKBACK_STRENGTH = 1;
 
     public SeismicCrownSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 120, icon, "Seismic Crown");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 120, icon, "Seismic Crown", "Summons rotating stones around you that damage nearby enemies and slightly reduce incoming damage.");
     }
 
     @Override

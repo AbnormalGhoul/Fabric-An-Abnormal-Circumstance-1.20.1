@@ -22,7 +22,7 @@ import java.util.List;
 public class CleansingFluidsSpell extends Spell {
 
     public CleansingFluidsSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_3, 45, 60, icon, "Cleansing Fluids");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_3, 45, 60, icon, "Cleansing Fluids", "Cleans off all negative effects and grants temporary absorption to you and allies.");
     }
 
     @Override

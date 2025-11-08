@@ -18,7 +18,7 @@ import java.util.List;
 public class HealingFluidsSpell extends Spell {
 
     public HealingFluidsSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_3, 40, 45, icon, "Healing Fluids");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_3, 40, 75, icon, "Healing Fluids", "Releases a burst of medicinal water that heals you and nearby allies.");
     }
 
     @Override

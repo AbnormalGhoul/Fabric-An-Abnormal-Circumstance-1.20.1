@@ -29,7 +29,7 @@ import java.util.List;
 public class UpdraftsSpell extends Spell {
 
     public UpdraftsSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 15, 60, icon, "Updrafts");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 15, 60, icon, "Updrafts", "Creates an upward gust that lifts nearby enemies off the ground.");
     }
 
     @Override

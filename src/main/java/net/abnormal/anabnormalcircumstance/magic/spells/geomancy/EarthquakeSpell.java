@@ -29,7 +29,7 @@ public class EarthquakeSpell extends Spell {
     private static final float DAMAGE = 5.0f;
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 120, icon, "Earthquake");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 120, icon, "Earthquake", "Shakes the ground in a wide area, damaging enemies standing on solid blocks.");
     }
 
     @Override

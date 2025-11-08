@@ -23,7 +23,7 @@ public class BileWaterSpell extends Spell {
     private static final Map<UUID, Boolean> ACTIVE_EFFECT = new HashMap<>();
 
     public BileWaterSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_2, 40, 60, icon, "Bile Water");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_2, 40, 60, icon, "Bile Water", "Coats your next attack with tainted water that blinds and weakens the target.");
     }
 
     @Override
@@ -65,7 +65,7 @@ public class BileWaterSpell extends Spell {
 
         if (ACTIVE_EFFECT.getOrDefault(uuid, false)) {
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 5 * 20));
-            target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 15 * 20));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 10 * 20));
             ACTIVE_EFFECT.remove(uuid);
         }
     }

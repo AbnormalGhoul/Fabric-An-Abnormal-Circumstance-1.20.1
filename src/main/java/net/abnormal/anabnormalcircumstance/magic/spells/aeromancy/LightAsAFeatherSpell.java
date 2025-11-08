@@ -24,7 +24,7 @@ import org.joml.Vector3f;
 public class LightAsAFeatherSpell extends Spell {
 
     public LightAsAFeatherSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 5, 20, icon, "Light as a Feather");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 5, 20, icon, "Light as a Feather", "Reduces your falling speed, letting you glide safely downward.");
     }
 
     @Override

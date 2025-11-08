@@ -15,8 +15,9 @@ public abstract class Spell {
     private final int cooldownTicks; // stored in ticks
     private final Identifier icon;
     private String displayName = "";
+    private String description = "";
 
-    protected Spell(Identifier id, SpellElement element, SpellTier tier, int manaCost, int cooldownSeconds, Identifier icon, String displayName) {
+    protected Spell(Identifier id, SpellElement element, SpellTier tier, int manaCost, int cooldownSeconds, Identifier icon, String displayName, String description) {
         this.id = id;
         this.element = element;
         this.tier = tier;
@@ -24,6 +25,7 @@ public abstract class Spell {
         this.cooldownTicks = Math.max(0, cooldownSeconds * 20);
         this.icon = icon;
         this.displayName = displayName;
+        this.description = description;
     }
 
     public String getDisplayName() { return displayName; }
@@ -33,6 +35,9 @@ public abstract class Spell {
     public int getManaCost() { return manaCost; }
     public int getCooldownTicks() { return cooldownTicks; }
     public Identifier getIcon() { return icon; }
+    public String getDescription() { return description; }
 
     public abstract boolean cast(ServerPlayerEntity caster);
+
+
 }

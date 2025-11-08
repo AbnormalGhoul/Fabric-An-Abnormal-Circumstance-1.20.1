@@ -29,7 +29,7 @@ import java.util.List;
 public class CinderCloakingSpell extends Spell {
 
     public CinderCloakingSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_1, 20, 120, icon, "Cinder Cloaking");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_1, 20, 120, icon, "Cinder Cloaking", "Marks all nearby enemies with a glowing ember effect, making them easy to track");
     }
 
     @Override

@@ -29,7 +29,8 @@ public class QuickClawsSpell extends Spell {
                 25,             // mana
                 45,             // cooldown seconds
                 icon,
-                "Quick Claws"
+                "Quick Claws",
+                "Boosts your mining and action speed for a short period."
         );
     }
 

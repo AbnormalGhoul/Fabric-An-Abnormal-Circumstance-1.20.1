@@ -29,7 +29,7 @@ public class StormlordsWillSpell extends Spell {
     private static boolean tickRegistered = false;
 
     public StormlordsWillSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_4, 65, 600, icon, "Stormlord's Will");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_4, 65, 600, icon, "Stormlord's Will", "Allows you to perform unlimited midair jumps and negates fall damage for the duration.");
     }
 
     @Override

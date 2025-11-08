@@ -39,7 +39,7 @@ public class SilentStepSpell extends Spell {
     private static boolean ATTACK_LISTENER_REGISTERED = false;
 
     public SilentStepSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, 45, 180, icon, "Silent Step");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, 45, 180, icon, "Silent Step", "Turns you invisible and removes all noise and trails you normally create.");
     }
 
     @Override

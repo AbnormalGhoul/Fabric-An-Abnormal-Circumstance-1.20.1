@@ -4,6 +4,7 @@ import net.abnormal.anabnormalcircumstance.component.ModComponents;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -18,7 +19,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.awt.SystemColor.text;
 
 public class SpellScrollItem extends Item {
     public SpellScrollItem(Settings settings) {
@@ -85,16 +89,55 @@ public class SpellScrollItem extends Item {
         if (stack.hasNbt() && stack.getNbt().contains("spell_id")) {
             Identifier id = Identifier.tryParse(stack.getNbt().getString("spell_id"));
             Spell spell = SpellRegistry.get(id);
+
             if (spell != null) {
                 tooltip.add(Text.literal("§bBound Spell: §f" + spell.getDisplayName()));
-                tooltip.add(Text.literal("§7" + spell.getTier().name() + " " + spell.getElement().name()));
+                tooltip.add(Text.literal("§5" + spell.getTier().name() + " " + spell.getElement().name()));
                 tooltip.add(Text.literal("§3Mana Usage: §f" + spell.getManaCost()));
                 tooltip.add(Text.literal("§3Cooldown: §f" + (spell.getCooldownTicks() / 20.0) + "s"));
+
+                if (!Screen.hasShiftDown()) {
+                    tooltip.add(Text.literal("§ePress SHIFT to view description"));
+                } else {
+                    String desc = spell.getDescription();
+                    int maxWidth = 40;
+                    List<String> lines = wrapText(desc, maxWidth);
+                    for (String line : lines) {
+                        tooltip.add(Text.literal("§7" + line));
+                    }
+                }
+
             } else {
                 tooltip.add(Text.literal("§cInvalid Spell Data"));
             }
+
         } else {
             tooltip.add(Text.literal("§7Blank Scroll"));
         }
     }
+
+        private List<String> wrapText(String text, int maxWidth) {
+            List<String> lines = new ArrayList<>();
+
+            String[] words = text.split(" ");
+            StringBuilder current = new StringBuilder();
+
+            for (String word : words) {
+                if (current.length() + word.length() + 1 > maxWidth) {
+                    lines.add(current.toString());
+                    current = new StringBuilder(word);
+                } else {
+                    if (!current.isEmpty()) {
+                        current.append(" ");
+                    }
+                    current.append(word);
+                }
+            }
+
+            if (!current.isEmpty()) {
+                lines.add(current.toString());
+            }
+
+            return lines;
+        }
 }

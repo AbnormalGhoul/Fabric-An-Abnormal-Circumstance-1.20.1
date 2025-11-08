@@ -28,7 +28,7 @@ public class FlameChargeSpell extends Spell {
     private static final Map<UUID, FlameChargeData> ACTIVE = new HashMap<>();
 
     public FlameChargeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 35, 45, icon, "Flame Charge");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 35, 45, icon, "Flame Charge", "Rushes you forward in a straight line, burning and damaging anything you collide with.");
     }
 
     @Override

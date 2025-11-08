@@ -30,11 +30,12 @@ public class MoltenFurySpell extends Spell {
     private static final Map<UUID, Integer> FIRE_ON_HIT = new HashMap<>();
 
     public MoltenFurySpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_4,
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_5,
                 100,   // mana
                 900,   // cooldown = 15 minutes
                 icon,
-                "Molten Fury");
+                "Molten Fury",
+                "Empowers your attacks with molten energy, increasing your total damage output dramatically.");
     }
 
     @Override

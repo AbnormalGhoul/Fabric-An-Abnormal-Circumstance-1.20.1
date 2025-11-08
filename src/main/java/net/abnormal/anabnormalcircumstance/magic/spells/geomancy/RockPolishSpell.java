@@ -23,7 +23,7 @@ public class RockPolishSpell extends Spell {
     private static final int RADIUS = 10;
 
     public RockPolishSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 40, 60, icon, "Rock Polish");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 40, 60, icon, "Rock Polish", "Grants nearby allies temporary resistance by coating them in hardened stone.");
     }
 
     @Override

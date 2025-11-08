@@ -15,7 +15,7 @@ import net.minecraft.util.Identifier;
 //  Grants Dolphin’s Grace + Water Breathing for 15 seconds.
 public class DiversGraceSpell extends Spell {
     public DiversGraceSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 45, icon, "Diver's Grace");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 45, icon, "Diver's Grace", "Enhances your movement underwater and lets you breathe easily for a short time.");
     }
 
     @Override

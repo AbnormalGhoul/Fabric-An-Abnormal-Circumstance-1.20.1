@@ -28,7 +28,7 @@ public class FireAspectSpell extends Spell {
     private static final Map<UUID, Integer> ACTIVE = new HashMap<>();
 
     public FireAspectSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_1, 30, 25, icon, "Fire Aspect");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_1, 30, 25, icon, "Fire Aspect", "Sets your melee hits ablaze, burning enemies for a short duration.");
     }
 
     @Override

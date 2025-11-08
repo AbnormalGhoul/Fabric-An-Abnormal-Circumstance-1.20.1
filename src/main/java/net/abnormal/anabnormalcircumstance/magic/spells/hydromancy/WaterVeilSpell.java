@@ -26,7 +26,7 @@ public class WaterVeilSpell extends Spell {
     private static final int RADIUS = 10;
 
     public WaterVeilSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 30, icon, "Water Veil");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_1, 15, 30, icon, "Water Veil", "Forms a protective layer of moisture that shields you from fire and heat.");
     }
 
     @Override

@@ -31,7 +31,7 @@ public class SoaringStrideSpell extends Spell {
     private static final Map<ServerPlayerEntity, Integer> FALL_IMMUNITY = new HashMap<>();
 
     public SoaringStrideSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, MANA_COST, COOLDOWN_TICKS, icon, "Soaring Stride");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, MANA_COST, COOLDOWN_TICKS, icon, "Soaring Stride", "Launches you high into the air using a strong burst of wind.");
     }
 
     @Override

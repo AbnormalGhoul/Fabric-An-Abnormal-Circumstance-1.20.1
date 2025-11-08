@@ -28,7 +28,7 @@ public class ControlWeatherSpell extends Spell {
 
     // Mana: 75, Cooldown: 30 minutes (1800 seconds)
     public ControlWeatherSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_4, 75, 30 * 60, icon, "Control Weather");
+        super(id, SpellElement.HYDROMANCY, SpellTier.TIER_4, 75, 30 * 60, icon, "Control Weather", "Triggers a thunderstorm and temporarily boosts your chance to call lightning with attacks.");
     }
 
     @Override

@@ -33,7 +33,8 @@ public class RockBlastSpell extends Spell {
                 30,          // mana
                 120,         // cooldown (seconds)
                 icon,
-                "Rock Blast"
+                "Rock Blast",
+                "Sends out a forceful shock that pushes enemies away from you."
         );
     }
 

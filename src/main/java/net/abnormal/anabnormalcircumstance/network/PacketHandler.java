@@ -44,20 +44,23 @@ public final class PacketHandler {
 
                 Identifier spellId = slots.getSpellForTier(tier);
                 if (spellId == null) {
-                    player.sendMessage(net.minecraft.text.Text.literal("No spell bound to this tier!"), true);
+                    player.sendMessage(net.minecraft.text.Text.literal("No Spell Bound to this Tier"), true);
                     return;
                 }
 
                 Spell spell = SpellRegistry.get(spellId);
                 if (spell == null) {
-                    player.sendMessage(net.minecraft.text.Text.literal("Invalid spell bound to this tier!"), true);
+                    player.sendMessage(net.minecraft.text.Text.literal("Invalid Spell Bound to this Tier"), true);
                     return;
                 }
 
                 int cd = slots.getCooldownTicks(tier);
-                if (cd > 0) return; // still on cooldown
+                if (cd > 0) {
+                    player.sendMessage(net.minecraft.text.Text.literal("Spell is on Cooldown"), true);
+                    return; // still on cooldown
+                }
                 if (mana.getMana() < spell.getManaCost()) {
-                    // optionally send feedback
+                    player.sendMessage(net.minecraft.text.Text.literal("Not Enough Mana"), true);
                     return;
                 }
                 // cast server-side (implement spell casting in Spell.cast(...))

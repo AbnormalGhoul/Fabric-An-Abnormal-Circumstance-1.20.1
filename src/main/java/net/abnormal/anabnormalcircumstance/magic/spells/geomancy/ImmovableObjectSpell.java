@@ -33,7 +33,7 @@ public class ImmovableObjectSpell extends Spell {
     private static final Map<UUID, Long> ACTIVE_AURAS = new HashMap<>();
 
     public ImmovableObjectSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_4, 75, 5 * 60, icon, "Immovable Object");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_4, 75, 5 * 60, icon, "Immovable Object", "Locks your body into a fortified state, making you immune to damage but slowing all movement.");
     }
 
     @Override

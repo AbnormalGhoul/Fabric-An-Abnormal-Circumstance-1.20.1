@@ -26,7 +26,7 @@ public class StompSpell extends Spell {
     private static final int DAMAGE = 15;
 
     public StompSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 45, 45, icon, "Stomp");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 45, 45, icon, "Stomp", "Launches you upward and slams you down, damaging and stunning enemies on impact.");
     }
 
     @Override

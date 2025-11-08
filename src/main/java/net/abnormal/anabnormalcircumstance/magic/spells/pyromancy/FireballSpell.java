@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class FireballSpell extends Spell {
     public FireballSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 35, 60, icon, "Fireball");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 35, 60, icon, "Fireball", "Fires a fast explosive fireball that deals high damage on direct impact.");
     }
 
     @Override
