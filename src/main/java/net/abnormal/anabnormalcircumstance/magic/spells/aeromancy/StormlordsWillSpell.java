@@ -29,7 +29,7 @@ public class StormlordsWillSpell extends Spell {
     private static boolean tickRegistered = false;
 
     public StormlordsWillSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_4, 65, 300, icon, "Stormlord's Will");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_4, 65, 600, icon, "Stormlord's Will");
     }
 
     @Override

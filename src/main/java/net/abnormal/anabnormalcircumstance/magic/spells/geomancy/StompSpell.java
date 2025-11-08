@@ -67,7 +67,7 @@ public class StompSpell extends Spell {
 
         for (LivingEntity target : targets) {
             target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.CONFUSION, 4 * 20, 0));
+            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 4 * 20, 0));
 
             // Small debris burst at each hit entity
             world.spawnParticles(
