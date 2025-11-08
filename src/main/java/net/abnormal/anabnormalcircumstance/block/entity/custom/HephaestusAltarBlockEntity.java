@@ -42,7 +42,7 @@ public class HephaestusAltarBlockEntity extends BlockEntity implements ExtendedS
     // Creation phase state
     private boolean isCreating = false;
     private int creationTicks = 0;
-    private static final int CREATION_DURATION_TICKS = 15 * 20 * 60; // 15 minutes
+    private static final int CREATION_DURATION_TICKS = 60 * 20; // 15 minutes
     private ServerBossBar bossBar;
 
     // Store the recipe being crafted during the creation phase

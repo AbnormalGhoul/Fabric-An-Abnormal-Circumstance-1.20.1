@@ -22,11 +22,11 @@ import java.util.*;
 public class SeismicCrownSpell extends Spell {
     private static final double RADIUS = 1.0;
     private static final int DAMAGE = 10;
-    private static final int DURATION_TICKS = 15 * 20; // 15 seconds
+    private static final int DURATION_TICKS = 10 * 20; // 15 seconds
     private static final double KNOCKBACK_STRENGTH = 1;
 
     public SeismicCrownSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 75, icon, "Seismic Crown");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 120, icon, "Seismic Crown");
     }
 
     @Override
