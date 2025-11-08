@@ -28,8 +28,8 @@ public class KeyBindingHandler {
 
         SPELL_TIER_1 = registerKey("spell_tier_1", GLFW.GLFW_KEY_G);
         SPELL_TIER_2 = registerKey("spell_tier_2", GLFW.GLFW_KEY_H);
-        SPELL_TIER_3 = registerKey("spell_tier_3", GLFW.GLFW_KEY_B);
-        SPELL_TIER_4 = registerKey("spell_tier_4", GLFW.GLFW_KEY_J);
+        SPELL_TIER_3 = registerKey("spell_tier_3", GLFW.GLFW_KEY_J);
+        SPELL_TIER_4 = registerKey("spell_tier_4", GLFW.GLFW_KEY_K);
         SPELL_TIER_5 = registerKey("spell_tier_5", GLFW.GLFW_KEY_N);
     }
 
