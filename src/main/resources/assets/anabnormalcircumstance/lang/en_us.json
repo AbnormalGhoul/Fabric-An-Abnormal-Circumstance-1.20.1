@@ -22,6 +22,8 @@
   "effect.anabnormalcircumstance.stun.desc": "Unable to move or act",
   "effect.anabnormalcircumstance.confusion": "Confusion",
   "effect.anabnormalcircumstance.confusion.desc": "Controls are reversed",
+  "effect.anabnormalcircumstance.bitten": "Bitten",
+  "effect.anabnormalcircumstance.bitten.desc": "Natural regeneration is disabled",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",

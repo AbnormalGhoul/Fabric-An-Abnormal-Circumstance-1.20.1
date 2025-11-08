@@ -12,6 +12,7 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
@@ -35,9 +36,9 @@ public class VillagerTotemItem extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("The totem exudes a palpable aura of sanctity,"));
-        tooltip.add(Text.literal("as if it has been imbued with the purest essence of life itself."));
-        tooltip.add(Text.literal("Can be used to weaken Zombie Villagers"));
+        tooltip.add(Text.literal("The totem exudes a palpable aura of sanctity,").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("as if it has been imbued with the purest essence of life itself.").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Can be used to weaken Zombie Villagers").formatted(Formatting.GRAY));
         super.appendTooltip(stack, world, tooltip, context);
     }
 }
