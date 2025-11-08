@@ -6,6 +6,7 @@ import net.abnormal.anabnormalcircumstance.component.ManaComponent;
 import net.abnormal.anabnormalcircumstance.component.ModComponents;
 import net.abnormal.anabnormalcircumstance.component.SpellSlotsComponent;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
+import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.abnormal.anabnormalcircumstance.magic.client.ClientComponentAccess;
@@ -13,6 +14,8 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
@@ -70,6 +73,19 @@ public final class PacketHandler {
                     slots.setCooldownTicks(tier, spell.getCooldownTicks());
                     // Immediately sync server state to client
                     syncSpellStateToClient((ServerPlayerEntity) player, mana, slots);
+
+                    // Broadcast to nearby players within 15 blocks
+                    Formatting color = colorFor(spell.getElement());
+                    String casterName = player.getName().getString();
+                    String msgText = casterName + " has casted " + spell.getDisplayName();
+                    Text msg = Text.literal(msgText).formatted(color);
+
+                    double radiusSq = 15.0 * 15.0;
+                    for (ServerPlayerEntity other : server.getPlayerManager().getPlayerList()) {
+                        if (other.squaredDistanceTo(player) <= radiusSq) {
+                            other.sendMessage(msg, false);
+                        }
+                    }
                 }
             });
         });
@@ -117,5 +133,14 @@ public final class PacketHandler {
     private static SpellTier tierFromLevel(int level) {
         for (SpellTier s : SpellTier.values()) if (s.getLevel() == level) return s;
         return null;
+    }
+
+    private static Formatting colorFor(SpellElement element) {
+        return switch (element) {
+            case PYROMANCY -> Formatting.RED;
+            case HYDROMANCY -> Formatting.AQUA;
+            case GEOMANCY -> Formatting.GREEN;
+            case AEROMANCY -> Formatting.GRAY;
+        };
     }
 }
