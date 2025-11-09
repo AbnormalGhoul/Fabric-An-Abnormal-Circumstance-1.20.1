@@ -10,7 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.packet.s2c.play.*;
+import net.minecraft.network.packet.s2c.play.EntityEquipmentUpdateS2CPacket;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -20,9 +20,7 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.World;
 import com.mojang.datafixers.util.Pair;
-
 
 import java.util.*;
 
@@ -30,6 +28,11 @@ import java.util.*;
  * Silent Step Spell (Aeromancy Tier 2)
  * Cost: 45 Mana | Cooldown: 3 min | Duration: 60s
  * True invisibility (no armor/items/footsteps)
+ *
+ * Fixes:
+ * - Do not destroy the player entity on clients (keeps interactions/hit detection working).
+ * - Hide visuals by clearing equipment for other clients and applying invisibility effect.
+ * - Restore equipment from stored copies when removing invisibility.
  */
 public class SilentStepSpell extends Spell {
 
@@ -58,19 +61,21 @@ public class SilentStepSpell extends Spell {
     }
 
     private void applyTrueInvisibility(ServerPlayerEntity player) {
-        if (INVISIBLE_PLAYERS.contains(player.getUuid())) return;
-        INVISIBLE_PLAYERS.add(player.getUuid());
+        UUID id = player.getUuid();
+        if (INVISIBLE_PLAYERS.contains(id)) return;
+        INVISIBLE_PLAYERS.add(id);
 
+        // Apply invisibility effect (clients respect this and won't render the model)
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, DURATION_TICKS, 0, false, false, true));
 
-        // Store equipment to restore later
+        // Store current equipment so it can be restored later
         Map<EquipmentSlot, ItemStack> equipment = new EnumMap<>(EquipmentSlot.class);
         for (EquipmentSlot slot : EquipmentSlot.values()) {
             equipment.put(slot, player.getEquippedStack(slot).copy());
         }
-        STORED_EQUIPMENT.put(player.getUuid(), equipment);
+        STORED_EQUIPMENT.put(id, equipment);
 
-        // Hide from others and clear equipped visuals
+        // Hide visuals from other players by sending empty equipment packets.
         hideFromOthers(player);
 
         player.sendMessage(Text.literal("You fade into silence..."), true);
@@ -82,23 +87,23 @@ public class SilentStepSpell extends Spell {
         if (player == null || player.getServerWorld().isClient) return;
         UUID id = player.getUuid();
         if (!INVISIBLE_PLAYERS.contains(id)) return;
-        INVISIBLE_PLAYERS.remove(id);
 
         ServerWorld world = player.getServerWorld();
 
-        // Respawn visible entity for others
+        // Restore equipment for other players using the stored copies (fallback to current stacks)
+        Map<EquipmentSlot, ItemStack> stored = STORED_EQUIPMENT.get(id);
         for (ServerPlayerEntity other : world.getPlayers(p -> p != player)) {
-            other.networkHandler.sendPacket(new EntitySpawnS2CPacket(player));
-            // Re-sync equipment after respawn
             for (EquipmentSlot slot : EquipmentSlot.values()) {
-                ItemStack stack = player.getEquippedStack(slot);
+                ItemStack stackToSend = (stored != null) ? stored.getOrDefault(slot, player.getEquippedStack(slot)) : player.getEquippedStack(slot);
                 other.networkHandler.sendPacket(
-                        new EntityEquipmentUpdateS2CPacket(player.getId(), List.of(Pair.of(slot, stack)))
+                        new EntityEquipmentUpdateS2CPacket(player.getId(), List.of(Pair.of(slot, stackToSend)))
                 );
             }
         }
 
+        // Remove invisibility effect and clean up state
         player.removeStatusEffect(StatusEffects.INVISIBILITY);
+        INVISIBLE_PLAYERS.remove(id);
         STORED_EQUIPMENT.remove(id);
 
         world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ILLUSIONER_MIRROR_MOVE, SoundCategory.PLAYERS, 1.0f, 1.2f);
@@ -109,35 +114,24 @@ public class SilentStepSpell extends Spell {
 
     private static void hideFromOthers(ServerPlayerEntity player) {
         ServerWorld world = player.getServerWorld();
-        int id = player.getId();
 
-        // Send destroy packet so the model disappears
-        for (ServerPlayerEntity other : world.getPlayers(p -> p != player)) {
-            other.networkHandler.sendPacket(new EntitiesDestroyS2CPacket(id));
-        }
-
-        // Send equipment updates with empty stacks so armor/weapons vanish even in entity refresh
+        // Send equipment updates with empty stacks so armor/weapons vanish visually for other clients.
         for (ServerPlayerEntity other : world.getPlayers(p -> p != player)) {
             for (EquipmentSlot slot : EquipmentSlot.values()) {
                 other.networkHandler.sendPacket(
-                        new EntityEquipmentUpdateS2CPacket(id, List.of(Pair.of(slot, ItemStack.EMPTY)))
+                        new EntityEquipmentUpdateS2CPacket(player.getId(), List.of(Pair.of(slot, ItemStack.EMPTY)))
                 );
-
             }
         }
 
-        // Hide footsteps by clearing movement dust packets each tick
-        ServerTickEvents.END_WORLD_TICK.register(w -> {
-            if (!INVISIBLE_PLAYERS.contains(player.getUuid())) return;
-            // Remove sprinting state on client by faking sneaking or silent motion (optional)
-            player.setSprinting(false);
-        });
+        // Do not destroy the entity on clients. Keeping the entity present preserves hit detection and other interactions.
     }
 
     private void registerAttackDamageCancel() {
         if (ATTACK_LISTENER_REGISTERED) return;
         ATTACK_LISTENER_REGISTERED = true;
 
+        // When an invisible player attacks, remove their invisibility
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient && INVISIBLE_PLAYERS.contains(player.getUuid())) {
                 removeInvisibility((ServerPlayerEntity) player);
@@ -145,6 +139,7 @@ public class SilentStepSpell extends Spell {
             return ActionResult.PASS;
         });
 
+        // When an invisible player is hurt, remove invisibility
         ServerTickEvents.END_WORLD_TICK.register(world -> {
             for (ServerPlayerEntity player : world.getPlayers()) {
                 if (INVISIBLE_PLAYERS.contains(player.getUuid()) && player.hurtTime > 0) {
