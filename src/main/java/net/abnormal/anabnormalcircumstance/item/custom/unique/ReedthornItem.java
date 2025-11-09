@@ -110,14 +110,14 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!target.getWorld().isClient()) {
-            target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 60, 1)); // 5s Poison II
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 60, 0)); // 3s of Poison I
         }
         return super.postHit(stack, target, attacker);
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Extended Attack Reach, And Inflicts Poison II").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Passive: Extended Attack Reach, And Inflicts Poison I").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Confusion Charge (R)").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
