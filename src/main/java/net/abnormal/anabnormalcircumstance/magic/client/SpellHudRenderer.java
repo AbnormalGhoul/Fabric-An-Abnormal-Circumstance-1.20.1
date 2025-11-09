@@ -33,11 +33,16 @@ public class SpellHudRenderer implements HudRenderCallback {
         // Fill
         int mana = ClientComponentAccess.getClientMana();
         float ratio = Math.max(0f, Math.min(1f, mana / 100.0f));
-        int fillHeight = (int) (ratio * 68.0f);
-        int fillY = y + (68) - fillHeight;
+        int fullFillHeight = 68;
+        int fillHeight = (int) (ratio * fullFillHeight);
+        if (fillHeight > 0) {
+            int fillY = y + (fullFillHeight) - fillHeight;
 
-        RenderSystem.setShaderTexture(0, MANA_FILL);
-        context.drawTexture(MANA_FILL, x+1, fillY+1, 0, 0, 8, fillHeight, 8, 68);
+            RenderSystem.setShaderTexture(0, MANA_FILL);
+            // Sample the lower portion of the fill texture so the bottom remains fixed.
+            int v = fullFillHeight - fillHeight; // vertical offset into the texture
+            context.drawTexture(MANA_FILL, x + 1, fillY + 1, 0, v, 8, fillHeight, 8, fullFillHeight);
+        }
 
         // === Spell Icons ===
         if (ClientComponentAccess.hasAnySpellBound()) {
