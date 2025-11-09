@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
+import net.abnormal.anabnormalcircumstance.event.PhoenixFireHandler;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
 import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.*;
@@ -46,6 +47,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModItemGroups.registerItemGroups();
 
         ModEvents.registerEvents();
+        PhoenixFireHandler.register();
         ModEntities.registerModEntities();
         ModBlockEntities.registerBlockEntities();
         ModScreenHandlers.registerScreenHandlers();

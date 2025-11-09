@@ -197,6 +197,10 @@ public class ModItemGroups {
                         bloodPactScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_blood_pact");
                         entries.add(bloodPactScroll);
 
+                        ItemStack phoenixRebirthScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        phoenixRebirthScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_phoenix_rebirth");
+                        entries.add(phoenixRebirthScroll);
+
                         ItemStack moltenFurryScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         moltenFurryScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_molten_fury");
                         entries.add(moltenFurryScroll);

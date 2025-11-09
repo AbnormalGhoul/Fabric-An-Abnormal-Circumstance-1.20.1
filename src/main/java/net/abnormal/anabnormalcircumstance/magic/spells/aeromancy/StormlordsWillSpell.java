@@ -150,7 +150,7 @@ public class StormlordsWillSpell extends Spell {
         if (jumpPending.getOrDefault(uuid, false)) {
             Vec3d look = player.getRotationVec(1.0f); // direction player is looking
 
-            double horizontalSpeed = 0.6; // stronger horizontal dash
+            double horizontalSpeed = 0.8; // stronger horizontal dash
             double verticalBoost = 0.6;   // stronger vertical boost
 
             player.setVelocity(

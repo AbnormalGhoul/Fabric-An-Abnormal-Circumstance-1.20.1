@@ -24,6 +24,8 @@
   "effect.anabnormalcircumstance.confusion.desc": "Controls are reversed",
   "effect.anabnormalcircumstance.bitten": "Bitten",
   "effect.anabnormalcircumstance.bitten.desc": "Natural regeneration is disabled",
+  "effect.anabnormalcircumstance.phoenix_fire": "Phoenix Fire",
+  "effect.anabnormalcircumstance.phoenix_fire.desc": "Upon death you will rise again from the ashes",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",

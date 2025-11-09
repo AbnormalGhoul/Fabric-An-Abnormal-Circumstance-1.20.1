@@ -26,7 +26,7 @@ public class StompSpell extends Spell {
     private static final int DAMAGE = 15;
 
     public StompSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 45, 45, icon, "Stomp", "Launches you upward and slams you down, damaging and stunning enemies on impact.");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_2, 45, 60, icon, "Stomp", "Launches you upward and slams you down, damaging and stunning enemies on impact.");
     }
 
     @Override
@@ -67,7 +67,7 @@ public class StompSpell extends Spell {
 
         for (LivingEntity target : targets) {
             target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 4 * 20, 0));
+            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 3 * 20, 0));
 
             // Small debris burst at each hit entity
             world.spawnParticles(
