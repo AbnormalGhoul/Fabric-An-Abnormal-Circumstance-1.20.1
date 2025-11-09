@@ -1,15 +1,20 @@
 package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.component.ModComponents;
+import net.abnormal.anabnormalcircumstance.component.SpellSlotsComponent;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
+import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
+import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
+import net.minecraft.advancement.Advancement;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -21,8 +26,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.awt.SystemColor.text;
 
 public class SpellScrollItem extends Item {
     public SpellScrollItem(Settings settings) {
@@ -57,6 +60,29 @@ public class SpellScrollItem extends Item {
         if (slotComp.getSpellForTier(tier) != null) {
             user.sendMessage(Text.literal("§eYour Tier " + tier.getLevel() + " slot is already occupied."), true);
             return TypedActionResult.fail(stack);
+        }
+
+        // Additional requirements for Tier 4 and Tier 5
+        if (tier.getLevel() >= 4) {
+            if (!(user instanceof ServerPlayerEntity serverPlayer)) {
+                user.sendMessage(Text.literal("§cServer-side check failed."), true);
+                return TypedActionResult.fail(stack);
+            }
+
+            int requiredUpTo = (tier.getLevel() == 4) ? 3 : 4; // Tier4 -> need 1..3, Tier5 -> need 1..4
+
+            if (!hasBlessing(serverPlayer, spell.getElement())) {
+                user.sendMessage(Text.literal("§cYou are not Blessed with " +
+                        spell.getElement().name().toLowerCase()), true);
+                return TypedActionResult.fail(stack);
+            }
+
+            if (!hasRequiredElementSlots(slotComp, spell.getElement(), requiredUpTo)) {
+                user.sendMessage(Text.literal("§cYou require more devotion in the way of " +
+                        spell.getElement().name().toLowerCase()), true);
+                return TypedActionResult.fail(stack);
+            }
+
         }
 
         // Successfully bind spell
@@ -116,28 +142,59 @@ public class SpellScrollItem extends Item {
         }
     }
 
-        private List<String> wrapText(String text, int maxWidth) {
-            List<String> lines = new ArrayList<>();
+    private List<String> wrapText(String text, int maxWidth) {
+        List<String> lines = new ArrayList<>();
 
-            String[] words = text.split(" ");
-            StringBuilder current = new StringBuilder();
+        String[] words = text.split(" ");
+        StringBuilder current = new StringBuilder();
 
-            for (String word : words) {
-                if (current.length() + word.length() + 1 > maxWidth) {
-                    lines.add(current.toString());
-                    current = new StringBuilder(word);
-                } else {
-                    if (!current.isEmpty()) {
-                        current.append(" ");
-                    }
-                    current.append(word);
-                }
-            }
-
-            if (!current.isEmpty()) {
+        for (String word : words) {
+            if (current.length() + word.length() + 1 > maxWidth) {
                 lines.add(current.toString());
+                current = new StringBuilder(word);
+            } else {
+                if (!current.isEmpty()) {
+                    current.append(" ");
+                }
+                current.append(word);
             }
-
-            return lines;
         }
+
+        if (!current.isEmpty()) {
+            lines.add(current.toString());
+        }
+
+        return lines;
+    }
+
+    // Check that the player has Tier 1..requiredUpToLevel spells equipped of the same element
+    private boolean hasRequiredElementSlots(SpellSlotsComponent slotComp, SpellElement element, int requiredUpToLevel) {
+        for (int level = 1; level <= requiredUpToLevel; level++) {
+            SpellTier tier = SpellTier.values()[level - 1];
+            Identifier id = slotComp.getSpellForTier(tier);
+            if (id == null) return false;
+            Spell s = SpellRegistry.get(id);
+            if (s == null) return false;
+            if (s.getElement() != element) return false;
+        }
+        return true;
+    }
+
+    // Check that the player has the corresponding blessing advancement
+    private boolean hasBlessing(ServerPlayerEntity player, SpellElement element) {
+        MinecraftServer server = player.getServer();
+        if (server == null) return false;
+
+        String advName = switch (element) {
+            case PYROMANCY -> "blessing_of_pyromancy";
+            case HYDROMANCY -> "blessing_of_hydromancy";
+            case GEOMANCY -> "blessing_of_geomancy";
+            case AEROMANCY -> "blessing_of_aeromancy";
+        };
+
+        Identifier advId = new Identifier("anabnormalcircumstance", advName);
+        Advancement adv = server.getAdvancementLoader().get(advId);
+        if (adv == null) return false;
+        return player.getAdvancementTracker().getProgress(adv).isDone();
+    }
 }
