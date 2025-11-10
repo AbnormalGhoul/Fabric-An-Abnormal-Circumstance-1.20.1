@@ -19,7 +19,7 @@ public class GrowthSpell extends Spell {
     private static final int RADIUS = 5;
 
     public GrowthSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_1, 10, 30, icon, "Growth", "Accelerates plant growth in the area, causing crops and plants to mature instantly.");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_1, 15, 15, icon, "Growth", "Accelerates plant growth in the area, causing crops and plants to mature instantly.");
     }
 
     @Override

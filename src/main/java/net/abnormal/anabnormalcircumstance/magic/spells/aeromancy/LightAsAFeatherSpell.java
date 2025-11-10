@@ -24,7 +24,7 @@ import org.joml.Vector3f;
 public class LightAsAFeatherSpell extends Spell {
 
     public LightAsAFeatherSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 5, 20, icon, "Light as a Feather", "Reduces your falling speed, letting you glide safely downward.");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_1, 10, 25, icon, "Light as a Feather", "Reduces your falling speed, letting you glide safely downward.");
     }
 
     @Override
@@ -32,7 +32,7 @@ public class LightAsAFeatherSpell extends Spell {
         ServerWorld world = caster.getServerWorld();
 
         // Apply Slow Falling for 15 seconds (15 * 20 ticks)
-        caster.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 15 * 20, 0, false, false, true));
+        caster.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOW_FALLING, 15 * 25, 0, false, false, true));
 
         // Play a light airy sound
         world.playSound(null, caster.getBlockPos(), SoundEvents.ENTITY_PHANTOM_FLAP, SoundCategory.PLAYERS, 1.5f, 1.4f);

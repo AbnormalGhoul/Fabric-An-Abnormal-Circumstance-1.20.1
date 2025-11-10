@@ -37,7 +37,7 @@ public class RockPolishSpell extends Spell {
         // 🌫Particle: stone dust and ash swirling around caster
         spawnAuraParticles(world, caster);
 
-        // Grant Resistance II (amplifier 1) for 20 seconds to allies in radius
+        // Grant Resistance II (amplifier 1) for 15 seconds to allies in radius
         applyResistanceToAllies(world, caster);
 
         return true;
@@ -73,7 +73,7 @@ public class RockPolishSpell extends Spell {
                 e -> e.isAlive() && (e == caster || caster.isTeammate(e)));
 
         for (LivingEntity ally : entities) {
-            ally.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 20 * 20, 1, false, true, true));
+            ally.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 15 * 20, 1, false, true, true));
 
             // Mini particle burst at each ally
             world.spawnParticles(

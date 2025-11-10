@@ -34,15 +34,15 @@ public class BloodPactSpell extends Spell {
     public boolean cast(ServerPlayerEntity caster) {
         ServerWorld world = caster.getServerWorld();
 
-//        // Must have > 6 hearts to sacrifice
-//        if (caster.getHealth() <= 12.0f) {
-//            caster.sendMessage(net.minecraft.text.Text.literal(
-//                    "§cYou are too weak to perform a Blood Pact."), true);
-//            return false;
-//        }
-//
-//        // Sacrifice 6 hearts (12 HP)
-//        caster.damage(world.getDamageSources().magic(), 12.0f);
+        // Must have > 4 hearts to sacrifice
+        if (caster.getHealth() <= 4.0f) {
+            caster.sendMessage(net.minecraft.text.Text.literal(
+                    "§cYou are too weak to perform a Blood Pact."), true);
+            return false;
+        }
+
+        // Sacrifice 4 hearts (8 HP)
+        caster.damage(world.getDamageSources().magic(), 8.0f);
 
         // Sounds
         world.playSound(

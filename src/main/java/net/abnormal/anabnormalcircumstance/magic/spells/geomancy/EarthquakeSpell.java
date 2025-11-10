@@ -49,7 +49,7 @@ public class EarthquakeSpell extends Spell {
         return true;
     }
 
-    // --- Earthquake Logic ---
+    // Earthquake Logic
     private static class EarthquakeTracker {
         // thread-safe list to iterate and remove safely from server tick handler
         private static final CopyOnWriteArrayList<EarthquakeInstance> ACTIVE = new CopyOnWriteArrayList<>();
@@ -165,6 +165,13 @@ public class EarthquakeSpell extends Spell {
 
             private boolean isTeammateOrCaster(ServerPlayerEntity caster, LivingEntity e) {
                 if (e.getUuid().equals(caster.getUuid())) return true;
+
+                // For players: consider them teammates only if they share the same scoreboard team.
+                if (e instanceof ServerPlayerEntity) {
+                    return Objects.equals(caster.getScoreboardTeam(), ((ServerPlayerEntity) e).getScoreboardTeam());
+                }
+
+                // For non-player entities (tamed mobs, etc.) preserve the original teammate check.
                 return caster.isTeammate(e);
             }
         }
