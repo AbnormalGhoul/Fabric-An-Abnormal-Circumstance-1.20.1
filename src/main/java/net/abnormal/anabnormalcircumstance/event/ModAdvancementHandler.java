@@ -10,6 +10,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.PersistentStateManager;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -18,55 +19,53 @@ public class ModAdvancementHandler {
     private static final UUID ORC_HEALTH_BOOST_ID = UUID.fromString("b3f9676c-11f8-4d64-8e0c-5df1cc1e9a02");
     private static final UUID BROOD_HEALTH_BOOST_ID = UUID.fromString("e2f29b5d-9c7d-4b38-90e7-5dcffdbba1a3");
 
-    private static final String ORC_KEY = "anabnormalcircumstance_orc_heart_boost";
-    private static final String BROOD_KEY = "anabnormalcircumstance_brood_heart_boost";
+    private static final Identifier ORC_ADV = new Identifier("anabnormalcircumstance", "orc_slayer");
+    private static final Identifier BROOD_ADV = new Identifier("anabnormalcircumstance", "brood_slayer");
+
+    private static final String PERSIST_KEY = "anabnormal_advancement_boosts";
 
     public static void register() {
         ServerTickEvents.END_SERVER_TICK.register(ModAdvancementHandler::onServerTick);
 
-        // Copy persistent NBT between deaths
+        // You don't need to copy custom booleans via readCustomDataFromNbt.
+        // If you have other per-player data that must be copied on death, handle it individually here.
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
-            NbtCompound oldData = new NbtCompound();
-            oldPlayer.writeCustomDataToNbt(oldData);
-
-            NbtCompound newData = new NbtCompound();
-            newPlayer.writeCustomDataToNbt(newData);
-
-            if (oldData.getBoolean(ORC_KEY)) {
-                newData.putBoolean(ORC_KEY, true);
-            }
-            if (oldData.getBoolean(BROOD_KEY)) {
-                newData.putBoolean(BROOD_KEY, true);
-            }
-
-            newPlayer.readCustomDataFromNbt(newData);
+            // If you must keep certain runtime fields, copy them manually here.
+            // But do NOT call readCustomDataFromNbt on the new player with a general NBT blob.
         });
     }
 
     private static void onServerTick(MinecraftServer server) {
         for (ServerPlayerEntity player : server.getPlayerManager().getPlayerList()) {
-            Identifier orcId = new Identifier("anabnormalcircumstance", "orc_slayer");
-            Identifier broodId = new Identifier("anabnormalcircumstance", "brood_slayer");
+            AdvancementBoostState state = getState(player);
 
-            checkAndReward(player, orcId, ORC_HEALTH_BOOST_ID, "Orc Slayer Boost", ORC_KEY);
-            checkAndReward(player, broodId, BROOD_HEALTH_BOOST_ID, "Brood Slayer Boost", BROOD_KEY);
+            checkAndReward(player, ORC_ADV, ORC_HEALTH_BOOST_ID, "Orc Slayer Boost", state, true);
+            checkAndReward(player, BROOD_ADV, BROOD_HEALTH_BOOST_ID, "Brood Slayer Boost", state, false);
         }
     }
 
-    private static void checkAndReward(ServerPlayerEntity player, Identifier id, UUID boostId, String name, String tagKey) {
-        Advancement adv = Objects.requireNonNull(player.getServer()).getAdvancementLoader().get(id);
+    private static AdvancementBoostState getState(ServerPlayerEntity player) {
+        // pick any world; persistent state manager is per-dimension but we will store it on overworld
+        PersistentStateManager manager = player.getServerWorld()
+                .getPersistentStateManager();
+        AdvancementBoostState state = manager.getOrCreate(AdvancementBoostState::fromNbt,
+                AdvancementBoostState::new, PERSIST_KEY);
+        return state;
+    }
+
+    private static void checkAndReward(ServerPlayerEntity player, Identifier advId, UUID boostId, String name,
+                                       AdvancementBoostState state, boolean isOrc) {
+        Advancement adv = Objects.requireNonNull(player.getServer()).getAdvancementLoader().get(advId);
         if (adv == null) return;
 
-        NbtCompound data = new NbtCompound();
-        player.writeCustomDataToNbt(data);
-        boolean alreadyHasBoost = data.getBoolean(tagKey);
+        boolean alreadyHasBoost = isOrc ? state.hasOrc(player.getUuid()) : state.hasBrood(player.getUuid());
 
         if (!alreadyHasBoost) {
             AdvancementProgress progress = player.getAdvancementTracker().getProgress(adv);
             if (progress.isDone()) {
                 giveHeartBoost(player, boostId, name);
-                data.putBoolean(tagKey, true);
-                player.readCustomDataFromNbt(data);
+                if (isOrc) state.addOrc(player.getUuid());
+                else state.addBrood(player.getUuid());
             }
         } else {
             ensureHeartBoost(player, boostId, name);

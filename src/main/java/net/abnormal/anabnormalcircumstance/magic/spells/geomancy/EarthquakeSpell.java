@@ -147,9 +147,15 @@ public class EarthquakeSpell extends Spell {
                         center.x + RADIUS, center.y + 4, center.z + RADIUS
                 );
 
-                // filter living entities: alive, on ground, not teammate, not the caster
+                // filter living entities: alive, on ground, not teammate, not the caster, not spectator/invulnerable
                 List<LivingEntity> enemies = world.getEntitiesByClass(LivingEntity.class, area,
-                        e -> e.isAlive() && e.isOnGround() && !isTeammateOrCaster(caster, e));
+                        e -> e.isAlive()
+                                && e.isOnGround()
+                                && !caster.getUuid().equals(e.getUuid())
+                                && !caster.isTeammate(e)
+                                && !e.isSpectator()
+                                && !e.isInvulnerable()
+                );
 
                 for (LivingEntity target : enemies) {
                     target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
@@ -166,12 +172,13 @@ public class EarthquakeSpell extends Spell {
             private boolean isTeammateOrCaster(ServerPlayerEntity caster, LivingEntity e) {
                 if (e.getUuid().equals(caster.getUuid())) return true;
 
-                // For players: consider them teammates only if they share the same scoreboard team.
                 if (e instanceof ServerPlayerEntity) {
-                    return Objects.equals(caster.getScoreboardTeam(), ((ServerPlayerEntity) e).getScoreboardTeam());
+                    var casterTeam = caster.getScoreboardTeam();
+                    var targetTeam = ((ServerPlayerEntity) e).getScoreboardTeam();
+                    // Only consider teammates if the caster actually has a team and it matches the target's team
+                    return casterTeam != null && casterTeam.equals(targetTeam);
                 }
 
-                // For non-player entities (tamed mobs, etc.) preserve the original teammate check.
                 return caster.isTeammate(e);
             }
         }
