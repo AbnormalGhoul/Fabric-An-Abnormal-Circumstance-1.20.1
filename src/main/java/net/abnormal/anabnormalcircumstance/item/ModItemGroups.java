@@ -181,9 +181,9 @@ public class ModItemGroups {
                         cinderCloakingScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_cinder_cloaking");
                         entries.add(cinderCloakingScroll);
 
-                        ItemStack fireballScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        fireballScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_fireball");
-                        entries.add(fireballScroll);
+                        ItemStack bloodPactScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        bloodPactScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_blood_pact");
+                        entries.add(bloodPactScroll);
 
                         ItemStack flameChargeScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         flameChargeScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_flame_charge");
@@ -193,9 +193,9 @@ public class ModItemGroups {
                         ringOfFireScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_pyroclasm_wave");
                         entries.add(ringOfFireScroll);
 
-                        ItemStack bloodPactScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        bloodPactScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_blood_pact");
-                        entries.add(bloodPactScroll);
+                        ItemStack fireballScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        fireballScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_fireball");
+                        entries.add(fireballScroll);
 
                         ItemStack phoenixRebirthScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         phoenixRebirthScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_phoenix_rebirth");

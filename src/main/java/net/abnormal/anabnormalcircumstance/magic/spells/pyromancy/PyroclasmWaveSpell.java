@@ -26,7 +26,7 @@ import java.util.*;
 public class PyroclasmWaveSpell extends Spell {
 
     public PyroclasmWaveSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 35, 50, icon, "Pyroclasm Wave", "Creates expanding rings of fire at your feet that damage enemies close to you.");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 50, 60, icon, "Pyroclasm Wave", "Creates expanding rings of fire at your feet that damage enemies close to you.");
     }
 
     @Override
@@ -110,7 +110,7 @@ public class PyroclasmWaveSpell extends Spell {
         );
 
         for (LivingEntity target : targets) {
-            target.damage(world.getDamageSources().magic(), 20.0f);
+            target.damage(world.getDamageSources().magic(), 15.0f);
             target.setOnFireFor(5);
         }
 

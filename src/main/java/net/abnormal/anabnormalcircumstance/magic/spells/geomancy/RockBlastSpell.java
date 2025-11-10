@@ -31,7 +31,7 @@ public class RockBlastSpell extends Spell {
                 SpellElement.GEOMANCY,
                 SpellTier.TIER_1,
                 30,          // mana
-                120,         // cooldown (seconds)
+                45,                   // cooldown (seconds)
                 icon,
                 "Rock Blast",
                 "Sends out a forceful shock that pushes enemies away from you."
@@ -104,7 +104,7 @@ public class RockBlastSpell extends Spell {
             // knockback vector away from player
             Vec3d direction = target.getPos().subtract(caster.getPos()).normalize();
 
-            double strength = 1.8;
+            double strength = 2.3;
             target.addVelocity(direction.x * strength, 0.8, direction.z * strength);
 
             target.velocityModified = true; // Ensure client sees velocity change

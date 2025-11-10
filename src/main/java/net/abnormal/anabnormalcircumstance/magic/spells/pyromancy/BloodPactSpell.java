@@ -27,22 +27,22 @@ import java.util.List;
 public class BloodPactSpell extends Spell {
 
     public BloodPactSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 65,150, icon, "Blood Pact", "Sacrifice 6 hearts to gain Strength III for 20 seconds. ");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 65,60, icon, "Blood Pact", "Sacrifice 6 hearts to gain Strength III for 20 seconds. ");
     }
 
     @Override
     public boolean cast(ServerPlayerEntity caster) {
         ServerWorld world = caster.getServerWorld();
 
-        // Must have > 6 hearts to sacrifice
-        if (caster.getHealth() <= 12.0f) {
-            caster.sendMessage(net.minecraft.text.Text.literal(
-                    "§cYou are too weak to perform a Blood Pact."), true);
-            return false;
-        }
-
-        // Sacrifice 6 hearts (12 HP)
-        caster.damage(world.getDamageSources().magic(), 12.0f);
+//        // Must have > 6 hearts to sacrifice
+//        if (caster.getHealth() <= 12.0f) {
+//            caster.sendMessage(net.minecraft.text.Text.literal(
+//                    "§cYou are too weak to perform a Blood Pact."), true);
+//            return false;
+//        }
+//
+//        // Sacrifice 6 hearts (12 HP)
+//        caster.damage(world.getDamageSources().magic(), 12.0f);
 
         // Sounds
         world.playSound(

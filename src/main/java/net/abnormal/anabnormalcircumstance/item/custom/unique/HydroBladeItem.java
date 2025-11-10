@@ -46,7 +46,7 @@ public class HydroBladeItem extends SwordItem implements UniqueAbilityItem {
         }
         if (!player.getWorld().isClient) {
             player.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.ABSORPTION, 12000, 3, false, true, true));
+                    StatusEffects.ABSORPTION, 30 * 20, 3, false, true, true));
         }
         player.getWorld().playSound(
                 null,
