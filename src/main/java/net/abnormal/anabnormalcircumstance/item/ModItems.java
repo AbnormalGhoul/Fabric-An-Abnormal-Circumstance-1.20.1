@@ -14,6 +14,14 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
+    // Trinkets
+    public static final Item WIDOWS_GEM = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "widows_gem"),
+            new WidowsGemItem(new Item.Settings().maxCount(1))
+    );
+
+
     // Magic Items
     public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(16)));
     public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings()));

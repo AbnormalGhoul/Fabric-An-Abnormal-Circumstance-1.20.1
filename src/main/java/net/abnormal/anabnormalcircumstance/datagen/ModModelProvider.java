@@ -24,6 +24,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         // Weapons
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.WIDOWS_GEM, Models.GENERATED);
+
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.HYDRO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.PYRO_BLADE, Models.HANDHELD);

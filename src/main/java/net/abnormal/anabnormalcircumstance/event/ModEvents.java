@@ -20,6 +20,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 public class ModEvents {
     public static void registerEvents() {
         ModAttackEvent.register();
+        WidowsGemEvents.register();
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient && entity instanceof LivingEntity target) {
