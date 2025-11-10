@@ -24,7 +24,7 @@ public class HurricanesCallSpell extends Spell {
     private static final double KNOCKBACK_STRENGTH = 1.5;
 
     public HurricanesCallSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_3, 35, 120, icon, "Hurricane's Call", "Forms a small whirlwind around you that pushes enemies away.");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_3, 50, 90, icon, "Hurricane's Call", "Forms a small whirlwind around you that pushes enemies away.");
     }
 
     @Override
