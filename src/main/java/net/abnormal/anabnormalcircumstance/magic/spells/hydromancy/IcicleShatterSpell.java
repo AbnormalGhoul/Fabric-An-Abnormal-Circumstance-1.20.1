@@ -78,8 +78,8 @@ public class IcicleShatterSpell extends Spell {
                 entity -> entity != caster && isEnemy(caster, entity));
 
         for (LivingEntity target : targets) {
-            target.setFrozenTicks(target.getFrozenTicks() + 200);
-            target.damage(world.getDamageSources().magic(), 6.0f);
+            target.setFrozenTicks(target.getFrozenTicks() + 400);
+            target.damage(world.getDamageSources().magic(), 15.0f);
         }
     }
 

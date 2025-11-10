@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
@@ -19,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
+public class GeoBladeItem extends AxeItem implements UniqueAbilityItem {
     private static final String IMMUNITY_KEY = "geomancy_immunity";
 
     public GeoBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
@@ -42,27 +43,27 @@ public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
                 5.0f,
                 1.0f
         );
-        player.getMainHandStack().getOrCreateNbt().putInt(IMMUNITY_KEY, 3);
-        player.sendMessage(Text.literal("Next 3 Hits will be Neglected!").formatted(Formatting.GOLD), true);
+        player.getMainHandStack().getOrCreateNbt().putInt(IMMUNITY_KEY, 5);
+        player.sendMessage(Text.literal("Next 5 Hits will be Neglected!").formatted(Formatting.GOLD), true);
         UniqueItemCooldownManager.setCooldown(player, 60 * 1000); // 60 seconds cooldown
 
     }
 
-    @Override
-    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
-        if (world.isClient()) return;
-        if (entity instanceof PlayerEntity player) {
-            boolean holding = selected || player.getOffHandStack() == stack;
-            if (holding) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 45, 0, true, false, true));
-            }
-        }
-    }
+//    @Override
+//    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
+//        if (world.isClient()) return;
+//        if (entity instanceof PlayerEntity player) {
+//            boolean holding = selected || player.getOffHandStack() == stack;
+//            if (holding) {
+//                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 45, 0, true, false, true));
+//            }
+//        }
+//    }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Regeneration I").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Grants immunity to next 3 hits (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Passive: Acts as an Axe").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Grants immunity to next 5 hits (R)").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 
