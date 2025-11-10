@@ -18,7 +18,7 @@ public class ModItems {
     public static final Item WIDOWS_GEM = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "widows_gem"),
-            new WidowsGemItem(new Item.Settings().maxCount(1))
+            new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE))
     );
 
 
