@@ -117,6 +117,20 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_orc_champion_fang", conditionsFromItem(ModItems.ORC_CHAMPION_FANG))
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.KARAMBIT)));
 
+        // WIDOWS_GEM
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.WIDOWS_GEM, 1)
+                .pattern("Q#Q")
+                .pattern("$X$")
+                .pattern("Q#Q")
+                .input('#', ModItems.ARACHNID_SILK)
+                .input('X', ModItems.MANA_CLUSTER)
+                .input('Q' , Items.GOLD_BLOCK)
+                .input('$' , ModItems.BROODMOTHER_EGG)
+                .showNotification(true)
+                .criterion("has_broodmother_egg", conditionsFromItem(ModItems.BROODMOTHER_EGG))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.WIDOWS_GEM)));
+
+
         // SILVER ARROW
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_ARROW, 8)
                 .pattern("###")
