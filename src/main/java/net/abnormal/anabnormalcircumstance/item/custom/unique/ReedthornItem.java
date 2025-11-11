@@ -1,6 +1,8 @@
 package net.abnormal.anabnormalcircumstance.item.custom.unique;
 
+import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
@@ -46,6 +48,19 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
     public void useUniqueAbility(PlayerEntity player) {
         World world = player.getWorld();
         if (world.isClient()) return;
+
+        boolean hasMark = TrinketsApi.getTrinketComponent(player)
+                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .orElse(false);
+
+        if (!hasMark) {
+            player.sendMessage(
+                    Text.literal("You must equip the Mark of Champion to use this weapon!")
+                            .formatted(Formatting.DARK_RED),
+                    true // true = action bar
+            );
+            return;
+        }
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);

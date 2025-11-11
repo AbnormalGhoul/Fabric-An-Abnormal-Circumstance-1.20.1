@@ -35,6 +35,7 @@ public class ModItemGroups {
                         // Other Tools
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.WIDOWS_GEM);
+                        entries.add(ModItems.MARK_OF_A_CHAMPION);
 
                         entries.add(ModItems.SILVER_ARROW);
                         entries.add(ModItems.TOTEM_OF_PURITY);

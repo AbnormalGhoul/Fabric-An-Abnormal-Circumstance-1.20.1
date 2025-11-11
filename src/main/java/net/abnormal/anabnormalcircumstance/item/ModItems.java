@@ -20,6 +20,13 @@ public class ModItems {
             new Identifier("anabnormalcircumstance", "widows_gem"),
             new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE))
     );
+    public static final Item MARK_OF_A_CHAMPION = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "mark_of_a_champion"),
+            new MarkOfAChampionItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
+    );
+
+
 
 
     // Magic Items

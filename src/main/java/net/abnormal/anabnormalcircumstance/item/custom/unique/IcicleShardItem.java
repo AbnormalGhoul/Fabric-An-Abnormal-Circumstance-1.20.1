@@ -1,7 +1,9 @@
 package net.abnormal.anabnormalcircumstance.item.custom.unique;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
@@ -32,6 +34,20 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
     @Override
     public void useUniqueAbility(PlayerEntity player) {
         if (player.getWorld().isClient()) return;
+
+        boolean hasMark = TrinketsApi.getTrinketComponent(player)
+                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .orElse(false);
+
+        if (!hasMark) {
+            player.sendMessage(
+                    Text.literal("You must equip the Mark of Champion to use this weapon!")
+                            .formatted(Formatting.DARK_RED),
+                    true // true = action bar
+            );
+            return;
+        }
+
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
             player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
