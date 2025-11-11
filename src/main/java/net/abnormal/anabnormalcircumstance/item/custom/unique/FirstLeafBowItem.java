@@ -28,7 +28,7 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
     }
 
     public static void applyStun(LivingEntity target) {
-        target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 140, 0));
+        target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 100, 0));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
 
         player.sendMessage(Text.literal("Next arrow will stun your target!").formatted(Formatting.GOLD), true);
 
-        UniqueItemCooldownManager.setCooldown(player, 30 * 1000); // 30 seconds cooldown
+        UniqueItemCooldownManager.setCooldown(player, 45 * 1000); // 45 seconds cooldown
 
     }
 
@@ -97,7 +97,7 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Regeneration II").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Next arrow stuns for 7s (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Next arrow stuns for 5s (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
     }
 }

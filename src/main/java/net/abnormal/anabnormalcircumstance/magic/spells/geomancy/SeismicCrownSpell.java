@@ -21,9 +21,9 @@ import java.util.*;
 
 public class SeismicCrownSpell extends Spell {
     private static final double RADIUS = 1.0;
-    private static final int DAMAGE = 10;
+    private static final int DAMAGE = 15;
     private static final int DURATION_TICKS = 10 * 20; // 10 seconds
-    private static final double KNOCKBACK_STRENGTH = 1;
+    private static final double KNOCKBACK_STRENGTH = 0.6;
 
     public SeismicCrownSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 90, icon, "Seismic Crown", "Summons rotating stones around you that damage nearby enemies and slightly reduce incoming damage.");

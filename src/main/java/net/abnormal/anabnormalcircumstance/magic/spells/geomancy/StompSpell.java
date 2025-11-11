@@ -22,7 +22,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.*;
 
 public class StompSpell extends Spell {
-    private static final double RADIUS = 5.0;
+    private static final double RADIUS = 3.0;
     private static final int DAMAGE = 15;
 
     public StompSpell(Identifier id, Identifier icon) {

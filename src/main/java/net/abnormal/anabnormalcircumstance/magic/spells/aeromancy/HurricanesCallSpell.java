@@ -21,7 +21,7 @@ public class HurricanesCallSpell extends Spell {
 
     private static final int DURATION_TICKS = 10 * 20; // 15 seconds
     private static final double AURA_RADIUS = 3.0;
-    private static final double KNOCKBACK_STRENGTH = 1.5;
+    private static final double KNOCKBACK_STRENGTH = 1.2;
 
     public HurricanesCallSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.AEROMANCY, SpellTier.TIER_3, 50, 90, icon, "Hurricane's Call", "Forms a small whirlwind around you that pushes enemies away.");

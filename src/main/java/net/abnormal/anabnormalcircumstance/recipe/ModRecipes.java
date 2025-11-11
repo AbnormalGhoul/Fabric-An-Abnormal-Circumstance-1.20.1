@@ -29,7 +29,7 @@ public class ModRecipes {
     public static AltarRecipe createHydoBlade() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "hydro_blade"))
             .addInput(ModItems.HYDRO_CATALYST, 1)
-            .addInput(ModItems.MANA_CORE, 2)
+            .addInput(ModItems.MANA_CORE, 4)
             .addInput(Items.DIAMOND_BLOCK, 8)
             .addInput(Items.DIAMOND_SWORD, 1)
             .addInput(ModItems.BROODMOTHER_EGG, 2)
@@ -43,7 +43,7 @@ public class ModRecipes {
     public static AltarRecipe createPyroBlade() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "pyro_blade"))
                 .addInput(ModItems.PYRO_CATALYST, 1)
-                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(ModItems.MANA_CORE, 4)
                 .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
                 .addInput(ModItems.BROODMOTHER_EGG, 2)
@@ -57,7 +57,7 @@ public class ModRecipes {
     public static AltarRecipe createGeoBlade() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "geo_blade"))
                 .addInput(ModItems.GEO_CATALYST, 1)
-                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(ModItems.MANA_CORE, 4)
                 .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
                 .addInput(ModItems.BROODMOTHER_EGG, 2)
@@ -71,13 +71,13 @@ public class ModRecipes {
     public static AltarRecipe createAeroBlade() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "aero_blade"))
                 .addInput(ModItems.AERO_CATALYST, 1)
-                .addInput(ModItems.MANA_CORE, 2)
+                .addInput(ModItems.MANA_CORE, 4)
                 .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.DIAMOND_SWORD, 1)
                 .addInput(ModItems.BROODMOTHER_EGG, 2)
                 .addInput(ModItems.ORC_CHAMPION_FANG, 2)
                 .addInput(Items.GOLD_BLOCK, 16)
-                .addInput(Items.AMETHYST_SHARD, 64)
+                .addInput(Items.RABBIT_FOOT, 16)
                 .setOutput(new ItemStack(ModItems.AERO_BLADE))
                 .build();
     }
