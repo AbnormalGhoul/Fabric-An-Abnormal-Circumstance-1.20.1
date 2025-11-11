@@ -42,9 +42,9 @@ public class SpellRuneItem extends Item {
         }
         if (!anyBound) {
             if (user instanceof ServerPlayerEntity serverPlayer) {
-                serverPlayer.sendMessage(Text.literal("§cNo Spells Binded"), true);
+                serverPlayer.sendMessage(Text.literal("§cNo Spells Bound"), true);
             } else {
-                user.sendMessage(Text.literal("§cNo Spells Binded"), true);
+                user.sendMessage(Text.literal("§cNo Spells Bound"), true);
             }
             return TypedActionResult.fail(stack);
         }
