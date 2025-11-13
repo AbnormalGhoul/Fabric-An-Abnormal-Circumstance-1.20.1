@@ -38,14 +38,16 @@
     "anabnormalcircumstance.mixins.json"
   ],
   "depends": {
-    "reach-entity-attributes": "*",
     "fabricloader": ">=0.17.3",
     "minecraft": "~1.20.1",
     "java": ">=17",
     "fabric-api": "*",
     "fabric-key-binding-api-v1": "*",
+    "reach-entity-attributes": ">=2.4.0",
     "cardinal-components-base": ">=5.2.3",
     "cardinal-components-entity": ">=5.2.3",
-    "trinkets": ">=3.7.2"
+    "trinkets": ">=3.7.2",
+    "midnightlib": ">=1.4.1",
+    "geckolib": ">=4.8.2"
   }
 }

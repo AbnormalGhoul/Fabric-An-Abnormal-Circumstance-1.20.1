@@ -1,12 +1,14 @@
 package net.abnormal.anabnormalcircumstance.item;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
+import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.item.custom.*;
 import net.abnormal.anabnormalcircumstance.item.custom.unique.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -26,7 +28,10 @@ public class ModItems {
             new MarkOfAChampionItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
     );
 
-
+    // Spawn Eggs
+    public static final Item ORC_WARRIOR_SPAWN_EGG = registerItem("orc_warrior_spawn_egg",
+            new SpawnEggItem(ModEntities.ORC_WARRIOR, 0xD57E36, 0x1D0D00,
+                    new FabricItemSettings()));
 
 
     // Magic Items

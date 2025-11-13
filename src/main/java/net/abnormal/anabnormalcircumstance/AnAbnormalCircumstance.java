@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
+import net.abnormal.anabnormalcircumstance.entity.custom.OrcWarriorEntity;
 import net.abnormal.anabnormalcircumstance.event.PhoenixFireHandler;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
@@ -24,6 +25,7 @@ import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +58,12 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModAdvancementHandler.register();
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
+
+        // REGISTER ORC ATTRIBUTES HERE
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.ORC_WARRIOR,
+                OrcWarriorEntity.setAttributes()
+        );
 
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(

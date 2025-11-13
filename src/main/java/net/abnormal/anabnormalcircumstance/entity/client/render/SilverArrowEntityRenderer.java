@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.entity.client;
+package net.abnormal.anabnormalcircumstance.entity.client.render;
 
 import net.abnormal.anabnormalcircumstance.entity.custom.SilverArrowEntity;
 import net.minecraft.client.render.entity.ProjectileEntityRenderer;

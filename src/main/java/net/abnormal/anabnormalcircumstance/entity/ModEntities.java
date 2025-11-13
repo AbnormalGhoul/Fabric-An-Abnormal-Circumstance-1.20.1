@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.entity;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
+import net.abnormal.anabnormalcircumstance.entity.custom.OrcWarriorEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.SilverArrowEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -21,6 +22,11 @@ public class ModEntities {
                     .trackedUpdateRate(20)
                     .build()
     );
+
+    public static final EntityType<OrcWarriorEntity> ORC_WARRIOR = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "orc_warrior"),
+            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, OrcWarriorEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.5f, 1.75f)).build());
 
     public static void registerModEntities() {
         AnAbnormalCircumstance.LOGGER.info("Registering Mod Entities for " + AnAbnormalCircumstance.MOD_ID);

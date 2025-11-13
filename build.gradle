@@ -31,6 +31,14 @@ repositories {
     maven {url "https://maven.jamieswhiteshirt.com/libs-release"
         content {includeGroup "com.jamieswhiteshirt"}
     }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 fabricApi {
@@ -40,26 +48,40 @@ fabricApi {
 }
 
 dependencies {
+
+    // Minecraft and Yarn mappings and Mod Menu
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+
+    // Fabric Loader and Fabric API
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:shieldlib:${project.shieldlib_version}-fabric"
-    modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
+    // Midnight Lib and Fabric ASM
     modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
     modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
-    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:2.4.0"
 
+    // Shield Lib
+    modImplementation "maven.modrinth:shieldlib:${project.shieldlib_version}-fabric"
+
+    // Reach Entity Attributes
+    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}"
+
+    // Trinkets
+    modImplementation "dev.emi:trinkets:${trinkets_version}"
+
+    // Cardinal Components API
     modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
     modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
 
-    modImplementation "dev.emi:trinkets:${trinkets_version}"
-
-    // Copy the following only if you want to bundle Cardinal Components API as a Jar-in-Jar dependency
-    // (otherwise, you should configure the dependency on Modrinth/Curseforge)
     include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
     include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
+
+    // GeckoLib
+    modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
+    implementation("com.eliotlash.mclib:mclib:20")
+
 }
 
 processResources {
