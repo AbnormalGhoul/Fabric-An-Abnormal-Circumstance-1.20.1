@@ -13,7 +13,6 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -36,7 +35,7 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
         if (player.getWorld().isClient()) return;
 
         boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
                 .orElse(false);
 
         if (!hasMark) {

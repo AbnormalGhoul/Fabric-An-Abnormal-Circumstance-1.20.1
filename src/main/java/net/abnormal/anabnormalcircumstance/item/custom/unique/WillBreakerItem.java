@@ -20,7 +20,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -38,7 +37,7 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
         if (world.isClient()) return;
 
         boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
                 .orElse(false);
 
         if (!hasMark) {

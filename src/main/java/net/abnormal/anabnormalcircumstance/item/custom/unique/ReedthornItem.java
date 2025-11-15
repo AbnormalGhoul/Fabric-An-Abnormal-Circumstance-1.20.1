@@ -22,8 +22,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributeInstance;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Uuids;
 import net.minecraft.util.math.Vec3d;
 
 import com.jamieswhiteshirt.reachentityattributes.ReachEntityAttributes;
@@ -50,7 +48,7 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
         if (world.isClient()) return;
 
         boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
                 .orElse(false);
 
         if (!hasMark) {

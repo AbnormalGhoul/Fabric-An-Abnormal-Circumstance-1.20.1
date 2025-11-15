@@ -25,7 +25,7 @@ public class MarkOfAChampionEvents {
     private static void onWorldTick(ServerWorld world) {
         for (ServerPlayerEntity player : world.getPlayers()) {
             boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                    .map(component -> component.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                    .map(component -> component.isEquipped(ModItems.CHAMPIONS_CREST))
                     .orElse(false);
 
             EntityAttributeInstance maxHpAttr = player.getAttributeInstance(EntityAttributes.GENERIC_MAX_HEALTH);

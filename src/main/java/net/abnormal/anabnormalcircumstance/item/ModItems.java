@@ -22,10 +22,15 @@ public class ModItems {
             new Identifier("anabnormalcircumstance", "widows_gem"),
             new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE))
     );
-    public static final Item MARK_OF_A_CHAMPION = Registry.register(
+    public static final Item CHAMPIONS_CREST = Registry.register(
             Registries.ITEM,
-            new Identifier("anabnormalcircumstance", "mark_of_a_champion"),
-            new MarkOfAChampionItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
+            new Identifier("anabnormalcircumstance", "champions_crest"),
+            new ChampionsCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
+    );
+    public static final Item LEADERS_CREST = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "leaders_crest"),
+            new LeadersCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
     );
 
     // Spawn Eggs

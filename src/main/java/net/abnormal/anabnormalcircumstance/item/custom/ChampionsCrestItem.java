@@ -15,14 +15,14 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.UUID;
 
-public class MarkOfAChampionItem extends Item implements Trinket {
+public class ChampionsCrestItem extends Item implements Trinket {
 
     private static final UUID HEALTH_BONUS_ID = UUID.fromString("6c2e1c23-338a-4cfa-8b48-772b3a927a4b");
     private static final EntityAttributeModifier HEALTH_BONUS =
             new EntityAttributeModifier(HEALTH_BONUS_ID, "Mark of a Champion health bonus", 4.0, EntityAttributeModifier.Operation.ADDITION);
     // 4.0 = +2 hearts (each heart = 2 health)
 
-    public MarkOfAChampionItem(Settings settings) {
+    public ChampionsCrestItem(Settings settings) {
         super(settings);
     }
 

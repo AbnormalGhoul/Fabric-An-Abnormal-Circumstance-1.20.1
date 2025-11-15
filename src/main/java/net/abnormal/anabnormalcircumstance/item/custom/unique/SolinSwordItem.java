@@ -41,7 +41,7 @@ public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
         if (player.getWorld().isClient()) return;
 
         boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                .map(comp -> comp.isEquipped(ModItems.MARK_OF_A_CHAMPION))
+                .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
                 .orElse(false);
 
         if (!hasMark) {

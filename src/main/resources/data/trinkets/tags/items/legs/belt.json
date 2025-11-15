@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "anabnormalcircumstance:mark_of_a_champion"
+    "anabnormalcircumstance:champions_crest",
+    "anabnormalcircumstance:leaders_crest"
   ]
 }
