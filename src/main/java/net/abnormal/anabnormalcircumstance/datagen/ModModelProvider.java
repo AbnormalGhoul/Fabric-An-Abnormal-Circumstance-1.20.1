@@ -19,6 +19,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.DARK_SAND);
         blockStateModelGenerator.registerParentedItemModel(ModItems.ORC_WARRIOR_SPAWN_EGG, ModelIds.getMinecraftNamespacedItem("template_spawn_egg"));
+        blockStateModelGenerator.registerParentedItemModel(ModItems.ORC_JAVELIN_THROWER_SPAWN_EGG, ModelIds.getMinecraftNamespacedItem("template_spawn_egg"));
+
     }
 
     @Override

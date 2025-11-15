@@ -9,7 +9,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
-import net.abnormal.anabnormalcircumstance.entity.custom.SilverArrowEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.projectile.SilverArrowProjectileEntity;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class SilverArrowItem extends ArrowItem {
 
     @Override
     public PersistentProjectileEntity createArrow(World world, ItemStack stack, net.minecraft.entity.LivingEntity shooter) {
-        SilverArrowEntity arrow = new SilverArrowEntity(ModEntities.SILVER_ARROW, world, shooter);
+        SilverArrowProjectileEntity arrow = new SilverArrowProjectileEntity(ModEntities.SILVER_ARROW, world, shooter);
         return arrow;
     }
 

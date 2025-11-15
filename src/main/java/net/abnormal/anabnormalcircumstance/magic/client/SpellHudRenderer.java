@@ -22,7 +22,7 @@ public class SpellHudRenderer implements HudRenderCallback {
         int screenW = client.getWindow().getScaledWidth();
         int screenH = client.getWindow().getScaledHeight();
 
-        // === Mana Bar ===
+        // Mana Bar
         int x = screenW - 24;
         int y = screenH - 80;
 
@@ -44,7 +44,7 @@ public class SpellHudRenderer implements HudRenderCallback {
             context.drawTexture(MANA_FILL, x + 1, fillY + 1, 0, v, 8, fillHeight, 8, fullFillHeight);
         }
 
-        // === Spell Icons ===
+        // Spell Icons
         if (ClientComponentAccess.hasAnySpellBound()) {
             int iconX = screenW - 50;
             int iconStartY = screenH - 24;

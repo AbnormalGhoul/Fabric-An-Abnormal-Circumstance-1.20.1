@@ -18,11 +18,11 @@ public final class ClientComponentAccess {
         for (int i = 1; i <= 5; i++) slots.put(i, new SlotData(null, 0));
     }
 
-    // ---- Mana ----
+    // Mana
     public static void setClientMana(int mana) { clientMana = mana; }
     public static int getClientMana() { return clientMana; }
 
-    // ---- Slots (thread-safe) ----
+    // Slots (thread-safe)
     /** Replace all slot data at once (used by full sync packets). */
     public static synchronized void updateAllSlots(Map<Integer, SlotData> newSlots) {
         slots.clear();
@@ -33,12 +33,12 @@ public final class ClientComponentAccess {
         updateHasAnySpellBound();
     }
 
-    /** Update a single slot (delta update). */
+    // Update a single slot (delta update).
     public static synchronized void setSlot(int index, String spellId, int cooldownTicks) {
         slots.put(index, new SlotData(spellId, cooldownTicks));
     }
 
-    /** Returns a defensive copy view for read-only use by HUD code. */
+    // Returns a defensive copy view for read-only use by HUD code.
     public static synchronized Map<Integer, SlotData> getAllSlots() {
         return Collections.unmodifiableMap(new HashMap<>(slots));
     }
@@ -47,7 +47,7 @@ public final class ClientComponentAccess {
         return slots.getOrDefault(index, new SlotData(null, 0));
     }
 
-    // ---- Slot data ----
+    // Slot data
     public static final class SlotData {
         public final String spellId;
         public final int cooldownTicks;
@@ -66,7 +66,7 @@ public final class ClientComponentAccess {
         }
     }
 
-    // ---- Utility ----
+    // Utility
     private static volatile boolean hasAnySpellBound = false;
 
     public static boolean hasAnySpellBound() {

@@ -5,7 +5,12 @@
   "itemgroup.abnormal_sparks_group": "Sparks",
   "itemgroup.abnormal_spawn_egg_group": "Abnormal Spawn Eggs",
 
+  "entity.anabnormalcircumstance.silver_arrow_projectile": "Silver Arrow",
+  "entity.anabnormalcircumstance.javelin_projectile": "Javelin",
+
   "entity.anabnormalcircumstance.orc_warrior": "Orc Warrior",
+  "entity.anabnormalcircumstance.orc_javelin_thrower": "Orc Javelin Thrower",
+
 
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
@@ -32,6 +37,7 @@
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
 
   "item.anabnormalcircumstance.orc_warrior_spawn_egg": "Orc Warrior Spawn Egg",
+  "item.anabnormalcircumstance.orc_javelin_thrower_spawn_egg": "Orc Javelin Thrower Spawn Egg",
 
   "item.anabnormalcircumstance.spell_scroll": "Magic Scroll",
 
@@ -124,7 +130,7 @@
   "item.anabnormalcircumstance.spark_of_long_night_vision": "Spark of Night Vision",
   "item.anabnormalcircumstance.spark_of_night_vision": "Spark of Night Vision",
 
-    "item.anabnormalcircumstance.spark_of_water_breathing": "Spark of Water Breathing",
-    "item.anabnormalcircumstance.spark_of_long_water_breathing": "Spark of Water Breathing"
+  "item.anabnormalcircumstance.spark_of_water_breathing": "Spark of Water Breathing",
+  "item.anabnormalcircumstance.spark_of_long_water_breathing": "Spark of Water Breathing"
 
 }

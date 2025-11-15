@@ -1,19 +1,18 @@
-package net.abnormal.anabnormalcircumstance.entity.custom;
+package net.abnormal.anabnormalcircumstance.entity.custom.projectile;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 
-public class SilverArrowEntity extends PersistentProjectileEntity {
-    public SilverArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world) {
+public class SilverArrowProjectileEntity extends PersistentProjectileEntity {
+    public SilverArrowProjectileEntity(EntityType<? extends PersistentProjectileEntity> type, World world) {
         super(type, world);
     }
 
-    public SilverArrowEntity(EntityType<? extends PersistentProjectileEntity> type, World world, LivingEntity owner) {
+    public SilverArrowProjectileEntity(EntityType<? extends PersistentProjectileEntity> type, World world, LivingEntity owner) {
         super(type, owner, world);
     }
 

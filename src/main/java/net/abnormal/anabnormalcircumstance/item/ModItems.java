@@ -32,6 +32,11 @@ public class ModItems {
     public static final Item ORC_WARRIOR_SPAWN_EGG = registerItem("orc_warrior_spawn_egg",
             new SpawnEggItem(ModEntities.ORC_WARRIOR, 0x15940a, 0x643907,
                     new FabricItemSettings()));
+    public static final Item ORC_JAVELIN_THROWER_SPAWN_EGG =
+            registerItem("orc_javelin_thrower_spawn_egg",
+                    new SpawnEggItem(ModEntities.ORC_JAVELIN_THROWER,
+                            0x15940a, 0x8b4513,
+                            new FabricItemSettings()));
 
 
     // Magic Items

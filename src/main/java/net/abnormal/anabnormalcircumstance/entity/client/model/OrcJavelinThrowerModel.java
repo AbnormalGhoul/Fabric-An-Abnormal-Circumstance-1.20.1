@@ -1,6 +1,6 @@
 package net.abnormal.anabnormalcircumstance.entity.client.model;
 
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import software.bernie.geckolib.constant.DataTickets;
@@ -9,25 +9,25 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class OrcWarriorModel extends GeoModel<OrcWarriorEntity> {
+public class OrcJavelinThrowerModel extends GeoModel<OrcJavelinThrowerEntity> {
 
     @Override
-    public Identifier getModelResource(OrcWarriorEntity object) {
-        return new Identifier("anabnormalcircumstance", "geo/orc_warrior.geo.json");
+    public Identifier getModelResource(OrcJavelinThrowerEntity animatable) {
+        return new Identifier("anabnormalcircumstance", "geo/orc_javelin_thrower.geo.json");
     }
 
     @Override
-    public Identifier getTextureResource(OrcWarriorEntity object) {
-        return new Identifier("anabnormalcircumstance", "textures/entity/orc_warrior.png");
+    public Identifier getTextureResource(OrcJavelinThrowerEntity animatable) {
+        return new Identifier("anabnormalcircumstance", "textures/entity/orc_javelin_thrower.png");
     }
 
     @Override
-    public Identifier getAnimationResource(OrcWarriorEntity animatable) {
-        return new Identifier("anabnormalcircumstance", "animations/orc_warrior.animation.json");
+    public Identifier getAnimationResource(OrcJavelinThrowerEntity animatable) {
+        return new Identifier("anabnormalcircumstance", "animations/orc_javelin_thrower.animation.json");
     }
 
     @Override
-    public void setCustomAnimations(OrcWarriorEntity animatable, long instanceId, AnimationState<OrcWarriorEntity> animationState) {
+    public void setCustomAnimations(OrcJavelinThrowerEntity animatable, long instanceId, AnimationState<OrcJavelinThrowerEntity> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("hi_head");
 
         if (head != null) {
@@ -37,4 +37,3 @@ public class OrcWarriorModel extends GeoModel<OrcWarriorEntity> {
         }
     }
 }
-

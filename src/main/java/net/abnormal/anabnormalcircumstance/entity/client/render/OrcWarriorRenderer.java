@@ -2,7 +2,7 @@ package net.abnormal.anabnormalcircumstance.entity.client.render;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.entity.client.model.OrcWarriorModel;
-import net.abnormal.anabnormalcircumstance.entity.custom.OrcWarriorEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;

@@ -2,14 +2,10 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
-import net.abnormal.anabnormalcircumstance.entity.custom.OrcWarriorEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
 import net.abnormal.anabnormalcircumstance.event.PhoenixFireHandler;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
-import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
-import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.*;
-import net.abnormal.anabnormalcircumstance.magic.spells.geomancy.*;
-import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.*;
-import net.abnormal.anabnormalcircumstance.magic.spells.pyromancy.*;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.network.StormlordsWillPacket;
 import net.abnormal.anabnormalcircumstance.recipe.ModBrewingRecipes;
@@ -58,12 +54,6 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModAdvancementHandler.register();
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
-
-        // REGISTER ORC ATTRIBUTES HERE
-        FabricDefaultAttributeRegistry.register(
-                ModEntities.ORC_WARRIOR,
-                OrcWarriorEntity.setAttributes()
-        );
 
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(
