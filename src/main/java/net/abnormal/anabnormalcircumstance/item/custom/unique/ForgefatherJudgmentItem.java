@@ -115,13 +115,14 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
             boolean holding = selected || player.getOffHandStack() == stack;
             if (holding) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 45, 1, true, false, true));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 45, 0, true, false, true));
             }
         }
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Haste II").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Passive: Grants Haste II & Resistance I").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Causes the next attack to strike multiple lightnings").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
     }

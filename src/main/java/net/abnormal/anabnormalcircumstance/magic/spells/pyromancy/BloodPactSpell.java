@@ -42,7 +42,7 @@ public class BloodPactSpell extends Spell {
         }
 
         // Sacrifice 4 hearts (8 HP)
-        caster.damage(world.getDamageSources().magic(), 8.0f);
+        caster.damage(world.getDamageSources().outOfWorld(), 8.0f);
 
         // Sounds
         world.playSound(

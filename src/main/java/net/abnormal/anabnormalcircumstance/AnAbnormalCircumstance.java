@@ -2,8 +2,6 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
 import net.abnormal.anabnormalcircumstance.event.PhoenixFireHandler;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
@@ -21,7 +19,6 @@ import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
