@@ -8,6 +8,7 @@ import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -38,7 +39,9 @@ public class OrcJavelinThrowerEntity extends HostileEntity implements GeoEntity 
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.75));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 8));
         this.goalSelector.add(4, new LookAroundGoal(this));
+
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     @Override

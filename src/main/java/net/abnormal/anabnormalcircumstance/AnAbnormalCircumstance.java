@@ -17,6 +17,7 @@ import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
+import net.abnormal.anabnormalcircumstance.util.ServerTimeCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
@@ -51,6 +52,8 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModAdvancementHandler.register();
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
+
+        ServerTimeCommand.register();
 
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(
