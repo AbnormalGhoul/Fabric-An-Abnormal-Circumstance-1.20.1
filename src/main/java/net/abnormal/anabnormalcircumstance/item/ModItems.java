@@ -30,7 +30,7 @@ public class ModItems {
 
     // Spawn Eggs
     public static final Item ORC_WARRIOR_SPAWN_EGG = registerItem("orc_warrior_spawn_egg",
-            new SpawnEggItem(ModEntities.ORC_WARRIOR, 0xD57E36, 0x1D0D00,
+            new SpawnEggItem(ModEntities.ORC_WARRIOR, 0x15940a, 0x643907,
                     new FabricItemSettings()));
 
 

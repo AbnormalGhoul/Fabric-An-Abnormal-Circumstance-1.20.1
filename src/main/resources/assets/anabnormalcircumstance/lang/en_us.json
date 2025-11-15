@@ -1,8 +1,9 @@
 {
-  "itemgroup.abnormal_trinkets_group": "Abnormal's Trinkets",
-  "itemgroup.dungeon_loot": "Dungeon Loot",
-  "itemgroup.sparks_group": "Sparks",
-  "itemgroup.spell_scrolls_group": "Scrolls",
+  "itemgroup.abnormal_trinkets_group": "Abnormal Trinkets",
+  "itemgroup.abnormal_spell_scrolls_group": "Scrolls",
+  "itemgroup.abnormal_dungeon_loot": "Dungeon Loot",
+  "itemgroup.abnormal_sparks_group": "Sparks",
+  "itemgroup.abnormal_spawn_egg_group": "Abnormal Spawn Eggs",
 
   "entity.anabnormalcircumstance.orc_warrior": "Orc Warrior",
 

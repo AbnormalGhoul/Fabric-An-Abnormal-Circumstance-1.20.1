@@ -38,12 +38,11 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 60.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 16.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 3.0F)
+                .add(EntityAttributes.GENERIC_ATTACK_SPEED, 18.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 16.0D);
     }
-
 
     // Goals
     @Override
@@ -56,7 +55,6 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
 
-
     // Immediate damage trigger
     @Override
     public boolean tryAttack(Entity target) {
@@ -64,6 +62,8 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
         if (hit) {
             // Triggers Geckolib ATTACK controller
             this.swingHand(Hand.MAIN_HAND);
+            // Play attack sound
+            this.playSound(SoundEvents.ENTITY_WITCH_THROW, 0.8F, 0.6F);
         }
 
         return hit;
