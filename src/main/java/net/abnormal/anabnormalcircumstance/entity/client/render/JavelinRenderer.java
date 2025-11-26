@@ -20,7 +20,6 @@ public class JavelinRenderer extends GeoEntityRenderer<JavelinProjectileEntity> 
         return new Identifier("anabnormalcircumstance", "textures/entity/javelin.png");
     }
 
-    // Optional: rotate to face the direction of travel
     @Override
     public void render(JavelinProjectileEntity entity, float yaw, float tickDelta, MatrixStack matrixStack,
                        VertexConsumerProvider vertexConsumers, int light) {

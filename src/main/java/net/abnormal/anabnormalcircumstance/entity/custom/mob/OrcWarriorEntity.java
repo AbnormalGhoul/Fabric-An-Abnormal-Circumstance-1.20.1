@@ -17,7 +17,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
-//OrcWarriorEntity — uses vanilla melee damage and triggers GeckoLib attack animation via a synced trigger.
+// uses vanilla melee damage and triggers GeckoLib attack animation via a synced trigger.
 public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -26,8 +26,7 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
     private static final RawAnimation WALK_ANIM = RawAnimation.begin().thenLoop("walk");
     private static final RawAnimation ATTACK_ANIM = RawAnimation.begin().thenPlay("atk3");
 
-    // 1.75s = 35 ticks
-    private static final int ATTACK_ANIMATION_TICKS = 35;
+//    private static final int ATTACK_ANIMATION_TICKS = 35;
 
     public OrcWarriorEntity(EntityType<? extends HostileEntity> type, World world) {
         super(type, world);
@@ -124,7 +123,7 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
         return cache;
     }
 
-    // Baby override (required)
+    // Baby override
     @Override
     public boolean isBaby() {
         return false;

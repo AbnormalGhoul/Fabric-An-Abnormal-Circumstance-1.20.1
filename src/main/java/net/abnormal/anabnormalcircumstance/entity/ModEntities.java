@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.entity;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.BroodWarriorEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.JavelinProjectileEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
@@ -50,6 +51,16 @@ public class ModEntities {
                             .build());
 
 
+    public static final EntityType<BroodWarriorEntity> BROOD_WARRIOR = Registry.register(
+            Registries.ENTITY_TYPE,
+            new Identifier(AnAbnormalCircumstance.MOD_ID, "brood_warrior"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BroodWarriorEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.6f, 1.0f))
+                    .build()
+    );
+
+
+
     public static void registerModEntities() {
         AnAbnormalCircumstance.LOGGER.info("Registering Mod Entities for " + AnAbnormalCircumstance.MOD_ID);
 
@@ -61,6 +72,11 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(
                 ModEntities.ORC_JAVELIN_THROWER,
                 OrcJavelinThrowerEntity.createAttributes());
+
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.BROOD_WARRIOR,
+                BroodWarriorEntity.setAttributes()
+        );
 
 
     }

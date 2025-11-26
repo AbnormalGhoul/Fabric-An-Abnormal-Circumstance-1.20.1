@@ -1,9 +1,6 @@
 package net.abnormal.anabnormalcircumstance.entity;
 
-import net.abnormal.anabnormalcircumstance.entity.client.render.JavelinRenderer;
-import net.abnormal.anabnormalcircumstance.entity.client.render.OrcJavelinThrowerRenderer;
-import net.abnormal.anabnormalcircumstance.entity.client.render.OrcWarriorRenderer;
-import net.abnormal.anabnormalcircumstance.entity.client.render.SilverArrowEntityRenderer;
+import net.abnormal.anabnormalcircumstance.entity.client.render.*;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 
 public class ModEntityRenderers {
@@ -13,6 +10,9 @@ public class ModEntityRenderers {
 
         EntityRendererRegistry.register(ModEntities.ORC_WARRIOR, OrcWarriorRenderer::new);
         EntityRendererRegistry.register(ModEntities.ORC_JAVELIN_THROWER, OrcJavelinThrowerRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.BROOD_WARRIOR, BroodWarriorRenderer::new);
+
 
     }
 }

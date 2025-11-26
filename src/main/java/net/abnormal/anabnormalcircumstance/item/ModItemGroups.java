@@ -288,9 +288,8 @@ public class ModItemGroups {
                         entries.add(ModItems.ORC_WARRIOR_SPAWN_EGG);
                         entries.add(ModItems.ORC_JAVELIN_THROWER_SPAWN_EGG);
 
-
                         // Spiders
-
+                        entries.add(ModItems.BROOD_WARRIOR_SPAWN_EGG);
 
                     }).build());
 
