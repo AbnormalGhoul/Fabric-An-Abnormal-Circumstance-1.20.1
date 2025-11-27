@@ -19,6 +19,8 @@
     "LivingEntityMixin",
     "MoltenFuryDamageMixin",
     "PersistentProjectileEntityMixin",
+    "PlayerAdvancementTrackerMixin",
+    "ProtectionEnchantmentMixin",
     "TridentItemMixin",
     "TripwireDupeFixMixin"
   ]
