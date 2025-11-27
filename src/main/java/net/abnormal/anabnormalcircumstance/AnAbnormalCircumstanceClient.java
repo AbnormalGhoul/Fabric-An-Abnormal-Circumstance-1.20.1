@@ -7,6 +7,7 @@ import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.magic.client.ClientTickHandler;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
+import net.abnormal.anabnormalcircumstance.network.PacketHandlerClient;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreen;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.abnormal.anabnormalcircumstance.util.KeyBindingHandler;
@@ -38,7 +39,7 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         ClientTickHandler.register();
         ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
-        PacketHandler.register();
+        PacketHandlerClient.register();
     }
 
     private void onClientTick(MinecraftClient client) {

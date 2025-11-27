@@ -8,7 +8,7 @@ import net.minecraft.util.Identifier;
 public class StormlordsWillPacket {
     public static final Identifier JUMP = new Identifier("anabnormalcircumstance", "stormlords_jump");
 
-    /** Registers the server-side packet handler */
+    // Registers the server-side packet handler
     public static void register() {
         ServerPlayNetworking.registerGlobalReceiver(JUMP, (server, player, handler, buf, responseSender) -> {
             server.execute(() -> {
