@@ -6,8 +6,8 @@
     },
     "title": { "text": "Avalon" },
     "description": { "text": "Your journey begins with your first victory against another player." },
-    "background": "minecraft:textures/block/deepslate.png",
-    "frame": "task",
+    "background": "minecraft:textures/block/raw_gold_block.png",
+    "frame": "goal",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false

@@ -113,7 +113,7 @@ public class SolinAxeItem extends AxeItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Increased damage while both Blades are held together").formatted(net.minecraft.util.Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Instant short teleport (R)").formatted(net.minecraft.util.Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Instant short teleport").formatted(net.minecraft.util.Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 45s").formatted(net.minecraft.util.Formatting.GRAY));
     }
 }

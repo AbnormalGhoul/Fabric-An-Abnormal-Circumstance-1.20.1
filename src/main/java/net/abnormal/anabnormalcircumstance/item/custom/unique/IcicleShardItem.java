@@ -122,8 +122,8 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Speed II").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Stuns all nearby Entities (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Passive: Grants Speed II while held").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Stuns all nearby Entities").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 }

@@ -1,14 +1,25 @@
 package net.abnormal.anabnormalcircumstance.datagen;
 
+import com.terraformersmc.modmenu.util.mod.Mod;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
+import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.recipe.RecipeSerializer;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.util.*;
 
 import java.util.function.Consumer;
 
@@ -215,7 +226,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_platinum_coin", conditionsFromItem(ModItems.PLATINUM_COIN))
                 .offerTo(consumer, new Identifier("anabnormalcircumstance", "gold_coin_from_platinum"));
 
+
+        // Spells
+
+
     }
-
-
 }

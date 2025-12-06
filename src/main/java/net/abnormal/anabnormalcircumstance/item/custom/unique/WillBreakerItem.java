@@ -121,7 +121,7 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Causes Bleeding & Fire damage; Grants Fire Resistance I").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Inferno Strike — unleash a fiery blast (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Inferno Strike - unleash a fiery blast dealing 40 damage").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
     }
 }

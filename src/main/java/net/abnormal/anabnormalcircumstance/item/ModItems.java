@@ -120,7 +120,8 @@ public class ModItems {
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
     ));
 
-
+    // Carcan Item
+    public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));

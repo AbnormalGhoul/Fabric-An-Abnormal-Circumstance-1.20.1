@@ -1,0 +1,16 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "title": {"text":"Champions Conquered"},
+    "description": {"text":"Slay a Champion."},
+    "icon": { "item": "anabnormalcircumstance:karambit" },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": { "trigger": "minecraft:impossible" }
+  },
+  "requirements": [["impossible"]]
+}

@@ -50,7 +50,7 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 16.0D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4D);

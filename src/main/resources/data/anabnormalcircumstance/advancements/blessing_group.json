@@ -1,0 +1,16 @@
+{
+  "parent": "anabnormalcircumstance:adventurer",
+  "display": {
+    "title": {"text":"Blessings Received"},
+    "description": {"text":"Receive an Elemental Blessing."},
+    "icon": { "item": "anabnormalcircumstance:mana_core" },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false
+  },
+  "criteria": {
+    "impossible": { "trigger": "minecraft:impossible" }
+  },
+  "requirements": [["impossible"]]
+}

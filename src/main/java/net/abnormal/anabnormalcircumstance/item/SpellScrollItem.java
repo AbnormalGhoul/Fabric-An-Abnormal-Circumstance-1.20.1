@@ -105,6 +105,11 @@ public class SpellScrollItem extends Item {
         if (user instanceof ServerPlayerEntity serverPlayer) {
             PacketHandler.syncSpellStateToClient(serverPlayer,
                     ModComponents.MANA.getNullable(user), slotComp);
+
+            // Grant advancements for reaching Tier 5
+            if (tier.getLevel() == 5) {
+                grantAdvancement(serverPlayer, "05_pinnacle_of_magic");
+            }
         }
 
         return TypedActionResult.success(stack, world.isClient());
@@ -186,15 +191,24 @@ public class SpellScrollItem extends Item {
         if (server == null) return false;
 
         String advName = switch (element) {
-            case PYROMANCY -> "blessing_of_pyromancy";
-            case HYDROMANCY -> "blessing_of_hydromancy";
-            case GEOMANCY -> "blessing_of_geomancy";
-            case AEROMANCY -> "blessing_of_aeromancy";
+            case PYROMANCY -> "04_blessing_of_pyromancy";
+            case HYDROMANCY -> "03_blessing_of_hydromancy";
+            case GEOMANCY -> "02_blessing_of_geomancy";
+            case AEROMANCY -> "01_blessing_of_aeromancy";
         };
 
         Identifier advId = new Identifier("anabnormalcircumstance", advName);
         Advancement adv = server.getAdvancementLoader().get(advId);
         if (adv == null) return false;
         return player.getAdvancementTracker().getProgress(adv).isDone();
+    }
+
+    private void grantAdvancement(ServerPlayerEntity player, String advId) {
+        MinecraftServer server = player.getServer();
+        if (server == null) return;
+        Advancement adv = server.getAdvancementLoader().get(new Identifier("anabnormalcircumstance", advId));
+        if (adv == null) return;
+        // criterion name in the JSON is "impossible"
+        player.getAdvancementTracker().grantCriterion(adv, "impossible");
     }
 }

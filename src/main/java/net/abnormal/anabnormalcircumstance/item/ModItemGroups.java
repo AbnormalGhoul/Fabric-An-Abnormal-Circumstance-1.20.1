@@ -34,15 +34,21 @@ public class ModItemGroups {
 
                         // Other Tools
                         entries.add(ModItems.KARAMBIT);
+                        entries.add(ModItems.SILVER_ARROW);
+                        entries.add(ModItems.TOTEM_OF_PURITY);
+
+                        // Trinkets
                         entries.add(ModItems.WIDOWS_GEM);
                         entries.add(ModItems.CHAMPIONS_CREST);
                         entries.add(ModItems.LEADERS_CREST);
 
-                        entries.add(ModItems.SILVER_ARROW);
-                        entries.add(ModItems.TOTEM_OF_PURITY);
+                        // Runes
                         entries.add(ModItems.CLAIM_RUNE);
                         entries.add(ModItems.ORIGIN_RUNE);
                         entries.add(ModItems.SPELL_RUNE);
+
+                        // Carcan Item
+                        entries.add(ModItems.CRAB_CLAW);
 
                     }).build());
 
@@ -220,6 +226,7 @@ public class ModItemGroups {
                         entries.add(ModItems.DIAMOND_RING);
                         entries.add(ModItems.GOLDEN_EARRINGS);
                         entries.add(ModItems.SILVER_NECKLACE);
+
 
                         // Consumable Essences
                         entries.add(ModItems.HYDRO_ESSENCE);

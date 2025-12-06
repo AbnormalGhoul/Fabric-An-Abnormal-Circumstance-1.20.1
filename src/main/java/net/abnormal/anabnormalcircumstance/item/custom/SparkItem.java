@@ -1,8 +1,6 @@
 package net.abnormal.anabnormalcircumstance.item.custom;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -36,7 +34,15 @@ public class SparkItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack stack = user.getStackInHand(hand);
 
+        if (user.getItemCooldownManager().isCoolingDown(this)) {
+            return TypedActionResult.fail(stack);
+        }
+
         if (!world.isClient) {
+
+            // Set a 10-tick cooldown
+            user.getItemCooldownManager().set(this, 10);
+
             // Apply the effect (reduce duration by 33%)
             int reducedDuration = (int) (duration * 0.6667);
             user.addStatusEffect(new StatusEffectInstance(effect, reducedDuration, amplifier));

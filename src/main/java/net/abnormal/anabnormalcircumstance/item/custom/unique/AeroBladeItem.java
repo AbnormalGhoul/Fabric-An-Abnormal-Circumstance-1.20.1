@@ -65,7 +65,7 @@ public class AeroBladeItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: No fall damage while held").formatted(net.minecraft.util.Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Dash forward (R)").formatted(net.minecraft.util.Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Dash forward").formatted(net.minecraft.util.Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 30s").formatted(net.minecraft.util.Formatting.GRAY));
     }
 }

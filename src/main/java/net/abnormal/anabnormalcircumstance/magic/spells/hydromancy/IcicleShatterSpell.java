@@ -34,7 +34,7 @@ public class IcicleShatterSpell extends Spell {
         // Show floating icicles first
         spawnFloatingIcicles(world, caster);
 
-        // Register a delayed shatter effect (after 10 ticks = 0.5s)
+        // Register a delayed shatter effect
         DelayedTaskScheduler.schedule(world, 10, () -> shatterIcicles(world, caster));
 
         return true;
@@ -79,7 +79,7 @@ public class IcicleShatterSpell extends Spell {
 
         for (LivingEntity target : targets) {
             target.setFrozenTicks(target.getFrozenTicks() + 400);
-            target.damage(world.getDamageSources().magic(), 15.0f);
+            target.damage(world.getDamageSources().magic(), 25.0f);
         }
     }
 
@@ -88,7 +88,7 @@ public class IcicleShatterSpell extends Spell {
         return target instanceof LivingEntity;
     }
 
-//     Small inner static helper for delayed tick-based tasks.
+    // Small inner static helper for delayed tick-based tasks.
     public static class DelayedTaskScheduler {
         private static final List<Task> TASKS = new ArrayList<>();
 

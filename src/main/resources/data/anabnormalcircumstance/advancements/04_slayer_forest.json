@@ -1,0 +1,22 @@
+{
+  "parent": "anabnormalcircumstance:champion_group",
+  "display": {
+    "title": {"text":"Slayer of the Forest"},
+    "description": {"text":"Slay the Champion of Sylvestria."},
+    "icon": {
+      "item": "anabnormalcircumstance:first_leaf"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "requirements": [
+    ["impossible"]
+  ]
+}

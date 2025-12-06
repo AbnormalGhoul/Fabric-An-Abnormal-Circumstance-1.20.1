@@ -1,0 +1,18 @@
+{
+  "parent": "anabnormalcircumstance:champion_group",
+  "display": {
+    "title": {"text":"Slayer of the Marshland"},
+    "description": {"text":"Slay the Champion of Thrusk."},
+    "icon": { "item": "anabnormalcircumstance:reedthorn" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "impossible": { "trigger": "minecraft:impossible" }
+  },
+  "requirements": [
+    ["impossible"]
+  ]
+}

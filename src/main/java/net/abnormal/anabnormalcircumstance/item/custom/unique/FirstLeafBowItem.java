@@ -67,7 +67,7 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
 
         player.sendMessage(Text.literal("Next arrow will stun your target!").formatted(Formatting.GOLD), true);
 
-        UniqueItemCooldownManager.setCooldown(player, 45 * 1000); // 45 seconds cooldown
+        UniqueItemCooldownManager.setCooldown(player, 60 * 1000); // cooldown
 
     }
 
@@ -112,8 +112,8 @@ public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Regeneration II").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Next arrow stuns for 5s (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Passive: Grants Regeneration II while held").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Next arrow stuns for 5s").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1 min").formatted(Formatting.GRAY));
     }
 }

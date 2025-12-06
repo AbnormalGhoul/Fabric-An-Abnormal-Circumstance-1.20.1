@@ -48,9 +48,9 @@ public class FlameChargeSpell extends Spell {
                 new HashSet<>()
         ));
 
-        // Play unique fire sound
+        // Play fire sound
         world.playSound(null, caster.getBlockPos(),
-                SoundEvents.ITEM_FIRECHARGE_USE, // different sound than blaze shoot
+                SoundEvents.ITEM_FIRECHARGE_USE,
                 SoundCategory.PLAYERS,
                 1.6f, 1.0f
         );
@@ -110,15 +110,12 @@ public class FlameChargeSpell extends Spell {
 
             data.hit.add(target.getUuid());
 
-            target.damage(world.getDamageSources().playerAttack(caster), 20.0f);
+            target.damage(world.getDamageSources().playerAttack(caster), 25.0f);
             target.setOnFireFor(5);
         }
     }
 
-    /* ============================================================
-       PARTICLE EFFECTS
-       ============================================================ */
-
+    // Particle effects
     private static void spawnDashParticles(ServerWorld world, ServerPlayerEntity caster, Vec3d dir) {
 
         Vec3d pos = caster.getPos().add(0, 1, 0);

@@ -50,7 +50,7 @@ public class JavelinProjectileEntity extends PersistentProjectileEntity implemen
         super.onEntityHit(hit);
 
         // Damage the entity
-        float damage = 25.0f;
+        float damage = 15.0f;
         DamageSource src = this.getDamageSources().thrown(this, this.getOwner());
         hit.getEntity().damage(src, damage);
 

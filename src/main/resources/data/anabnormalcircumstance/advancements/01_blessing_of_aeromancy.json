@@ -1,12 +1,13 @@
 {
-  "parent": "anabnormalcircumstance:adventurer",
+  "parent": "anabnormalcircumstance:blessing_group",
   "display": {
     "icon": { "item": "anabnormalcircumstance:aero_essence" },
     "title": { "text": "Blessing of Aeromancy" },
     "description": { "text": "You have embraced the essence of air." },
     "frame": "challenge",
     "show_toast": true,
-    "announce_to_chat": true
+    "announce_to_chat": true,
+    "hidden": true
   },
   "criteria": {
     "consume_aero_essence": {

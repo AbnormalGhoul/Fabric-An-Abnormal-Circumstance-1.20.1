@@ -130,8 +130,8 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Extended Attack Reach, And Inflicts Poison I").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Confusion Charge (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Passive: +2 Extended Attack Reach, And Inflicts Poison I").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Confusion Charge - Confuses all entities in the way of the charge").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1 min").formatted(Formatting.GRAY));
     }
 }

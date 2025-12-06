@@ -1,5 +1,5 @@
 {
-  "parent": "anabnormalcircumstance:adventurer",
+  "parent": "anabnormalcircumstance:dungeon_group",
   "display": {
     "icon": { "item": "anabnormalcircumstance:broodmother_soul" },
     "title": { "text": "Brood Slayer" },

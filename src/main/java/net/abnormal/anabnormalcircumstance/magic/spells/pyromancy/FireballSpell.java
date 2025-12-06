@@ -20,7 +20,7 @@ public class FireballSpell extends Spell {
     public boolean cast(ServerPlayerEntity caster) {
         World world = caster.getWorld();
         Vec3d look = caster.getRotationVec(1.0F);
-        FireballEntity fireball = new FireballEntity(world, caster, look.x, look.y, look.z, 5);
+        FireballEntity fireball = new FireballEntity(world, caster, look.x, look.y, look.z, 8);
         fireball.setPosition(caster.getX(), caster.getEyeY(), caster.getZ());
         world.spawnEntity(fireball);
         world.playSound(null, caster.getBlockPos(), SoundEvents.ENTITY_GHAST_SHOOT, SoundCategory.PLAYERS, 2.0f, 1.0f);

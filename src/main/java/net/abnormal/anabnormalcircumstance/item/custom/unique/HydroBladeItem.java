@@ -64,7 +64,7 @@ public class HydroBladeItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Freezes enemies on hit").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Grants 8 Absorption Bonus hearts (R)").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Grants 8 Absorption Bonus hearts").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 }
