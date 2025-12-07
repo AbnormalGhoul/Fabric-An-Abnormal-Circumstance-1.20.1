@@ -163,6 +163,10 @@ public class ModItems {
     // Utility
     public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
+    public static final Item NATION_RUNE = registerItem("nation_rune", new Item(new Item.Settings()));
+    public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic", new Item(new Item.Settings()));
+
+
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
 
     // Regular Spark

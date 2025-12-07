@@ -87,7 +87,6 @@ dependencies {
     // GeckoLib
     modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
-
 }
 
 processResources {

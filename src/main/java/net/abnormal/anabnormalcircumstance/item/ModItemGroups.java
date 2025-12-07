@@ -46,6 +46,7 @@ public class ModItemGroups {
                         entries.add(ModItems.CLAIM_RUNE);
                         entries.add(ModItems.ORIGIN_RUNE);
                         entries.add(ModItems.SPELL_RUNE);
+                        entries.add(ModItems.NATION_RUNE);
 
                         // Carcan Item
                         entries.add(ModItems.CRAB_CLAW);
@@ -195,6 +196,10 @@ public class ModItemGroups {
             new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_dungeon_loot_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_dungeon_loot"))
                     .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
+
+                        // Relic
+                        entries.add(ModItems.ABNORMAL_RELIC);
+
 
                         // Currency
                         entries.add(ModItems.PLATINUM_COIN);
