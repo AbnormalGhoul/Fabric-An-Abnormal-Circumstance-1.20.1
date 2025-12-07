@@ -1,0 +1,20 @@
+{
+  "type": "anabnormalcircumstance:spell_scroll",
+  "pattern": [
+    "QZQ",
+    "#X#",
+    "QTQ"
+  ],
+  "key": {
+    "X": { "item": "anabnormalcircumstance:spell_scroll" },
+    "Z": { "item": "anabnormalcircumstance:mana_core" },
+    "#": { "item": "anabnormalcircumstance:broodmother_egg" },
+    "Q": { "item": "anabnormalcircumstance:bottled_lightning" },
+    "T": { "item": "minecraft:snowball" }
+  },
+  "result": {
+    "item": "anabnormalcircumstance:spell_scroll",
+    "count": 1,
+    "nbt": "{spell_id:\"anabnormalcircumstance:aero_hurricanes_call\"}"
+  }
+}

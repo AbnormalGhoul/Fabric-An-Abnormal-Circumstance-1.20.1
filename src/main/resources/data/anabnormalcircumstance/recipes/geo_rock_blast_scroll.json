@@ -1,0 +1,20 @@
+{
+  "type": "anabnormalcircumstance:spell_scroll",
+  "pattern": [
+    "#Q#",
+    "ZXZ",
+    "QTQ"
+  ],
+  "key": {
+    "#": { "item": "anabnormalcircumstance:mana_gem" },
+    "X": { "item": "anabnormalcircumstance:spell_scroll" },
+    "Q": { "item": "minecraft:iron_ingot" },
+    "Z": { "item": "minecraft:stone" },
+    "T": { "item": "minecraft:tnt" }
+  },
+  "result": {
+    "item": "anabnormalcircumstance:spell_scroll",
+    "count": 1,
+    "nbt": "{spell_id:\"anabnormalcircumstance:geo_rock_blast\"}"
+  }
+}

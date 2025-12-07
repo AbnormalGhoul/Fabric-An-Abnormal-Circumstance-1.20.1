@@ -1,0 +1,20 @@
+{
+  "type": "anabnormalcircumstance:spell_scroll",
+  "pattern": [
+    "#Q#",
+    "ZXZ",
+    "QTQ"
+  ],
+  "key": {
+    "X": { "item": "anabnormalcircumstance:spell_scroll" },
+    "#": { "item": "anabnormalcircumstance:mana_gem" },
+    "Q": { "item": "minecraft:netherrack" },
+    "Z": { "item": "minecraft:charcoal" },
+    "T": { "item": "minecraft:flint_and_steel" }
+  },
+  "result": {
+    "item": "anabnormalcircumstance:spell_scroll",
+    "count": 1,
+    "nbt": "{spell_id:\"anabnormalcircumstance:pyro_fire_aspect\"}"
+  }
+}

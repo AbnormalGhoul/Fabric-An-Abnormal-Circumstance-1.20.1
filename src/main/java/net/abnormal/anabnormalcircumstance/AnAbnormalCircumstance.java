@@ -15,11 +15,15 @@ import net.abnormal.anabnormalcircumstance.event.StunEventHandler;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.recipe.ModRecipeTypes;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
+import net.abnormal.anabnormalcircumstance.recipe.SpellScrollRecipeSerializer;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.abnormal.anabnormalcircumstance.util.ServerTimeCommand;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,8 +54,10 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         StunEventHandler.register();
         ModAdvancementHandler.register();
+
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();
+        ModRecipeTypes.register();
 
         ServerTimeCommand.register();
 

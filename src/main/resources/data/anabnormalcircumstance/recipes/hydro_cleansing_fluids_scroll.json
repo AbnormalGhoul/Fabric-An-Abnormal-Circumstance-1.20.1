@@ -1,0 +1,20 @@
+{
+  "type": "anabnormalcircumstance:spell_scroll",
+  "pattern": [
+    "QZQ",
+    "#X#",
+    "QTQ"
+  ],
+  "key": {
+    "X": { "item": "anabnormalcircumstance:spell_scroll" },
+    "#": { "item": "anabnormalcircumstance:broodmother_egg" },
+    "Q": { "item": "minecraft:sponge" },
+    "Z": { "item": "anabnormalcircumstance:mana_core" },
+    "T": { "item": "minecraft:heart_of_the_sea" }
+  },
+  "result": {
+    "item": "anabnormalcircumstance:spell_scroll",
+    "count": 1,
+    "nbt": "{spell_id:\"anabnormalcircumstance:hydro_cleansing_fluids\"}"
+  }
+}

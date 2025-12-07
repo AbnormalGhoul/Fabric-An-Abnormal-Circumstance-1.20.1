@@ -1,0 +1,20 @@
+{
+  "type": "anabnormalcircumstance:spell_scroll",
+  "pattern": [
+    "#Q#",
+    "ZXZ",
+    "QTQ"
+  ],
+  "key": {
+    "X": { "item": "anabnormalcircumstance:spell_scroll" },
+    "#": { "item": "anabnormalcircumstance:mana_cluster" },
+    "Z": { "item": "minecraft:nautilus_shell" },
+    "Q": { "item": "anabnormalcircumstance:arachnid_silk" },
+    "T": { "item": "minecraft:mud" }
+  },
+  "result": {
+    "item": "anabnormalcircumstance:spell_scroll",
+    "count": 1,
+    "nbt": "{spell_id:\"anabnormalcircumstance:hydro_bile_water\"}"
+  }
+}

@@ -5,6 +5,7 @@ import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.*;
 import net.abnormal.anabnormalcircumstance.magic.spells.geomancy.*;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.*;
 import net.abnormal.anabnormalcircumstance.magic.spells.pyromancy.*;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 
 public class ModSpells {

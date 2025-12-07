@@ -21,6 +21,7 @@
     "PersistentProjectileEntityMixin",
     "PlayerAdvancementTrackerMixin",
     "ProtectionEnchantmentMixin",
+    "ShapedRecipeAccess",
     "TridentItemMixin",
     "TripwireDupeFixMixin"
   ]
