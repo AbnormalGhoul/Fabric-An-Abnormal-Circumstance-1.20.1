@@ -225,10 +225,5 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input(ModItems.PLATINUM_COIN)
                 .criterion("has_platinum_coin", conditionsFromItem(ModItems.PLATINUM_COIN))
                 .offerTo(consumer, new Identifier("anabnormalcircumstance", "gold_coin_from_platinum"));
-
-
-        // Spells
-
-
     }
 }

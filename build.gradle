@@ -44,6 +44,16 @@ repositories {
             includeGroup("com.eliotlash.mclib")
         }
     }
+    mavenLocal()
+    flatDir {
+        dirs 'libs'
+    }
+    maven {
+        url "https://maven.architectury.dev/"
+        content {
+            includeGroup "dev.architectury"
+        }
+    }
 }
 
 
@@ -87,6 +97,14 @@ dependencies {
     // GeckoLib
     modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
     implementation("com.eliotlash.mclib:mclib:20")
+
+    // FTB Library
+    modImplementation "dev.ftb.mods:ftb-library-fabric:2001.2.12"
+    modImplementation "dev.ftb.mods:ftb-teams-fabric:2001.3.1"
+    modImplementation "dev.ftb.mods:ftb-chunks-fabric:2001.3.6"
+
+    // Architectury API
+    modImplementation "dev.architectury:architectury-fabric:${project.architectury_api_version}"
 }
 
 processResources {

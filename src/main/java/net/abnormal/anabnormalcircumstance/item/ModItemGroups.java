@@ -199,7 +199,7 @@ public class ModItemGroups {
 
                         // Relic
                         entries.add(ModItems.ABNORMAL_RELIC);
-
+                        entries.add(ModItems.CLAIM_BYPASS);
 
                         // Currency
                         entries.add(ModItems.PLATINUM_COIN);

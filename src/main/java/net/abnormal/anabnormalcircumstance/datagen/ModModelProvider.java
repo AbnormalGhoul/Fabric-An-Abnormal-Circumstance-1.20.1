@@ -28,6 +28,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         // Weapons
+        itemModelGenerator.register(ModItems.CLAIM_BYPASS, Models.GENERATED);
         itemModelGenerator.register(ModItems.CRAB_CLAW, Models.HANDHELD);
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
         itemModelGenerator.register(ModItems.WIDOWS_GEM, Models.GENERATED);
