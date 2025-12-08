@@ -17,15 +17,10 @@ import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipeTypes;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
-import net.abnormal.anabnormalcircumstance.recipe.SpellScrollRecipeSerializer;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
-import net.abnormal.anabnormalcircumstance.util.FtbaCommand;
 import net.abnormal.anabnormalcircumstance.util.ServerTimeCommand;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,11 +57,6 @@ public class AnAbnormalCircumstance implements ModInitializer {
         ModRecipeTypes.register();
 
         ServerTimeCommand.register();
-
-        // FTB command
-        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
-            FtbaCommand.register(dispatcher);
-        });
 
         // Register unique ability packet
         ServerPlayNetworking.registerGlobalReceiver(

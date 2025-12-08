@@ -161,7 +161,7 @@ public class ModItems {
     public static final Item MANA_CORE = registerItem("mana_core", new Item(new Item.Settings()));
 
     // Utility
-    public static final Item CLAIM_RUNE = registerItem("claim_rune", new ClaimRuneItem(new Item.Settings()));
+    public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
     public static final Item NATION_RUNE = registerItem("nation_rune", new Item(new Item.Settings()));
     public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic", new Item(new Item.Settings()));
