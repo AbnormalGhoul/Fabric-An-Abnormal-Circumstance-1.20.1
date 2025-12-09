@@ -98,7 +98,7 @@ public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
         if (entity instanceof PlayerEntity player) {
             boolean bothEquipped = UniqueAbilityHelper.hasBothSolinWeapons(player);
 
-            // Add +4.5 damage if both weapons are equipped
+            // Add damage if both weapons are equipped
             var attr = player.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
             if (attr != null) {
                 boolean hasBoost = attr.getModifier(DAMAGE_BOOST_ID) != null;
