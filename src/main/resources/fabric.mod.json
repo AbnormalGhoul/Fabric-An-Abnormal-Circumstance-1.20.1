@@ -43,7 +43,6 @@
     "java": ">=17",
     "fabric-api": "*",
     "fabric-key-binding-api-v1": "*",
-    "reach-entity-attributes": ">=2.4.0",
     "cardinal-components-base": ">=5.2.3",
     "cardinal-components-entity": ">=5.2.3",
     "trinkets": ">=3.7.2",
