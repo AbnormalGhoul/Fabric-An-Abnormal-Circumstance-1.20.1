@@ -51,8 +51,7 @@ public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
         if (world.isClient()) return;
         if (entity instanceof PlayerEntity player) {
-            boolean holding = selected || player.getOffHandStack() == stack;
-            if (holding) {
+            if (player.getMainHandStack() == stack) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 45, 0, true, false, true));
             }
         }
