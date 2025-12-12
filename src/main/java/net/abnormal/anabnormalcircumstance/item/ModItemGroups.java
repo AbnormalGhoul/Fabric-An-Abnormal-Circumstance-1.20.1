@@ -33,6 +33,7 @@ public class ModItemGroups {
                         entries.add(ModItems.GEO_BLADE);
 
                         // Other Tools
+                        entries.add(ModItems.DWARVEN_PICKAXE);
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.SILVER_ARROW);
                         entries.add(ModItems.TOTEM_OF_PURITY);

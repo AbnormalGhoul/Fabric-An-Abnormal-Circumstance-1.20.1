@@ -1,7 +1,7 @@
 package net.abnormal.anabnormalcircumstance.util;
 
-import net.abnormal.anabnormalcircumstance.item.custom.unique.SolinAxeItem;
-import net.abnormal.anabnormalcircumstance.item.custom.unique.SolinSwordItem;
+import net.abnormal.anabnormalcircumstance.item.unique.SolinAxeItem;
+import net.abnormal.anabnormalcircumstance.item.unique.SolinSwordItem;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class UniqueAbilityHelper {

@@ -1,7 +1,6 @@
-package net.abnormal.anabnormalcircumstance.item.custom.unique;
+package net.abnormal.anabnormalcircumstance.item.unique;
 
-import net.abnormal.anabnormalcircumstance.item.ModToolMaterials;
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -12,7 +11,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;

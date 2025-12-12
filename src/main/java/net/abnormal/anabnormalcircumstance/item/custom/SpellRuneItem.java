@@ -1,6 +1,7 @@
-package net.abnormal.anabnormalcircumstance.item;
+package net.abnormal.anabnormalcircumstance.item.custom;
 
 import net.abnormal.anabnormalcircumstance.component.ModComponents;
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.minecraft.entity.ItemEntity;

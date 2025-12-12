@@ -12,7 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.PacketByteBuf;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.util.Identifier;
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 
 public class KeyBindingHandler {
     public static KeyBinding UNIQUE_ITEM_ABILITY;

@@ -5,6 +5,7 @@ import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -16,11 +17,11 @@ public class PhoenixRebirthSpell extends Spell {
 
     public PhoenixRebirthSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.PYROMANCY, SpellTier.TIER_4,
-                80,        // Mana cost
+                100,        // Mana cost
                 5 * 60, // Cooldown (5 min)
                 icon,
                 "Phoenix Rebirth",
-                "Embrace the flames of immortality, upon death you will rise again from the ashes.");
+                "Embrace the flames of immortality, upon death you will rise again from the ashes. Also grants strength III.");
     }
 
     @Override
@@ -32,6 +33,20 @@ public class PhoenixRebirthSpell extends Spell {
                 ModEffects.PHOENIX_FIRE,
                 5 * 60 * 20,
                 0,
+                false, false, true
+        ));
+
+        caster.addStatusEffect(new StatusEffectInstance(
+                StatusEffects.FIRE_RESISTANCE,
+                5 * 60 * 20,
+                0,
+                false, false, true
+        ));
+
+        caster.addStatusEffect(new StatusEffectInstance(
+                StatusEffects.STRENGTH,
+                45 * 20,
+                2,
                 false, false, true
         ));
 

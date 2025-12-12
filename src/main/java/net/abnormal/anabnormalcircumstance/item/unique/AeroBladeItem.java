@@ -1,6 +1,6 @@
-package net.abnormal.anabnormalcircumstance.item.custom.unique;
+package net.abnormal.anabnormalcircumstance.item.unique;
 
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;

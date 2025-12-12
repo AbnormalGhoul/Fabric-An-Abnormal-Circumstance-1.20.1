@@ -20,7 +20,6 @@
     "MoltenFuryDamageMixin",
     "PersistentProjectileEntityMixin",
     "PlayerAdvancementTrackerMixin",
-    "ProtectionEnchantmentMixin",
     "ShapedRecipeAccess",
     "TridentItemMixin",
     "TripwireDupeFixMixin"

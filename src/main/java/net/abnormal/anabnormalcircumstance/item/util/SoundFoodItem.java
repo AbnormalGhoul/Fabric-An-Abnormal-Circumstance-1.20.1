@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.item;
+package net.abnormal.anabnormalcircumstance.item.util;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -6,7 +6,6 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.sound.SoundCategory;
 import net.minecraft.world.World;
 
 public class SoundFoodItem extends Item {

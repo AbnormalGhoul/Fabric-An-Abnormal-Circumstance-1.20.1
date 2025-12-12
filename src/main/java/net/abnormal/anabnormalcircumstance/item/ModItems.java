@@ -3,7 +3,9 @@ package net.abnormal.anabnormalcircumstance.item;
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.item.custom.*;
-import net.abnormal.anabnormalcircumstance.item.custom.unique.*;
+import net.abnormal.anabnormalcircumstance.item.unique.*;
+import net.abnormal.anabnormalcircumstance.item.util.ModFoodComponents;
+import net.abnormal.anabnormalcircumstance.item.util.SoundFoodItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Item;
@@ -65,25 +67,25 @@ public class ModItems {
                 ModToolMaterials.UNIQUE, // Tool Material
                 8,                       // Attack damage bonus
                 -2.4f,                   // Attack speed
-                new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+                new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
             ));
     public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(
             ModToolMaterials.UNIQUE,
             8,
             -2.4f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item HYDRO_BLADE = registerItem("hydro_blade", new HydroBladeItem(
             ModToolMaterials.UNIQUE,
             8,
             -2.4f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item PYRO_BLADE = registerItem("pyro_blade", new PyroBladeItem(
             ModToolMaterials.UNIQUE,
             8,
             -2.4f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
 
     // Champion Weapons
@@ -93,32 +95,37 @@ public class ModItems {
             ModToolMaterials.UNIQUE,
             11,
             -3f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item WILL_BREAKER = registerItem("will_breaker", new WillBreakerItem(
             ModToolMaterials.UNIQUE,
             9,
             -2.4f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item BLACK_SOLIN_BLADE = registerItem("black_solin_blade", new SolinSwordItem(
             ModToolMaterials.UNIQUE,
             9,
             -2.4f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item WHITE_SOLIN_BLADE = registerItem("white_solin_blade", new SolinAxeItem(
             ModToolMaterials.UNIQUE,
             11,
             -3f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item REEDTHORN = registerItem("reedthorn", new ReedthornItem(
             ModToolMaterials.UNIQUE,
             10,
             -2.6f,
-            new Item.Settings().maxCount(1).rarity(Rarity.EPIC)
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
+
+    public static final Item DWARVEN_PICKAXE = registerItem("dwarven_pickaxe",
+            new DwarvenPickaxeItem(ModToolMaterials.UNIQUE, 5, -2.8f,
+                    new FabricItemSettings().fireproof().rarity(Rarity.RARE)));
+
 
     // Carcan Item
     public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
@@ -164,8 +171,11 @@ public class ModItems {
     public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
     public static final Item NATION_RUNE = registerItem("nation_rune", new Item(new Item.Settings()));
-    public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic", new Item(new Item.Settings()));
     public static final Item CLAIM_BYPASS = registerItem("claim_bypass", new Item(new Item.Settings()));
+    public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic",
+            new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));
+
+
 
 
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));

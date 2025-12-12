@@ -225,5 +225,16 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input(ModItems.PLATINUM_COIN)
                 .criterion("has_platinum_coin", conditionsFromItem(ModItems.PLATINUM_COIN))
                 .offerTo(consumer, new Identifier("anabnormalcircumstance", "gold_coin_from_platinum"));
+
+        // Dwarven Pickaxe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, ModItems.DWARVEN_PICKAXE)
+                .pattern("QXQ")
+                .pattern(" # ")
+                .pattern(" # ")
+                .input('X', Items.NETHER_STAR)
+                .input('#', Items.NETHERITE_INGOT)
+                .input('Q', ModItems.MANA_CORE)
+                .criterion("has_mana_core", conditionsFromItem(ModItems.MANA_CORE))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "dwarven_pickaxe"));
     }
 }

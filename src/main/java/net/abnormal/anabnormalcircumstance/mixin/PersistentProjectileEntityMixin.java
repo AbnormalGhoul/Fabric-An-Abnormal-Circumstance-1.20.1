@@ -1,6 +1,6 @@
 package net.abnormal.anabnormalcircumstance.mixin;
 
-import net.abnormal.anabnormalcircumstance.item.custom.unique.FirstLeafBowItem;
+import net.abnormal.anabnormalcircumstance.item.unique.FirstLeafBowItem;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.util.hit.EntityHitResult;

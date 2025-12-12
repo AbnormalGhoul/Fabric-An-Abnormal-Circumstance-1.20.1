@@ -14,7 +14,7 @@ import net.abnormal.anabnormalcircumstance.event.ModEvents;
 import net.abnormal.anabnormalcircumstance.event.StunEventHandler;
 import net.abnormal.anabnormalcircumstance.item.ModItemGroups;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipeTypes;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;

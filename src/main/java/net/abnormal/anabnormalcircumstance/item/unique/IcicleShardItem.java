@@ -1,10 +1,10 @@
-package net.abnormal.anabnormalcircumstance.item.custom.unique;
+package net.abnormal.anabnormalcircumstance.item.unique;
 
 import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
@@ -39,11 +39,7 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
                 .orElse(false);
 
         if (!hasMark) {
-            player.sendMessage(
-                    Text.literal("You must equip the Mark of Champion to use this weapon!")
-                            .formatted(Formatting.DARK_RED),
-                    true // true = action bar
-            );
+            player.sendMessage(Text.literal("You must equip the Champion's Crest to use this weapon").formatted(Formatting.DARK_RED), true);
             return;
         }
 

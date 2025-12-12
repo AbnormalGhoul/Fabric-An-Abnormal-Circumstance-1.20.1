@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.item.interfaces;
+package net.abnormal.anabnormalcircumstance.item.util;
 
 import net.minecraft.entity.player.PlayerEntity;
 

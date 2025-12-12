@@ -29,6 +29,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         // Weapons
         itemModelGenerator.register(ModItems.CLAIM_BYPASS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DWARVEN_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.CRAB_CLAW, Models.HANDHELD);
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
         itemModelGenerator.register(ModItems.WIDOWS_GEM, Models.GENERATED);

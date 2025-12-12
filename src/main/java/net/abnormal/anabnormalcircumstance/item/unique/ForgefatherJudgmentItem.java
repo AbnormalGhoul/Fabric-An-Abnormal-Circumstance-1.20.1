@@ -1,8 +1,8 @@
-package net.abnormal.anabnormalcircumstance.item.custom.unique;
+package net.abnormal.anabnormalcircumstance.item.unique;
 
 import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.abnormal.anabnormalcircumstance.item.interfaces.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
@@ -45,75 +45,59 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
                 .orElse(false);
 
         if (!hasMark) {
-            player.sendMessage(
-                    Text.literal("You must equip the Mark of Champion to use this weapon!")
-                            .formatted(Formatting.DARK_RED),
-                    true // true = action bar
-            );
+            player.sendMessage(Text.literal("You must equip the Champion's Crest to use this weapon").formatted(Formatting.DARK_RED), true);
             return;
         }
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
+            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.GRAY), true);
             return;
         }
-        player.getWorld().playSound(
-                null,
-                player.getBlockPos(),
-                SoundEvents.ITEM_TRIDENT_HIT_GROUND,
-                SoundCategory.PLAYERS,
-                5.0f,
-                1.0f
-        );
-        primedPlayers.add(player.getUuid());
-        player.sendMessage(Text.literal("Next strike will call down lightning!").formatted(Formatting.GOLD), true);
-        UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
-    }
 
-//    When the weapon hits an entity, check if the ability was primed
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (!attacker.getWorld().isClient() && attacker instanceof PlayerEntity player) {
-            if (primedPlayers.remove(player.getUuid())) {
-                strikeLightning(target, (ServerWorld) attacker.getWorld());
-            }
+        ServerWorld world = (ServerWorld) player.getWorld();
+
+        // Summon lightning on player
+        LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world);
+        if (lightning != null) {
+            lightning.refreshPositionAndAngles(player.getX(), player.getY(), player.getZ(), 0f, 0f);
+            lightning.setCosmetic(false);
+            world.spawnEntity(lightning);
         }
-        return super.postHit(stack, target, attacker);
+
+        // Play activation sound
+        world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_TRIDENT_THUNDER, SoundCategory.PLAYERS, 5.0f, 1.0f);
+
+        // Apply effects
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3, false, true, true)); // 5s
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, true, true)); // 10s
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 200, 1, false, true, true)); // 10s
+
+        // Schedule removal after 5 seconds (100 ticks)
+        world.getServer().execute(() -> {
+            world.getServer().submit(() -> {
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException ignored) {}
+            });
+        });
+
+
+        player.sendMessage(Text.literal("You are overcharged with divine power!").formatted(Formatting.GOLD, Formatting.BOLD), true);
+
+        // 1 minute cooldown
+        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
     }
 
-//    Spawns multiple lightning bolts around the struck target
-    private void strikeLightning(LivingEntity target, ServerWorld world) {
-        double x = target.getX();
-        double y = target.getY();
-        double z = target.getZ();
 
-        for (int i = 0; i < 3; i++) {
-            LightningEntity bolt = EntityType.LIGHTNING_BOLT.create(world);
-            if (bolt == null) continue;
 
-            double offsetX = (i - 1) * 0.5;          // -0.5, 0, 0.5
-            double offsetZ = (i % 2 == 0 ? 0.25 : -0.25);
-
-            bolt.refreshPositionAndAngles(
-                    target.getX() + offsetX,
-                    target.getY(),
-                    target.getZ() + offsetZ,
-                    0f, 0f
-            );
-            bolt.setChanneler(null);
-            bolt.setCosmetic(false);
-            world.spawnEntity(bolt);
-        }
-    }
 
     // Passive: Grants haste 2 while held
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
         if (world.isClient()) return;
         if (entity instanceof PlayerEntity player) {
-            boolean holding = selected || player.getOffHandStack() == stack;
-            if (holding) {
+            if (player.getMainHandStack() == stack) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 45, 1, true, false, true));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 45, 0, true, false, true));
             }
@@ -123,8 +107,8 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Haste II & Resistance I while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Causes the next attack to strike multiple lightnings").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Overcharges the player with Lightning, grants Resistance IV & Regen III").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
     }
 
 }
