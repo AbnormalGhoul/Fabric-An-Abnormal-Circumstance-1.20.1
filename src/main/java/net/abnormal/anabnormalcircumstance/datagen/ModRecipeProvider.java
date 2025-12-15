@@ -236,5 +236,28 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .input('Q', ModItems.MANA_CORE)
                 .criterion("has_mana_core", conditionsFromItem(ModItems.MANA_CORE))
                 .offerTo(consumer, new Identifier("anabnormalcircumstance", "dwarven_pickaxe"));
+
+        // Mana Shard
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MANA_SHARD)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('#', Items.AMETHYST_SHARD)
+                .input('X', Items.DIAMOND)
+                .criterion("has_amethyst_shard", conditionsFromItem(Items.AMETHYST_SHARD))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "mana_shard"));
+
+        // Blank Scroll
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SPELL_SCROLL)
+                .pattern("X#X")
+                .pattern("#Q#")
+                .pattern("X#X")
+                .input('X', Items.GLOW_INK_SAC)
+                .input('#', Items.DIAMOND)
+                .input('Q', Items.PAPER)
+                .criterion("has_glow_ink_sac", conditionsFromItem(Items.GLOW_INK_SAC))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "spell_scroll"));
+
+
     }
 }

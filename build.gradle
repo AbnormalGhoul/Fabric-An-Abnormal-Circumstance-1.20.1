@@ -72,7 +72,7 @@ dependencies {
     modImplementation "maven.modrinth:shieldlib:${project.shieldlib_version}-fabric"
 
     // Reach Entity Attributes
-    modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${reach_entity_attributes_version}"
+    include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
     // Trinkets
     modImplementation "dev.emi:trinkets:${trinkets_version}"
