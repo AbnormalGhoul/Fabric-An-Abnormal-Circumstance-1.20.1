@@ -19,6 +19,7 @@ import net.abnormal.anabnormalcircumstance.recipe.ModRecipeTypes;
 import net.abnormal.anabnormalcircumstance.recipe.ModRecipes;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.abnormal.anabnormalcircumstance.util.ServerTimeCommand;
+import net.abnormal.anabnormalcircumstance.util.WitchDropModifier;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
@@ -51,6 +52,7 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         StunEventHandler.register();
         ModAdvancementHandler.register();
+        WitchDropModifier.register();
 
         ModBrewingRecipes.registerAll();
         ModRecipes.registerRecipes();

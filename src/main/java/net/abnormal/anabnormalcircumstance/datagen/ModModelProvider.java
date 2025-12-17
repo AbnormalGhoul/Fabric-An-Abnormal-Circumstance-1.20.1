@@ -35,7 +35,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.WIDOWS_GEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.CHAMPIONS_CREST, Models.GENERATED);
         itemModelGenerator.register(ModItems.LEADERS_CREST, Models.GENERATED);
-        itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
