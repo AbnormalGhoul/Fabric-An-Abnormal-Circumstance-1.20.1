@@ -31,6 +31,13 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+        // CALCITE
+        new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.CALCITE, 2)
+                .input(Items.COBBLESTONE)
+                .input(Items.DIORITE)
+                .criterion("has_diorite", conditionsFromItem(Items.DIORITE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.CALCITE)));
+
         // SPONGE
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.SPONGE, 4)
                 .pattern(" # ")
