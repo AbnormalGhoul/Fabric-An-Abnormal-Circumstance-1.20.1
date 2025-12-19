@@ -37,21 +37,25 @@ public class ModItems {
 
     // Spawn Eggs
     public static final Item ORC_WARRIOR_SPAWN_EGG = registerItem("orc_warrior_spawn_egg",
-            new SpawnEggItem(ModEntities.ORC_WARRIOR, 0x15940a, 0x643907,
+            new SpawnEggItem(ModEntities.ORC_WARRIOR, 0x15940a, 0x8b4513,
                     new FabricItemSettings()));
+
     public static final Item ORC_JAVELIN_THROWER_SPAWN_EGG =
             registerItem("orc_javelin_thrower_spawn_egg",
                     new SpawnEggItem(ModEntities.ORC_JAVELIN_THROWER,
-                            0x15940a, 0x8b4513,
+                            0x15940a, 0xC0C0C0,
                             new FabricItemSettings()));
+
     public static final Item BROOD_WARRIOR_SPAWN_EGG =
             registerItem("brood_warrior_spawn_egg",
                     new SpawnEggItem(ModEntities.BROOD_WARRIOR,
-                            0x000000,
-                            0x00a800,
+                            0x453b4a,
+                            0xF92A53,
                             new FabricItemSettings()));
 
-
+    public static final Item BROOD_WEBBER_SPAWN_EGG = registerItem("brood_webber_spawn_egg",
+            new SpawnEggItem(ModEntities.BROOD_WEBBER, 0x453b4a, 0xf3f0db,
+                    new FabricItemSettings()));
 
     // Magic Items
     public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(16)));

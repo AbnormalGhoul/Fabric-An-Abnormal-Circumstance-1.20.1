@@ -11,11 +11,9 @@
   "entity.anabnormalcircumstance.orc_warrior": "Orc Warrior",
   "entity.anabnormalcircumstance.orc_javelin_thrower": "Orc Javelin Thrower",
   "entity.anabnormalcircumstance.brood_warrior": "Brood Warrior",
-
+  "entity.anabnormalcircumstance.brood_webber": "Brood Webber",
 
   "entity.anabnormalcircumstance.broodmother": "Broodmother",
-
-
 
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
@@ -44,6 +42,7 @@
   "item.anabnormalcircumstance.orc_warrior_spawn_egg": "Orc Warrior Spawn Egg",
   "item.anabnormalcircumstance.orc_javelin_thrower_spawn_egg": "Orc Javelin Thrower Spawn Egg",
   "item.anabnormalcircumstance.brood_warrior_spawn_egg": "Brood Warrior Spawn Egg",
+  "item.anabnormalcircumstance.brood_webber_spawn_egg": "Brood Webber Spawn Egg",
 
   "item.anabnormalcircumstance.spell_scroll": "Magic Scroll",
 

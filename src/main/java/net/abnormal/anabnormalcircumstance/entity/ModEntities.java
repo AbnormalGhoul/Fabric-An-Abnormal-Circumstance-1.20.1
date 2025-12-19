@@ -2,6 +2,8 @@ package net.abnormal.anabnormalcircumstance.entity;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.entity.custom.mob.BroodWarriorEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.BroodWebberEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.projectile.BroodWebProjectileEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.JavelinProjectileEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
@@ -59,6 +61,19 @@ public class ModEntities {
                     .build()
     );
 
+    public static final EntityType<BroodWebberEntity> BROOD_WEBBER =
+            Registry.register(Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "brood_webber"),
+                    FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BroodWebberEntity::new)
+                            .dimensions(EntityDimensions.fixed(1.6f, 1.0f)).build());
+
+    public static final EntityType<BroodWebProjectileEntity> BROOD_WEB_PROJECTILE =
+            Registry.register(Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "brood_web_projectile"),
+                    FabricEntityTypeBuilder.<BroodWebProjectileEntity>create(SpawnGroup.MISC, BroodWebProjectileEntity::new)
+                            .dimensions(EntityDimensions.fixed(0.25f, 0.25f))
+                            .trackRangeBlocks(64).trackedUpdateRate(10)
+                            .build());
+
+
 
 
     public static void registerModEntities() {
@@ -76,6 +91,11 @@ public class ModEntities {
         FabricDefaultAttributeRegistry.register(
                 ModEntities.BROOD_WARRIOR,
                 BroodWarriorEntity.setAttributes()
+        );
+
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.BROOD_WEBBER,
+                BroodWebberEntity.setAttributes()
         );
 
 
