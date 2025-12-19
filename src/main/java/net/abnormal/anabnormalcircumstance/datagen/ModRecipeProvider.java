@@ -38,6 +38,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_diorite", conditionsFromItem(Items.DIORITE))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.CALCITE)));
 
+        // Phantom Membrane
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PHANTOM_MEMBRANE, 1)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('X', Items.LEATHER)
+                .input('#', Items.FEATHER)
+                .showNotification(true)
+                .criterion("has_feather", conditionsFromItem(Items.FEATHER))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.PHANTOM_MEMBRANE)));
+
         // SPONGE
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.SPONGE, 4)
                 .pattern(" # ")
