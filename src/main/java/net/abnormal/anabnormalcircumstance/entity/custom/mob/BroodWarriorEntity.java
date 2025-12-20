@@ -50,7 +50,7 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 80.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 16.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 18.0D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.4D);
@@ -72,40 +72,7 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
 
     @Override
     protected EntityNavigation createNavigation(World world) {
-        return new SpiderNavigation(this, world);
-    }
-
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(SPIDER_FLAGS, (byte) 0);
-    }
-
-    @Override
-    public void tick() {
-        super.tick();
-        if (!this.getWorld().isClient) {
-            this.setClimbingWall(this.horizontalCollision);
-        }
-    }
-
-    public boolean isClimbingWall() {
-        return (this.dataTracker.get(SPIDER_FLAGS) & 1) != 0;
-    }
-
-    public void setClimbingWall(boolean value) {
-        byte current = this.dataTracker.get(SPIDER_FLAGS);
-        if (value) {
-            current |= 1;
-        } else {
-            current &= -2;
-        }
-        this.dataTracker.set(SPIDER_FLAGS, current);
-    }
-
-    @Override
-    public boolean isClimbing() {
-        return this.isClimbingWall();
+        return super.createNavigation(world); // normal ground navigation
     }
 
     @Override
@@ -172,4 +139,48 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
     public boolean isBaby() {
         return false;
     }
+
+
+    // Code for Climbing
+
+//    @Override
+//    public void tick() {
+//        super.tick();
+//        if (!this.getWorld().isClient) {
+//            this.setClimbingWall(this.horizontalCollision);
+//        }
+//    }
+
+//    @Override
+//    protected EntityNavigation createNavigation(World world) {
+//        return new SpiderNavigation(this, world);
+//    }
+//    private static final TrackedData<Byte> SPIDER_FLAGS =
+//        DataTracker.registerData(BroodWarriorEntity.class, TrackedDataHandlerRegistry.BYTE);
+//
+//    @Override
+//    protected void initDataTracker() {
+//        super.initDataTracker();
+//        this.dataTracker.startTracking(SPIDER_FLAGS, (byte) 0);
+//    }
+//
+//    public boolean isClimbingWall() {
+//        return (this.dataTracker.get(SPIDER_FLAGS) & 1) != 0;
+//    }
+//
+//    public void setClimbingWall(boolean value) {
+//        byte current = this.dataTracker.get(SPIDER_FLAGS);
+//        if (value) {
+//            current |= 1;
+//        } else {
+//            current &= -2;
+//        }
+//        this.dataTracker.set(SPIDER_FLAGS, current);
+//    }
+//
+//    @Override
+//    public boolean isClimbing() {
+//        return this.isClimbingWall();
+//    }
+
 }

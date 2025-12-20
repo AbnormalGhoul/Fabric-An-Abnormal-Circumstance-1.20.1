@@ -112,7 +112,9 @@ public class BroodWebberEntity extends HostileEntity implements GeoEntity {
         this.getWorld().spawnEntity(projectile);
     }
 
-
+    public EntityGroup getGroup() {
+        return EntityGroup.ARTHROPOD;
+    }
 
     private void performTrapAttack(LivingEntity target) {
         if (isTrapping) return;
@@ -124,7 +126,6 @@ public class BroodWebberEntity extends HostileEntity implements GeoEntity {
         this.lookAtEntity(target, 180.0F, 180.0F);
         this.setTarget(target);
     }
-
 
     // Animation
     @Override
