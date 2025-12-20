@@ -1,25 +1,14 @@
 package net.abnormal.anabnormalcircumstance.datagen;
 
-import com.terraformersmc.modmenu.util.mod.Mod;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
-import net.minecraft.recipe.ShapedRecipe;
-import net.minecraft.recipe.RecipeSerializer;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-
-import java.util.*;
 
 import java.util.function.Consumer;
 
@@ -31,6 +20,19 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+    // SPELL RUNE
+    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SPELL_RUNE, 1)
+                .pattern("Q#Q")
+                .pattern("YXY")
+                .pattern("#Q#")
+                .input('X', ModItems.BOTTLED_LIGHTNING)
+                .input('#', ModItems.MANA_CLUSTER)
+                .input('Y', Items.CRYING_OBSIDIAN)
+                .input('Q', Items.ENDER_PEARL)
+                .showNotification(true)
+                .criterion("has_mana_cluster", conditionsFromItem(ModItems.MANA_CLUSTER))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.SPELL_RUNE)));
+
         // CALCITE
         new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.CALCITE, 2)
                 .input(Items.COBBLESTONE)
@@ -38,7 +40,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_diorite", conditionsFromItem(Items.DIORITE))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.CALCITE)));
 
-        // Phantom Membrane
+        // PHANTOM MEMBRANE
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Items.PHANTOM_MEMBRANE, 1)
                 .pattern(" # ")
                 .pattern("#X#")
