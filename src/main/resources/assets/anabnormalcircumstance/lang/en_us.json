@@ -7,6 +7,8 @@
 
   "entity.anabnormalcircumstance.silver_arrow_projectile": "Silver Arrow",
   "entity.anabnormalcircumstance.javelin_projectile": "Javelin",
+  "entity.anabnormalcircumstance.brood_web_projectile": "Brood Web Projectile",
+  "entity.anabnormalcircumstance.hatchet": "Hatchet",
 
   "entity.anabnormalcircumstance.orc_warrior": "Orc Warrior",
   "entity.anabnormalcircumstance.orc_javelin_thrower": "Orc Javelin Thrower",
@@ -14,6 +16,7 @@
   "entity.anabnormalcircumstance.brood_webber": "Brood Webber",
 
   "entity.anabnormalcircumstance.broodmother": "Broodmother",
+  "entity.anabnormalcircumstance.orc_champion": "Orc Champion",
 
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
@@ -43,6 +46,7 @@
   "item.anabnormalcircumstance.orc_javelin_thrower_spawn_egg": "Orc Javelin Thrower Spawn Egg",
   "item.anabnormalcircumstance.brood_warrior_spawn_egg": "Brood Warrior Spawn Egg",
   "item.anabnormalcircumstance.brood_webber_spawn_egg": "Brood Webber Spawn Egg",
+  "item.anabnormalcircumstance.orc_champion_spawn_egg": "Orc Champion Spawn Egg",
 
   "item.anabnormalcircumstance.spell_scroll": "Magic Scroll",
 

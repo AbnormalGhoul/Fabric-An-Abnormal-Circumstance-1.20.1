@@ -1,12 +1,10 @@
 package net.abnormal.anabnormalcircumstance.entity;
 
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.BroodWarriorEntity;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.BroodWebberEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.mob.*;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.BroodWebProjectileEntity;
+import net.abnormal.anabnormalcircumstance.entity.custom.projectile.HatchetProjectileEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.JavelinProjectileEntity;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcJavelinThrowerEntity;
-import net.abnormal.anabnormalcircumstance.entity.custom.mob.OrcWarriorEntity;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.SilverArrowProjectileEntity;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.EntityType;
@@ -24,9 +22,7 @@ public class ModEntities {
             new Identifier(AnAbnormalCircumstance.MOD_ID, "silver_arrow_projectile"),
             FabricEntityTypeBuilder.<SilverArrowProjectileEntity>create(SpawnGroup.MISC, SilverArrowProjectileEntity::new)
                     .dimensions(EntityDimensions.fixed(0.5f, 0.5f))
-                    .trackRangeBlocks(4)
-                    .trackedUpdateRate(20)
-                    .build()
+                    .trackRangeBlocks(4).trackedUpdateRate(20).build()
     );
 
     public static final EntityType<JavelinProjectileEntity> JAVELIN_PROJECTILE =
@@ -35,22 +31,36 @@ public class ModEntities {
                     new Identifier(AnAbnormalCircumstance.MOD_ID, "javelin_projectile"),
                     FabricEntityTypeBuilder.<JavelinProjectileEntity>create(SpawnGroup.MISC, JavelinProjectileEntity::new)
                             .dimensions(EntityDimensions.fixed(1.0f, 0.25f))
+                            .trackRangeBlocks(64).trackedUpdateRate(10).build()
+            );
+
+    public static final EntityType<HatchetProjectileEntity> HATCHET_PROJECTILE =
+            Registry.register(
+                    Registries.ENTITY_TYPE,
+                    new Identifier(AnAbnormalCircumstance.MOD_ID, "hatchet_projectile"),
+                    FabricEntityTypeBuilder.<HatchetProjectileEntity>create(SpawnGroup.MISC, HatchetProjectileEntity::new)
+                            .dimensions(EntityDimensions.fixed(0.5f, 0.5f))
                             .trackRangeBlocks(64)
                             .trackedUpdateRate(10)
                             .build()
             );
 
+
     public static final EntityType<OrcWarriorEntity> ORC_WARRIOR = Registry.register(
             Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "orc_warrior"),
-            FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, OrcWarriorEntity::new)
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, OrcWarriorEntity::new)
+                    .dimensions(EntityDimensions.fixed(1.0f, 2.25f)).build());
+
+    public static final EntityType<OrcChampionEntity> ORC_CHAMPION = Registry.register(
+            Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "orc_champion"),
+            FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, OrcChampionEntity::new)
                     .dimensions(EntityDimensions.fixed(1.0f, 2.25f)).build());
 
     public static final EntityType<OrcJavelinThrowerEntity> ORC_JAVELIN_THROWER =
             Registry.register(Registries.ENTITY_TYPE,
                     new Identifier(AnAbnormalCircumstance.MOD_ID, "orc_javelin_thrower"),
                     FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, OrcJavelinThrowerEntity::new)
-                            .dimensions(EntityDimensions.fixed(1.0f, 2.25f))
-                            .build());
+                    .dimensions(EntityDimensions.fixed(1.0f, 2.25f)).build());
 
 
     public static final EntityType<BroodWarriorEntity> BROOD_WARRIOR = Registry.register(
@@ -88,6 +98,12 @@ public class ModEntities {
                 ModEntities.ORC_JAVELIN_THROWER,
                 OrcJavelinThrowerEntity.createAttributes());
 
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.ORC_CHAMPION,
+                OrcChampionEntity.setAttributes()
+        );
+
+        // Brood
         FabricDefaultAttributeRegistry.register(
                 ModEntities.BROOD_WARRIOR,
                 BroodWarriorEntity.setAttributes()

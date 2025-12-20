@@ -46,6 +46,10 @@ public class ModItems {
                             0x15940a, 0xC0C0C0,
                             new FabricItemSettings()));
 
+    public static final Item ORC_CHAMPION_SPAWN_EGG = registerItem("orc_champion_spawn_egg",
+            new SpawnEggItem(ModEntities.ORC_CHAMPION, 0x15940a, 0xD3AF37,
+                    new FabricItemSettings()));
+
     public static final Item BROOD_WARRIOR_SPAWN_EGG =
             registerItem("brood_warrior_spawn_egg",
                     new SpawnEggItem(ModEntities.BROOD_WARRIOR,
