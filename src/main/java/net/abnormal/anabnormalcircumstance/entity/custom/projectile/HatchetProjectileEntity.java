@@ -45,7 +45,7 @@ public class HatchetProjectileEntity extends PersistentProjectileEntity implemen
     protected void onEntityHit(EntityHitResult hit) {
         super.onEntityHit(hit);
 
-        float damage = 25.0f;
+        float damage = 30.0f;
         DamageSource src = this.getDamageSources().thrown(this, this.getOwner());
         hit.getEntity().damage(src, damage);
 
