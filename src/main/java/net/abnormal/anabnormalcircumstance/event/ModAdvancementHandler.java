@@ -19,8 +19,8 @@ public class ModAdvancementHandler {
     private static final UUID ORC_HEALTH_BOOST_ID = UUID.fromString("b3f9676c-11f8-4d64-8e0c-5df1cc1e9a02");
     private static final UUID BROOD_HEALTH_BOOST_ID = UUID.fromString("e2f29b5d-9c7d-4b38-90e7-5dcffdbba1a3");
 
-    private static final Identifier ORC_ADV = new Identifier("anabnormalcircumstance", "orc_slayer");
-    private static final Identifier BROOD_ADV = new Identifier("anabnormalcircumstance", "brood_slayer");
+    private static final Identifier ORC_ADV = new Identifier("anabnormalcircumstance", "01_orc_slayer");
+    private static final Identifier BROOD_ADV = new Identifier("anabnormalcircumstance", "02_brood_slayer");
 
     private static final String PERSIST_KEY = "anabnormal_advancement_boosts";
 
