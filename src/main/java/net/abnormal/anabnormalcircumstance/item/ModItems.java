@@ -40,25 +40,24 @@ public class ModItems {
             new SpawnEggItem(ModEntities.ORC_WARRIOR, 0x15940a, 0x8b4513,
                     new FabricItemSettings()));
 
-    public static final Item ORC_JAVELIN_THROWER_SPAWN_EGG =
-            registerItem("orc_javelin_thrower_spawn_egg",
-                    new SpawnEggItem(ModEntities.ORC_JAVELIN_THROWER,
-                            0x15940a, 0xC0C0C0,
-                            new FabricItemSettings()));
+    public static final Item ORC_JAVELIN_THROWER_SPAWN_EGG = registerItem("orc_javelin_thrower_spawn_egg",
+            new SpawnEggItem(ModEntities.ORC_JAVELIN_THROWER, 0x15940a, 0xC0C0C0,
+                    new FabricItemSettings()));
 
     public static final Item ORC_CHAMPION_SPAWN_EGG = registerItem("orc_champion_spawn_egg",
             new SpawnEggItem(ModEntities.ORC_CHAMPION, 0x15940a, 0xD3AF37,
                     new FabricItemSettings()));
 
-    public static final Item BROOD_WARRIOR_SPAWN_EGG =
-            registerItem("brood_warrior_spawn_egg",
-                    new SpawnEggItem(ModEntities.BROOD_WARRIOR,
-                            0x453b4a,
-                            0xF92A53,
-                            new FabricItemSettings()));
+    public static final Item BROOD_WARRIOR_SPAWN_EGG = registerItem("brood_warrior_spawn_egg",
+            new SpawnEggItem(ModEntities.BROOD_WARRIOR, 0x453b4a, 0xF92A53,
+                    new FabricItemSettings()));
 
     public static final Item BROOD_WEBBER_SPAWN_EGG = registerItem("brood_webber_spawn_egg",
             new SpawnEggItem(ModEntities.BROOD_WEBBER, 0x453b4a, 0xf3f0db,
+                    new FabricItemSettings()));
+
+    public static final Item BROODMOTHER_SPAWN_EGG = registerItem("broodmother_spawn_egg",
+            new SpawnEggItem(ModEntities.BROODMOTHER, 0x453b4a, 0xD3AF37,
                     new FabricItemSettings()));
 
     // Magic Items

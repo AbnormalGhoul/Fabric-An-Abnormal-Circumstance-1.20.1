@@ -83,7 +83,10 @@ public class ModEntities {
                             .trackRangeBlocks(64).trackedUpdateRate(10)
                             .build());
 
-
+    public static final EntityType<BroodmotherEntity> BROODMOTHER =
+            Registry.register(Registries.ENTITY_TYPE, new Identifier(AnAbnormalCircumstance.MOD_ID, "broodmother"),
+                    FabricEntityTypeBuilder.create(SpawnGroup.MONSTER, BroodmotherEntity::new)
+                            .dimensions(EntityDimensions.fixed(2.0f, 1.5f)).build());
 
 
     public static void registerModEntities() {
@@ -114,6 +117,10 @@ public class ModEntities {
                 BroodWebberEntity.setAttributes()
         );
 
+        FabricDefaultAttributeRegistry.register(
+                ModEntities.BROODMOTHER,
+                BroodmotherEntity.setAttributes()
+        );
 
     }
 }

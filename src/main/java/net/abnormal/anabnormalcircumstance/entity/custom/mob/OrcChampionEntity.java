@@ -85,14 +85,12 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
 
     // Knockback Immunity
     @Override
-    public void takeKnockback(double strength, double x, double z) {
-        // Do nothing: boss is immune to knockback
-    }
+    public void takeKnockback(double strength, double x, double z) {}
 
     // Damage / Healing
     @Override
     public boolean damage(DamageSource source, float amount) {
-        // Immune to bleeding damage source (from your BleedingEffect)
+        // Immune to bleeding damage source
         if (source.getName().equals("magic") && this.hasStatusEffect(ModEffects.BLEEDING)) return false;
 
         lastDamageTime = this.age;

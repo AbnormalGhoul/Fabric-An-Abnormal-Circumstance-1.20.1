@@ -305,6 +305,7 @@ public class ModItemGroups {
                         // Spiders
                         entries.add(ModItems.BROOD_WARRIOR_SPAWN_EGG);
                         entries.add(ModItems.BROOD_WEBBER_SPAWN_EGG);
+                        entries.add(ModItems.BROODMOTHER_SPAWN_EGG);
 
                     }).build());
 
