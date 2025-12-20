@@ -49,7 +49,7 @@ public class OrcJavelinThrowerEntity extends HostileEntity implements GeoEntity 
         return super.canTarget(target) && !(target instanceof OrcJavelinThrowerEntity);
     }
 
-    public static DefaultAttributeContainer.Builder createAttributes() {
+    public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 6.0)

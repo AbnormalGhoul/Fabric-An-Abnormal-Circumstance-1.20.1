@@ -261,15 +261,19 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
             if (warrior != null) {
                 warrior.refreshPositionAndAngles(
                         getX(), getY(), getZ(),
-                        random.nextFloat() * 360F, 0);
+                        random.nextFloat() * 360F, 0
+                );
+
+                warrior.setSummonedByBoss(true);
+
                 this.getWorld().spawnEntity(warrior);
             }
         }
         return result;
     }
 
-    // Status Handling
 
+    // Status Handling
     @Override
     public boolean canHaveStatusEffect(StatusEffectInstance effect) {
         return effect.getEffectType() != ModEffects.BLEEDING

@@ -182,9 +182,6 @@ public class ModItems {
     public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic",
             new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));
 
-
-
-
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
 
     // Regular Spark

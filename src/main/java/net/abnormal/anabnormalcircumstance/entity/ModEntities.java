@@ -95,32 +95,23 @@ public class ModEntities {
         // Orcs
         FabricDefaultAttributeRegistry.register(
                 ModEntities.ORC_WARRIOR,
-                OrcWarriorEntity.setAttributes()
-        );
+                OrcWarriorEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(
                 ModEntities.ORC_JAVELIN_THROWER,
-                OrcJavelinThrowerEntity.createAttributes());
-
+                OrcJavelinThrowerEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(
                 ModEntities.ORC_CHAMPION,
-                OrcChampionEntity.setAttributes()
-        );
+                OrcChampionEntity.setAttributes());
 
         // Brood
         FabricDefaultAttributeRegistry.register(
                 ModEntities.BROOD_WARRIOR,
-                BroodWarriorEntity.setAttributes()
-        );
-
+                BroodWarriorEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(
                 ModEntities.BROOD_WEBBER,
-                BroodWebberEntity.setAttributes()
-        );
-
+                BroodWebberEntity.setAttributes());
         FabricDefaultAttributeRegistry.register(
                 ModEntities.BROODMOTHER,
-                BroodmotherEntity.setAttributes()
-        );
-
+                BroodmotherEntity.setAttributes());
     }
 }

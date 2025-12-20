@@ -141,6 +141,31 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
     }
 
 
+    private boolean summonedByBoss = false;
+
+    public void setSummonedByBoss(boolean value) {
+        this.summonedByBoss = value;
+    }
+
+    public boolean isSummonedByBoss() {
+        return summonedByBoss;
+    }
+
+    @Override
+    protected void dropLoot(DamageSource source, boolean causedByPlayer) {
+        if (summonedByBoss) {
+            return; // prevents ALL drops
+        }
+        super.dropLoot(source, causedByPlayer);
+    }
+
+    @Override
+    protected void dropXp() {
+        if (!summonedByBoss) {
+            super.dropXp();
+        }
+    }
+
     // Code for Climbing
 
 //    @Override
