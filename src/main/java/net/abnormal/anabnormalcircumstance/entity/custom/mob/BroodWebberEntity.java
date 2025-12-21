@@ -164,6 +164,15 @@ public class BroodWebberEntity extends HostileEntity implements GeoEntity {
         this.dataTracker.startTracking(TRAPPING, false);
     }
 
+    @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
 
     @Override
     protected SoundEvent getAmbientSound() {

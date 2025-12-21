@@ -147,6 +147,16 @@ public class BroodWarriorEntity extends HostileEntity implements GeoEntity {
         this.summonedByBoss = value;
     }
 
+    @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
     public boolean isSummonedByBoss() {
         return summonedByBoss;
     }

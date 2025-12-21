@@ -45,6 +45,16 @@ public class OrcJavelinThrowerEntity extends HostileEntity implements GeoEntity 
     }
 
     @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
+    @Override
     public boolean canTarget(LivingEntity target) {
         return super.canTarget(target) && !(target instanceof OrcJavelinThrowerEntity);
     }

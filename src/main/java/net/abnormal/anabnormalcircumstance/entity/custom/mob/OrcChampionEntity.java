@@ -87,6 +87,16 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     @Override
     public void takeKnockback(double strength, double x, double z) {}
 
+    @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
     // Damage / Healing
     @Override
     public boolean damage(DamageSource source, float amount) {

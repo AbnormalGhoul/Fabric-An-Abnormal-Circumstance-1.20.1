@@ -272,6 +272,15 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
         return result;
     }
 
+    @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
 
     // Status Handling
     @Override

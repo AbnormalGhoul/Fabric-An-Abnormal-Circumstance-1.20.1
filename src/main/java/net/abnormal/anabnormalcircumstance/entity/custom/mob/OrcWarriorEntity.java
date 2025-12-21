@@ -76,6 +76,16 @@ public class OrcWarriorEntity extends HostileEntity implements GeoEntity {
         this.tickHandSwing();
     }
 
+    @Override
+    public void checkDespawn() {
+        // Prevents natural despawning
+    }
+
+    @Override
+    public boolean cannotDespawn() {
+        return true;
+    }
+
 //    // Match animation duration to swing duration
 //    // Prevents speed-up, cut-off, and spam
 //    @Override
