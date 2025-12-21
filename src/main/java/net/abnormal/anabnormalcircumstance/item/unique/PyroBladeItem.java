@@ -39,7 +39,7 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
         player.sendMessage(Text.literal("Magma Swing!").formatted(Formatting.GOLD), true);
         World world = player.getWorld();
         Box area = player.getBoundingBox().expand(3.0);
-        for (Entity e : world.getEntitiesByClass(LivingEntity.class, area, ent -> ent != player)) {
+        for (Entity e : world.getEntitiesByClass(LivingEntity.class, area, ent -> ent != player && ent.isAlive() && !player.isTeammate(ent))) {
             LivingEntity entity = (LivingEntity) e;
             entity.damage(world.getDamageSources().magic(), 25.0F);
             entity.setOnFireFor(5);
@@ -65,18 +65,6 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
             }
         }
     }
-
-//
-//    @Override
-//    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
-//        if (world.isClient()) return;
-//        if (entity instanceof PlayerEntity player) {
-//            boolean holding = selected || player.getOffHandStack() == stack;
-//            if (holding) {
-//                player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 45, 0, true, false, true));
-//            }
-//        }
-//    }
 
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {

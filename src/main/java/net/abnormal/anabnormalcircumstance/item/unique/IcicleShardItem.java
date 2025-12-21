@@ -64,9 +64,9 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
                 player.getX() - radius, player.getY() - 2, player.getZ() - radius,
                 player.getX() + radius, player.getY() + 2, player.getZ() + radius
         );
-        // Affect nearby entities
+        // Affect nearby entities (exclude teammates)
         List<LivingEntity> nearbyEntities = world.getEntitiesByClass(LivingEntity.class, area,
-                entity -> entity != player && entity.isAlive());
+                entity -> entity != player && entity.isAlive() && !player.isTeammate(entity));
 
         for (LivingEntity target : nearbyEntities) {
             target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 60, 0, false, true, true));
@@ -104,7 +104,7 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
                     }
                 }
             }
-            return; // stop client-side execution here
+            return; // stops client-side execution
         }
 
         // Effect
