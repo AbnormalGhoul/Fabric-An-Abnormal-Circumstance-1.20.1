@@ -1,8 +1,8 @@
 package net.abnormal.anabnormalcircumstance.entity.custom.mob;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
-import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.entity.custom.projectile.HatchetProjectileEntity;
+import net.abnormal.anabnormalcircumstance.entity.goal.NearestPlayerTargetGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -12,6 +12,7 @@ import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ShieldItem;
 import net.minecraft.particle.BlockStateParticleEffect;
@@ -33,9 +34,7 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import java.util.Objects;
 import java.util.Random;
 
-/**
- * OrcChampionEntity – custom boss with 2 phases, projectile attacks, AoE stun, and boss bar.
- */
+// OrcChampionEntity – custom boss with 2 phases, projectile attacks, AoE stun, and boss bar.
 public class OrcChampionEntity extends HostileEntity implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -66,7 +65,7 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 500.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0D)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D);
     }
@@ -80,7 +79,8 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(4, new LookAroundGoal(this));
 
-        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(1, new NearestPlayerTargetGoal(this));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, IronGolemEntity.class, true));
     }
 
     // Knockback Immunity

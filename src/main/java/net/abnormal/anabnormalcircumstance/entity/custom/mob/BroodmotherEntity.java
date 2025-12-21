@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance.entity.custom.mob;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
+import net.abnormal.anabnormalcircumstance.entity.goal.SpiderTargetGoal;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -12,6 +13,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -81,6 +83,7 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         this.targetSelector.add(1, new RevengeGoal(this));
         this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
+        this.targetSelector.add(3, new SpiderTargetGoal<>(this, IronGolemEntity.class));
     }
 
     // Boss Bar Sync
