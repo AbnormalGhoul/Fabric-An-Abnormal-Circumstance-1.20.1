@@ -20,18 +20,53 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
-    // SPELL RUNE
-    ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SPELL_RUNE, 1)
-                .pattern("Q#Q")
-                .pattern("YXY")
-                .pattern("#Q#")
-                .input('X', ModItems.BOTTLED_LIGHTNING)
-                .input('#', ModItems.MANA_CLUSTER)
-                .input('Y', Items.CRYING_OBSIDIAN)
-                .input('Q', Items.ENDER_PEARL)
+        // BUDDING AMETHYST
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BUDDING_AMETHYST, 1)
+                .pattern(" # ")
+                .pattern("#X#")
+                .pattern(" # ")
+                .input('X', Items.DIAMOND_BLOCK)
+                .input('#', Items.AMETHYST_BLOCK)
                 .showNotification(true)
-                .criterion("has_mana_cluster", conditionsFromItem(ModItems.MANA_CLUSTER))
-                .offerTo(consumer, new Identifier(getRecipeName(ModItems.SPELL_RUNE)));
+                .criterion("has_amethyst_block", conditionsFromItem(Items.AMETHYST_BLOCK))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.BUDDING_AMETHYST)));
+
+        // CLAIM RUNE
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CLAIM_RUNE, 3)
+                .pattern("XQX")
+                .pattern("#Q#")
+                .pattern("#Q#")
+                .input('Q', Items.SCULK_CATALYST)
+                .input('#', Items.CRYING_OBSIDIAN)
+                .input('X', Items.WITHER_SKELETON_SKULL)
+                .showNotification(true)
+                .criterion("has_wither_skeleton_skull", conditionsFromItem(Items.WITHER_SKELETON_SKULL))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.CLAIM_RUNE)));
+
+        // ENDER CHEST
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.ENDER_CHEST, 1)
+                    .pattern("Q#Q")
+                    .pattern("#X#")
+                    .pattern("Q#Q")
+                    .input('X', Items.ECHO_SHARD)
+                    .input('#', Items.CRYING_OBSIDIAN)
+                    .input('Q', ModItems.MANA_GEM)
+                    .showNotification(true)
+                    .criterion("has_echo_shard", conditionsFromItem(Items.ECHO_SHARD))
+                    .offerTo(consumer, new Identifier(getRecipeName(Items.ENDER_CHEST)));
+
+        // SPELL RUNE
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SPELL_RUNE, 1)
+                    .pattern("Q#Q")
+                    .pattern("YXY")
+                    .pattern("#Q#")
+                    .input('X', ModItems.BOTTLED_LIGHTNING)
+                    .input('#', ModItems.MANA_CLUSTER)
+                    .input('Y', Items.CRYING_OBSIDIAN)
+                    .input('Q', Items.ENDER_PEARL)
+                    .showNotification(true)
+                    .criterion("has_mana_cluster", conditionsFromItem(ModItems.MANA_CLUSTER))
+                    .offerTo(consumer, new Identifier(getRecipeName(ModItems.SPELL_RUNE)));
 
         // CALCITE
         new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.CALCITE, 2)
@@ -62,7 +97,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_pufferfish", conditionsFromItem(Items.PUFFERFISH))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.SPONGE)));
 
-        // GREEN_DYE just cuz I feel like it
+        // GREEN_DYE
         new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.GREEN_DYE, 2)
                 .input(Items.BLUE_DYE)
                 .input(Items.YELLOW_DYE)
@@ -74,7 +109,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern(" # ")
                 .pattern("#X#")
                 .pattern(" # ")
-                .input('X', Items.ENDER_PEARL)
+                .input('X', Items.DIAMOND_BLOCK)
                 .input('#', Items.SCULK)
                 .showNotification(true)
                 .criterion("has_sculk", conditionsFromItem(Items.SCULK))
@@ -160,7 +195,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .showNotification(true)
                 .criterion("has_broodmother_egg", conditionsFromItem(ModItems.BROODMOTHER_EGG))
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.WIDOWS_GEM)));
-
 
         // SILVER ARROW
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_ARROW, 8)
@@ -253,8 +287,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .pattern(" # ")
                 .input('X', Items.NETHER_STAR)
                 .input('#', Items.NETHERITE_INGOT)
-                .input('Q', ModItems.MANA_CORE)
-                .criterion("has_mana_core", conditionsFromItem(ModItems.MANA_CORE))
+                .input('Q', ModItems.MANA_CLUSTER)
+                .criterion("has_mana_cluster", conditionsFromItem(ModItems.MANA_CLUSTER))
                 .offerTo(consumer, new Identifier("anabnormalcircumstance", "dwarven_pickaxe"));
 
         // Mana Shard

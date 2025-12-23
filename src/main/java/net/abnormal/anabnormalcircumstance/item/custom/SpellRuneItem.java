@@ -54,7 +54,7 @@ public class SpellRuneItem extends Item {
 
         // Collect Tier 4 and Tier 5 equipped spells into scroll stacks (server-side only)
         if (user instanceof ServerPlayerEntity) {
-            for (SpellTier t : new SpellTier[]{SpellTier.TIER_4, SpellTier.TIER_5}) {
+            for (SpellTier t : new SpellTier[]{SpellTier.TIER_1, SpellTier.TIER_2, SpellTier.TIER_3, SpellTier.TIER_4, SpellTier.TIER_5}) {
                 var id = slots.getSpellForTier(t);
                 if (id != null) {
                     ItemStack scrollStack = new ItemStack(ModItems.SPELL_SCROLL); // adjust name if different

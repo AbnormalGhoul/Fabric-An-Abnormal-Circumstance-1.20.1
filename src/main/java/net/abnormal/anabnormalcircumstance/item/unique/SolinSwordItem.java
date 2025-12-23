@@ -30,7 +30,7 @@ import java.util.UUID;
 public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
     private static final UUID DAMAGE_BOOST_ID = UUID.fromString("13fdd9f0-23c5-4c19-b4e2-8a7b50e1f00a");
     private static final EntityAttributeModifier DAMAGE_BOOST =
-            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 6, EntityAttributeModifier.Operation.ADDITION);
+            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 3, EntityAttributeModifier.Operation.ADDITION);
 
     public SolinSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
