@@ -27,7 +27,7 @@ import java.util.List;
 public class BloodPactSpell extends Spell {
 
     public BloodPactSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 65,60, icon, "Blood Pact", "Sacrifice 6 hearts to gain Strength III for 20 seconds. ");
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_2, 65,60, icon, "Blood Pact", "Sacrifice 6 hearts to gain Strength III for 25 seconds. ");
     }
 
     @Override
@@ -61,9 +61,9 @@ public class BloodPactSpell extends Spell {
         // Blood/fire swirl particles
         spawnBloodPactParticles(world, caster);
 
-        // Apply Strength III (amplifier = 2)
+        // Apply Strength III
         StatusEffectInstance strength =
-                new StatusEffectInstance(StatusEffects.STRENGTH, 20 * 20, 2, false, true, true);
+                new StatusEffectInstance(StatusEffects.STRENGTH, 25 * 20, 2, false, true, true);
 
         // Apply to self
         caster.addStatusEffect(strength);

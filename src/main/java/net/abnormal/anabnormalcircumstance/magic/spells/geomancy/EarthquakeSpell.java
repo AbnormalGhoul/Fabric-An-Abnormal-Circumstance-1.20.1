@@ -30,7 +30,7 @@ public class EarthquakeSpell extends Spell {
     private static final float DAMAGE = 5.0f;
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 90, icon, "Earthquake", "Shakes the ground in a wide area, damaging enemies standing on solid blocks.");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 90, icon, "Earthquake", "Shakes the ground in a wide area, weakening enemies standing on solid blocks.");
     }
 
     @Override
@@ -160,6 +160,7 @@ public class EarthquakeSpell extends Spell {
                 for (LivingEntity target : enemies) {
                     target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, true, true));
+                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 0, false, true, true));
 
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.DIRT.getDefaultState()),
