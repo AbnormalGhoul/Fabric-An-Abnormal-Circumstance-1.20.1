@@ -1,18 +1,19 @@
 package net.abnormal.anabnormalcircumstance.item.unique;
 
 import dev.emi.trinkets.api.TrinketsApi;
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueAbilityHelper;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -24,13 +25,16 @@ import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
-public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
+public class SolinSwordItem extends AxeItem implements UniqueAbilityItem {
     private static final UUID DAMAGE_BOOST_ID = UUID.fromString("13fdd9f0-23c5-4c19-b4e2-8a7b50e1f00a");
+    private static final Set<UUID> ARMED_PLAYERS = new HashSet<>();
     private static final EntityAttributeModifier DAMAGE_BOOST =
-            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 6, EntityAttributeModifier.Operation.ADDITION);
+            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 3, EntityAttributeModifier.Operation.ADDITION);
 
     public SolinSwordItem(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -43,49 +47,89 @@ public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
         boolean hasMark = TrinketsApi.getTrinketComponent(player)
                 .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
                 .orElse(false);
-
         if (!hasMark) {
-            player.sendMessage(Text.literal("You must equip the Champion's Crest to use this weapon").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(
+                    Text.literal("You must equip the Champion's Crest to use this weapon")
+                            .formatted(Formatting.DARK_RED),
+                    true
+            );
             return;
         }
-
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
+            player.sendMessage(
+                    Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"),
+                    true
+            );
             return;
         }
         if (!UniqueAbilityHelper.hasBothSolinWeapons(player)) {
-            player.sendMessage(Text.literal("You must wield both Solin weapons").formatted(Formatting.RED), true);
+            player.sendMessage(
+                    Text.literal("You must wield both Solin weapons")
+                            .formatted(Formatting.RED),
+                    true
+            );
             return;
         }
-        World world = player.getWorld();
-        // Raycast up to X blocks ahead
-        Vec3d start = player.getCameraPosVec(1.0F);
-        Vec3d direction = player.getRotationVec(1.0F);
-        Vec3d end = start.add(direction.multiply(16.0)); // max distance
-        BlockHitResult hitResult = world.raycast(new RaycastContext(
-                start,
-                end,
-                RaycastContext.ShapeType.COLLIDER,
-                RaycastContext.FluidHandling.NONE,
-                player
-        ));
-        Vec3d hitPos = hitResult.getType() == HitResult.Type.BLOCK
-                ? hitResult.getPos().subtract(direction.multiply(1.0)) // back off slightly to avoid clipping into block
-                : end;
+        // Arm next hit
+        ARMED_PLAYERS.add(player.getUuid());
+        player.getWorld().playSound(
+                null,
+                player.getBlockPos(),
+                SoundEvents.ENTITY_PLAYER_ATTACK_CRIT,
+                SoundCategory.PLAYERS,
+                1.6f,
+                1.2f
+        );
+        player.sendMessage(
+                Text.literal("Your next strike will expose the enemy!")
+                        .formatted(Formatting.GOLD),
+                true
+        );
+        // 1 minute cooldown
+        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
+    }
 
-        var targetBlockPos = net.minecraft.util.math.BlockPos.ofFloored(hitPos);
-        // Ensure target position is safe (not inside a solid block)
-        if (!world.getBlockState(targetBlockPos).getCollisionShape(world, targetBlockPos).isEmpty()) {
-            player.sendMessage(Text.literal("Can't teleport there!").formatted(Formatting.RED), true);
-            return;
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (!attacker.getWorld().isClient()
+                && attacker instanceof PlayerEntity player) {
+            UUID uuid = player.getUuid();
+            if (ARMED_PLAYERS.contains(uuid)) {
+                // Apply Vulnerability I for 20 seconds
+                target.addStatusEffect(
+                        new StatusEffectInstance(
+                                ModEffects.VULNERABILITY,
+                                20 * 20,
+                                0,
+                                false,
+                                true,
+                                true
+                        )
+                );
+                target.addStatusEffect(
+                        new StatusEffectInstance(
+                                StatusEffects.GLOWING,
+                                20 * 20,
+                                0,
+                                false,
+                                true,
+                                true
+                        )
+                );
+                attacker.getWorld().playSound(
+                        null,
+                        target.getBlockPos(),
+                        SoundEvents.ITEM_TRIDENT_HIT,
+                        SoundCategory.PLAYERS,
+                        1.2f,
+                        0.9f
+                );
+                ARMED_PLAYERS.remove(uuid);
+            }
         }
-        // Teleport the player
-        player.requestTeleport(hitPos.x, hitPos.y, hitPos.z);
-        world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, 5.0f, 1.0f);
 
-        player.sendMessage(Text.literal("Teleport!").formatted(Formatting.GOLD), true);
-        UniqueItemCooldownManager.setCooldown(player, 45 * 1000);
+        return super.postHit(stack, target, attacker);
     }
 
     @Override
@@ -110,7 +154,7 @@ public class SolinSwordItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Increased damage while both Blades are held together").formatted(net.minecraft.util.Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Instant short teleport").formatted(net.minecraft.util.Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 45s").formatted(net.minecraft.util.Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Inflict Vulnerability onto next hit").formatted(net.minecraft.util.Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1min").formatted(net.minecraft.util.Formatting.GRAY));
     }
 }

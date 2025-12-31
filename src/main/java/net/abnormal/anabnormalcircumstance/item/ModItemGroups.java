@@ -33,6 +33,7 @@ public class ModItemGroups {
                         entries.add(ModItems.GEO_BLADE);
 
                         // Other Tools
+                        entries.add(ModItems.EXTENDO_GRIP);
                         entries.add(ModItems.DWARVEN_PICKAXE);
                         entries.add(ModItems.KARAMBIT);
                         entries.add(ModItems.SILVER_ARROW);
@@ -51,6 +52,10 @@ public class ModItemGroups {
 
                         // Carcan Item
                         entries.add(ModItems.CRAB_CLAW);
+
+                        // Relic
+                        entries.add(ModItems.ABNORMAL_RELIC);
+                        entries.add(ModItems.TRANSMOG_TOKEN);
 
                     }).build());
 
@@ -162,9 +167,9 @@ public class ModItemGroups {
 
 
                         // Aeromancy Spells
-                        ItemStack lightAsAFeatherScroll = new ItemStack(ModItems.SPELL_SCROLL);
-                        lightAsAFeatherScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_light_as_a_feather");
-                        entries.add(lightAsAFeatherScroll);
+                        ItemStack swiftStepScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        swiftStepScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_swift_step");
+                        entries.add(swiftStepScroll);
 
                         ItemStack updraftsScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         updraftsScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_updrafts");
@@ -173,6 +178,10 @@ public class ModItemGroups {
                         ItemStack soaringStrideScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         soaringStrideScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_soaring_stride");
                         entries.add(soaringStrideScroll);
+
+                        ItemStack fleetFootScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        fleetFootScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_fleet_foot");
+                        entries.add(fleetFootScroll);
 
                         ItemStack silentStepScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         silentStepScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:aero_silent_step");
@@ -197,10 +206,6 @@ public class ModItemGroups {
             new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_dungeon_loot_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_dungeon_loot"))
                     .icon(() -> new ItemStack(ModItems.HYDRO_CATALYST)).entries((displayContext, entries) -> {
-
-                        // Relic
-                        entries.add(ModItems.ABNORMAL_RELIC);
-                        entries.add(ModItems.CLAIM_BYPASS);
 
                         // Currency
                         entries.add(ModItems.PLATINUM_COIN);

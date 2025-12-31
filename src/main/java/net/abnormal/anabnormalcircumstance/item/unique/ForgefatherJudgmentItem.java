@@ -7,7 +7,6 @@ import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -23,14 +22,9 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityItem {
-
-    private static final Set<UUID> primedPlayers = new HashSet<>();
 
     public ForgefatherJudgmentItem(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -69,28 +63,15 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_TRIDENT_THUNDER, SoundCategory.PLAYERS, 5.0f, 1.0f);
 
         // Apply effects
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3, false, true, true)); // 5s
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, true, true)); // 10s
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 200, 1, false, true, true)); // 10s
-
-        // Schedule removal after 5 seconds (100 ticks)
-        world.getServer().execute(() -> {
-            world.getServer().submit(() -> {
-                try {
-                    Thread.sleep(5000);
-                } catch (InterruptedException ignored) {}
-            });
-        });
-
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3, false, true, true));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, true, true));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 200, 1, false, true, true));
 
         player.sendMessage(Text.literal("You are overcharged with divine power!").formatted(Formatting.GOLD, Formatting.BOLD), true);
 
         // 1 minute cooldown
         UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
     }
-
-
-
 
     // Passive: Grants haste 2 while held
     @Override

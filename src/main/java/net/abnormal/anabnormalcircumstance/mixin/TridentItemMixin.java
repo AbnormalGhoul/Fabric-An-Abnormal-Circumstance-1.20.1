@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(TridentItem.class)
 public abstract class TridentItemMixin {
     @Unique
-    private static final int COOLDOWN_TICKS = 10 * 20; // 15 seconds
+    private static final int COOLDOWN_TICKS = 2 * 20;
 
     @Inject(method = "use(Lnet/minecraft/world/World;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;)Lnet/minecraft/util/TypedActionResult;", at = @At("TAIL"))
     private void onUse(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {

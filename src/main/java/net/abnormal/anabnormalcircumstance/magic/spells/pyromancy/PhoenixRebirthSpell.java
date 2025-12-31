@@ -18,7 +18,7 @@ public class PhoenixRebirthSpell extends Spell {
     public PhoenixRebirthSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.PYROMANCY, SpellTier.TIER_4,
                 100,        // Mana cost
-                5 * 60, // Cooldown (5 min)
+                10 * 60, // Cooldown (5 min)
                 icon,
                 "Phoenix Rebirth",
                 "Embrace the flames of immortality, upon death you will rise again from the ashes. Also grants strength III.");

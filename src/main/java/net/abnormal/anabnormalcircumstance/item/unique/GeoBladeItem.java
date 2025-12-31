@@ -6,6 +6,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.AxeItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
@@ -18,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
+public class GeoBladeItem extends AxeItem implements UniqueAbilityItem {
     private static final String IMMUNITY_KEY = "geomancy_immunity";
 
     public GeoBladeItem(ToolMaterial material, int attackDamage, float attackSpeed, Settings settings) {
@@ -53,6 +54,7 @@ public class GeoBladeItem extends SwordItem implements UniqueAbilityItem {
         if (entity instanceof PlayerEntity player) {
             if (player.getMainHandStack() == stack) {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 45, 0, true, false, true));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 45, 1, true, false, true));
             }
         }
     }

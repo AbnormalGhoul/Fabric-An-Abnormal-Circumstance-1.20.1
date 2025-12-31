@@ -8,13 +8,13 @@
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
     "#": { "item": "anabnormalcircumstance:mana_gem" },
-    "Q": { "item": "minecraft:magma_block" },
-    "Z": { "item": "anabnormalcircumstance:orc_hide" },
-    "T": { "item": "minecraft:fire_charge" }
+    "Z": { "item": "minecraft:phantom_membrane" },
+    "Q": { "item": "anabnormalcircumstance:arachnid_silk" },
+    "T": { "item": "minecraft:sugar" }
   },
   "result": {
     "item": "anabnormalcircumstance:spell_scroll",
     "count": 1,
-    "nbt": "{spell_id:\"anabnormalcircumstance:pyro_blood_pact\"}"
+    "nbt": "{spell_id:\"anabnormalcircumstance:aero_fleet_foot\"}"
   }
 }

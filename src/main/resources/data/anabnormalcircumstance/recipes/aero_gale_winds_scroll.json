@@ -1,13 +1,13 @@
 {
   "type": "anabnormalcircumstance:spell_scroll",
   "pattern": [
-    "QZQ",
-    "#X#",
+    "Q#Q",
+    "ZXZ",
     "QTQ"
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
-    "Z": { "item": "anabnormalcircumstance:mana_core" },
+    "Z": { "item": "anabnormalcircumstance:mana_cluster" },
     "#": { "item": "anabnormalcircumstance:broodmother_egg" },
     "Q": { "item": "anabnormalcircumstance:bottled_lightning" },
     "T": { "item": "minecraft:ender_pearl" }

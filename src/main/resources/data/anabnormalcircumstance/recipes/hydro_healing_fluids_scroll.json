@@ -1,15 +1,15 @@
 {
   "type": "anabnormalcircumstance:spell_scroll",
   "pattern": [
-    "QZQ",
-    "#X#",
+    "Q#Q",
+    "ZXZ",
     "QTQ"
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
     "#": { "item": "anabnormalcircumstance:broodmother_egg" },
     "Q": { "item": "minecraft:sea_lantern" },
-    "Z": { "item": "anabnormalcircumstance:mana_core" },
+    "Z": { "item": "anabnormalcircumstance:mana_cluster" },
     "T": { "item": "minecraft:heart_of_the_sea" }
   },
   "result": {

@@ -31,7 +31,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
 
         // Weapons
-        itemModelGenerator.register(ModItems.CLAIM_BYPASS, Models.GENERATED);
+        itemModelGenerator.register(ModItems.TRANSMOG_TOKEN, Models.GENERATED);
         itemModelGenerator.register(ModItems.DWARVEN_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.CRAB_CLAW, Models.HANDHELD);
         itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
@@ -40,6 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.LEADERS_CREST, Models.GENERATED);
         itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.HYDRO_BLADE, Models.HANDHELD);

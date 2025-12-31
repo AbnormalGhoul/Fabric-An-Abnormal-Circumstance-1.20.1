@@ -18,6 +18,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.Identifier;
 
 public class AnAbnormalCircumstanceClient implements ClientModInitializer {
     @Override
@@ -40,6 +44,23 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
         PacketHandlerClient.register();
+
+        // Transmog Predicate Registration junk
+//        for (Item item : Registries.ITEM) {
+//            Identifier id = Registries.ITEM.getId(item);
+//
+//            ModelPredicateProviderRegistry.register(
+//                    item,
+//                    new Identifier("transmog"),
+//                    (stack, world, entity, seed) -> {
+//                        if (stack.hasNbt() && stack.getNbt().contains("TransmogItem")) {
+//                            return 1.0F;
+//                        }
+//                        return 0.0F;
+//                    }
+//            );
+//        }
+
     }
 
     private void onClientTick(MinecraftClient client) {

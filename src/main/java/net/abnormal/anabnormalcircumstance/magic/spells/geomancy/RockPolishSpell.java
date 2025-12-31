@@ -34,7 +34,7 @@ public class RockPolishSpell extends Spell {
         world.playSound(null, caster.getBlockPos(), SoundEvents.BLOCK_STONE_PLACE, SoundCategory.PLAYERS, 2.0f, 0.8f);
         world.playSound(null, caster.getBlockPos(), SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.PLAYERS, 1.5f, 1.1f);
 
-        // 🌫Particle: stone dust and ash swirling around caster
+        // Particle: stone dust and ash swirling around caster
         spawnAuraParticles(world, caster);
 
         // Grant Resistance II (amplifier 1) for 15 seconds to allies in radius

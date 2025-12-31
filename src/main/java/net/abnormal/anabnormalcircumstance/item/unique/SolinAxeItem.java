@@ -9,10 +9,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AxeItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -30,7 +27,7 @@ import java.util.UUID;
 public class SolinAxeItem extends AxeItem implements UniqueAbilityItem {
     private static final UUID DAMAGE_BOOST_ID = UUID.fromString("13fdd9f0-23c5-4c19-b4e2-8a7b50e1f00a");
     private static final EntityAttributeModifier DAMAGE_BOOST =
-            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 6, EntityAttributeModifier.Operation.ADDITION);
+            new EntityAttributeModifier(DAMAGE_BOOST_ID, "Solin Dual Wield Boost", 3, EntityAttributeModifier.Operation.ADDITION);
 
     public SolinAxeItem(ToolMaterial material, int attackDamage, float attackSpeed, Item.Settings settings) {
         super(material, attackDamage, attackSpeed, settings);
@@ -93,7 +90,7 @@ public class SolinAxeItem extends AxeItem implements UniqueAbilityItem {
         if (entity instanceof PlayerEntity player) {
             boolean bothEquipped = UniqueAbilityHelper.hasBothSolinWeapons(player);
 
-            // Add +6 damage if both weapons are equipped
+            // Add +3 damage if both weapons are equipped
             var attr = player.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
             if (attr != null) {
                 boolean hasBoost = attr.getModifier(DAMAGE_BOOST_ID) != null;

@@ -3,7 +3,7 @@
   "display": {
     "title": {"text":"Slayer of the Winter"},
     "description": {"text":"Slay the Champion of Overn."},
-    "icon": { "item": "anabnormalcircumstance:will_breaker" },
+    "icon": { "item": "anabnormalcircumstance:icicle_shard" },
     "frame": "challenge",
     "show_toast": true,
     "announce_to_chat": true,

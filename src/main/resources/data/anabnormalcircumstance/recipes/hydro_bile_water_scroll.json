@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
-    "#": { "item": "anabnormalcircumstance:mana_cluster" },
+    "#": { "item": "anabnormalcircumstance:mana_gem" },
     "Z": { "item": "minecraft:nautilus_shell" },
     "Q": { "item": "anabnormalcircumstance:arachnid_silk" },
     "T": { "item": "minecraft:mud" }

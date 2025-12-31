@@ -45,7 +45,9 @@ public class CleansingFluidsSpell extends Spell {
 
         for (LivingEntity target : targets) {
             removeNegativeEffects(target);
+            removeMovementBuffs(target);
         }
+
 
         // Give caster 4 absorption hearts (8 health)
         caster.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 20 * 60, 1, false, false, true));
@@ -85,4 +87,10 @@ public class CleansingFluidsSpell extends Spell {
             world.spawnParticles(ParticleTypes.SPLASH, x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
         }
     }
+
+    private void removeMovementBuffs(LivingEntity entity) {
+        entity.removeStatusEffect(StatusEffects.JUMP_BOOST);
+        entity.removeStatusEffect(StatusEffects.SLOW_FALLING);
+    }
+
 }

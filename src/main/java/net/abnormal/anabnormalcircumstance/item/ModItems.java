@@ -22,17 +22,17 @@ public class ModItems {
     public static final Item WIDOWS_GEM = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "widows_gem"),
-            new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE))
+            new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
     public static final Item CHAMPIONS_CREST = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "champions_crest"),
-            new ChampionsCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
+            new ChampionsCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof())
     );
     public static final Item LEADERS_CREST = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "leaders_crest"),
-            new LeadersCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC))
+            new LeadersCrestItem(new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof())
     );
 
     // Spawn Eggs
@@ -63,11 +63,14 @@ public class ModItems {
     // Magic Items
     public static final Item SPELL_SCROLL = registerItem("spell_scroll", new SpellScrollItem(new Item.Settings().maxCount(16)));
     public static final Item SPELL_RUNE   = registerItem("spell_rune", new SpellRuneItem(new Item.Settings()));
+    public static final Item SILVER_ARROW = registerItem("silver_arrow", new SilverArrowItem(new Item.Settings()));
 
     // Weapons
     public static final Item KARAMBIT = registerItem("karambit",
-            new KarambitItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
-    public static final Item SILVER_ARROW = registerItem("silver_arrow", new SilverArrowItem(new Item.Settings()));
+            new KarambitItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof()));
+
+    public static final Item EXTENDO_GRIP = registerItem("extendo_grip",
+            new ExtendoGripItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof()));
 
     // Blades
     public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(
@@ -78,8 +81,8 @@ public class ModItems {
             ));
     public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(
             ModToolMaterials.UNIQUE,
-            8,
-            -2.4f,
+            10,
+            -3.0f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item HYDRO_BLADE = registerItem("hydro_blade", new HydroBladeItem(
@@ -118,8 +121,8 @@ public class ModItems {
     ));
     public static final Item WHITE_SOLIN_BLADE = registerItem("white_solin_blade", new SolinAxeItem(
             ModToolMaterials.UNIQUE,
-            11,
-            -3f,
+            9,
+            -2.4f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item REEDTHORN = registerItem("reedthorn", new ReedthornItem(
@@ -178,7 +181,7 @@ public class ModItems {
     public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
     public static final Item NATION_RUNE = registerItem("nation_rune", new Item(new Item.Settings()));
-    public static final Item CLAIM_BYPASS = registerItem("claim_bypass", new Item(new Item.Settings()));
+    public static final Item TRANSMOG_TOKEN = registerItem("transmog_token", new TransmogTokenItem(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
     public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic",
             new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));
 

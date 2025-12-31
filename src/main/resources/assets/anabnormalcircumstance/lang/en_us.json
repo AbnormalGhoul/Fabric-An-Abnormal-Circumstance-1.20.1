@@ -38,6 +38,8 @@
   "effect.anabnormalcircumstance.bitten.desc": "Natural regeneration is disabled",
   "effect.anabnormalcircumstance.phoenix_fire": "Phoenix Fire",
   "effect.anabnormalcircumstance.phoenix_fire.desc": "Upon death you will rise again from the ashes",
+  "effect.anabnormalcircumstance.vulnerability": "Vulnerability",
+  "effect.anabnormalcircumstance.vulnerability.desc": "You take 10% more damage per level",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
@@ -63,8 +65,8 @@
   "item.anabnormalcircumstance.first_leaf": "The First Leaf",
   "item.anabnormalcircumstance.forgefather_judgment": "Forgefather's Judgment",
   "item.anabnormalcircumstance.will_breaker": "Will Breaker",
-  "item.anabnormalcircumstance.black_solin_blade": "Black Solin Blade",
-  "item.anabnormalcircumstance.white_solin_blade": "White Solin Blade",
+  "item.anabnormalcircumstance.black_solin_blade": "Black Solin Saber",
+  "item.anabnormalcircumstance.white_solin_blade": "White Solin Saber",
   "item.anabnormalcircumstance.icicle_shard": "Icicle Shard",
   "item.anabnormalcircumstance.reedthorn": "Reedthorn",
 
@@ -102,7 +104,7 @@
   "item.anabnormalcircumstance.geo_essence": "Geomancy Essence",
   "item.anabnormalcircumstance.aero_essence": "Aeromancy Essence",
 
-  "item.anabnormalcircumstance.claim_bypass": "Claim Bypass",
+  "item.anabnormalcircumstance.transmog_token": "Transmog Token",
 
   "item.anabnormalcircumstance.orc_champion_soul": "Orc Soul",
   "item.anabnormalcircumstance.broodmother_soul": "Broodmother Soul",
@@ -121,6 +123,8 @@
   "item.anabnormalcircumstance.claim_rune": "Claim Rune",
   "item.anabnormalcircumstance.origin_rune": "Origin Rune",
   "item.anabnormalcircumstance.spell_rune": "Spell Rune",
+  "item.anabnormalcircumstance.extendo_grip": "Extendo Grip",
+
 
   "item.anabnormalcircumstance.awkward_spark": "Awkward Spark",
   "item.anabnormalcircumstance.water_spark": "Water Spark",

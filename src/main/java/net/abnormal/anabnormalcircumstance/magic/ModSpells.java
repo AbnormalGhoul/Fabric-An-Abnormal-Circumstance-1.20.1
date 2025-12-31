@@ -46,7 +46,9 @@ public class ModSpells {
 
         // Aeromancy
         SpellRegistry.register(new LightAsAFeatherSpell(id("aero_light_as_a_feather"), icon("aero_icon")));
+        SpellRegistry.register(new SwiftStepSpell(id("aero_swift_step"), icon("aero_icon")));
         SpellRegistry.register(new SoaringStrideSpell(id("aero_soaring_stride"), icon("aero_icon")));
+        SpellRegistry.register(new FleetFootSpell(id("aero_fleet_foot"), icon("aero_icon")));
         SpellRegistry.register(new SilentStepSpell(id("aero_silent_step"), icon("aero_icon")));
         SpellRegistry.register(new UpdraftsSpell(id("aero_updrafts"), icon("aero_icon")));
         SpellRegistry.register(new GaleWindsSpell(id("aero_gale_winds"), icon("aero_icon")));

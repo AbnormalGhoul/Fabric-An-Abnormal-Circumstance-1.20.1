@@ -39,7 +39,8 @@ public class FlameChargeSpell extends Spell {
         if (ACTIVE.containsKey(caster.getUuid())) return false;
 
         // Calculate dash direction
-        Vec3d direction = caster.getRotationVector().normalize().multiply(1.5); // dash speed
+        Vec3d direction = caster.getRotationVector();
+        direction = new Vec3d(direction.x, 0.0, direction.z).normalize().multiply(1.0);
 
         // Store dash data
         ACTIVE.put(caster.getUuid(), new FlameChargeData(

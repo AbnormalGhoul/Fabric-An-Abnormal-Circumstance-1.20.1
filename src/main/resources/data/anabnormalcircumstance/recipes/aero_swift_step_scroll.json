@@ -6,7 +6,7 @@
     "QTQ"
   ],
   "key": {
-    "#": { "item": "anabnormalcircumstance:mana_gem" },
+    "#": { "item": "anabnormalcircumstance:mana_shard" },
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
     "Q": { "item": "minecraft:white_wool" },
     "Z": { "item": "minecraft:phantom_membrane" },
@@ -15,6 +15,6 @@
   "result": {
     "item": "anabnormalcircumstance:spell_scroll",
     "count": 1,
-    "nbt": "{spell_id:\"anabnormalcircumstance:aero_light_as_a_feather\"}"
+    "nbt": "{spell_id:\"anabnormalcircumstance:aero_swift_step\"}"
   }
 }
