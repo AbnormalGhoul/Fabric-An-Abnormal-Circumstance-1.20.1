@@ -18,7 +18,7 @@ public class PhoenixRebirthSpell extends Spell {
     public PhoenixRebirthSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.PYROMANCY, SpellTier.TIER_4,
                 100,        // Mana cost
-                10 * 60, // Cooldown (5 min)
+                20 * 60,
                 icon,
                 "Phoenix Rebirth",
                 "Embrace the flames of immortality, upon death you will rise again from the ashes. Also grants strength III.");
@@ -31,14 +31,14 @@ public class PhoenixRebirthSpell extends Spell {
         // Apply Phoenix’s Fire (5 minutes = 6000 ticks, amplifier = 2 → 3 total lives)
         caster.addStatusEffect(new StatusEffectInstance(
                 ModEffects.PHOENIX_FIRE,
-                5 * 60 * 20,
+                3 * 60 * 20,
                 0,
                 false, false, true
         ));
 
         caster.addStatusEffect(new StatusEffectInstance(
                 StatusEffects.FIRE_RESISTANCE,
-                5 * 60 * 20,
+                3 * 60 * 20,
                 0,
                 false, false, true
         ));

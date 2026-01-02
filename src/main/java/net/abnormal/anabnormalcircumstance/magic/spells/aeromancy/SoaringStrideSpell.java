@@ -24,7 +24,7 @@ import java.util.Map;
 public class SoaringStrideSpell extends Spell {
 
     private static final int MANA_COST = 40;
-    private static final int COOLDOWN_TICKS = 100; // 100 seconds
+    private static final int COOLDOWN_TICKS = 35; // 100 seconds
     private static final int FALL_IMMUNITY_TICKS = 20 * 10; // 10 seconds
 
     // Track which players are currently immune to fall damage

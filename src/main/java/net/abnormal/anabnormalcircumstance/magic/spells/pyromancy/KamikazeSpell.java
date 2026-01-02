@@ -29,7 +29,7 @@ public class KamikazeSpell extends Spell {
     private static final double RADIUS = 3.0;
 
     public KamikazeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 100, (20 * 60 * 15), icon,
+        super(id, SpellElement.PYROMANCY, SpellTier.TIER_3, 100, (60 * 15), icon,
                 "Kamikaze", "Sacrifice yourself in a fiery explosion that devastates nearby foes.");
     }
 
