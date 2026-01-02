@@ -1,15 +1,15 @@
 {
   "type": "anabnormalcircumstance:spell_scroll",
   "pattern": [
-    "Q#Q",
-    "ZXZ",
-    "QTQ"
+    "QZQ",
+    "TXT",
+    "Q#Q"
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
     "#": { "item": "anabnormalcircumstance:orc_champion_fang" },
     "Q": { "item": "minecraft:glowstone" },
-    "Z": { "item": "anabnormalcircumstance:mana_cluster" },
+    "Z": { "item": "anabnormalcircumstance:mana_core" },
     "T": { "item": "minecraft:blaze_rod" }
   },
   "result": {

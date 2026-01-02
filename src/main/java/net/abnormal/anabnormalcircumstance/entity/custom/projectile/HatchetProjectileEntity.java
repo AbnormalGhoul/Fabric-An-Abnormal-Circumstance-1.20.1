@@ -24,7 +24,7 @@ public class HatchetProjectileEntity extends PersistentProjectileEntity implemen
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     private boolean inGround = false;
-    private int despawnCounter = 6000;
+    private int despawnCounter = 20 * 60;
 
     public HatchetProjectileEntity(EntityType<? extends HatchetProjectileEntity> type, World world) {
         super(type, world);

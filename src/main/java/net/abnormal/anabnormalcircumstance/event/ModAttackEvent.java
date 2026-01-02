@@ -14,15 +14,13 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class ModAttackEvent {
-    // Karambit modifier
+    private static final UUID ICICLE_UUID = UUID.fromString("e9a17ef3-4280-4e9b-9a37-f0d4517e6e22");
+    private static final EntityAttributeModifier ICICLE_MODIFIER =
+            new EntityAttributeModifier(ICICLE_UUID, "Icicle Shard Offhand Bonus", 3.0, EntityAttributeModifier.Operation.ADDITION);
+
     private static final UUID KARAMBIT_UUID = UUID.fromString("b43d1224-1f2a-4a2b-8de8-3e6a5a7a44c2");
     private static final EntityAttributeModifier KARAMBIT_MODIFIER =
-            new EntityAttributeModifier(
-                    KARAMBIT_UUID,
-                    "Karambit Offhand Bonus",
-                    3.0,
-                    EntityAttributeModifier.Operation.ADDITION
-            );
+            new EntityAttributeModifier(KARAMBIT_UUID, "Karambit Offhand Bonus", 3.0, EntityAttributeModifier.Operation.ADDITION);
 
     public static void register() {
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
@@ -30,22 +28,21 @@ public class ModAttackEvent {
                 ItemStack offhandStack = player.getOffHandStack();
 
                 if (offhandStack.isOf(ModItems.KARAMBIT)) {
-                    handleDamageBonus(player, world);
+                    handleDamageBonus(player, world, KARAMBIT_UUID, KARAMBIT_MODIFIER);
+                } else if (offhandStack.isOf(ModItems.ICICLE_SHARD)) {
+                    handleDamageBonus(player, world, ICICLE_UUID, ICICLE_MODIFIER);
                 }
             }
             return ActionResult.PASS;
         });
     }
 
-    private static void handleDamageBonus(PlayerEntity player, World world) {
+    private static void handleDamageBonus(PlayerEntity player, World world, UUID id, EntityAttributeModifier modifier) {
         var instance = player.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE);
         if (instance != null) {
-            // Remove existing modifier (by UUID)
-            instance.removeModifier(KARAMBIT_UUID);
-            instance.addTemporaryModifier(KARAMBIT_MODIFIER);
-
-            // Schedule its removal right after this tick
-            Objects.requireNonNull(world.getServer()).execute(() -> instance.removeModifier(KARAMBIT_UUID));
+            instance.removeModifier(id);
+            instance.addTemporaryModifier(modifier);
+            Objects.requireNonNull(world.getServer()).execute(() -> instance.removeModifier(id));
         }
     }
 }

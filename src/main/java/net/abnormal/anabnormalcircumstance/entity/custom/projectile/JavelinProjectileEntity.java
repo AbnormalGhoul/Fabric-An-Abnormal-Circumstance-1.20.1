@@ -30,7 +30,7 @@ public class JavelinProjectileEntity extends PersistentProjectileEntity implemen
     }
 
     private boolean inGround = false;
-    private int despawnCounter = 6000; // 5 minutes (20 ticks * 60 * 5)
+    private int despawnCounter = 20 * 60; // 5 minutes (20 ticks * 60 * 5)
 
     public int getDespawnCounter() {
         return despawnCounter;

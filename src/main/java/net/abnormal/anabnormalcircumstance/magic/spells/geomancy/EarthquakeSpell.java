@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance.magic.spells.geomancy;
 
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
@@ -24,13 +25,13 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EarthquakeSpell extends Spell {
-    private static final int DURATION_TICKS = 300; // 15s (300 ticks)
+    private static final int DURATION_TICKS = 20 * 45;
     private static final int DAMAGE_INTERVAL = 20; // every 1s
-    private static final double RADIUS = 15.0;
-    private static final float DAMAGE = 5.0f;
+    private static final double RADIUS = 16.0;
+    private static final float DAMAGE = 20.0f;
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 50, 90, icon, "Earthquake", "Shakes the ground in a wide area, weakening enemies standing on solid blocks.");
+        super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 90, icon, "Earthquake", "Shakes the ground in a wide area, weakening enemies standing on solid blocks.");
     }
 
     @Override
@@ -161,6 +162,8 @@ public class EarthquakeSpell extends Spell {
                     target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, true, true));
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 0, false, true, true));
+                    target.addStatusEffect(new StatusEffectInstance(ModEffects.VULNERABILITY, 60, 0, false, true, true));
+                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, false, true, true));
 
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.DIRT.getDefaultState()),

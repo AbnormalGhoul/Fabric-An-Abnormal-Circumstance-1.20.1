@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance.magic.spells.geomancy;
 
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
@@ -7,6 +8,8 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -20,8 +23,8 @@ import net.minecraft.util.math.Vec3d;
 import java.util.*;
 
 public class SeismicCrownSpell extends Spell {
-    private static final double RADIUS = 1.0;
-    private static final int DAMAGE = 15;
+    private static final double RADIUS = 2.0;
+    private static final int DAMAGE = 25;
     private static final int DURATION_TICKS = 10 * 20; // 10 seconds
     private static final double KNOCKBACK_STRENGTH = 0.6;
 
@@ -121,7 +124,9 @@ public class SeismicCrownSpell extends Spell {
                     center.x + RADIUS, center.y + 2, center.z + RADIUS
             );
 
-            List<Entity> entities = world.getOtherEntities(caster, area, e -> e instanceof LivingEntity && e.isAlive() && !caster.isTeammate(e));
+            List<Entity> entities = world.getOtherEntities(caster, area,
+                    e -> e instanceof LivingEntity && e.isAlive() && !caster.isTeammate(e));
+
             for (Entity entity : entities) {
                 if (entity instanceof LivingEntity target) {
                     // Damage
@@ -133,14 +138,33 @@ public class SeismicCrownSpell extends Spell {
                     target.velocityModified = true;
 
                     // Impact sound and debris burst
-                    world.playSound(null, caster.getBlockPos(), SoundEvents.BLOCK_STONE_HIT, SoundCategory.PLAYERS, 1.0f, 0.8f);
+                    world.playSound(null, caster.getBlockPos(),
+                            SoundEvents.BLOCK_STONE_HIT, SoundCategory.PLAYERS, 1.0f, 0.8f);
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.COBBLESTONE.getDefaultState()),
                             target.getX(), target.getY() + 0.5, target.getZ(),
                             15, 0.3, 0.3, 0.3, 0.1
                     );
+
+                    // Apply effect
+                    target.addStatusEffect(new StatusEffectInstance(
+                            StatusEffects.SLOWNESS,
+                            100,
+                            1,
+                            false,
+                            true
+                    ));
+
+                    target.addStatusEffect(new StatusEffectInstance(
+                            ModEffects.VULNERABILITY,
+                            30,
+                            0,
+                            false,
+                            true
+                    ));
                 }
             }
         }
+
     }
 }

@@ -5,14 +5,16 @@ import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
+import net.fabric_extras.ranged_weapon.api.CustomBow;
+import net.fabric_extras.ranged_weapon.api.RangedConfig;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -22,11 +24,18 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class FirstLeafBowItem extends BowItem implements UniqueAbilityItem {
+public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
     private static final String PRIMED_ARROW_KEY = "FirstLeafPrimedArrow";
 
+    @SuppressWarnings("deprecation")
     public FirstLeafBowItem(Settings settings) {
-        super(settings);
+        super(settings, () -> Ingredient.EMPTY);
+
+        this.config(new RangedConfig(
+                10,   // pull time (2x faster)
+                12.0F,   // damage (2x vanilla)
+                3.0F  // projectile velocity
+        ));
     }
 
     public static void applyStun(LivingEntity target) {

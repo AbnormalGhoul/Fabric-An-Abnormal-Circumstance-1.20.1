@@ -31,6 +31,7 @@ public class ModSpells {
         SpellRegistry.register(new FlameChargeSpell(id("pyro_flame_charge"), icon("pyro_icon")));
         SpellRegistry.register(new PyroclasmWaveSpell(id("pyro_pyroclasm_wave"), icon("pyro_icon")));
         SpellRegistry.register(new BloodPactSpell(id("pyro_blood_pact"), icon("pyro_icon")));
+        SpellRegistry.register(new KamikazeSpell(id("pyro_kamikaze"), icon("pyro_icon")));
         SpellRegistry.register(new PhoenixRebirthSpell(id("pyro_phoenix_rebirth"), icon("pyro_icon")));
         SpellRegistry.register(new MoltenFurySpell(id("pyro_molten_fury"), icon("pyro_icon")));
 

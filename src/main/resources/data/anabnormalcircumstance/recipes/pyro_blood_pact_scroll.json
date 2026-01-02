@@ -7,7 +7,7 @@
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
-    "#": { "item": "anabnormalcircumstance:mana_gem" },
+    "#": { "item": "anabnormalcircumstance:mana_cluster" },
     "Q": { "item": "minecraft:magma_block" },
     "Z": { "item": "anabnormalcircumstance:orc_hide" },
     "T": { "item": "minecraft:fire_charge" }

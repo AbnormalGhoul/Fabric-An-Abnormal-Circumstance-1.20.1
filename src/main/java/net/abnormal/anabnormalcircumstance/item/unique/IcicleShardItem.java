@@ -13,18 +13,20 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
 public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityItem {
-
 
     public IcicleShardItem(Settings settings, int coolDownTicks, int enchantability, Item... repairItems) {
         super(settings, coolDownTicks, enchantability, repairItems);
@@ -45,81 +47,106 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
+            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.WHITE), true);
             return;
         }
-        World world = player.getWorld();
 
-        world.playSound(
-                null,
-                player.getBlockPos(),
-                SoundEvents.ENTITY_WARDEN_DEATH,
-                SoundCategory.PLAYERS,
-                5.0f,
-                1.2f
-        );
-        player.sendMessage(Text.literal("Freeze!").formatted(Formatting.GOLD), true);
-        double radius = 5.0;
+        World world = player.getWorld();
+        if (!(world instanceof ServerWorld serverWorld)) return; // must be ServerWorld for particles
+
+        double radius = 4.0;
+
+        world.playSound(null, player.getBlockPos(),
+                SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS,
+                5.0f, 1.2f);
+        player.sendMessage(Text.literal("Freeze!").formatted(Formatting.AQUA), true);
+
+        // Spawn icy ground particle circle
+        Vec3d pos = player.getPos().add(0, 0.1, 0); // slightly above ground
+        for (int i = 0; i < 64; i++) {
+            double angle = 2 * Math.PI * i / 64;
+            double x = pos.x + radius * Math.cos(angle);
+            double z = pos.z + radius * Math.sin(angle);
+            double y = pos.y;
+
+            // Snowflake particle
+            serverWorld.spawnParticles(
+                    ParticleTypes.SNOWFLAKE,
+                    x, y, z, // position
+                    1,       // count
+                    0, 0, 0, // offset
+                    0.0      // speed
+            );
+
+            // Aqua shimmer particle
+            if (serverWorld.random.nextBoolean()) {
+                serverWorld.spawnParticles(
+                        ParticleTypes.END_ROD,
+                        x, y + 0.1, z,
+                        1,
+                        0, 0, 0,
+                        0.05
+                );
+            }
+        }
+
+
+        // Apply effects to nearby entities
         Box area = new Box(
                 player.getX() - radius, player.getY() - 2, player.getZ() - radius,
                 player.getX() + radius, player.getY() + 2, player.getZ() + radius
         );
-        // Affect nearby entities (exclude teammates)
+
         List<LivingEntity> nearbyEntities = world.getEntitiesByClass(LivingEntity.class, area,
                 entity -> entity != player && entity.isAlive() && !player.isTeammate(entity));
 
         for (LivingEntity target : nearbyEntities) {
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 60, 0, false, true, true));
-            world.playSound(
-                    null,
-                    target.getBlockPos(),
-                    SoundEvents.BLOCK_GLASS_BREAK,
-                    SoundCategory.PLAYERS,
-                    1.0f,
-                    1.0f
-            );
+            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 140, 0, false, true, true));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 140, 4, false, true, true));
+
+            world.playSound(null, target.getBlockPos(),
+                    SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS,
+                    1.0f, 1.0f);
         }
+
         UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
     }
+
 
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
         if (world.isClient()) {
             if (entity instanceof PlayerEntity player) {
-                boolean holding = selected || player.getOffHandStack() == stack;
-                if (holding) {
-                    // Only spawn particles occasionally
-                    if (world.getTime() % 5 == 0) { // every 0.5s
-                        double offsetX = (world.random.nextDouble() - 0.5) * 1.2;
-                        double offsetY = world.random.nextDouble() * 1.8;
-                        double offsetZ = (world.random.nextDouble() - 0.5) * 1.2;
+                boolean holding = player.getOffHandStack() == stack;
+                if (holding && world.getTime() % 5 == 0) {
+                    double offsetX = (world.random.nextDouble() - 0.5) * 1.2;
+                    double offsetY = world.random.nextDouble() * 1.8;
+                    double offsetZ = (world.random.nextDouble() - 0.5) * 1.2;
 
-                        world.addParticle(
-                                net.minecraft.particle.ParticleTypes.SNOWFLAKE,
-                                player.getX() + offsetX,
-                                player.getY() + offsetY,
-                                player.getZ() + offsetZ,
-                                0.0, 0.02, 0.0
-                        );
-                    }
+                    world.addParticle(
+                            net.minecraft.particle.ParticleTypes.SNOWFLAKE,
+                            player.getX() + offsetX,
+                            player.getY() + offsetY,
+                            player.getZ() + offsetZ,
+                            0.0, 0.02, 0.0
+                    );
                 }
             }
-            return; // stops client-side execution
+            return;
         }
 
-        // Effect
         if (entity instanceof PlayerEntity player) {
-            boolean holding = selected || player.getOffHandStack() == stack;
-            if (holding) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 45, 1, true, false, true));
+            boolean holdingOffhand = player.getOffHandStack() == stack;
+            if (holdingOffhand) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 45, 0, true, false, true));
             }
         }
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Speed II while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Stuns all nearby Entities").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Passive: Grants Fire Resistance & +3 Damage while in Offhand").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Freezes enemies making them unable to move, however also making them immune to damage (7s)").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 }

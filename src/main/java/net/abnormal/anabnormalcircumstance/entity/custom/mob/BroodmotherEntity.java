@@ -19,6 +19,7 @@ import net.minecraft.particle.BlockStateParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -39,7 +40,7 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private static final RawAnimation IDLE = RawAnimation.begin().thenLoop("idle");
     private static final RawAnimation RUSH = RawAnimation.begin().thenLoop("rush");
-    private static final RawAnimation ATK  = RawAnimation.begin().thenPlay("atk");
+    private static final RawAnimation ATK = RawAnimation.begin().thenPlay("atk");
 
     // Boss Bar
     private final ServerBossBar bossBar =
@@ -53,8 +54,11 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     private boolean phaseTwo = false;
     private int specialAtkCooldown = 0;
     private long lastDamageTime = 0;
-    private int stunDelayTicks = -1; // -1 = inactive
+    private int stunDelayTicks = -1;
     private boolean stunTriggered = false;
+
+    // Spider spawn tracking
+    private float lastHealthCheckpoint = 0;
 
     // Constructor
     public BroodmotherEntity(EntityType<? extends HostileEntity> type, World world) {
@@ -64,7 +68,7 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     // Attributes
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 750.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 3000.0D) // doubled health
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
@@ -112,10 +116,19 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         bossBar.setPercent(this.getHealth() / this.getMaxHealth());
 
+        // Spider spawn threshold check
+        if (!this.getWorld().isClient) {
+            if (lastHealthCheckpoint == 0) lastHealthCheckpoint = this.getMaxHealth();
+            float lost = lastHealthCheckpoint - this.getHealth();
+            if (lost >= 100) {
+                spawnSpiderWave(5);
+                lastHealthCheckpoint = this.getHealth();
+            }
+        }
+
         // Stun Attack Execution
         if (stunDelayTicks >= 0) {
             stunDelayTicks--;
-
             if (stunDelayTicks == 0 && !stunTriggered) {
                 stunTriggered = true;
                 executeGroundStun();
@@ -144,7 +157,6 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         // Special Attack Cooldown
         if (specialAtkCooldown > 0) specialAtkCooldown--;
-
         if (specialAtkCooldown <= 0 && this.getTarget() != null) {
             performGroundStun();
             specialAtkCooldown = 300; // 15s
@@ -157,6 +169,31 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
         }
     }
 
+    private void spawnSpiderWave(int count) {
+        if (!(this.getWorld() instanceof ServerWorld serverWorld)) return;
+        for (int i = 0; i < count; i++) {
+            BroodWarriorEntity warrior = ModEntities.BROOD_WARRIOR.create(serverWorld);
+            if (warrior != null) {
+                double angle = i * (2 * Math.PI / count);
+                double radius = 2.0;
+                double x = getX() + Math.cos(angle) * radius;
+                double z = getZ() + Math.sin(angle) * radius;
+
+                warrior.refreshPositionAndAngles(x, getY(), z, random.nextFloat() * 360F, 0);
+                warrior.setSummonedByBoss(true);
+                serverWorld.spawnEntity(warrior);
+            }
+        }
+
+        // Particle effect to emphasize spawning
+        serverWorld.playSound(null, getBlockPos(), SoundEvents.ENTITY_SPIDER_AMBIENT, SoundCategory.HOSTILE, 1.2F, 1.2F);
+        serverWorld.spawnParticles(
+                ParticleTypes.SMOKE,
+                getX(), getY() + 1, getZ(),
+                40, 1.2, 0.4, 1.2, 0.05
+        );
+    }
+
     // Knockback Immunity
     @Override
     public void takeKnockback(double strength, double x, double z) {}
@@ -164,7 +201,6 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     // Phase Two
     private void enterPhaseTwo() {
         phaseTwo = true;
-
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             serverWorld.spawnParticles(
                     ParticleTypes.PORTAL,
@@ -173,32 +209,18 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
             );
         }
 
-        this.getWorld().getEntitiesByClass(
-                LivingEntity.class,
-                this.getBoundingBox().expand(6),
-                e -> e != this
-        ).forEach(e -> {
-            Vec3d v = e.getPos().subtract(this.getPos()).normalize();
-            e.addVelocity(v.x, 0.6, v.z);
-            e.velocityModified = true;
-        });
+        this.playSound(SoundEvents.ENTITY_ENDERMAN_SCREAM, 1.2F, 0.6F);
 
         Objects.requireNonNull(getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE))
                 .setBaseValue(getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE) * 1.5);
-
         Objects.requireNonNull(getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED))
                 .setBaseValue(getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED) * 1.5);
-
-        this.playSound(SoundEvents.ENTITY_ENDERMAN_SCREAM, 1.2F, 0.6F);
     }
 
     // AoE Stun Attack
     private void performGroundStun() {
         if (this.getWorld().isClient()) return;
-
         triggerAnim("attack", "atk");
-
-        // 1.5 seconds = 30 ticks
         this.stunDelayTicks = 30;
         this.stunTriggered = false;
     }
@@ -208,27 +230,14 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         this.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.2F, 0.8F);
 
-        // Apply stun
         Box box = this.getBoundingBox().expand(5);
         this.getWorld().getEntitiesByClass(PlayerEntity.class, box, p -> true)
-                .forEach(p ->
-                        p.addStatusEffect(
-                                new StatusEffectInstance(ModEffects.STUN, 50, 0)));
+                .forEach(p -> p.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 50, 0)));
 
-        // Stone particles
         BlockStateParticleEffect stone =
-                new BlockStateParticleEffect(
-                        ParticleTypes.BLOCK,
-                        Blocks.STONE.getDefaultState()
-                );
-
-        serverWorld.spawnParticles(
-                stone,
-                getX(), getY(), getZ(),
-                60, 2.0, 0.2, 2.0, 0.15
-        );
+                new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState());
+        serverWorld.spawnParticles(stone, getX(), getY(), getZ(), 60, 2.0, 0.2, 2.0, 0.15);
     }
-
 
     // Combat
     @Override
@@ -237,59 +246,32 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         if (hit && target instanceof LivingEntity living) {
             this.swingHand(Hand.MAIN_HAND);
+            living.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 60, 1));
 
-            // Passive poison on successful hit
-            living.addStatusEffect(
-                    new StatusEffectInstance(StatusEffects.POISON, 60, 1));
-
-            // Phase 2 confusion chance
+            // Phase 2: 15% chance to inflict Confusion for 3 seconds
             if (phaseTwo && this.random.nextFloat() < 0.15F) {
-                living.addStatusEffect(
-                        new StatusEffectInstance(ModEffects.CONFUSION, 140, 0));
+                living.addStatusEffect(new StatusEffectInstance(ModEffects.CONFUSION, 60, 0));
             }
         }
         return hit;
     }
 
+    // Damage handler (removed old spider spawn logic)
     @Override
     public boolean damage(DamageSource source, float amount) {
         lastDamageTime = this.age;
-
-        boolean result = super.damage(source, amount);
-
-        if (!this.getWorld().isClient && this.random.nextFloat() < 0.20F) {
-            BroodWarriorEntity warrior =
-                    ModEntities.BROOD_WARRIOR.create(this.getWorld());
-
-            if (warrior != null) {
-                warrior.refreshPositionAndAngles(
-                        getX(), getY(), getZ(),
-                        random.nextFloat() * 360F, 0
-                );
-
-                warrior.setSummonedByBoss(true);
-
-                this.getWorld().spawnEntity(warrior);
-            }
-        }
-        return result;
+        return super.damage(source, amount);
     }
 
     @Override
-    public void checkDespawn() {
-        // Prevents natural despawning
-    }
-
+    public void checkDespawn() {}
     @Override
-    public boolean cannotDespawn() {
-        return true;
-    }
+    public boolean cannotDespawn() { return true; }
 
     // Status Handling
     @Override
     public boolean canHaveStatusEffect(StatusEffectInstance effect) {
-        return effect.getEffectType() != ModEffects.BLEEDING
-                && super.canHaveStatusEffect(effect);
+        return effect.getEffectType() != ModEffects.BLEEDING && super.canHaveStatusEffect(effect);
     }
 
     @Override
@@ -300,11 +282,8 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     // GeckoLib Animations
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-
-        controllers.add(new AnimationController<>(this, "move", 5, event -> {
-            if (event.isMoving()) return event.setAndContinue(RUSH);
-            return event.setAndContinue(IDLE);
-        }));
+        controllers.add(new AnimationController<>(this, "move", 5, event ->
+                event.isMoving() ? event.setAndContinue(RUSH) : event.setAndContinue(IDLE)));
 
         controllers.add(new AnimationController<>(this, "attack", 0, event -> PlayState.CONTINUE)
                 .triggerableAnim("atk", ATK));

@@ -123,6 +123,10 @@ public class ModItemGroups {
                         fireballScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_fireball");
                         entries.add(fireballScroll);
 
+                        ItemStack KamikazeScroll = new ItemStack(ModItems.SPELL_SCROLL);
+                        KamikazeScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_kamikaze");
+                        entries.add(KamikazeScroll);
+
                         ItemStack phoenixRebirthScroll = new ItemStack(ModItems.SPELL_SCROLL);
                         phoenixRebirthScroll.getOrCreateNbt().putString("spell_id", "anabnormalcircumstance:pyro_phoenix_rebirth");
                         entries.add(phoenixRebirthScroll);

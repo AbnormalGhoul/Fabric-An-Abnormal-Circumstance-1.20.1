@@ -8,13 +8,13 @@
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
     "#": { "item": "anabnormalcircumstance:orc_champion_fang" },
-    "Q": { "item": "minecraft:iron_block" },
+    "Q": { "item": "minecraft:tnt" },
     "Z": { "item": "anabnormalcircumstance:mana_core" },
-    "T": { "item": "minecraft:diamond_block" }
+    "T": { "item": "minecraft:blaze_rod" }
   },
   "result": {
     "item": "anabnormalcircumstance:spell_scroll",
     "count": 1,
-    "nbt": "{spell_id:\"anabnormalcircumstance:geo_earthquake\"}"
+    "nbt": "{spell_id:\"anabnormalcircumstance:pyro_kamikaze\"}"
   }
 }

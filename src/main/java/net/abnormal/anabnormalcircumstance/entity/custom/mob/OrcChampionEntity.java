@@ -31,6 +31,7 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Random;
 
@@ -63,8 +64,8 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     // Attributes
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 500.0D)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 1000.0D)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D);
@@ -202,9 +203,7 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
 
         // Boost stats
         Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE))
-                .setBaseValue(12.0 * 1.3);
-        Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED))
-                .setBaseValue(0.25 * 1.3);
+                .setBaseValue(45.0D);
 
         this.playSound(SoundEvents.ENTITY_BLAZE_SHOOT, 1.2f, 0.8f);
     }
@@ -244,66 +243,96 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
         this.getWorld().spawnEntity(hatchet2);
     }
 
-    // ATK2 – AoE Stun
+    // ATK2 – Pyroclasm Wave (replaces old stun ability)
     private void performAtk2() {
         if (this.getWorld().isClient()) return;
+        ServerWorld world = (ServerWorld) this.getWorld();
 
         triggerAnim("attack", "atk2");
-        this.playSound(SoundEvents.ENTITY_GENERIC_EXPLODE, 1.0f, 1.0f);
 
-        // Damage & Stun
-        Box area = this.getBoundingBox().expand(5);
-        this.getWorld().getEntitiesByClass(LivingEntity.class, area, e -> e != this)
-                .forEach(e -> {
-                    e.damage(this.getDamageSources().mobAttack(this), 15);
-                    e.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 40, 0)); // 2s stun
-                });
+        // Main explosion sound + small burst
+        world.playSound(null, this.getBlockPos(), SoundEvents.ENTITY_GENERIC_EXPLODE,
+                this.getSoundCategory(), 1.4f, 1.2f);
 
-        // Stone particle ring effect
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
-            Vec3d pos = this.getPos();
-            double y = this.getY();
-            double radius = 4.5;
-            int particles = 36;
+        world.spawnParticles(
+                ParticleTypes.LAVA,
+                this.getX(), this.getY() + 0.1, this.getZ(),
+                30,
+                0.4, 0.1, 0.4,
+                0.05
+        );
 
-            // create BlockStateParticleEffect instances once
-            BlockStateParticleEffect stoneEffect = new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState());
-            BlockStateParticleEffect fallingDustEffect = new BlockStateParticleEffect(ParticleTypes.FALLING_DUST, Blocks.STONE.getDefaultState());
-
-            for (int i = 0; i < particles; i++) {
-                double angle = (2 * Math.PI / particles) * i;
-                double x = pos.x + radius * Math.cos(angle);
-                double z = pos.z + radius * Math.sin(angle);
-
-                double velX = 0.1 * Math.cos(angle);
-                double velZ = 0.1 * Math.sin(angle);
-                double velY = 0.15 + this.random.nextDouble() * 0.05;
-
-                serverWorld.spawnParticles(
-                        stoneEffect,
-                        x, y + 0.2, z,
-                        5,
-                        0.1, 0.1, 0.1,
-                        0.15
-                );
-
-                serverWorld.spawnParticles(
-                        fallingDustEffect,
-                        x, y + 0.2, z,
-                        2,
-                        0.05, 0.05, 0.05,
-                        0.02
-                );
-            }
-
-            serverWorld.spawnParticles(
-                    ParticleTypes.POOF,
-                    pos.x, y + 0.2, pos.z,
-                    30, 0.4, 0.1, 0.4, 0.05
-            );
+        // Schedule 5 waves (5 ticks apart)
+        for (int wave = 0; wave < 5; wave++) {
+            int delay = wave * 10;
+            int waveNumber = wave;
+            scheduleTask(world, delay, () -> spawnPyroWave(world, waveNumber));
         }
     }
 
+    // Handles each expanding wave
+    private void spawnPyroWave(ServerWorld world, int waveIndex) {
+        double maxRadius = 10.0;
+        double waves = 5.0;
+        double radius = (maxRadius / waves) * (waveIndex + 1);
+
+        Vec3d center = new Vec3d(this.getX(), this.getY() + 0.1, this.getZ());
+
+        // Create ring particles
+        int points = 40;
+        for (int i = 0; i < points; i++) {
+            double angle = (2 * Math.PI * i) / points;
+            double x = center.x + radius * Math.cos(angle);
+            double z = center.z + radius * Math.sin(angle);
+
+            world.spawnParticles(ParticleTypes.FLAME, x, center.y, z,
+                    3, 0.04, 0.01, 0.04, 0.02);
+            world.spawnParticles(ParticleTypes.SMOKE, x, center.y, z,
+                    2, 0.06, 0.02, 0.06, 0.01);
+        }
+
+        // Damage and ignite nearby entities
+        Box area = new Box(
+                center.x - radius, center.y - 1, center.z - radius,
+                center.x + radius, center.y + 2, center.z + radius
+        );
+
+        world.getEntitiesByClass(LivingEntity.class, area, e -> e != this)
+                .forEach(target -> {
+                    target.damage(world.getDamageSources().mobAttack(this), 15.0f);
+                    target.setOnFireFor(5);
+                });
+
+        // Subtle whoosh sound
+        world.playSound(
+                null, this.getBlockPos(),
+                SoundEvents.BLOCK_LAVA_EXTINGUISH,
+                this.getSoundCategory(),
+                0.8f, 1.4f
+        );
+    }
+
+    // Simple delayed task scheduler for waves
+    private static final java.util.List<DelayedTask> DELAYED_TASKS = new java.util.ArrayList<>();
+
+    private static void scheduleTask(ServerWorld world, int delayTicks, Runnable run) {
+        DELAYED_TASKS.add(new DelayedTask(world.getTime() + delayTicks, world, run));
+    }
+
+    private record DelayedTask(long executeTime, ServerWorld world, Runnable run) {}
+
+    static {
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_WORLD_TICK.register(world -> {
+            Iterator<DelayedTask> it = DELAYED_TASKS.iterator();
+            while (it.hasNext()) {
+                DelayedTask task = it.next();
+                if (task.world.getTime() >= task.executeTime) {
+                    task.run.run();
+                    it.remove();
+                }
+            }
+        });
+    }
 
     // Utility: Projectile Spawn
     private void spawnProjectileToTarget(HatchetProjectileEntity projectile, LivingEntity target) {
@@ -334,7 +363,34 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
             }
         }
 
-        return super.tryAttack(target);
+        // Perform normal attack
+        boolean hit = super.tryAttack(target);
+
+        // Apply Fire Aspect during Phase 2
+        if (hit && phaseTwo && target instanceof LivingEntity livingTarget) {
+            livingTarget.setOnFireFor(5);
+
+            // Fiery impact sound + small flame burst
+            if (this.getWorld() instanceof ServerWorld serverWorld) {
+                serverWorld.spawnParticles(
+                        ParticleTypes.FLAME,
+                        target.getX(),
+                        target.getY() + target.getHeight() / 2,
+                        target.getZ(),
+                        10, 0.3, 0.3, 0.3, 0.02
+                );
+                this.getWorld().playSound(
+                        null,
+                        target.getBlockPos(),
+                        SoundEvents.ITEM_FIRECHARGE_USE,
+                        this.getSoundCategory(),
+                        1.0F,
+                        1.2F
+                );
+            }
+        }
+
+        return hit;
     }
 
     // Utility to disable main-hand shield

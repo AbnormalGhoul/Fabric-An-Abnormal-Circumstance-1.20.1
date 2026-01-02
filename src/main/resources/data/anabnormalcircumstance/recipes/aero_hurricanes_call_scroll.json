@@ -1,13 +1,13 @@
 {
   "type": "anabnormalcircumstance:spell_scroll",
   "pattern": [
-    "Q#Q",
-    "ZXZ",
-    "QTQ"
+    "QZQ",
+    "TXT",
+    "Q#Q"
   ],
   "key": {
     "X": { "item": "anabnormalcircumstance:spell_scroll" },
-    "Z": { "item": "anabnormalcircumstance:mana_cluster" },
+    "Z": { "item": "anabnormalcircumstance:mana_core" },
     "#": { "item": "anabnormalcircumstance:broodmother_egg" },
     "Q": { "item": "anabnormalcircumstance:bottled_lightning" },
     "T": { "item": "minecraft:snowball" }
