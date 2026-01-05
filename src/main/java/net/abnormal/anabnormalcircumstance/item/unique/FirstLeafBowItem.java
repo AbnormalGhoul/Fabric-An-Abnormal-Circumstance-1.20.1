@@ -32,7 +32,7 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
         super(settings, () -> Ingredient.EMPTY);
 
         this.config(new RangedConfig(
-                10,   // pull time (2x faster)
+                7,   // pull time
                 12.0F,   // damage (2x vanilla)
                 3.0F  // projectile velocity
         ));
@@ -110,7 +110,17 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
         if (entity instanceof PlayerEntity player) {
             boolean holding = selected || player.getOffHandStack() == stack;
             if (holding) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 45, 1, true, false, true));
+                StatusEffectInstance current = player.getStatusEffect(StatusEffects.REGENERATION);
+                if (current == null || current.getDuration() <= 10) {
+                    player.addStatusEffect(new StatusEffectInstance(
+                            StatusEffects.REGENERATION,
+                            100, // 5 seconds
+                            1,   // Regen II
+                            true,
+                            false,
+                            true
+                    ));
+                }
             }
         }
     }

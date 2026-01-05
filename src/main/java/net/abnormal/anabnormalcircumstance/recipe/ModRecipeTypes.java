@@ -25,7 +25,6 @@ public class ModRecipeTypes {
             );
 
     public static void register() {
-        // Called in mod initializer
     }
 }
 

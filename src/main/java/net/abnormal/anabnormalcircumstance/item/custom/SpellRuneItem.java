@@ -78,21 +78,24 @@ public class SpellRuneItem extends Item {
                 1.0F
         );
 
-        // Consume rune on use
+        // Consume rune
         stack.decrement(1);
+        user.getInventory().markDirty();
 
+        // Next tick: return scrolls
         if (user instanceof ServerPlayerEntity serverPlayer) {
-            serverPlayer.sendMessage(Text.literal("§bAll spells unequipped."), true);
-
-            // Give returned scrolls to player (try inventory, otherwise drop)
-            for (ItemStack s : returnScrolls) {
-                boolean added = serverPlayer.getInventory().insertStack(s);
-                if (!added) {
-                    serverPlayer.getWorld().spawnEntity(new ItemEntity(serverPlayer.getWorld(), serverPlayer.getX(), serverPlayer.getY(), serverPlayer.getZ(), s));
+            serverPlayer.getServer().execute(() -> {
+                for (ItemStack s : returnScrolls) {
+                    if (!serverPlayer.getInventory().insertStack(s)) {
+                        serverPlayer.dropItem(s, false);
+                    }
                 }
-            }
-
-            PacketHandler.syncSpellStateToClient(serverPlayer, ModComponents.MANA.get(user), slots);
+                PacketHandler.syncSpellStateToClient(
+                        serverPlayer,
+                        ModComponents.MANA.get(user),
+                        slots
+                );
+            });
         } else {
             // Fallback for non-server players (shouldn't normally run because earlier client check)
             for (ItemStack s : returnScrolls) {

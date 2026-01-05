@@ -8,6 +8,7 @@ import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.Models;
+import net.minecraft.item.ArmorItem;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -41,6 +42,21 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
         itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD);
+
+        itemModelGenerator.register(ModItems.PRISMATIC_STAFF, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ALLY_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.FOREST_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.RAIN_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SOULBOUND_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHROOM_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.NIGHT_PENDANT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BERSERKERS_VIAL, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BROOD_GEM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARCANE_BLADE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.VARNIA_STAFF, Models.HANDHELD);
+
+        itemModelGenerator.register(ModItems.MITHRIL_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ADAMANTITE_INGOT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.HYDRO_BLADE, Models.HANDHELD);
@@ -135,5 +151,16 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.AWKWARD_SPARK, Models.GENERATED);
         itemModelGenerator.register(ModItems.WATER_SPARK, Models.GENERATED);
 
+
+        // Armors
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_BOOTS));
+
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_BOOTS));
     }
 }

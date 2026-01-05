@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance.component;
 
+import net.abnormal.anabnormalcircumstance.enchantment.util.ManaEnchantments;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -33,7 +34,10 @@ public class ManaComponentImpl implements ManaComponent {
 
     @Override
     public void tick(ServerPlayerEntity player) {
-        fractional += MANA_PER_SECOND / 20.0;
+        double multiplier = ManaEnchantments.getManaRegenMultiplier(player);
+
+        fractional += (MANA_PER_SECOND * multiplier) / 20.0;
+
         if (fractional >= 1.0) {
             int gain = (int) Math.floor(fractional);
             fractional -= gain;

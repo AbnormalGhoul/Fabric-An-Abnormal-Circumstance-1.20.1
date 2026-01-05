@@ -39,10 +39,19 @@
   "effect.anabnormalcircumstance.phoenix_fire": "Phoenix Fire",
   "effect.anabnormalcircumstance.phoenix_fire.desc": "Upon death you will rise again from the ashes",
   "effect.anabnormalcircumstance.vulnerability": "Vulnerability",
-  "effect.anabnormalcircumstance.vulnerability.desc": "You take 10% more damage per level",
+  "effect.anabnormalcircumstance.vulnerability.desc": "You take 20% more damage per level",
+  "effect.anabnormalcircumstance.rage": "Rage",
+  "effect.anabnormalcircumstance.rage.desc": "You deal and take 10% more damage per level",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
+
+  "item.anabnormalcircumstance.night_pendant": "Night Pendant",
+  "item.anabnormalcircumstance.shroom_pendant": "Shroom Pendant",
+  "item.anabnormalcircumstance.soulbound_pendant": "Soulbound Pendant",
+  "item.anabnormalcircumstance.forest_pendant": "Forest Pendant",
+  "item.anabnormalcircumstance.rain_pendant": "Rain Pendant",
+  "item.anabnormalcircumstance.ally_pendant": "Ally Pendant",
 
   "item.anabnormalcircumstance.orc_warrior_spawn_egg": "Orc Warrior Spawn Egg",
   "item.anabnormalcircumstance.orc_javelin_thrower_spawn_egg": "Orc Javelin Thrower Spawn Egg",
@@ -54,13 +63,32 @@
   "item.anabnormalcircumstance.spell_scroll": "Magic Scroll",
 
   "item.anabnormalcircumstance.widows_gem": "Widow's Gem",
+  "item.anabnormalcircumstance.brood_gem": "Brood's Gem",
   "item.anabnormalcircumstance.champions_crest": "Champion's Crest",
   "item.anabnormalcircumstance.leaders_crest": "Leader's Crest",
 
+  "enchantment.anabnormalcircumstance.mana_regen": "Mana Regeneration",
+
+  "item.anabnormalcircumstance.prismatic_staff": "Prismatic Shard",
+  "item.anabnormalcircumstance.varnia_staff": "Radi's Conveyance",
+  "item.anabnormalcircumstance.arcane_blade": "Arcane Blade",
   "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
   "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
   "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
   "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
+
+  "item.anabnormalcircumstance.adamantite_ingot": "Adamantite Ingot",
+  "item.anabnormalcircumstance.mithril_ingot": "Mithril Ingot",
+
+  "item.anabnormalcircumstance.adamantite_helmet": "Adamantite Helm",
+  "item.anabnormalcircumstance.adamantite_chestplate": "Adamantite Chestplate",
+  "item.anabnormalcircumstance.adamantite_leggings": "Adamantite Leggings",
+  "item.anabnormalcircumstance.adamantite_boots": "Adamantite Boots",
+
+  "item.anabnormalcircumstance.mithril_helmet": "Mithril Helm",
+  "item.anabnormalcircumstance.mithril_chestplate": "Mithril Chestplate",
+  "item.anabnormalcircumstance.mithril_leggings": "Mithril Leggings",
+  "item.anabnormalcircumstance.mithril_boots": "Mithril Boots",
 
   "item.anabnormalcircumstance.first_leaf": "The First Leaf",
   "item.anabnormalcircumstance.forgefather_judgment": "Forgefather's Judgment",
@@ -81,7 +109,6 @@
   "item.anabnormalcircumstance.nation_rune": "Nation Rune",
   "item.anabnormalcircumstance.abnormal_relic": "An Abnormal Relic",
 
-
   "item.anabnormalcircumstance.rusted_key": "Rusted Key",
   "item.anabnormalcircumstance.bottled_lightning": "Bottled Lightning",
   "item.anabnormalcircumstance.blank_scroll": "Blank Scroll",
@@ -93,7 +120,8 @@
   "item.anabnormalcircumstance.broodmother_egg": "Broodmother Egg",
 
   "item.anabnormalcircumstance.crab_claw": "Crab Claw",
-  
+  "item.anabnormalcircumstance.berserker_vial": "Berserker's Vial",
+
   "item.anabnormalcircumstance.hydro_catalyst": "Hydromancy Catalyst",
   "item.anabnormalcircumstance.pyro_catalyst": "Pyromancy Catalyst",
   "item.anabnormalcircumstance.geo_catalyst": "Geomancy Catalyst",

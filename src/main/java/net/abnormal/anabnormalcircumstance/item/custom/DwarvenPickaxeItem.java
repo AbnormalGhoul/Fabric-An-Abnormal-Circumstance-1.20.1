@@ -31,7 +31,7 @@ public class DwarvenPickaxeItem extends PickaxeItem {
 
     @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Grants Inflicts Slowness II while held").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Inflicts Slowness II while held").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Forged in the deep caverns of the Antrum").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("It hums with ancient craftsmanship and unmatched precision").formatted(Formatting.GOLD));
         super.appendTooltip(stack, world, tooltip, context);

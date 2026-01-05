@@ -111,7 +111,7 @@ public class FlameChargeSpell extends Spell {
 
             data.hit.add(target.getUuid());
 
-            target.damage(world.getDamageSources().playerAttack(caster), 25.0f);
+            target.damage(world.getDamageSources().playerAttack(caster), 35.0f);
             target.setOnFireFor(5);
         }
     }

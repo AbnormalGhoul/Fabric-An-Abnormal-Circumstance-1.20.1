@@ -1,6 +1,5 @@
 package net.abnormal.anabnormalcircumstance.magic.spells.geomancy;
 
-import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
@@ -25,10 +24,13 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EarthquakeSpell extends Spell {
-    private static final int DURATION_TICKS = 20 * 45;
+    private static final int DURATION_TICKS = 20 * 20;
     private static final int DAMAGE_INTERVAL = 20; // every 1s
-    private static final double RADIUS = 16.0;
+    private static final double RADIUS = 12.0;
     private static final float DAMAGE = 20.0f;
+    private static final int RING_POINTS = 48;
+    private static final double RING_THICKNESS = 0.4;
+
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 90, icon, "Earthquake", "Shakes the ground in a wide area, weakening enemies standing on solid blocks.");
@@ -62,7 +64,7 @@ public class EarthquakeSpell extends Spell {
                 for (EarthquakeInstance quake : ACTIVE) {
                     quake.ticks++;
 
-                    // Try to find caster; if absent -> end quake
+                    // Try to find caster; if absent then end quake
                     ServerPlayerEntity caster = server.getPlayerManager().getPlayer(quake.casterId);
                     if (caster == null) {
                         toRemove.add(quake);
@@ -111,6 +113,9 @@ public class EarthquakeSpell extends Spell {
 
             void spawnGroundParticles() {
                 BlockState stone = Blocks.STONE.getDefaultState();
+                BlockState darkStoneA = Blocks.DEEPSLATE.getDefaultState();
+                BlockState darkStoneB = Blocks.GRAY_CONCRETE.getDefaultState();
+
                 int density = 40;
 
                 for (int i = 0; i < density; i++) {
@@ -119,12 +124,7 @@ public class EarthquakeSpell extends Spell {
                     double x = center.x + Math.cos(angle) * dist;
                     double z = center.z + Math.sin(angle) * dist;
 
-                    // find ground height: move down until non-air or bottom reached
-                    int y = Math.max((int) (center.y - 1), world.getBottomY());
-                    BlockPos pos = new BlockPos((int) x, y, (int) z);
-                    while (world.getBlockState(pos).isAir() && pos.getY() > world.getBottomY()) {
-                        pos = pos.down();
-                    }
+                    BlockPos pos = findGround(x, z);
 
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, stone),
@@ -140,6 +140,38 @@ public class EarthquakeSpell extends Spell {
                         );
                     }
                 }
+
+                for (int i = 0; i < RING_POINTS; i++) {
+                    double angle = (2 * Math.PI * i) / RING_POINTS;
+
+                    double radius = RADIUS + world.random.nextDouble() * RING_THICKNESS;
+                    double x = center.x + Math.cos(angle) * radius;
+                    double z = center.z + Math.sin(angle) * radius;
+
+                    BlockPos pos = findGround(x, z);
+
+                    BlockState ringBlock = world.random.nextBoolean()
+                            ? darkStoneA
+                            : darkStoneB;
+
+                    world.spawnParticles(
+                            new BlockStateParticleEffect(ParticleTypes.BLOCK, ringBlock),
+                            x, pos.getY() + 1.05, z,
+                            2,
+                            0.05, 0.02, 0.05,
+                            0.01
+                    );
+                }
+            }
+
+            private BlockPos findGround(double x, double z) {
+                int y = Math.max((int) (center.y - 1), world.getBottomY());
+                BlockPos pos = new BlockPos((int) x, y, (int) z);
+
+                while (world.getBlockState(pos).isAir() && pos.getY() > world.getBottomY()) {
+                    pos = pos.down();
+                }
+                return pos;
             }
 
             void affectEnemies(ServerPlayerEntity caster) {
@@ -162,8 +194,7 @@ public class EarthquakeSpell extends Spell {
                     target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, true, true));
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 0, false, true, true));
-                    target.addStatusEffect(new StatusEffectInstance(ModEffects.VULNERABILITY, 60, 0, false, true, true));
-                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, false, true, true));
+                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 60, 1, false, true, true));
 
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.DIRT.getDefaultState()),

@@ -31,18 +31,41 @@ public class ModItemGroups {
                         entries.add(ModItems.HYDRO_BLADE);
                         entries.add(ModItems.PYRO_BLADE);
                         entries.add(ModItems.GEO_BLADE);
+                        entries.add(ModItems.ARCANE_BLADE);
+
+                        // Armor Sets
+                        entries.add(ModItems.ADAMANTITE_HELMET);
+                        entries.add(ModItems.ADAMANTITE_CHESTPLATE);
+                        entries.add(ModItems.ADAMANTITE_LEGGINGS);
+                        entries.add(ModItems.ADAMANTITE_BOOTS);
+                        entries.add(ModItems.MITHRIL_HELMET);
+                        entries.add(ModItems.MITHRIL_CHESTPLATE);
+                        entries.add(ModItems.MITHRIL_LEGGINGS);
+                        entries.add(ModItems.MITHRIL_BOOTS);
 
                         // Other Tools
+                        entries.add(ModItems.VARNIA_STAFF);
+                        entries.add(ModItems.PRISMATIC_STAFF);
                         entries.add(ModItems.EXTENDO_GRIP);
                         entries.add(ModItems.DWARVEN_PICKAXE);
                         entries.add(ModItems.KARAMBIT);
+                        entries.add(ModItems.BERSERKERS_VIAL);
                         entries.add(ModItems.SILVER_ARROW);
                         entries.add(ModItems.TOTEM_OF_PURITY);
 
                         // Trinkets
                         entries.add(ModItems.WIDOWS_GEM);
+                        entries.add(ModItems.BROOD_GEM);
                         entries.add(ModItems.CHAMPIONS_CREST);
                         entries.add(ModItems.LEADERS_CREST);
+
+                        // Pendants
+                        entries.add(ModItems.ALLY_PENDANT);
+                        entries.add(ModItems.FOREST_PENDANT);
+                        entries.add(ModItems.NIGHT_PENDANT);
+                        entries.add(ModItems.SHROOM_PENDANT);
+                        entries.add(ModItems.SOULBOUND_PENDANT);
+                        entries.add(ModItems.RAIN_PENDANT);
 
                         // Runes
                         entries.add(ModItems.CLAIM_RUNE);

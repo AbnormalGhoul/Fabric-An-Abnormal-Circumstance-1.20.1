@@ -2,6 +2,7 @@ package net.abnormal.anabnormalcircumstance;
 
 import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
+import net.abnormal.anabnormalcircumstance.enchantment.ModEnchantments;
 import net.abnormal.anabnormalcircumstance.event.PhoenixFireHandler;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
@@ -36,8 +37,8 @@ public class AnAbnormalCircumstance implements ModInitializer {
 
         PacketHandler.register();
         StormlordsWillPacket.register();
-
         ModSpells.registerAll();
+        ModEnchantments.register();
 
         ModItems.registerModItems();
         ModBlocks.registerModBlocks();

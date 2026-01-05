@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.boss.ServerBossBar;
 import net.minecraft.entity.damage.DamageSource;
@@ -33,8 +34,18 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class BroodmotherEntity extends HostileEntity implements GeoEntity {
+
+    // modifier UUIDs
+    private static final UUID BROOD_ARMOR_BONUS_UUID =
+            UUID.fromString("6c58f9b3-4f8b-4c8d-b6a5-1b2bfc5caa01");
+    private static final UUID BROOD_TOUGHNESS_BONUS_UUID =
+            UUID.fromString("c42a9c34-8f7c-4b15-9c92-0d5e8c5f6d11");
+    // Boss bar range
+    private static final double BOSS_BAR_RANGE = 48.0;
+
 
     // GeckoLib
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -70,6 +81,7 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
         return HostileEntity.createHostileAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 3000.0D) // doubled health
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 20.0D)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 8.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.28D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
                 .add(EntityAttributes.GENERIC_ARMOR, 20.0D);
@@ -94,7 +106,9 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     @Override
     public void onStartedTrackingBy(ServerPlayerEntity player) {
         super.onStartedTrackingBy(player);
-        bossBar.addPlayer(player);
+        if (isPlayerInBossBarRange(player)) {
+            bossBar.addPlayer(player);
+        }
     }
 
     @Override
@@ -114,7 +128,20 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
     public void tick() {
         super.tick();
 
-        bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+        if (!this.getWorld().isClient() && this.isAlive()) {
+            bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+
+            for (ServerPlayerEntity player : ((ServerWorld) this.getWorld()).getPlayers()) {
+                boolean inRange = isPlayerInBossBarRange(player);
+                boolean hasBar = bossBar.getPlayers().contains(player);
+
+                if (inRange && !hasBar) {
+                    bossBar.addPlayer(player);
+                } else if (!inRange && hasBar) {
+                    bossBar.removePlayer(player);
+                }
+            }
+        }
 
         // Spider spawn threshold check
         if (!this.getWorld().isClient) {
@@ -167,7 +194,68 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
             this.heal(this.getMaxHealth() * 0.05F);
             lastDamageTime = this.age;
         }
+
+        if (!this.getWorld().isClient()) {
+            updateBroodArmorBonus();
+        }
     }
+
+    // Helper Method for Boss bar
+    private boolean isPlayerInBossBarRange(ServerPlayerEntity player) {
+        double dx = Math.abs(player.getX() - this.getX());
+        double dy = Math.abs(player.getY() - this.getY());
+        double dz = Math.abs(player.getZ() - this.getZ());
+
+        return dx <= BOSS_BAR_RANGE && dy <= BOSS_BAR_RANGE && dz <= BOSS_BAR_RANGE;
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+        bossBar.clearPlayers();
+    }
+
+
+    private void updateBroodArmorBonus() {
+        var armorAttr = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR);
+        var toughAttr = this.getAttributeInstance(EntityAttributes.GENERIC_ARMOR_TOUGHNESS);
+
+        if (armorAttr == null || toughAttr == null) return;
+
+        boolean broodNearby = !this.getWorld().getEntitiesByClass(
+                BroodWarriorEntity.class,
+                this.getBoundingBox().expand(16.0),
+                e -> e.isAlive()
+        ).isEmpty();
+
+        boolean hasArmorBonus = armorAttr.getModifier(BROOD_ARMOR_BONUS_UUID) != null;
+
+        if (broodNearby && !hasArmorBonus) {
+            armorAttr.addPersistentModifier(
+                    new EntityAttributeModifier(
+                            BROOD_ARMOR_BONUS_UUID,
+                            "Brood guard armor bonus",
+                            60.0,
+                            EntityAttributeModifier.Operation.ADDITION
+                    )
+            );
+
+            toughAttr.addPersistentModifier(
+                    new EntityAttributeModifier(
+                            BROOD_TOUGHNESS_BONUS_UUID,
+                            "Brood guard toughness bonus",
+                            60.0,
+                            EntityAttributeModifier.Operation.ADDITION
+                    )
+            );
+        }
+
+        if (!broodNearby && hasArmorBonus) {
+            armorAttr.removeModifier(BROOD_ARMOR_BONUS_UUID);
+            toughAttr.removeModifier(BROOD_TOUGHNESS_BONUS_UUID);
+        }
+    }
+
 
     private void spawnSpiderWave(int count) {
         if (!(this.getWorld() instanceof ServerWorld serverWorld)) return;

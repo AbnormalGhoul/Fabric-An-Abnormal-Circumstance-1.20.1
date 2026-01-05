@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.item;
+package net.abnormal.anabnormalcircumstance.item.util;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;

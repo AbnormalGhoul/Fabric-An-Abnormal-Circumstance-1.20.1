@@ -18,6 +18,8 @@
     "EnderPearlItemMixin",
     "GoldenAppleCooldownMixin",
     "LivingEntityMixin",
+    "LivingEntityRageIncomingMixin",
+    "LivingEntityRageOutgoingMixin",
     "LivingEntityVulnerabilityMixin",
     "MoltenFuryDamageMixin",
     "PersistentProjectileEntityMixin",

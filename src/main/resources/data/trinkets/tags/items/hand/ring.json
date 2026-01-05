@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "anabnormalcircumstance:night_pendant",
+    "anabnormalcircumstance:shroom_pendant",
+    "anabnormalcircumstance:soulbound_pendant",
+    "anabnormalcircumstance:forest_pendant",
+    "anabnormalcircumstance:rain_pendant",
+    "anabnormalcircumstance:ally_pendant"
+  ]
+}

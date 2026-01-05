@@ -2,6 +2,8 @@ package net.abnormal.anabnormalcircumstance.recipe;
 
 import java.util.Map;
 import java.util.HashMap;
+
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
@@ -45,6 +47,12 @@ public class AltarRecipe implements Recipe<Inventory> {
         // No extra items
         if (found.size() != inputCounts.size()) return false;
         return true;
+    }
+
+    static ItemStack spellScroll(String spellId) {
+        ItemStack stack = new ItemStack(ModItems.SPELL_SCROLL);
+        stack.getOrCreateNbt().putString("spell_id", spellId);
+        return stack;
     }
 
     @Override

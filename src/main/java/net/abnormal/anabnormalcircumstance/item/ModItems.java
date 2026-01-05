@@ -1,13 +1,18 @@
 package net.abnormal.anabnormalcircumstance.item;
 
+import dev.emi.trinkets.api.Trinket;
+import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.item.custom.*;
 import net.abnormal.anabnormalcircumstance.item.unique.*;
+import net.abnormal.anabnormalcircumstance.item.util.ModArmorMaterials;
 import net.abnormal.anabnormalcircumstance.item.util.ModFoodComponents;
+import net.abnormal.anabnormalcircumstance.item.util.ModToolMaterials;
 import net.abnormal.anabnormalcircumstance.item.util.SoundFoodItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.SpawnEggItem;
@@ -18,12 +23,71 @@ import net.minecraft.util.Rarity;
 
 public class ModItems {
 
+    // Pendants
+    public static final Item NIGHT_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "night_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+    public static final Item SHROOM_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "shroom_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+    public static final Item SOULBOUND_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "soulbound_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+    public static final Item FOREST_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "forest_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+    public static final Item RAIN_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "rain_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+    public static final Item ALLY_PENDANT = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "ally_pendant"),
+            new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
+    );
+
+    // Unique Items
+    public static final Item BERSERKERS_VIAL = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "berserker_vial"),
+            new BerserkersVialItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
+    );
+    public static final Item PRISMATIC_STAFF = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "prismatic_staff"),
+            new PrismaticStaffItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
+    );
+    public static final Item VARNIA_STAFF = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "varnia_staff"),
+            new VarniaStaffItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
+    );
+
     // Trinkets
     public static final Item WIDOWS_GEM = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "widows_gem"),
             new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
+    public static final Item BROOD_GEM = Registry.register(
+            Registries.ITEM,
+            new Identifier("anabnormalcircumstance", "brood_gem"),
+            new BroodGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE))
+    );
+    static {
+        TrinketsApi.registerTrinket(BROOD_GEM, (Trinket) BROOD_GEM);
+        TrinketsApi.registerTrinket(WIDOWS_GEM, (Trinket) WIDOWS_GEM);
+    }
+
     public static final Item CHAMPIONS_CREST = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "champions_crest"),
@@ -97,6 +161,13 @@ public class ModItems {
             -2.4f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
+    public static final Item ARCANE_BLADE = registerItem("arcane_blade", new ArcaneBladeItem(
+            ModToolMaterials.UNIQUE,
+            8,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof()
+    ));
+
 
     // Champion Weapons
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
@@ -139,6 +210,29 @@ public class ModItems {
 
     // Carcan Item
     public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
+
+    // Ingots
+    public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new Item(new Item.Settings().fireproof()));
+    public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new Item(new Item.Settings().fireproof()));
+
+    // Armors
+    public static final Item ADAMANTITE_HELMET = registerItem("adamantite_helmet",
+            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+    public static final Item ADAMANTITE_CHESTPLATE = registerItem("adamantite_chestplate",
+            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+    public static final Item ADAMANTITE_LEGGINGS = registerItem("adamantite_leggings",
+            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+    public static final Item ADAMANTITE_BOOTS = registerItem("adamantite_boots",
+            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+
+    public static final Item MITHRIL_HELMET = registerItem("mithril_helmet",
+            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+    public static final Item MITHRIL_CHESTPLATE = registerItem("mithril_chestplate",
+            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+    public static final Item MITHRIL_LEGGINGS = registerItem("mithril_leggings",
+            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+    public static final Item MITHRIL_BOOTS = registerItem("mithril_boots",
+            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));

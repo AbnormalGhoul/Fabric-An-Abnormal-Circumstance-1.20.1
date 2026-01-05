@@ -20,7 +20,56 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
-        // BUDDING AMETHYST
+        // ARCANE_BLADE
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.ARCANE_BLADE, 1)
+                .pattern("Q#Q")
+                .pattern("ZXZ")
+                .pattern("Q#Q")
+                .input('X', Items.NETHERITE_SWORD)
+                .input('#', Items.NETHER_STAR)
+                .input('Z', Items.ECHO_SHARD)
+                .input('Q', ModItems.MANA_CLUSTER)
+                .showNotification(true)
+                .criterion("has_netherite_ingot", conditionsFromItem(Items.NETHERITE_INGOT))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.ARCANE_BLADE)));
+
+        // PEARLESCENT_FROGLIGHT
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.PEARLESCENT_FROGLIGHT, 1)
+                .pattern("Q#Q")
+                .pattern("#X#")
+                .pattern("Q#Q")
+                .input('X', Items.GLOWSTONE)
+                .input('#', Items.PHANTOM_MEMBRANE)
+                .input('Q', Items.AMETHYST_SHARD)
+                .showNotification(true)
+                .criterion("has_glowstone", conditionsFromItem(Items.GLOWSTONE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.PEARLESCENT_FROGLIGHT)));
+
+        // OCHRE_FROGLIGHT
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.OCHRE_FROGLIGHT, 1)
+                .pattern("Q#Q")
+                .pattern("#X#")
+                .pattern("Q#Q")
+                .input('X', Items.GLOWSTONE)
+                .input('#', Items.PHANTOM_MEMBRANE)
+                .input('Q', Items.EMERALD)
+                .showNotification(true)
+                .criterion("has_glowstone", conditionsFromItem(Items.GLOWSTONE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.OCHRE_FROGLIGHT)));
+
+        // VERDANT_FROGLIGHT
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.VERDANT_FROGLIGHT, 1)
+                .pattern("Q#Q")
+                .pattern("#X#")
+                .pattern("Q#Q")
+                .input('X', Items.GLOWSTONE)
+                .input('#', Items.PHANTOM_MEMBRANE)
+                .input('Q', Items.GLOWSTONE_DUST)
+                .showNotification(true)
+                .criterion("has_glowstone", conditionsFromItem(Items.GLOWSTONE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.VERDANT_FROGLIGHT)));
+
+        // BUDDING_AMETHYST
         ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.BUDDING_AMETHYST, 1)
                 .pattern(" # ")
                 .pattern("#X#")
@@ -31,7 +80,7 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .criterion("has_amethyst_block", conditionsFromItem(Items.AMETHYST_BLOCK))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.BUDDING_AMETHYST)));
 
-        // CLAIM RUNE
+        // CLAIM_RUNE
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CLAIM_RUNE, 3)
                 .pattern("XQX")
                 .pattern("#Q#")
@@ -71,8 +120,8 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         // CALCITE
         new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, Items.CALCITE, 2)
                 .input(Items.COBBLESTONE)
-                .input(Items.DIORITE)
-                .criterion("has_diorite", conditionsFromItem(Items.DIORITE))
+                .input(Items.QUARTZ)
+                .criterion("has_quartz", conditionsFromItem(Items.QUARTZ))
                 .offerTo(consumer, new Identifier(getRecipeName(Items.CALCITE)));
 
         // PHANTOM MEMBRANE

@@ -42,6 +42,7 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     private final ServerBossBar bossBar =
             new ServerBossBar(Text.literal("Orc Champion"), ServerBossBar.Color.RED, ServerBossBar.Style.PROGRESS);
 
+    private static final double BOSS_BAR_RANGE = 48.0;
     private boolean phaseTwo = false;
     private long lastDamageTime = 0;
     private int atk4Cooldown = 0;
@@ -112,7 +113,9 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     @Override
     public void onStartedTrackingBy(ServerPlayerEntity player) {
         super.onStartedTrackingBy(player);
-        bossBar.addPlayer(player);
+        if (isPlayerInBossBarRange(player)) {
+            bossBar.addPlayer(player);
+        }
     }
 
     @Override
@@ -127,13 +130,32 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
         bossBar.clearPlayers();
     }
 
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+        bossBar.clearPlayers();
+    }
+
     // Tick Logic
     @Override
     public void tick() {
         super.tick();
 
         // Update boss bar percentage
-        bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+        if (!this.getWorld().isClient() && this.isAlive()) {
+            bossBar.setPercent(this.getHealth() / this.getMaxHealth());
+
+            for (ServerPlayerEntity player : ((ServerWorld) this.getWorld()).getPlayers()) {
+                boolean inRange = isPlayerInBossBarRange(player);
+                boolean hasBar = bossBar.getPlayers().contains(player);
+
+                if (inRange && !hasBar) {
+                    bossBar.addPlayer(player);
+                } else if (!inRange && hasBar) {
+                    bossBar.removePlayer(player);
+                }
+            }
+        }
 
         // Phase 2 trigger
         if (!phaseTwo && this.getHealth() <= this.getMaxHealth() / 2) {
@@ -184,6 +206,14 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
         }
     }
 
+    // Helper Method for Boss bar
+    private boolean isPlayerInBossBarRange(ServerPlayerEntity player) {
+        double dx = Math.abs(player.getX() - this.getX());
+        double dy = Math.abs(player.getY() - this.getY());
+        double dz = Math.abs(player.getZ() - this.getZ());
+
+        return dx <= BOSS_BAR_RANGE && dy <= BOSS_BAR_RANGE && dz <= BOSS_BAR_RANGE;
+    }
 
     // Phase Two Behavior
     private void enterPhaseTwo() {

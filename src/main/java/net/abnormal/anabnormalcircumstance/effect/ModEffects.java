@@ -15,6 +15,7 @@ public class ModEffects {
     public static final StatusEffect BITTEN = new BittenEffect(StatusEffectCategory.HARMFUL, 0x5A0A0A);
     public static final StatusEffect PHOENIX_FIRE = new PhoenixFireEffect(StatusEffectCategory.BENEFICIAL, 0xFF4500);
     public static final StatusEffect VULNERABILITY = new VulnerabilityEffect(StatusEffectCategory.HARMFUL, 0x8B0000);
+    public static final StatusEffect RAGE = new RageEffect(StatusEffectCategory.BENEFICIAL, 0x800080);
 
     public static void registerEffects() {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "bleeding"), BLEEDING);
@@ -23,5 +24,6 @@ public class ModEffects {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "bitten"), BITTEN);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "phoenix_fire"), PHOENIX_FIRE);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "vulnerability"), VULNERABILITY);
+        Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "rage"), RAGE);
     }
 }
