@@ -63,7 +63,7 @@ public class GeoBladeItem extends AxeItem implements UniqueAbilityItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Resistance I while held").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Grants immunity to next 5 hits (R)").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 
     public static boolean tryBlockDamage(PlayerEntity player) {

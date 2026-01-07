@@ -43,7 +43,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
         itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD);
 
-        itemModelGenerator.register(ModItems.PRISMATIC_STAFF, Models.GENERATED);
         itemModelGenerator.register(ModItems.ALLY_PENDANT, Models.GENERATED);
         itemModelGenerator.register(ModItems.FOREST_PENDANT, Models.GENERATED);
         itemModelGenerator.register(ModItems.RAIN_PENDANT, Models.GENERATED);

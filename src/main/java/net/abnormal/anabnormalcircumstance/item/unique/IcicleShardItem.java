@@ -41,76 +41,126 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
                 .orElse(false);
 
         if (!hasMark) {
-            player.sendMessage(Text.literal("You must equip the Champion's Crest to use this weapon").formatted(Formatting.DARK_RED), true);
+            player.sendMessage(
+                    Text.literal("You must equip the Champion's Crest to use this shield")
+                            .formatted(Formatting.DARK_RED),
+                    true
+            );
             return;
         }
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.WHITE), true);
+            player.sendMessage(
+                    Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)")
+                            .formatted(Formatting.WHITE),
+                    true
+            );
             return;
         }
 
-        World world = player.getWorld();
-        if (!(world instanceof ServerWorld serverWorld)) return; // must be ServerWorld for particles
+        if (!(player.getWorld() instanceof ServerWorld world)) return;
 
-        double radius = 4.0;
+        Vec3d origin = player.getPos().add(0, 1.0, 0);
+        Vec3d look = player.getRotationVec(1.0F).normalize();
 
-        world.playSound(null, player.getBlockPos(),
-                SoundEvents.ENTITY_WARDEN_DEATH, SoundCategory.PLAYERS,
-                5.0f, 1.2f);
-        player.sendMessage(Text.literal("Freeze!").formatted(Formatting.AQUA), true);
+        double forwardRange = 3.0;
+        double halfWidth = 1.5;
+        double height = 2.0;
 
-        // Spawn icy ground particle circle
-        Vec3d pos = player.getPos().add(0, 0.1, 0); // slightly above ground
-        for (int i = 0; i < 64; i++) {
-            double angle = 2 * Math.PI * i / 64;
-            double x = pos.x + radius * Math.cos(angle);
-            double z = pos.z + radius * Math.sin(angle);
-            double y = pos.y;
+        // Large box for candidate collection
+        Box searchBox = player.getBoundingBox().expand(4.0, 2.0, 4.0);
 
-            // Snowflake particle
-            serverWorld.spawnParticles(
-                    ParticleTypes.SNOWFLAKE,
-                    x, y, z, // position
-                    1,       // count
-                    0, 0, 0, // offset
-                    0.0      // speed
-            );
-
-            // Aqua shimmer particle
-            if (serverWorld.random.nextBoolean()) {
-                serverWorld.spawnParticles(
-                        ParticleTypes.END_ROD,
-                        x, y + 0.1, z,
-                        1,
-                        0, 0, 0,
-                        0.05
-                );
-            }
-        }
-
-
-        // Apply effects to nearby entities
-        Box area = new Box(
-                player.getX() - radius, player.getY() - 2, player.getZ() - radius,
-                player.getX() + radius, player.getY() + 2, player.getZ() + radius
+        List<LivingEntity> targets = world.getEntitiesByClass(
+                LivingEntity.class,
+                searchBox,
+                e -> e != player && e.isAlive() && !player.isTeammate(e)
         );
 
-        List<LivingEntity> nearbyEntities = world.getEntitiesByClass(LivingEntity.class, area,
-                entity -> entity != player && entity.isAlive() && !player.isTeammate(entity));
+        player.sendMessage(
+                Text.literal("Frost Bash!")
+                        .formatted(Formatting.GOLD),
+                true
+        );
 
-        for (LivingEntity target : nearbyEntities) {
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 140, 0, false, true, true));
-            target.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 140, 4, false, true, true));
+        for (LivingEntity target : targets) {
+            Vec3d toTarget = target.getPos().subtract(origin);
+            double forwardDot = toTarget.normalize().dotProduct(look);
 
-            world.playSound(null, target.getBlockPos(),
-                    SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.PLAYERS,
-                    1.0f, 1.0f);
+            // Must be in front
+            if (forwardDot <= 0.5) continue;
+
+            // Project distance forward
+            double forwardDist = toTarget.dotProduct(look);
+            if (forwardDist < 0 || forwardDist > forwardRange) continue;
+
+            // Side distance
+            Vec3d sideways = toTarget.subtract(look.multiply(forwardDist));
+            if (sideways.lengthSquared() > halfWidth * halfWidth) continue;
+
+            // Apply damage
+            target.damage(
+                    world.getDamageSources().playerAttack(player),
+                    25.0F
+            );
+
+            // Freeze (20 seconds)
+            target.setFrozenTicks(20 * 20);
+
+            // Launch away
+            Vec3d knockback = target.getPos()
+                    .subtract(player.getPos())
+                    .normalize()
+                    .multiply(1.8)
+                    .add(0, 0.6, 0);
+
+            target.addVelocity(knockback.x, knockback.y, knockback.z);
+            target.velocityModified = true;
         }
 
-        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
+        // Sound
+        world.playSound(
+                null,
+                player.getBlockPos(),
+                SoundEvents.ITEM_TRIDENT_THUNDER,
+                SoundCategory.PLAYERS,
+                2.0F,
+                0.8F
+        );
+
+        // Sweep particles
+        for (int i = 0; i < 24; i++) {
+            double progress = i / 24.0;
+            Vec3d point = origin.add(look.multiply(progress * forwardRange));
+
+            world.spawnParticles(
+                    ParticleTypes.SNOWFLAKE,
+                    point.x,
+                    point.y,
+                    point.z,
+                    3,
+                    0.15,
+                    0.2,
+                    0.15,
+                    0.02
+            );
+
+            world.spawnParticles(
+                    ParticleTypes.CLOUD,
+                    point.x,
+                    point.y,
+                    point.z,
+                    1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.01
+            );
+        }
+
+        UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
     }
+
 
 
     @Override
@@ -145,7 +195,7 @@ public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityIt
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Fire Resistance & +3 Damage while in Offhand").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Active: Freezes enemies making them unable to move, however also making them immune to damage (7s)").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Frost Bash - launches & freezes enemies").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Cooldown: 30s").formatted(Formatting.GRAY));
     }
 }

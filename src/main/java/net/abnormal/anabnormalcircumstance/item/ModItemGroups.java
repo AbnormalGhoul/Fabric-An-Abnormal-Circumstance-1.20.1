@@ -278,6 +278,10 @@ public class ModItemGroups {
                         entries.add(ModItems.GEO_CATALYST);
                         entries.add(ModItems.AERO_CATALYST);
 
+                        // Ingots
+                        entries.add(ModItems.MITHRIL_INGOT);
+                        entries.add(ModItems.ADAMANTITE_INGOT);
+
                         // Blocks
                         entries.add(ModBlocks.HEPHAESTUS_ALTAR);
                         entries.add(ModBlocks.DARK_SAND);

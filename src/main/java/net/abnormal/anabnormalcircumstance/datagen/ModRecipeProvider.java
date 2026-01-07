@@ -7,8 +7,10 @@ import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
+import net.minecraft.data.server.recipe.SmithingTransformRecipeJsonBuilder;
 
 import java.util.function.Consumer;
 
@@ -19,6 +21,60 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
+
+        // ADAMANTITE_INGOT
+        new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, ModItems.ADAMANTITE_INGOT, 1)
+                .input(Items.NETHERITE_SCRAP)
+                .input(Items.NETHERITE_SCRAP)
+                .input(Items.NETHERITE_SCRAP)
+                .input(Items.NETHERITE_SCRAP)
+                .input(ModItems.ORC_HIDE)
+                .input(ModItems.ORC_HIDE)
+                .input(ModItems.ORC_HIDE)
+                .input(ModItems.ORC_HIDE)
+                .criterion("has_netherite_ingot", conditionsFromItem(Items.NETHERITE_SCRAP))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.ADAMANTITE_INGOT)));
+
+        // ADAMANTITE_SMITHING_RECIPES
+        SmithingTransformRecipeJsonBuilder.create(
+                        Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.ofItems(Items.DIAMOND_HELMET),
+                        Ingredient.ofItems(ModItems.ADAMANTITE_INGOT),
+                        RecipeCategory.COMBAT,
+                        ModItems.ADAMANTITE_HELMET
+                )
+                .criterion("has_adamantite_ingot", conditionsFromItem(ModItems.ADAMANTITE_INGOT))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "adamantite_helmet_smithing"));
+
+        SmithingTransformRecipeJsonBuilder.create(
+                        Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.ofItems(Items.DIAMOND_CHESTPLATE),
+                        Ingredient.ofItems(ModItems.ADAMANTITE_INGOT),
+                        RecipeCategory.COMBAT,
+                        ModItems.ADAMANTITE_CHESTPLATE
+                )
+                .criterion("has_adamantite_ingot", conditionsFromItem(ModItems.ADAMANTITE_INGOT))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "adamantite_chestplate_smithing"));
+
+        SmithingTransformRecipeJsonBuilder.create(
+                        Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.ofItems(Items.DIAMOND_LEGGINGS),
+                        Ingredient.ofItems(ModItems.ADAMANTITE_INGOT),
+                        RecipeCategory.COMBAT,
+                        ModItems.ADAMANTITE_LEGGINGS
+                )
+                .criterion("has_adamantite_ingot", conditionsFromItem(ModItems.ADAMANTITE_INGOT))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "adamantite_leggings_smithing"));
+
+        SmithingTransformRecipeJsonBuilder.create(
+                        Ingredient.ofItems(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE),
+                        Ingredient.ofItems(Items.DIAMOND_BOOTS),
+                        Ingredient.ofItems(ModItems.ADAMANTITE_INGOT),
+                        RecipeCategory.COMBAT,
+                        ModItems.ADAMANTITE_BOOTS
+                )
+                .criterion("has_adamantite_ingot", conditionsFromItem(ModItems.ADAMANTITE_INGOT))
+                .offerTo(consumer, new Identifier("anabnormalcircumstance", "adamantite_boots_smithing"));
 
         // ARCANE_BLADE
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.ARCANE_BLADE, 1)

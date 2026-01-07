@@ -42,6 +42,9 @@
   "effect.anabnormalcircumstance.vulnerability.desc": "You take 20% more damage per level",
   "effect.anabnormalcircumstance.rage": "Rage",
   "effect.anabnormalcircumstance.rage.desc": "You deal and take 10% more damage per level",
+  "effect.anabnormalcircumstance.adamantite_power": "Adamantite Power",
+  "effect.anabnormalcircumstance.adamantite_power.desc": "You deal 20% more damage",
+
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
@@ -69,7 +72,7 @@
 
   "enchantment.anabnormalcircumstance.mana_regen": "Mana Regeneration",
 
-  "item.anabnormalcircumstance.prismatic_staff": "Prismatic Shard",
+  "item.anabnormalcircumstance.prismatic_staff": "Prismatic Staff",
   "item.anabnormalcircumstance.varnia_staff": "Radi's Conveyance",
   "item.anabnormalcircumstance.arcane_blade": "Arcane Blade",
   "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",

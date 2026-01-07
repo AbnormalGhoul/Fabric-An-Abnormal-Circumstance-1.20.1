@@ -155,6 +155,6 @@ public class SolinSwordItem extends AxeItem implements UniqueAbilityItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Increased damage while both Blades are held together").formatted(net.minecraft.util.Formatting.AQUA));
         tooltip.add(Text.literal("Active: Inflict Vulnerability onto next hit").formatted(net.minecraft.util.Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(net.minecraft.util.Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(net.minecraft.util.Formatting.GRAY));
     }
 }

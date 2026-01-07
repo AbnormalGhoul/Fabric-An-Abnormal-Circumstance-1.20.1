@@ -21,6 +21,7 @@ public class ModEvents {
     public static void registerEvents() {
         ModAttackEvent.register();
         MarkOfAChampionEvents.register();
+        AdamantiteArmorSetHandler.register();
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient && entity instanceof LivingEntity target) {

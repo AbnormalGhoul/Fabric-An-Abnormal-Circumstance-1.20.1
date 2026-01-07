@@ -11,17 +11,17 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityRageOutgoingMixin {
+public abstract class LivingEntityOutgoingDamageMixin {
 
     @ModifyVariable(
             method = "damage",
             at = @At("HEAD"),
             argsOnly = true
     )
-    private float applyRageOutgoing(float amount, DamageSource source) {
+    private float applyOutgoingDamageModifiers(float amount, DamageSource source) {
 
         Entity attacker = source.getAttacker();
-        if (!(attacker instanceof LivingEntity livingAttacker)) {
+        if (!(attacker instanceof LivingEntity living)) {
             return amount;
         }
 
@@ -29,18 +29,20 @@ public abstract class LivingEntityRageOutgoingMixin {
             return amount;
         }
 
-        StatusEffectInstance rage =
-                livingAttacker.getStatusEffect(ModEffects.RAGE);
+        float bonusMultiplier = 1.0F;
 
-        if (rage == null) {
-            return amount;
+        // Rage: +10% per level
+        StatusEffectInstance rage = living.getStatusEffect(ModEffects.RAGE);
+        if (rage != null) {
+            int level = rage.getAmplifier() + 1;
+            bonusMultiplier += 0.10F * level;
         }
 
-        int level = rage.getAmplifier() + 1;
+        // Adamantite set: flat +20%
+        if (living.hasStatusEffect(ModEffects.ADAMANTITE_POWER)) {
+            bonusMultiplier += 0.20F;
+        }
 
-        // +10% damage dealt per level
-        return amount * (1.0F + 0.10F * level);
+        return amount * bonusMultiplier;
     }
 }
-
-

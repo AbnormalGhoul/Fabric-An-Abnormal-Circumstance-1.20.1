@@ -182,8 +182,8 @@ public class VarniaStaffItem extends Item implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Right Click Block: Bind location").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Active: Teleport nearby entities").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Bind Cooldown: 1min").formatted(Formatting.GRAY));
-        tooltip.add(Text.literal("Ability Cooldown: 3min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Teleport nearby entities").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Bind Cooldown: 1 minute").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Ability Cooldown: 3 minutes").formatted(Formatting.GRAY));
     }
 }

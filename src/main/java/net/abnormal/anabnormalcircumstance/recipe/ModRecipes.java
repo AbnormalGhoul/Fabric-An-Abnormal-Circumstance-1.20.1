@@ -92,7 +92,7 @@ public class ModRecipes {
 
     public static AltarRecipe createBerserkersVial() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "berserkers_vial"))
-                .addInput(ModItems.MANA_CLUSTER, 2)
+                .addInput(ModItems.MANA_CLUSTER, 4)
                 .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.GOLD_BLOCK, 16)
                 .addInput(Items.CRYING_OBSIDIAN, 16)
@@ -106,7 +106,7 @@ public class ModRecipes {
 
     public static AltarRecipe createPrismaticStaff() {
         return new AltarRecipe.Builder(new Identifier("anabnormalcircumstance", "prismatic_staff"))
-                .addInput(ModItems.MANA_CLUSTER, 2)
+                .addInput(ModItems.MANA_CLUSTER, 4)
                 .addInput(Items.DIAMOND_BLOCK, 8)
                 .addInput(Items.GOLD_BLOCK, 16)
                 .addInput(Items.CRYING_OBSIDIAN, 16)

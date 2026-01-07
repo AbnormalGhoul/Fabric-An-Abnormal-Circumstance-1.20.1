@@ -97,6 +97,6 @@ public class BerserkersVialItem extends Item implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Active: Enter a berserk rage - Grants Rage II for 20 seconds").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1min").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 }

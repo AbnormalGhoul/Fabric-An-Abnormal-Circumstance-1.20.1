@@ -4,6 +4,7 @@ import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
@@ -24,6 +25,7 @@ import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class EarthquakeSpell extends Spell {
+
     private static final int DURATION_TICKS = 20 * 20;
     private static final int DAMAGE_INTERVAL = 20; // every 1s
     private static final double RADIUS = 12.0;
@@ -31,6 +33,10 @@ public class EarthquakeSpell extends Spell {
     private static final int RING_POINTS = 48;
     private static final double RING_THICKNESS = 0.4;
 
+    private static final double INNER_RADIUS = 4.0;
+    private static final int INNER_PARTICLE_DENSITY = 80;
+    private static final int VULNERABILITY_DURATION = 60; // 3 seconds
+    private static final int VULNERABILITY_AMPLIFIER = 0;
 
     public EarthquakeSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 90, icon, "Earthquake", "Shakes the ground in a wide area, weakening enemies standing on solid blocks.");
@@ -64,7 +70,7 @@ public class EarthquakeSpell extends Spell {
                 for (EarthquakeInstance quake : ACTIVE) {
                     quake.ticks++;
 
-                    // Try to find caster; if absent then end quake
+                    // Try to find caster, if absent then end quake
                     ServerPlayerEntity caster = server.getPlayerManager().getPlayer(quake.casterId);
                     if (caster == null) {
                         toRemove.add(quake);
@@ -74,10 +80,12 @@ public class EarthquakeSpell extends Spell {
                     ServerWorld world = quake.world;
                     // spawn floor dust/particles each tick
                     quake.spawnGroundParticles();
+                    quake.spawnInnerEpicenterParticles();
 
                     // damage & effects on interval
                     if (quake.ticks % DAMAGE_INTERVAL == 0) {
                         quake.affectEnemies(caster);
+                        quake.affectInnerEnemies(caster);
                         world.playSound(null, BlockPos.ofFloored(quake.center), SoundEvents.BLOCK_STONE_BREAK, SoundCategory.PLAYERS, 1.0f, 0.9f);
                     }
 
@@ -193,13 +201,76 @@ public class EarthquakeSpell extends Spell {
                 for (LivingEntity target : enemies) {
                     target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 60, 1, false, true, true));
-                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.WEAKNESS, 60, 0, false, true, true));
+                    target.addStatusEffect(new StatusEffectInstance(StatusEffects.DARKNESS, 60, 0, false, true, true));
                     target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 60, 1, false, true, true));
 
                     world.spawnParticles(
                             new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.DIRT.getDefaultState()),
                             target.getX(), target.getY(), target.getZ(),
                             10, 0.3, 0.1, 0.3, 0.05
+                    );
+                }
+            }
+
+            void spawnInnerEpicenterParticles() {
+                BlockState dripstone = Blocks.POINTED_DRIPSTONE.getDefaultState();
+
+                for (int i = 0; i < INNER_PARTICLE_DENSITY; i++) {
+                    double angle = world.random.nextDouble() * 2 * Math.PI;
+                    double dist = world.random.nextDouble() * INNER_RADIUS;
+
+                    double x = center.x + Math.cos(angle) * dist;
+                    double z = center.z + Math.sin(angle) * dist;
+
+                    BlockPos pos = findGround(x, z);
+
+                    world.spawnParticles(
+                            new BlockStateParticleEffect(ParticleTypes.BLOCK, dripstone),
+                            x,
+                            pos.getY() + 1.1,
+                            z,
+                            4,
+                            0.15, 0.1, 0.15,
+                            0.02
+                    );
+                }
+            }
+
+            void affectInnerEnemies(ServerPlayerEntity caster) {
+                Box innerArea = new Box(
+                        center.x - INNER_RADIUS, center.y - 2, center.z - INNER_RADIUS,
+                        center.x + INNER_RADIUS, center.y + 4, center.z + INNER_RADIUS
+                );
+
+                List<LivingEntity> targets = world.getEntitiesByClass(
+                        LivingEntity.class,
+                        innerArea,
+                        e -> e.isAlive()
+                                && e.isOnGround()
+                                && !e.getUuid().equals(caster.getUuid())
+                                && !caster.isTeammate(e)
+                                && !e.isSpectator()
+                                && !e.isInvulnerable()
+                );
+
+                for (LivingEntity target : targets) {
+                    target.addStatusEffect(new StatusEffectInstance(
+                            ModEffects.VULNERABILITY,
+                            VULNERABILITY_DURATION,
+                            VULNERABILITY_AMPLIFIER,
+                            false,
+                            true,
+                            true
+                    ));
+
+                    world.spawnParticles(
+                            new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.POINTED_DRIPSTONE.getDefaultState()),
+                            target.getX(),
+                            target.getY() + 0.5,
+                            target.getZ(),
+                            8,
+                            0.2, 0.2, 0.2,
+                            0.03
                     );
                 }
             }

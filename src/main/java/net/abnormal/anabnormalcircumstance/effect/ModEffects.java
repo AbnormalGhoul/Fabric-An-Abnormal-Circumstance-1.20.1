@@ -16,6 +16,8 @@ public class ModEffects {
     public static final StatusEffect PHOENIX_FIRE = new PhoenixFireEffect(StatusEffectCategory.BENEFICIAL, 0xFF4500);
     public static final StatusEffect VULNERABILITY = new VulnerabilityEffect(StatusEffectCategory.HARMFUL, 0x8B0000);
     public static final StatusEffect RAGE = new RageEffect(StatusEffectCategory.BENEFICIAL, 0x800080);
+    public static final StatusEffect ADAMANTITE_POWER = new AdamantitePowerEffect(StatusEffectCategory.BENEFICIAL, 0x6B6B6B);
+
 
     public static void registerEffects() {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "bleeding"), BLEEDING);
@@ -25,5 +27,6 @@ public class ModEffects {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "phoenix_fire"), PHOENIX_FIRE);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "vulnerability"), VULNERABILITY);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "rage"), RAGE);
+        Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "adamantite_power"), ADAMANTITE_POWER);
     }
 }
