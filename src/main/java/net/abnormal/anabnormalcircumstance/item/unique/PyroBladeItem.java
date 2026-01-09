@@ -41,7 +41,7 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
         Box area = player.getBoundingBox().expand(3.0);
         for (Entity e : world.getEntitiesByClass(LivingEntity.class, area, ent -> ent != player && ent.isAlive() && !player.isTeammate(ent))) {
             LivingEntity entity = (LivingEntity) e;
-            entity.damage(world.getDamageSources().magic(), 25.0F);
+            entity.damage(world.getDamageSources().magic(), 35.0F);
             entity.setOnFireFor(5);
         }
         player.getWorld().playSound(
@@ -77,7 +77,7 @@ public class PyroBladeItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Burns enemies on hit").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Magma Swing - 25 damage in 3-block radius").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Magma Swing - 35 damage in 3-block radius").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
     }
 }
