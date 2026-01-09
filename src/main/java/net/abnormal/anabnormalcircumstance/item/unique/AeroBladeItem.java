@@ -3,11 +3,15 @@ package net.abnormal.anabnormalcircumstance.item.unique;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -27,12 +31,28 @@ public class AeroBladeItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
         if (entity instanceof PlayerEntity player && selected && stack == player.getMainHandStack()) {
-            // Only reset fallDistance if the player is about to take fall damage (i.e., just before landing)
+            // Only reset fallDistance if the player is about to take fall damage
             if (!player.isOnGround() && player.getVelocity().y < 0 && player.fallDistance > 2.5F) {
                 player.fallDistance = 0.0F;
             }
         }
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    // On hit Apply Mining Fatigue I for 5 seconds
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (!attacker.getWorld().isClient()) {
+            target.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.MINING_FATIGUE, // Effect type
+                    30,
+                    0,      // Amplifier
+                    false,  // Ambient
+                    true,   // Show particles
+                    true    // Show icon
+            ));
+        }
+        return super.postHit(stack, target, attacker);
     }
 
     // Called from KeyBindingHandler
@@ -64,7 +84,7 @@ public class AeroBladeItem extends SwordItem implements UniqueAbilityItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: No fall damage while held").formatted(net.minecraft.util.Formatting.AQUA));
+        tooltip.add(Text.literal("Passive: No fall damage while held, inflicts Mining Fatigue on hit").formatted(net.minecraft.util.Formatting.AQUA));
         tooltip.add(Text.literal("Active: Dash forward").formatted(net.minecraft.util.Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 30s").formatted(net.minecraft.util.Formatting.GRAY));
     }

@@ -234,6 +234,15 @@ public class ModItems {
     public static final Item MITHRIL_BOOTS = registerItem("mithril_boots",
             new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
+    // Donator Items
+    public static final Item CROWN_BLADE = registerItem("crown_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item LAST_ROSE = registerItem("last_rose", new Item(new Item.Settings().maxCount(1)));
+    public static final Item GARGOYLE_AXE = registerItem("gargoyle_axe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item GREAT_SWORD = registerItem("great_sword", new Item(new Item.Settings().maxCount(1)));
+    public static final Item NECROMANCER_SWORD = registerItem("necromancer_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item RED_HAMMER = registerItem("red_hammer", new Item(new Item.Settings().maxCount(1)));
+    public static final Item TOXIC_SCYTHE = registerItem("toxic_scythe", new Item(new Item.Settings().maxCount(1)));
+
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
     public static final Item GOLDEN_EARRINGS = registerItem("golden_earrings", new Item(new Item.Settings()));

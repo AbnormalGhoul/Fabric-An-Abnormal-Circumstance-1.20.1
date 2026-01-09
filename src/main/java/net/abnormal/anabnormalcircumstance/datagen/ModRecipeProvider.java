@@ -277,29 +277,42 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .offerTo(consumer, new Identifier(getRecipeName(ModItems.TOTEM_OF_PURITY)));
 
         // KARAMBIT
-//        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.KARAMBIT, 1)
-//                .pattern("  #")
-//                .pattern(" X ")
-//                .pattern("Q  ")
-//                .input('#', ModItems.ORC_CHAMPION_FANG)
-//                .input('X', ModItems.MANA_CLUSTER)
-//                .input('Q' , Items.STICK)
-//                .showNotification(true)
-//                .criterion("has_orc_champion_fang", conditionsFromItem(ModItems.ORC_CHAMPION_FANG))
-//                .offerTo(consumer, new Identifier(getRecipeName(ModItems.KARAMBIT)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.KARAMBIT, 1)
+                .pattern("  #")
+                .pattern(" X ")
+                .pattern("Q  ")
+                .input('#', ModItems.ORC_CHAMPION_FANG)
+                .input('X', ModItems.MANA_CLUSTER)
+                .input('Q' , Items.STICK)
+                .showNotification(true)
+                .criterion("has_orc_champion_fang", conditionsFromItem(ModItems.ORC_CHAMPION_FANG))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.KARAMBIT)));
 
         // WIDOWS_GEM
-//        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.WIDOWS_GEM, 1)
-//                .pattern("Q#Q")
-//                .pattern("$X$")
-//                .pattern("Q#Q")
-//                .input('#', ModItems.ARACHNID_SILK)
-//                .input('X', ModItems.MANA_CLUSTER)
-//                .input('Q' , Items.GOLD_BLOCK)
-//                .input('$' , ModItems.BROODMOTHER_EGG)
-//                .showNotification(true)
-//                .criterion("has_broodmother_egg", conditionsFromItem(ModItems.BROODMOTHER_EGG))
-//                .offerTo(consumer, new Identifier(getRecipeName(ModItems.WIDOWS_GEM)));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.WIDOWS_GEM, 1)
+                .pattern("Q#Q")
+                .pattern("$X$")
+                .pattern("Q#Q")
+                .input('#', ModItems.ARACHNID_SILK)
+                .input('X', ModItems.MANA_CLUSTER)
+                .input('Q' , Items.GOLD_BLOCK)
+                .input('$' , ModItems.BROODMOTHER_EGG)
+                .showNotification(true)
+                .criterion("has_broodmother_egg", conditionsFromItem(ModItems.BROODMOTHER_EGG))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.WIDOWS_GEM)));
+
+        // BROOD_GEM
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.BROOD_GEM, 1)
+                .pattern("Q$Q")
+                .pattern("#X#")
+                .pattern("Q$Q")
+                .input('#', ModItems.ARACHNID_SILK)
+                .input('X', ModItems.MANA_CLUSTER)
+                .input('Q' , Items.GOLD_BLOCK)
+                .input('$' , ModItems.BROODMOTHER_EGG)
+                .showNotification(true)
+                .criterion("has_broodmother_egg", conditionsFromItem(ModItems.BROODMOTHER_EGG))
+                .offerTo(consumer, new Identifier(getRecipeName(ModItems.BROOD_GEM)));
 
         // SILVER ARROW
         ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.SILVER_ARROW, 8)

@@ -210,7 +210,7 @@ public class PrismaticStaffItem extends Item implements UniqueAbilityItem {
     // Tooltip
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Active: Create a prismatic healing aura for 1 minute").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Create a prismatic healing aura for 20s").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 }

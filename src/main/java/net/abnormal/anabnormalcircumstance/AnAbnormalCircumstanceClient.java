@@ -4,6 +4,8 @@ import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltarBlockEntityRenderer;
 import net.abnormal.anabnormalcircumstance.entity.ModEntityRenderers;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.abnormal.anabnormalcircumstance.item.custom.TransmogModels;
+import net.abnormal.anabnormalcircumstance.item.custom.TransmogTokenItem;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.magic.client.ClientTickHandler;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
@@ -20,6 +22,7 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
@@ -46,20 +49,26 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         PacketHandlerClient.register();
 
         // Transmog Predicate Registration junk
-//        for (Item item : Registries.ITEM) {
-//            Identifier id = Registries.ITEM.getId(item);
-//
-//            ModelPredicateProviderRegistry.register(
-//                    item,
-//                    new Identifier("transmog"),
-//                    (stack, world, entity, seed) -> {
-//                        if (stack.hasNbt() && stack.getNbt().contains("TransmogItem")) {
-//                            return 1.0F;
-//                        }
-//                        return 0.0F;
-//                    }
-//            );
-//        }
+        ModelPredicateProviderRegistry.register(
+                ModItems.ARCANE_BLADE,
+                new Identifier("anabnormalcircumstance", "transmog"),
+                (ItemStack stack, net.minecraft.client.world.ClientWorld world,
+                 net.minecraft.entity.LivingEntity entity, int seed) -> {
+
+                    if (!stack.hasNbt()) return 0.0F;
+
+                    String raw = stack.getNbt()
+                            .getString("anabnormalcircumstance:transmog_item");
+
+                    if (raw.isEmpty()) return 0.0F;
+
+                    Identifier id = Identifier.tryParse(raw);
+                    if (id == null) return 0.0F;
+
+                    return TransmogModels.getModelValue(id);
+                }
+        );
+
 
     }
 

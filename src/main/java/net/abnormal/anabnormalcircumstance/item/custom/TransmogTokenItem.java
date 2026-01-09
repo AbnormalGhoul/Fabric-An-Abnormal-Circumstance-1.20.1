@@ -1,26 +1,24 @@
 package net.abnormal.anabnormalcircumstance.item.custom;
 
+import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
-/**
- * TransmogTokenItem
- *
- * Offhand-only consumable item that applies a visual override
- * to the player's main-hand item using NBT.
- *
- * The overridden item keeps all original stats and behavior.
- */
 public class TransmogTokenItem extends Item {
+    // /give @p anabnormalcircumstance:transmog_token{"anabnormalcircumstance:transmog_item":"anabnormalcircumstance:red_hammer"}
 
-    public static final String TRANSMOG_KEY = "TransmogItem";
+    public static final String TRANSMOG_KEY = "anabnormalcircumstance:transmog_item";
 
     public TransmogTokenItem(Settings settings) {
         super(settings);
@@ -29,50 +27,55 @@ public class TransmogTokenItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        // Must be used from offhand
+        // Token must be in OFFHAND
         if (hand != Hand.OFF_HAND) {
-            return TypedActionResult.fail(player.getStackInHand(hand));
+            return TypedActionResult.pass(player.getStackInHand(hand));
         }
 
-        ItemStack tokenStack = player.getOffHandStack();
-        ItemStack targetStack = player.getMainHandStack();
-
-        if (world.isClient) {
-            return TypedActionResult.pass(tokenStack);
+        if (world.isClient()) {
+            return TypedActionResult.success(player.getStackInHand(hand));
         }
 
-        // Mainhand must contain an item
-        if (targetStack.isEmpty()) {
-            return TypedActionResult.fail(tokenStack);
+        ItemStack token = player.getOffHandStack();
+        ItemStack mainhand = player.getMainHandStack();
+
+        // Must be holding Arcane Blade
+        if (!mainhand.isOf(ModItems.ARCANE_BLADE)) {
+            return TypedActionResult.fail(token);
         }
 
-        NbtCompound tokenNbt = tokenStack.getNbt();
+        NbtCompound tokenNbt = token.getNbt();
         if (tokenNbt == null || !tokenNbt.contains(TRANSMOG_KEY)) {
-            return TypedActionResult.fail(tokenStack);
+            return TypedActionResult.fail(token);
         }
 
-        String transmogIdString = tokenNbt.getString(TRANSMOG_KEY);
+        String itemId = tokenNbt.getString(TRANSMOG_KEY);
+        Identifier id = Identifier.tryParse(itemId);
 
-        // Validate identifier
-        Identifier transmogId = Identifier.tryParse(transmogIdString);
-        if (transmogId == null || !Registries.ITEM.containsId(transmogId)) {
-            return TypedActionResult.fail(tokenStack);
+        if (id == null || !Registries.ITEM.containsId(id)) {
+            return TypedActionResult.fail(token);
         }
 
-        // Prevent transmogging into the same item
-        Identifier targetId = Registries.ITEM.getId(targetStack.getItem());
-        if (targetId.equals(transmogId)) {
-            return TypedActionResult.fail(tokenStack);
-        }
+        // Apply transmog to Arcane Blade
+        NbtCompound bladeNbt = mainhand.getOrCreateNbt();
+        bladeNbt.putString(TRANSMOG_KEY, itemId);
 
-        // Apply visual override
-        NbtCompound targetNbt = targetStack.getOrCreateNbt();
-        targetNbt.putString(TRANSMOG_KEY, transmogId.toString());
+        // Notify player
+        player.sendMessage(Text.literal("Blade has been Transmogrified!").formatted(Formatting.DARK_PURPLE), true);
 
-        // Consume exactly one token
-        tokenStack.decrement(1);
+        // Play sound
+        world.playSound(
+                null,
+                player.getBlockPos(),
+                SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE,
+                SoundCategory.PLAYERS,
+                1.0F,
+                1.2F
+        );
 
-        return TypedActionResult.success(tokenStack);
+        // Consume token
+        token.decrement(1);
+
+        return TypedActionResult.success(token);
     }
 }
-

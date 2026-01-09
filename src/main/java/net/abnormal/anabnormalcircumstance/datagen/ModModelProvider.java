@@ -51,7 +51,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.NIGHT_PENDANT, Models.GENERATED);
         itemModelGenerator.register(ModItems.BERSERKERS_VIAL, Models.GENERATED);
         itemModelGenerator.register(ModItems.BROOD_GEM, Models.GENERATED);
-        itemModelGenerator.register(ModItems.ARCANE_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.VARNIA_STAFF, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.MITHRIL_INGOT, Models.GENERATED);

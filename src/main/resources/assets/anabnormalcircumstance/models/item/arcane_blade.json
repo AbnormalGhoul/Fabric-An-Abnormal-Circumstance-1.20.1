@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/arcane_blade"
+  },
+  "overrides": [
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.1 },
+      "model": "anabnormalcircumstance:item/crown_blade"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.2 },
+      "model": "anabnormalcircumstance:item/last_rose"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.3 },
+      "model": "anabnormalcircumstance:item/gargoyle_axe"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.4 },
+      "model": "anabnormalcircumstance:item/great_sword"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.5 },
+      "model": "anabnormalcircumstance:item/necromancer_blade"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.6 },
+      "model": "anabnormalcircumstance:item/red_hammer"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.7 },
+      "model": "anabnormalcircumstance:item/toxic_scythe"
+    }
+  ]
+}

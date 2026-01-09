@@ -345,6 +345,21 @@ public class ModItemGroups {
 
                     }).build());
 
+//    public static final ItemGroup ABNORMAL_DONATOR_SKINS = Registry.register(Registries.ITEM_GROUP,
+//            new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_donator_skins_group"),
+//            FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_donator_skins_group"))
+//                    .icon(() -> new ItemStack(ModItems.CROWN_BLADE)).entries((displayContext, entries) -> {
+//
+//                        entries.add(ModItems.CROWN_BLADE);
+//                        entries.add(ModItems.TOXIC_SCYTHE);
+//                        entries.add(ModItems.LAST_ROSE);
+//                        entries.add(ModItems.GARGOYLE_AXE);
+//                        entries.add(ModItems.GREAT_SWORD);
+//                        entries.add(ModItems.NECROMANCER_SWORD);
+//                        entries.add(ModItems.RED_HAMMER);
+//
+//                    }).build());
+
 
     public static void registerItemGroups() {
         AnAbnormalCircumstance.LOGGER.info("Registering Mod Item Groups for " + AnAbnormalCircumstance.MOD_ID);

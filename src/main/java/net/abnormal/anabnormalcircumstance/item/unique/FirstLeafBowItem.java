@@ -60,7 +60,15 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
             player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
             return;
         }
-        player.getMainHandStack().getOrCreateNbt().putBoolean(PRIMED_ARROW_KEY, true);
+        ItemStack bowStack = player.getMainHandStack().isOf(this)
+                ? player.getMainHandStack()
+                : player.getOffHandStack().isOf(this)
+                ? player.getOffHandStack()
+                : ItemStack.EMPTY;
+
+        if (bowStack.isEmpty()) return;
+
+        bowStack.getOrCreateNbt().putBoolean(PRIMED_ARROW_KEY, true);
         player.getWorld().playSound(
                 null,
                 player.getBlockPos(),

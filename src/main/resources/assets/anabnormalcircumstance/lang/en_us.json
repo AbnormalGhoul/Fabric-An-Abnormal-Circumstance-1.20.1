@@ -4,6 +4,7 @@
   "itemgroup.abnormal_dungeon_loot": "Dungeon Loot",
   "itemgroup.abnormal_sparks_group": "Sparks",
   "itemgroup.abnormal_spawn_egg_group": "Abnormal Spawn Eggs",
+  "itemgroup.abnormal_donator_skins_group": "Donator Models",
 
   "entity.anabnormalcircumstance.silver_arrow_projectile": "Silver Arrow",
   "entity.anabnormalcircumstance.javelin_projectile": "Javelin",
@@ -20,6 +21,14 @@
 
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
+
+  "item.anabnormalcircumstance.crown_blade": "Crown Blade",
+  "item.anabnormalcircumstance.last_rose": "Last Rose",
+  "item.anabnormalcircumstance.gargoyle_axe": "Gargoyle Axe",
+  "item.anabnormalcircumstance.great_sword": "Great Sword",
+  "item.anabnormalcircumstance.necromancer_blade": "Necromancer's Blade",
+  "item.anabnormalcircumstance.red_hammer": "Red Hammer",
+  "item.anabnormalcircumstance.toxic_scythe": "Toxic Scythe",
 
   "key.anabnormalcircumstance.unique_item_ability": "Unique Item Ability",
   "key.anabnormalcircumstance.spell_tier_1": "Tier 1 Spell Activation",
@@ -44,7 +53,6 @@
   "effect.anabnormalcircumstance.rage.desc": "You deal and take 10% more damage per level",
   "effect.anabnormalcircumstance.adamantite_power": "Adamantite Power",
   "effect.anabnormalcircumstance.adamantite_power.desc": "You deal 20% more damage",
-
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
@@ -187,5 +195,4 @@
 
   "item.anabnormalcircumstance.spark_of_water_breathing": "Spark of Water Breathing",
   "item.anabnormalcircumstance.spark_of_long_water_breathing": "Spark of Water Breathing"
-
 }
