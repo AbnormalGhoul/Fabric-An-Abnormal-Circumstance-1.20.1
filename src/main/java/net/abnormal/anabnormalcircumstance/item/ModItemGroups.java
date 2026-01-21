@@ -15,7 +15,7 @@ public class ModItemGroups {
     public static final ItemGroup ABNORMAL_TRINKETS = Registry.register(Registries.ITEM_GROUP,
             new Identifier(AnAbnormalCircumstance.MOD_ID, "abnormal_trinkets_group"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.abnormal_trinkets_group"))
-                    .icon(() -> new ItemStack(ModItems.FORGEFATHER_JUDGMENT)).entries((displayContext, entries) -> {
+                    .icon(() -> new ItemStack(ModItems.ARCANE_AXE)).entries((displayContext, entries) -> {
 
                         // Champion Weapons
                         entries.add(ModItems.FIRST_LEAF);
@@ -32,6 +32,8 @@ public class ModItemGroups {
                         entries.add(ModItems.PYRO_BLADE);
                         entries.add(ModItems.GEO_BLADE);
                         entries.add(ModItems.ARCANE_BLADE);
+                        entries.add(ModItems.ARCANE_AXE);
+                        entries.add(ModItems.ARCANE_BOW);
 
                         // Armor Sets
                         entries.add(ModItems.ADAMANTITE_HELMET);
@@ -282,6 +284,10 @@ public class ModItemGroups {
                         entries.add(ModItems.MITHRIL_INGOT);
                         entries.add(ModItems.ADAMANTITE_INGOT);
 
+                        // Arcane Materials
+                        entries.add(ModItems.ARCANE_ESSENCE);
+                        entries.add(ModItems.ARCANE_UPGRADE);
+
                         // Blocks
                         entries.add(ModBlocks.HEPHAESTUS_ALTAR);
                         entries.add(ModBlocks.DARK_SAND);
@@ -342,6 +348,26 @@ public class ModItemGroups {
                         entries.add(ModItems.BROOD_WARRIOR_SPAWN_EGG);
                         entries.add(ModItems.BROOD_WEBBER_SPAWN_EGG);
                         entries.add(ModItems.BROODMOTHER_SPAWN_EGG);
+
+                        // DONATOR ITEMS
+                        entries.add(ModItems.CROWN_BLADE);
+                        entries.add(ModItems.DRUIDS_STAFF);
+                        entries.add(ModItems.SYLVESTRIAN_BLADE);
+                        entries.add(ModItems.LAST_ROSE);
+                        entries.add(ModItems.GARGOYLE_AXE);
+                        entries.add(ModItems.GREAT_SWORD);
+                        entries.add(ModItems.NECROMANCER_SWORD);
+                        entries.add(ModItems.MAGMA_CLUB);
+                        entries.add(ModItems.TOXIC_SCYTHE);
+                        entries.add(ModItems.CATACLYSM);
+                        entries.add(ModItems.POX_SPREADER);
+                        entries.add(ModItems.HOLY_SPEAR);
+                        entries.add(ModItems.MAGNETITE_SWORD);
+                        entries.add(ModItems.DEMONIC_BLADE);
+                        entries.add(ModItems.ABYSSAL_AXE);
+                        entries.add(ModItems.CURSED_BLADE);
+                        entries.add(ModItems.MANA_AXE);
+                        entries.add(ModItems.OCEANIC_MIGHT);
 
                     }).build());
 

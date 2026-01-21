@@ -2,7 +2,9 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "anabnormalcircumstance:item/red_hammer"
+		"1": "anabnormalcircumstance:item/magma_club",
+		"2": "anabnormalcircumstance:item/magma_club_anim",
+		"particle": "anabnormalcircumstance:item/magma_club_anim"
 	},
 	"elements": [
 		{
@@ -100,38 +102,52 @@
 				"west": {"uv": [0, 2.5, 3.75, 3.5], "texture": "#1"},
 				"up": {"uv": [5.75, 7.75, 4, 4], "texture": "#1"}
 			}
+		},
+		{
+			"from": [6.4, 6.25, -2.75],
+			"to": [6.4, 20.25, 13.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6.4, 6.25, -2.75]},
+			"faces": {
+				"west": {"uv": [0, 0, 16, 14], "texture": "#2"}
+			}
+		},
+		{
+			"from": [9.6, 6.25, -2.75],
+			"to": [9.6, 20.25, 13.25],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.6, 6.25, -2.75]},
+			"faces": {
+				"east": {"uv": [16, 0, 0, 14], "texture": "#2"}
+			}
 		}
 	],
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [35, 0, 0],
-			"translation": [0, 3.75, 7],
-			"scale": [1.7, 1.7, 1.7]
+			"translation": [0, 3.75, 2],
+			"scale": [1.5, 1.5, 1.5]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [35, 0, 0],
-			"translation": [0, 3.75, 7],
-			"scale": [1.7, 1.7, 1.7]
+			"translation": [0, 3.75, 2],
+			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [5, 20, 0],
-			"translation": [0.5, 3.75, 0],
+			"rotation": [-10, 22, 0],
+			"translation": [2.5, 2.75, 0],
 			"scale": [0.85, 0.85, 0.85]
 		},
 		"firstperson_lefthand": {
-			"rotation": [5, 20, 0],
-			"translation": [0.5, 3.75, 0],
+			"rotation": [-10, 22, 0],
+			"translation": [2.5, 2.75, 0],
 			"scale": [0.85, 0.85, 0.85]
 		},
 		"ground": {
-			"rotation": [-60, 0, 0],
+			"rotation": [-58, 0, 0],
 			"translation": [0, 2.75, 0],
 			"scale": [0.8, 0.8, 0.8]
 		},
 		"gui": {
 			"rotation": [-90, 50, 90],
-			"translation": [0.75, -0.25, -0.75],
+			"translation": [0.75, -0.75, -0.75],
 			"scale": [0.9, 0.9, 0.9]
 		},
 		"fixed": {
@@ -159,7 +175,9 @@
 					"children": [6, 7]
 				}
 			]
-		}
+		},
+		8,
+		9
 	],
 	"mcmodels": "cf9d2960b79043bbd05dcdd02ff753f5"
 }

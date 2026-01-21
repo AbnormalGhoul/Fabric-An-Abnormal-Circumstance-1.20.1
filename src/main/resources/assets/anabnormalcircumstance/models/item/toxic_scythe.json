@@ -1,9 +1,10 @@
 {
-	"format_version": "1.20.1",
+	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "anabnormalcircumstance:item/toxic_scythe",
+		"1": "anabnormalcircumstance:item/toxic_scythe_anim",
 		"particle": "anabnormalcircumstance:item/toxic_scythe"
 	},
 	"elements": [
@@ -262,34 +263,48 @@
 			"faces": {
 				"east": {"uv": [6.5, 0, 4, 1], "texture": "#0"}
 			}
+		},
+		{
+			"from": [7, 5, 3],
+			"to": [7, 25, 20],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5125, 8.86723, 8.76577]},
+			"faces": {
+				"west": {"uv": [0, 0, 8.5, 10], "texture": "#1"}
+			}
+		},
+		{
+			"from": [9, 5, 3],
+			"to": [9, 25, 20],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.4875, 8.86723, 8.76577]},
+			"faces": {
+				"east": {"uv": [8.5, 0, 0, 10], "texture": "#1"}
+			}
 		}
 	],
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [30, 0, 0],
-			"translation": [0, 6.5, 7],
+			"translation": [0, 6.25, 2],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [30, 0, 0],
-			"translation": [0, 6.5, 7],
+			"translation": [0, 6.25, 2],
 			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_righthand": {
 			"rotation": [-11, 27, 0],
-			"translation": [3.75, 2.75, -3.25],
+			"translation": [3.25, 2.75, -2],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"firstperson_lefthand": {
 			"rotation": [-11, 27, 0],
-			"translation": [3.75, 2.75, -3.25],
+			"translation": [3.25, 2.75, -2],
 			"scale": [0.75, 0.75, 0.75]
 		},
 		"ground": {
 			"rotation": [45, 0, 0],
 			"translation": [0, 4.75, 1.25],
-			"scale": [0.4, 0.4, 0.4]
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
 			"rotation": [-90, 39.75, 90],
@@ -298,8 +313,8 @@
 		},
 		"fixed": {
 			"rotation": [-90, -45, -90],
-			"translation": [-0.75, -2, 0],
-			"scale": [0.6, 0.6, 0.6]
+			"translation": [-0.75, -3, -1.75],
+			"scale": [0.7, 0.7, 0.7]
 		}
 	},
 	"groups": [
@@ -335,7 +350,9 @@
 					"origin": [8, 23.58447, 10.60266],
 					"color": 0,
 					"children": [27, 28, 29]
-				}
+				},
+				30,
+				31
 			]
 		}
 	],

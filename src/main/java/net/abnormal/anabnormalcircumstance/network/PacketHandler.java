@@ -5,10 +5,7 @@ import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.component.ManaComponent;
 import net.abnormal.anabnormalcircumstance.component.ModComponents;
 import net.abnormal.anabnormalcircumstance.component.SpellSlotsComponent;
-import net.abnormal.anabnormalcircumstance.magic.Spell;
-import net.abnormal.anabnormalcircumstance.magic.SpellElement;
-import net.abnormal.anabnormalcircumstance.magic.SpellRegistry;
-import net.abnormal.anabnormalcircumstance.magic.SpellTier;
+import net.abnormal.anabnormalcircumstance.magic.*;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -61,7 +58,14 @@ public final class PacketHandler {
                 boolean success = spell.cast(player);
                 if (success) {
                     mana.setMana(mana.getMana() - spell.getManaCost());
-                    slots.setCooldownTicks(tier, spell.getCooldownTicks());
+                    int baseCooldown = spell.getCooldownTicks();
+
+                    int modifiedCooldown = SpellCooldownUtil.applyCooldownModifiers(
+                            player,
+                            baseCooldown
+                    );
+
+                    slots.setCooldownTicks(tier, modifiedCooldown);
 
                     syncSpellStateToClient(player, mana, slots);
 

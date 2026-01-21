@@ -67,7 +67,7 @@ public class ModRecipes {
                 .addInput(ModItems.GEO_CATALYST, 1)
                 .addInput(ModItems.MANA_CORE, 2)
                 .addInput(Items.DIAMOND_BLOCK, 8)
-                .addInput(ModItems.ARCANE_BLADE, 1)
+                .addInput(ModItems.ARCANE_AXE, 1)
                 .addInput(ModItems.BROODMOTHER_EGG, 2)
                 .addInput(ModItems.ORC_CHAMPION_FANG, 2)
                 .addInput(Items.GOLD_BLOCK, 16)

@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.event;
+package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.entity.attribute.EntityAttributeModifier;

@@ -65,7 +65,7 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
         // Apply effects
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3, false, true, true));
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, true, true));
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 200, 1, false, true, true));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 200, 5, false, true, true));
 
         player.sendMessage(Text.literal("You are overcharged with divine power!").formatted(Formatting.GOLD, Formatting.BOLD), true);
 
@@ -88,7 +88,7 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Grants Haste II & Resistance I while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Overcharges the player with Lightning, grants Resistance IV & Regen III").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Overcharges the player with Lightning, grants Resistance IV, Regen III & Haste VI").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 

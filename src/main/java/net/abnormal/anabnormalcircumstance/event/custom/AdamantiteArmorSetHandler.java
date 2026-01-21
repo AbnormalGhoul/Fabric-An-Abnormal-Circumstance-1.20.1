@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.event;
+package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.util.ArmorSetUtils;

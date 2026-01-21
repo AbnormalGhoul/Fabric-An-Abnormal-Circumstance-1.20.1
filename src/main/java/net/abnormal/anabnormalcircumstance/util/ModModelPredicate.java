@@ -16,7 +16,7 @@ import net.minecraft.util.Identifier;
 public final class ModModelPredicate {
     private ModModelPredicate() {}
 
-    // For First Leaf
+    // For Bows
     public static void registerBow(Item item) {
         ModelPredicateProviderRegistry.register(item, new Identifier("pulling"),
                 (ItemStack stack, ClientWorld world, LivingEntity entity, int seed) ->

@@ -1,11 +1,10 @@
 // src/main/java/net/abnormal/anabnormalcircumstance/event/StunEventHandler.java
-package net.abnormal.anabnormalcircumstance.event;
+package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.TypedActionResult;

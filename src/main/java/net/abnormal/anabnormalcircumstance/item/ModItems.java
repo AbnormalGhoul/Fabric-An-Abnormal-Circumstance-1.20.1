@@ -167,11 +167,17 @@ public class ModItems {
             -2.4f,
             new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof()
     ));
-
+    public static final Item ARCANE_AXE = registerItem("arcane_axe", new ArcaneAxeItem(
+            ModToolMaterials.UNIQUE,
+            10,
+            -3.0f,
+            new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof()
+    ));
+    public static final Item ARCANE_BOW = registerItem("arcane_bow", new ArcaneBow(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof()));
 
     // Champion Weapons
-    public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC)));
-    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC), 100, 13, Items.NETHERITE_INGOT));
+    public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()));
+    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC).fireproof(), 100, 13, Items.NETHERITE_INGOT));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
             11,
@@ -207,13 +213,12 @@ public class ModItems {
             new DwarvenPickaxeItem(ModToolMaterials.UNIQUE, 5, -2.8f,
                     new FabricItemSettings().fireproof().rarity(Rarity.RARE)));
 
-
     // Carcan Item
     public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
 
     // Ingots
-    public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new Item(new Item.Settings().fireproof()));
-    public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new Item(new Item.Settings().fireproof()));
+    public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new AdamantiteIngotItem(new Item.Settings().fireproof()));
+    public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new MithrilIngotItem(new Item.Settings().fireproof()));
 
     // Armors
     public static final Item ADAMANTITE_HELMET = registerItem("adamantite_helmet",
@@ -236,12 +241,28 @@ public class ModItems {
 
     // Donator Items
     public static final Item CROWN_BLADE = registerItem("crown_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item DRUIDS_STAFF = registerItem("druid_staff", new Item(new Item.Settings().maxCount(1)));
+    public static final Item SYLVESTRIAN_BLADE = registerItem("sylvestrian_blade", new Item(new Item.Settings().maxCount(1)));
+
     public static final Item LAST_ROSE = registerItem("last_rose", new Item(new Item.Settings().maxCount(1)));
     public static final Item GARGOYLE_AXE = registerItem("gargoyle_axe", new Item(new Item.Settings().maxCount(1)));
     public static final Item GREAT_SWORD = registerItem("great_sword", new Item(new Item.Settings().maxCount(1)));
     public static final Item NECROMANCER_SWORD = registerItem("necromancer_blade", new Item(new Item.Settings().maxCount(1)));
-    public static final Item RED_HAMMER = registerItem("red_hammer", new Item(new Item.Settings().maxCount(1)));
+    public static final Item MAGMA_CLUB = registerItem("magma_club", new Item(new Item.Settings().maxCount(1)));
     public static final Item TOXIC_SCYTHE = registerItem("toxic_scythe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item CATACLYSM = registerItem("cataclysm", new Item(new Item.Settings().maxCount(1)));
+    public static final Item POX_SPREADER = registerItem("pox_spreader", new Item(new Item.Settings().maxCount(1)));
+    public static final Item HOLY_SPEAR = registerItem("holy_spear", new Item(new Item.Settings().maxCount(1)));
+    public static final Item MAGNETITE_SWORD = registerItem("magnetite_sword", new Item(new Item.Settings().maxCount(1)));
+    public static final Item DEMONIC_BLADE = registerItem("demonic_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item ABYSSAL_AXE = registerItem("abyssal_axe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item CURSED_BLADE = registerItem("cursed_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item MANA_AXE = registerItem("mana_axe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item OCEANIC_MIGHT = registerItem("oceanic_might", new Item(new Item.Settings().maxCount(1)));
+
+    // Arcane Items
+    public static final Item ARCANE_ESSENCE = registerItem("arcane_essence", new Item(new Item.Settings().fireproof()));
+    public static final Item ARCANE_UPGRADE = registerItem("arcane_upgrade", new Item(new Item.Settings().fireproof()));
 
     // Dungeon Loot
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
@@ -281,9 +302,9 @@ public class ModItems {
     public static final Item MANA_CORE = registerItem("mana_core", new Item(new Item.Settings()));
 
     // Utility
-    public static final Item CLAIM_RUNE = registerItem("claim_rune", new Item(new Item.Settings()));
-    public static final Item ORIGIN_RUNE = registerItem("origin_rune", new Item(new Item.Settings()));
-    public static final Item NATION_RUNE = registerItem("nation_rune", new Item(new Item.Settings()));
+    public static final Item CLAIM_RUNE = registerItem("claim_rune", new ClaimRuneItem(new Item.Settings()));
+    public static final Item ORIGIN_RUNE = registerItem("origin_rune", new OriginRuneItem(new Item.Settings()));
+    public static final Item NATION_RUNE = registerItem("nation_rune", new NationRuneItem(new Item.Settings()));
     public static final Item TRANSMOG_TOKEN = registerItem("transmog_token", new TransmogTokenItem(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
     public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic",
             new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));

@@ -42,7 +42,7 @@ public class SilentStepSpell extends Spell {
     private static boolean ATTACK_LISTENER_REGISTERED = false;
 
     public SilentStepSpell(Identifier id, Identifier icon) {
-        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, 45, 180, icon, "Silent Step", "Turns you invisible and removes all noise and trails you normally create.");
+        super(id, SpellElement.AEROMANCY, SpellTier.TIER_2, 45, 180, icon, "Silent Step", "Turns you invisible and removes all noise and potion trails you normally create.");
     }
 
     @Override
@@ -149,10 +149,11 @@ public class SilentStepSpell extends Spell {
         });
     }
 
-    // Simple internal scheduler (like IcicleShatterSpell)
+    // Simple internal scheduler
     private static final List<Task> TASKS = new ArrayList<>();
 
     static {
+        // Task scheduler
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             Iterator<Task> it = TASKS.iterator();
             while (it.hasNext()) {
@@ -163,6 +164,32 @@ public class SilentStepSpell extends Spell {
                 }
             }
         });
+
+        // Enforce true invisibility equipment hiding
+        ServerTickEvents.END_WORLD_TICK.register(world -> {
+            for (ServerPlayerEntity player : world.getPlayers()) {
+                if (INVISIBLE_PLAYERS.contains(player.getUuid())) {
+                    enforceEquipmentHidden(player);
+                }
+            }
+        });
+    }
+
+
+    private static void enforceEquipmentHidden(ServerPlayerEntity player) {
+        ServerWorld world = player.getServerWorld();
+
+        for (ServerPlayerEntity other : world.getPlayers(p -> p != player)) {
+            List<Pair<EquipmentSlot, ItemStack>> hidden = new ArrayList<>();
+
+            for (EquipmentSlot slot : EquipmentSlot.values()) {
+                hidden.add(Pair.of(slot, ItemStack.EMPTY));
+            }
+
+            other.networkHandler.sendPacket(
+                    new EntityEquipmentUpdateS2CPacket(player.getId(), hidden)
+            );
+        }
     }
 
     private static void schedule(MinecraftServer server, int delay, Runnable run) {

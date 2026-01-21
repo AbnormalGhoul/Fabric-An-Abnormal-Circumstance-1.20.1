@@ -32,8 +32,8 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
         super(settings, () -> Ingredient.EMPTY);
 
         this.config(new RangedConfig(
-                7,   // pull time
-                12.0F,   // damage (2x vanilla)
+                15,   // pull time
+                10.0F,   // damage (2x vanilla)
                 3.0F  // projectile velocity
         ));
     }

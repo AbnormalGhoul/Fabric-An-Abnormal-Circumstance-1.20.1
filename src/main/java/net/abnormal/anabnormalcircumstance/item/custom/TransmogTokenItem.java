@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.item.custom;
 
 import net.abnormal.anabnormalcircumstance.item.ModItems;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,10 +16,38 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
+import java.util.List;
+import java.util.Set;
+
 public class TransmogTokenItem extends Item {
     // /give @p anabnormalcircumstance:transmog_token{"anabnormalcircumstance:transmog_item":"anabnormalcircumstance:red_hammer"}
 
     public static final String TRANSMOG_KEY = "anabnormalcircumstance:transmog_item";
+
+    // Allowed transmog targets for each base item
+    private static final Set<String> SWORD_TRANSMOGS = Set.of(
+            "anabnormalcircumstance:crown_blade",
+            "anabnormalcircumstance:druids_staff",
+            "anabnormalcircumstance:sylvestrian_blade",
+            "anabnormalcircumstance:last_rose",
+            "anabnormalcircumstance:great_sword",
+            "anabnormalcircumstance:necromancer_blade",
+            "anabnormalcircumstance:toxic_scythe",
+            "anabnormalcircumstance:cataclysm",
+            "anabnormalcircumstance:pox_spreader",
+            "anabnormalcircumstance:holy_spear",
+            "anabnormalcircumstance:magnetite_sword",
+            "anabnormalcircumstance:demonic_blade",
+            "anabnormalcircumstance:cursed_blade",
+            "anabnormalcircumstance:oceanic_might"
+    );
+
+    private static final Set<String> AXE_TRANSMOGS = Set.of(
+            "anabnormalcircumstance:gargoyle_axe",
+            "anabnormalcircumstance:magma_club",
+            "anabnormalcircumstance:abyssal_axe",
+            "anabnormalcircumstance:mana_axe"
+    );
 
     public TransmogTokenItem(Settings settings) {
         super(settings);
@@ -27,7 +56,6 @@ public class TransmogTokenItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
 
-        // Token must be in OFFHAND
         if (hand != Hand.OFF_HAND) {
             return TypedActionResult.pass(player.getStackInHand(hand));
         }
@@ -39,8 +67,11 @@ public class TransmogTokenItem extends Item {
         ItemStack token = player.getOffHandStack();
         ItemStack mainhand = player.getMainHandStack();
 
-        // Must be holding Arcane Blade
-        if (!mainhand.isOf(ModItems.ARCANE_BLADE)) {
+        boolean isBlade = mainhand.isOf(ModItems.ARCANE_BLADE);
+        boolean isAxe = mainhand.isOf(ModItems.ARCANE_AXE);
+
+        // Must be holding a valid base item
+        if (!isBlade && !isAxe) {
             return TypedActionResult.fail(token);
         }
 
@@ -56,26 +87,37 @@ public class TransmogTokenItem extends Item {
             return TypedActionResult.fail(token);
         }
 
-        // Apply transmog to Arcane Blade
-        NbtCompound bladeNbt = mainhand.getOrCreateNbt();
-        bladeNbt.putString(TRANSMOG_KEY, itemId);
+        // Check if the chosen transmog is allowed for the base type
+        if (isBlade && !SWORD_TRANSMOGS.contains(itemId)) {
+            player.sendMessage(Text.literal("That appearance cannot be applied to the Arcane Blade!")
+                    .formatted(Formatting.RED), true);
+            return TypedActionResult.fail(token);
+        }
 
-        // Notify player
-        player.sendMessage(Text.literal("Blade has been Transmogrified!").formatted(Formatting.DARK_PURPLE), true);
+        if (isAxe && !AXE_TRANSMOGS.contains(itemId)) {
+            player.sendMessage(Text.literal("That appearance cannot be applied to the Arcane Axe!")
+                    .formatted(Formatting.RED), true);
+            return TypedActionResult.fail(token);
+        }
 
-        // Play sound
-        world.playSound(
-                null,
-                player.getBlockPos(),
+        // Apply transmog NBT
+        NbtCompound stackNbt = mainhand.getOrCreateNbt();
+        stackNbt.putString(TRANSMOG_KEY, itemId);
+
+        player.sendMessage(Text.literal("Transmog applied!").formatted(Formatting.DARK_PURPLE), true);
+
+        world.playSound(null, player.getBlockPos(),
                 SoundEvents.BLOCK_ENCHANTMENT_TABLE_USE,
-                SoundCategory.PLAYERS,
-                1.0F,
-                1.2F
-        );
+                SoundCategory.PLAYERS, 1.0F, 1.2F);
 
-        // Consume token
         token.decrement(1);
 
         return TypedActionResult.success(token);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.literal("Used to Transmogrify Arcane Items").formatted(Formatting.DARK_PURPLE));
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }

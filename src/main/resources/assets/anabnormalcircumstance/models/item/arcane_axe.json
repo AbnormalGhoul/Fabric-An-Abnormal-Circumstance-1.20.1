@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/arcane_axe"
+  },
+  "overrides": [
+    { "predicate": { "anabnormalcircumstance:transmog": 0.51 }, "model": "anabnormalcircumstance:item/gargoyle_axe" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.52 }, "model": "anabnormalcircumstance:item/magma_club" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.53 }, "model": "anabnormalcircumstance:item/abyssal_axe" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.54 }, "model": "anabnormalcircumstance:item/mana_axe" }
+  ]
+}

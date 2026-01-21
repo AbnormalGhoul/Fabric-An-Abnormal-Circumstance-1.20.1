@@ -1,8 +1,7 @@
-package net.abnormal.anabnormalcircumstance.event;
+package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;

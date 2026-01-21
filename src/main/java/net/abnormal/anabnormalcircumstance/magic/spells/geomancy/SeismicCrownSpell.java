@@ -26,7 +26,7 @@ public class SeismicCrownSpell extends Spell {
     private static final double RADIUS = 2.0;
     private static final int DAMAGE = 25;
     private static final int DURATION_TICKS = 10 * 20; // 10 seconds
-    private static final double KNOCKBACK_STRENGTH = 0.6;
+    private static final double KNOCKBACK_STRENGTH = 0.2;
 
     public SeismicCrownSpell(Identifier id, Identifier icon) {
         super(id, SpellElement.GEOMANCY, SpellTier.TIER_3, 60, 90, icon, "Seismic Crown", "Summons rotating stones around you that damage nearby enemies.");

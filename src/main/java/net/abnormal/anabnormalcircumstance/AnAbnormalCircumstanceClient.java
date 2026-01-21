@@ -4,11 +4,9 @@ import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltarBlockEntityRenderer;
 import net.abnormal.anabnormalcircumstance.entity.ModEntityRenderers;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.abnormal.anabnormalcircumstance.item.custom.TransmogModels;
-import net.abnormal.anabnormalcircumstance.item.custom.TransmogTokenItem;
+import net.abnormal.anabnormalcircumstance.item.util.TransmogModels;
 import net.abnormal.anabnormalcircumstance.magic.ModSpells;
 import net.abnormal.anabnormalcircumstance.magic.client.ClientTickHandler;
-import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.network.PacketHandlerClient;
 import net.abnormal.anabnormalcircumstance.screen.HephaestusAltarScreen;
 import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
@@ -21,9 +19,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 public class AnAbnormalCircumstanceClient implements ClientModInitializer {
@@ -48,26 +43,32 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
         PacketHandlerClient.register();
 
-        // Transmog Predicate Registration junk
+        // Arcane Blade transmog predicate
         ModelPredicateProviderRegistry.register(
                 ModItems.ARCANE_BLADE,
                 new Identifier("anabnormalcircumstance", "transmog"),
-                (ItemStack stack, net.minecraft.client.world.ClientWorld world,
-                 net.minecraft.entity.LivingEntity entity, int seed) -> {
-
+                (stack, world, entity, seed) -> {
                     if (!stack.hasNbt()) return 0.0F;
-
-                    String raw = stack.getNbt()
-                            .getString("anabnormalcircumstance:transmog_item");
-
+                    String raw = stack.getNbt().getString("anabnormalcircumstance:transmog_item");
                     if (raw.isEmpty()) return 0.0F;
-
                     Identifier id = Identifier.tryParse(raw);
-                    if (id == null) return 0.0F;
-
-                    return TransmogModels.getModelValue(id);
+                    return id == null ? 0.0F : TransmogModels.getModelValue(id);
                 }
         );
+
+        // Arcane Axe transmog predicate
+        ModelPredicateProviderRegistry.register(
+                ModItems.ARCANE_AXE,
+                new Identifier("anabnormalcircumstance", "transmog"),
+                (stack, world, entity, seed) -> {
+                    if (!stack.hasNbt()) return 0.0F;
+                    String raw = stack.getNbt().getString("anabnormalcircumstance:transmog_item");
+                    if (raw.isEmpty()) return 0.0F;
+                    Identifier id = Identifier.tryParse(raw);
+                    return id == null ? 0.0F : TransmogModels.getModelValue(id);
+                }
+        );
+
 
 
     }

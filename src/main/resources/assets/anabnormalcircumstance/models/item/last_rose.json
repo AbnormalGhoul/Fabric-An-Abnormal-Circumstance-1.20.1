@@ -3,7 +3,9 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "anabnormalcircumstance:item/last_rose"
+		"1": "anabnormalcircumstance:item/last_rose",
+		"2": "anabnormalcircumstance:item/last_rose_anim",
+		"particle": "anabnormalcircumstance:item/last_rose_anim"
 	},
 	"elements": [
 		{
@@ -536,40 +538,55 @@
 			"faces": {
 				"east": {"uv": [7.75, 0, 8.75, 1.25], "rotation": 90, "texture": "#1"}
 			}
+		},
+		{
+			"from": [7, -4, 0],
+			"to": [7, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7, -4, 0]},
+			"faces": {
+				"west": {"uv": [8, 0, 16, 8.5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [9, -4, 0],
+			"to": [9, 13, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -4, 0]},
+			"faces": {
+				"east": {"uv": [16, 0, 8, 8.5], "texture": "#2"}
+			}
 		}
 	],
 	"gui_light": "front",
 	"display": {
 		"thirdperson_righthand": {
-			"translation": [0, 8, 2],
-			"scale": [1.75, 1.75, 1.75]
+			"translation": [0, 6.5, 2],
+			"scale": [1.5, 1.5, 1.5]
 		},
 		"thirdperson_lefthand": {
-			"translation": [0, 8, 2],
-			"scale": [1.75, 1.75, 1.75]
+			"translation": [0, 6.5, 2],
+			"scale": [1.5, 1.5, 1.5]
 		},
 		"firstperson_righthand": {
-			"rotation": [-55, 15, 0],
-			"translation": [4, 1.75, -2.75]
+			"rotation": [-60, 15, 0],
+			"translation": [3.75, 1.75, -2.75]
 		},
 		"firstperson_lefthand": {
-			"rotation": [-55, 15, 0],
-			"translation": [4, 1.75, -2.75]
+			"rotation": [-60, 15, 0],
+			"translation": [3.75, 1.75, -2.75]
 		},
 		"ground": {
 			"rotation": [-60, 0, 0],
-			"translation": [0, 4, 0],
-			"scale": [0.6, 0.6, 0.6]
+			"translation": [0, 2, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
 			"rotation": [-90, 45, 90],
-			"translation": [0.5, -0.5, -0.75],
-			"scale": [0.7, 0.7, 0.7]
+			"translation": [0.75, -0.5, -0.75],
+			"scale": [0.8, 0.8, 0.8]
 		},
 		"fixed": {
 			"rotation": [-90, -45, -90],
-			"translation": [-1.25, -1, -0.75],
-			"scale": [0.8, 0.8, 0.8]
+			"translation": [-1.25, -1, -0.75]
 		}
 	},
 	"groups": [
@@ -652,7 +669,9 @@
 					"children": [60, 61]
 				}
 			]
-		}
+		},
+		62,
+		63
 	],
 	"mcmodels": "ba219c1f12b92ed6b293552281de1743"
 }

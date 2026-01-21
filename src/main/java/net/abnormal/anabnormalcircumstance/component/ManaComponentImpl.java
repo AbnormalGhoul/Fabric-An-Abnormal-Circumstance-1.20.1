@@ -1,6 +1,7 @@
 package net.abnormal.anabnormalcircumstance.component;
 
 import net.abnormal.anabnormalcircumstance.enchantment.util.ManaEnchantments;
+import net.abnormal.anabnormalcircumstance.util.ArmorSetUtils;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 
@@ -36,6 +37,10 @@ public class ManaComponentImpl implements ManaComponent {
     public void tick(ServerPlayerEntity player) {
         double multiplier = ManaEnchantments.getManaRegenMultiplier(player);
 
+        if (ArmorSetUtils.hasFullMithril(player)) {
+            multiplier *= 1.5;
+        }
+
         fractional += (MANA_PER_SECOND * multiplier) / 20.0;
 
         if (fractional >= 1.0) {
@@ -44,6 +49,7 @@ public class ManaComponentImpl implements ManaComponent {
             setMana(getMana() + gain);
         }
     }
+
 
     @Override
     public void readFromNbt(NbtCompound tag) {

@@ -66,6 +66,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.BLACK_SOLIN_BLADE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.REEDTHORN, Models.HANDHELD);
 
+        // Materials
+        itemModelGenerator.register(ModItems.ARCANE_ESSENCE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ARCANE_UPGRADE, Models.GENERATED);
+
         // Dungeon Loot
         itemModelGenerator.register(ModItems.SILVER_NECKLACE, Models.GENERATED);
         itemModelGenerator.register(ModItems.GOLDEN_EARRINGS, Models.GENERATED);

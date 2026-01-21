@@ -1,4 +1,4 @@
-package net.abnormal.anabnormalcircumstance.event;
+package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;

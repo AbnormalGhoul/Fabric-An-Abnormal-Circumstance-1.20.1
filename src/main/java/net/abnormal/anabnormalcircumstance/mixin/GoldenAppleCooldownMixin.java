@@ -15,7 +15,7 @@ public abstract class GoldenAppleCooldownMixin {
 
     // 0.5 seconds = 10 ticks
     @Unique
-    private static final int COOLDOWN_TICKS = 10;
+    private static final int COOLDOWN_TICKS = 40;
 
     @Inject(
             method = "eatFood",

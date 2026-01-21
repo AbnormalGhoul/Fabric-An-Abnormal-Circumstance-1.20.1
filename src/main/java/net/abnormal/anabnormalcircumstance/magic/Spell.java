@@ -38,6 +38,4 @@ public abstract class Spell {
     public String getDescription() { return description; }
 
     public abstract boolean cast(ServerPlayerEntity caster);
-
-
 }

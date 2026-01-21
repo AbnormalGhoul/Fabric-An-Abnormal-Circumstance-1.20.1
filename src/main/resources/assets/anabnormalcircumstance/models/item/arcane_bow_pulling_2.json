@@ -1,0 +1,6 @@
+{
+  "parent": "anabnormalcircumstance:item/arcane_bow",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/arcane_bow_pulling_2"
+  }
+}

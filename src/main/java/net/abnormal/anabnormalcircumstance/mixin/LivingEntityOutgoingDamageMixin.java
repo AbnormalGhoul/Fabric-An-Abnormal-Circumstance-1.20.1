@@ -39,9 +39,9 @@ public abstract class LivingEntityOutgoingDamageMixin {
         }
 
         // Adamantite set: flat +20%
-        if (living.hasStatusEffect(ModEffects.ADAMANTITE_POWER)) {
-            bonusMultiplier += 0.20F;
-        }
+//        if (living.hasStatusEffect(ModEffects.ADAMANTITE_POWER)) {
+//            bonusMultiplier += 0.20F;
+//        }
 
         return amount * bonusMultiplier;
     }

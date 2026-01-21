@@ -49,17 +49,6 @@ public class BroodGemItem extends Item implements Trinket {
     }
 
     @Override
-    public void onEquip(ItemStack stack, SlotReference slot, LivingEntity entity) {
-        if (!entity.getWorld().isClient && entity instanceof net.minecraft.server.network.ServerPlayerEntity player) {
-            // Delay by 1 tick so Trinkets finishes applying attributes
-            player.getServer().execute(() -> {
-                player.setHealth(player.getMaxHealth());
-            });
-        }
-    }
-
-
-    @Override
     public void appendTooltip(
             ItemStack stack,
             World world,

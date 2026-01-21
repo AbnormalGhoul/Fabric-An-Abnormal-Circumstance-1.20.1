@@ -13,9 +13,9 @@ import java.util.function.Supplier;
 public enum ModArmorMaterials implements ArmorMaterial {
 
     ADAMANTITE("adamantite", 37, new int[] { 3, 8, 6, 3 }, 15,
-                SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 0.0F, 0.0F, () -> Ingredient.ofItems(ModItems.ADAMANTITE_INGOT)),
+                SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 2.5F, 0.0F, () -> Ingredient.ofItems(ModItems.ADAMANTITE_INGOT)),
     MITHRIL("mithril", 37, new int[] { 3, 8, 6, 3 }, 15,
-                SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 3.0F, 0.0F, () -> Ingredient.ofItems(ModItems.MITHRIL_INGOT)),;
+                SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE, 2.5F, 0.0F, () -> Ingredient.ofItems(ModItems.MITHRIL_INGOT)),;
 
     private final String name;
     private final int durabilityMultiplier;

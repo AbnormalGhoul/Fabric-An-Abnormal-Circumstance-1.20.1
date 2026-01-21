@@ -4,6 +4,7 @@ import net.abnormal.anabnormalcircumstance.component.ModComponents;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.network.PacketHandler;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -13,6 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -104,5 +106,12 @@ public class SpellRuneItem extends Item {
         }
 
         return TypedActionResult.success(stack, world.isClient());
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
+        tooltip.add(Text.literal("Can be used to reset bounded spells").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Returns the Scrolls back to the User").formatted(Formatting.GRAY));
+        super.appendTooltip(stack, world, tooltip, context);
     }
 }
