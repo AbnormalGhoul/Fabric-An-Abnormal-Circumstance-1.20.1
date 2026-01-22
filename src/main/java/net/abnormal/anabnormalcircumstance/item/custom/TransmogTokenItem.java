@@ -27,7 +27,7 @@ public class TransmogTokenItem extends Item {
     // Allowed transmog targets for each base item
     private static final Set<String> SWORD_TRANSMOGS = Set.of(
             "anabnormalcircumstance:crown_blade",
-            "anabnormalcircumstance:druids_staff",
+            "anabnormalcircumstance:druid_staff",
             "anabnormalcircumstance:sylvestrian_blade",
             "anabnormalcircumstance:last_rose",
             "anabnormalcircumstance:great_sword",

@@ -1,11 +1,9 @@
 package net.abnormal.anabnormalcircumstance.event;
 
 
-import net.abnormal.anabnormalcircumstance.event.custom.AdamantiteArmorSetHandler;
-import net.abnormal.anabnormalcircumstance.event.custom.AdamantiteKillHandler;
-import net.abnormal.anabnormalcircumstance.event.custom.MarkOfAChampionEvents;
-import net.abnormal.anabnormalcircumstance.event.custom.ModAttackEvent;
+import net.abnormal.anabnormalcircumstance.event.custom.*;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.minecraft.entity.damage.DamageSource;
 import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.SoaringStrideSpell;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.BileWaterSpell;
@@ -27,6 +25,7 @@ public class ModEvents {
         MarkOfAChampionEvents.register();
         AdamantiteArmorSetHandler.register();
         AdamantiteKillHandler.register();
+        PlayerHeadDropHandler.register();
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient && entity instanceof LivingEntity target) {

@@ -461,7 +461,7 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         // Movement
-        controllers.add(new AnimationController<>(this, "move", 5, event -> {
+        controllers.add(new AnimationController<>(this, "movement", 5, event -> {
             if (event.isMoving()) return event.setAndContinue(WALK_ANIM);
             return event.setAndContinue(IDLE_ANIM);
         }));

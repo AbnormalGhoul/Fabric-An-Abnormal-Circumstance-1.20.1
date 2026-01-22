@@ -12,13 +12,6 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 import org.joml.Vector3f;
 
-/**
- * Swift Step (Aeromancy, Tier 1)
- * Cost: 20 mana | Cooldown: 20 seconds
- *
- * Instantly propels the caster forward in the direction they are looking.
- * Useful for rapid repositioning, dodging, or closing short gaps.
- */
 public class SwiftStepSpell extends Spell {
 
     // Roughly 8 blocks worth of momentum
@@ -30,7 +23,7 @@ public class SwiftStepSpell extends Spell {
                 SpellElement.AEROMANCY,
                 SpellTier.TIER_1,
                 20,
-                20,
+                30,
                 icon,
                 "Swift Step",
                 "A burst of wind propels you swiftly forward."

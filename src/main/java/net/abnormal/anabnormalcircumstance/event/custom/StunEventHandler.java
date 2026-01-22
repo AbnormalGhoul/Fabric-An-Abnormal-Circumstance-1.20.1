@@ -1,4 +1,3 @@
-// src/main/java/net/abnormal/anabnormalcircumstance/event/StunEventHandler.java
 package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;

@@ -22,9 +22,13 @@
   "category.anabnormalcircumstance": "An Abnormal Circumstance",
   "category.anabnormalcircumstance.keys": "Abnormal Keybinds",
 
-  "item.anabnormalcircumstance.arcane_essence": "Arcane Essence",
+  "item.anabnormalcircumstance.arcane_essence": "Arcane Dust",
   "item.anabnormalcircumstance.arcane_upgrade": "Arcane Inscription",
   "item.anabnormalcircumstance.arcane_bow": "Arcane Bow",
+
+  "item.anabnormalcircumstance.eternal_bow": "Eternal Bow",
+  "item.anabnormalcircumstance.basalt_bow": "Basalt Bow",
+  "item.anabnormalcircumstance.arachnid_bow": "Arachnid Bow",
 
   "item.anabnormalcircumstance.crown_blade": "Crown Blade",
   "item.anabnormalcircumstance.druid_staff": "Druid's Staff",

@@ -368,6 +368,9 @@ public class ModItemGroups {
                         entries.add(ModItems.CURSED_BLADE);
                         entries.add(ModItems.MANA_AXE);
                         entries.add(ModItems.OCEANIC_MIGHT);
+                        entries.add(ModItems.BASALT_BOW);
+                        entries.add(ModItems.ARACHNID_BOW);
+                        entries.add(ModItems.ETERNAL_BOW);
 
                     }).build());
 

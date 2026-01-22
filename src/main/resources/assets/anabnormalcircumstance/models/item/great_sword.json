@@ -4,7 +4,7 @@
 	"textures": {
 		"0": "anabnormalcircumstance:item/great_sword",
 		"1": "anabnormalcircumstance:item/great_sword_anim",
-		"particle": "anabnormalcircumstance:item/great_sword_sword"
+		"particle": "anabnormalcircumstance:item/great_sword"
 	},
 	"elements": [
 		{

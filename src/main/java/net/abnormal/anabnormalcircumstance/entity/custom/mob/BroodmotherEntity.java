@@ -3,6 +3,7 @@ package net.abnormal.anabnormalcircumstance.entity.custom.mob;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.entity.ModEntities;
 import net.abnormal.anabnormalcircumstance.entity.goal.SpiderTargetGoal;
+import net.abnormal.anabnormalcircumstance.util.StunUtil;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -320,12 +321,13 @@ public class BroodmotherEntity extends HostileEntity implements GeoEntity {
 
         Box box = this.getBoundingBox().expand(5);
         this.getWorld().getEntitiesByClass(PlayerEntity.class, box, p -> true)
-                .forEach(p -> p.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 50, 0)));
+                .forEach(p -> StunUtil.tryApplyStun(p, 50, 0));
 
         BlockStateParticleEffect stone =
                 new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState());
         serverWorld.spawnParticles(stone, getX(), getY(), getZ(), 60, 2.0, 0.2, 2.0, 0.15);
     }
+
 
     // Combat
     @Override

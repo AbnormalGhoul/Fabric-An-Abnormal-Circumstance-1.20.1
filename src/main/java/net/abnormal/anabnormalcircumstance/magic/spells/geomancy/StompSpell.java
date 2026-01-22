@@ -4,6 +4,7 @@ import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.magic.Spell;
 import net.abnormal.anabnormalcircumstance.magic.SpellElement;
 import net.abnormal.anabnormalcircumstance.magic.SpellTier;
+import net.abnormal.anabnormalcircumstance.util.StunUtil;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
@@ -67,14 +68,15 @@ public class StompSpell extends Spell {
 
         for (LivingEntity target : targets) {
             target.damage(world.getDamageSources().playerAttack(caster), DAMAGE);
-            target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 3 * 20, 0));
-
-            // Small debris burst at each hit entity
-            world.spawnParticles(
-                    new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()),
-                    target.getX(), target.getY(), target.getZ(),
-                    15, 0.4, 0.4, 0.4, 0.1
-            );
+            boolean stunned = StunUtil.tryApplyStun(target, 3 * 20, 0);
+            // Only spawn debris if stun actually applied
+            if (stunned) {
+                world.spawnParticles(
+                        new BlockStateParticleEffect(ParticleTypes.BLOCK, Blocks.STONE.getDefaultState()),
+                        target.getX(), target.getY(), target.getZ(),
+                        15, 0.4, 0.4, 0.4, 0.1
+                );
+            }
         }
     }
 

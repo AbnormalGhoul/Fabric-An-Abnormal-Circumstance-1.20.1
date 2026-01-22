@@ -12,10 +12,7 @@ import net.abnormal.anabnormalcircumstance.item.util.ModToolMaterials;
 import net.abnormal.anabnormalcircumstance.item.util.SoundFoodItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.item.SpawnEggItem;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
@@ -173,7 +170,7 @@ public class ModItems {
             -3.0f,
             new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof()
     ));
-    public static final Item ARCANE_BOW = registerItem("arcane_bow", new ArcaneBow(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof()));
+    public static final Item ARCANE_BOW = registerItem("arcane_bow", new ArcaneBow(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof().maxDamage(750)));
 
     // Champion Weapons
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()));
@@ -259,6 +256,10 @@ public class ModItems {
     public static final Item CURSED_BLADE = registerItem("cursed_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item MANA_AXE = registerItem("mana_axe", new Item(new Item.Settings().maxCount(1)));
     public static final Item OCEANIC_MIGHT = registerItem("oceanic_might", new Item(new Item.Settings().maxCount(1)));
+
+    public static final Item ARACHNID_BOW = registerItem("arachnid_bow", new BowItem(new Item.Settings().maxCount(1)));
+    public static final Item BASALT_BOW = registerItem("basalt_bow", new BowItem(new Item.Settings().maxCount(1)));
+    public static final Item ETERNAL_BOW = registerItem("eternal_bow", new BowItem(new Item.Settings().maxCount(1)));
 
     // Arcane Items
     public static final Item ARCANE_ESSENCE = registerItem("arcane_essence", new Item(new Item.Settings().fireproof()));

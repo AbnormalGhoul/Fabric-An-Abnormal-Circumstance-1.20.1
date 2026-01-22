@@ -17,6 +17,7 @@ public class ModEffects {
     public static final StatusEffect VULNERABILITY = new VulnerabilityEffect(StatusEffectCategory.HARMFUL, 0x8B0000);
     public static final StatusEffect RAGE = new RageEffect(StatusEffectCategory.BENEFICIAL, 0x800080);
     public static final StatusEffect ADAMANTITE_POWER = new AdamantitePowerEffect(StatusEffectCategory.BENEFICIAL, 0x6B6B6B);
+    public static final StatusEffect STUN_IMMUNITY = new StunImmunityEffect(StatusEffectCategory.BENEFICIAL, 0xAAAAAA);
 
 
     public static void registerEffects() {
@@ -28,5 +29,6 @@ public class ModEffects {
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "vulnerability"), VULNERABILITY);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "rage"), RAGE);
         Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "adamantite_power"), ADAMANTITE_POWER);
+        Registry.register(Registries.STATUS_EFFECT, new Identifier("anabnormalcircumstance", "stun_immunity"), STUN_IMMUNITY);
     }
 }

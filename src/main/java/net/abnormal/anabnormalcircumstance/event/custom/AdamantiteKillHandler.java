@@ -2,7 +2,6 @@ package net.abnormal.anabnormalcircumstance.event.custom;
 
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
@@ -17,13 +16,12 @@ public final class AdamantiteKillHandler {
     public static void register() {
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {
 
-            Entity attacker = source.getAttacker();
-            if (!(attacker instanceof ServerPlayerEntity player)) return;
+            if (!(source.getAttacker() instanceof ServerPlayerEntity player)) {
+                return;
+            }
 
-            // Must have Adamantite Power active
             if (!player.hasStatusEffect(ModEffects.ADAMANTITE_POWER)) return;
 
-            // Only trigger on players or hostile mobs
             if (!(entity instanceof ServerPlayerEntity) &&
                     !(entity instanceof HostileEntity)) {
                 return;
@@ -32,6 +30,7 @@ public final class AdamantiteKillHandler {
             triggerEmpower(player);
         });
     }
+
 
     private static void triggerEmpower(ServerPlayerEntity player) {
 

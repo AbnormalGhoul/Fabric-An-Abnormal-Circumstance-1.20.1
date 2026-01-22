@@ -4,6 +4,7 @@ import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.util.StunUtil;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
@@ -39,8 +40,9 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
     }
 
     public static void applyStun(LivingEntity target) {
-        target.addStatusEffect(new StatusEffectInstance(ModEffects.STUN, 100, 0));
+        StunUtil.tryApplyStun(target, 100, 0);
     }
+
 
     @Override
     public void useUniqueAbility(PlayerEntity player) {

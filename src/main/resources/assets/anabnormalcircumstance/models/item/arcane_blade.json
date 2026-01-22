@@ -10,7 +10,7 @@
     },
     {
       "predicate": { "anabnormalcircumstance:transmog": 0.02 },
-      "model": "anabnormalcircumstance:item/druids_staff"
+      "model": "anabnormalcircumstance:item/druid_staff"
     },
     {
       "predicate": { "anabnormalcircumstance:transmog": 0.03 },

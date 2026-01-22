@@ -7,6 +7,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
@@ -21,10 +22,8 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class HatchetProjectileEntity extends PersistentProjectileEntity implements GeoEntity {
 
+    private static final int DESPAWN_TICKS = 20 * 60;
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-
-    private boolean inGround = false;
-    private int despawnCounter = 20 * 60;
 
     public HatchetProjectileEntity(EntityType<? extends HatchetProjectileEntity> type, World world) {
         super(type, world);
@@ -34,9 +33,6 @@ public class HatchetProjectileEntity extends PersistentProjectileEntity implemen
         this(ModEntities.HATCHET_PROJECTILE, world);
         this.setOwner(owner);
     }
-
-    public int getDespawnCounter() { return despawnCounter; }
-    public void setDespawnCounter(int ticks) { this.despawnCounter = ticks; }
 
     @Override
     protected ItemStack asItemStack() { return ItemStack.EMPTY; }
@@ -49,33 +45,18 @@ public class HatchetProjectileEntity extends PersistentProjectileEntity implemen
         DamageSource src = this.getDamageSources().thrown(this, this.getOwner());
         hit.getEntity().damage(src, damage);
 
-        // Knockback
-        Vec3d direction = this.getVelocity().normalize().multiply(1.5);
-        hit.getEntity().addVelocity(direction.x, 0.25, direction.z);
+        Vec3d knockback = this.getVelocity().normalize().multiply(1.5);
+        hit.getEntity().addVelocity(knockback.x, 0.25, knockback.z);
         hit.getEntity().velocityModified = true;
 
         this.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, 1f, 0.5f);
-        this.setNoGravity(true);
-        this.setVelocity(Vec3d.ZERO);
-        this.inGround = true;
-        this.age = 0;
-        this.setDespawnCounter(6000);
+
+        this.discard();
     }
 
     @Override
-    protected void onBlockHit(net.minecraft.util.hit.BlockHitResult blockHitResult) {
-        super.onBlockHit(blockHitResult);
-
-        Vec3d vel = this.getVelocity();
-        float horizontalMag = (float)Math.sqrt(vel.x * vel.x + vel.z * vel.z);
-        this.setYaw((float)(Math.toDegrees(Math.atan2(vel.x, vel.z))));
-        this.setPitch((float)(Math.toDegrees(Math.atan2(vel.y, horizontalMag))));
-        this.setPosition(blockHitResult.getPos().add(vel.normalize().multiply(0.05)));
-        this.setVelocity(Vec3d.ZERO);
-        this.setNoGravity(true);
-        this.inGround = true;
-        this.age = 0;
-        this.setDespawnCounter(6000);
+    protected void onBlockHit(BlockHitResult hit) {
+        super.onBlockHit(hit);
         this.playSound(SoundEvents.ITEM_TRIDENT_HIT_GROUND, 1f, 0.62f);
     }
 
@@ -83,18 +64,18 @@ public class HatchetProjectileEntity extends PersistentProjectileEntity implemen
     public void tick() {
         super.tick();
 
-        if (this.inGround) {
-            if (this.age++ > this.getDespawnCounter()) {
-                this.discard();
-            }
+        if (this.age >= DESPAWN_TICKS) {
+            this.discard();
             return;
         }
 
-        Vec3d vel = this.getVelocity();
-        float horizontalMag = (float)Math.sqrt(vel.x * vel.x + vel.z * vel.z);
-        if (horizontalMag > 0.01F) {
-            this.setYaw((float)(Math.toDegrees(Math.atan2(vel.x, vel.z))));
-            this.setPitch((float)(Math.toDegrees(Math.atan2(vel.y, horizontalMag))));
+        if (!this.inGround) {
+            Vec3d vel = this.getVelocity();
+            float horizontalMag = (float)Math.sqrt(vel.x * vel.x + vel.z * vel.z);
+            if (horizontalMag > 0.01F) {
+                this.setYaw((float)Math.toDegrees(Math.atan2(vel.x, vel.z)));
+                this.setPitch((float)Math.toDegrees(Math.atan2(vel.y, horizontalMag)));
+            }
         }
     }
 

@@ -47,16 +47,4 @@ public class BroodGemItem extends Item implements Trinket {
                 )
         );
     }
-
-    @Override
-    public void appendTooltip(
-            ItemStack stack,
-            World world,
-            List<Text> tooltip,
-            net.minecraft.client.item.TooltipContext context
-    ) {
-        tooltip.add(Text.literal("When equipped:").formatted(Formatting.GRAY));
-        tooltip.add(Text.literal("+2 Hearts").formatted(Formatting.BLUE));
-        tooltip.add(Text.literal("+2 Armor").formatted(Formatting.BLUE));
-    }
 }
