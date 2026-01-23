@@ -17,6 +17,7 @@
     "BrewingStandPotionSlotMixin",
     "EnderPearlItemMixin",
     "GoldenAppleCooldownMixin",
+    "InfinityEnchantmentMixin",
     "ItemEntityMixin",
     "LivingEntityMixin",
     "LivingEntityOutgoingDamageMixin",

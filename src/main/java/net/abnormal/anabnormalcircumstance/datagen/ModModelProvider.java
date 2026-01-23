@@ -35,7 +35,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.TRANSMOG_TOKEN, Models.GENERATED);
         itemModelGenerator.register(ModItems.DWARVEN_PICKAXE, Models.HANDHELD);
         itemModelGenerator.register(ModItems.CRAB_CLAW, Models.HANDHELD);
-        itemModelGenerator.register(ModItems.KARAMBIT, Models.HANDHELD);
         itemModelGenerator.register(ModItems.WIDOWS_GEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.CHAMPIONS_CREST, Models.GENERATED);
         itemModelGenerator.register(ModItems.LEADERS_CREST, Models.GENERATED);

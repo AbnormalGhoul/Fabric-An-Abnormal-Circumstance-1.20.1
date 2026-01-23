@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "anabnormalcircumstance:item/karambit"
+  },
+  "overrides": [
+    { "predicate": { "anabnormalcircumstance:transmog": 0.02 }, "model": "anabnormalcircumstance:item/druid_staff" }
+  ]
+}

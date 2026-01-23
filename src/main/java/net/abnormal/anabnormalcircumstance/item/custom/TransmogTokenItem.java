@@ -27,7 +27,6 @@ public class TransmogTokenItem extends Item {
     // Allowed transmog targets for each base item
     private static final Set<String> SWORD_TRANSMOGS = Set.of(
             "anabnormalcircumstance:crown_blade",
-            "anabnormalcircumstance:druid_staff",
             "anabnormalcircumstance:sylvestrian_blade",
             "anabnormalcircumstance:last_rose",
             "anabnormalcircumstance:great_sword",
@@ -66,6 +65,10 @@ public class TransmogTokenItem extends Item {
             "anabnormalcircumstance:basalt_bow"
     );
 
+    private static final Set<String> KARAMBIT_TRANSMOGS = Set.of(
+            "anabnormalcircumstance:druid_staff"
+    );
+
     public TransmogTokenItem(Settings settings) {
         super(settings);
     }
@@ -87,9 +90,10 @@ public class TransmogTokenItem extends Item {
         boolean isBlade = mainhand.isOf(ModItems.ARCANE_BLADE);
         boolean isAxe = mainhand.isOf(ModItems.ARCANE_AXE);
         boolean isBow   = mainhand.isOf(ModItems.ARCANE_BOW);
+        boolean isKarambit   = mainhand.isOf(ModItems.KARAMBIT);
 
         // Must be holding a valid base item
-        if (!isBlade && !isAxe && !isBow) {
+        if (!isBlade && !isAxe && !isBow && !isKarambit) {
             return TypedActionResult.fail(token);
         }
 
@@ -121,6 +125,15 @@ public class TransmogTokenItem extends Item {
         if (isBow && !BOW_TRANSMOGS.contains(itemId)) {
             player.sendMessage(
                     Text.literal("That appearance cannot be applied to the Arcane Bow!")
+                            .formatted(Formatting.RED),
+                    true
+            );
+            return TypedActionResult.fail(token);
+        }
+
+        if (isKarambit && !KARAMBIT_TRANSMOGS.contains(itemId)) {
+            player.sendMessage(
+                    Text.literal("That appearance cannot be applied to the Karambit!")
                             .formatted(Formatting.RED),
                     true
             );

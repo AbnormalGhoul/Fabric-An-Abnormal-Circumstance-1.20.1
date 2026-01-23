@@ -86,6 +86,18 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
                 }
         );
 
+        // Karambit transmog predicate
+        ModelPredicateProviderRegistry.register(
+                ModItems.KARAMBIT,
+                new Identifier("anabnormalcircumstance", "transmog"),
+                (stack, world, entity, seed) -> {
+                    if (!stack.hasNbt()) return 0.0F;
+                    String raw = stack.getNbt().getString("anabnormalcircumstance:transmog_item");
+                    if (raw.isEmpty()) return 0.0F;
+                    Identifier id = Identifier.tryParse(raw);
+                    return id == null ? 0.0F : TransmogModels.getModelValue(id);
+                }
+        );
 
     }
 

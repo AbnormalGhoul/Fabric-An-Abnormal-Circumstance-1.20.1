@@ -1,10 +1,8 @@
 package net.abnormal.anabnormalcircumstance.item.unique;
 
 import dev.emi.trinkets.api.TrinketsApi;
-import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
-import net.abnormal.anabnormalcircumstance.util.StunUtil;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.item.TooltipContext;
@@ -26,6 +24,9 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.hit.HitResult;
+import net.minecraft.util.math.Direction;
 
 import java.util.*;
 
@@ -60,13 +61,39 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
         ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
         ServerWorld serverWorld = serverPlayer.getServerWorld();
 
-        // Calculate dash vector (speed adjustable)
-        Vec3d direction = serverPlayer.getRotationVector().normalize().multiply(0.6);
+        // Grapple Logic
+        double maxDistance = 32.0;
 
-        // Store dash state
-        ACTIVE_DASHES.put(serverPlayer.getUuid(), new DashData(10, direction, new HashSet<>()));
+        Vec3d eyePos = serverPlayer.getEyePos();
+        Vec3d lookVec = serverPlayer.getRotationVector();
+        Vec3d end = eyePos.add(lookVec.multiply(maxDistance));
 
-        // Play sound
+        BlockHitResult hit = world.raycast(new net.minecraft.world.RaycastContext(
+                eyePos,
+                end,
+                net.minecraft.world.RaycastContext.ShapeType.COLLIDER,
+                net.minecraft.world.RaycastContext.FluidHandling.NONE,
+                serverPlayer
+        ));
+
+        if (hit.getType() != HitResult.Type.BLOCK) {
+            serverPlayer.sendMessage(
+                    Text.literal("No surface to latch onto").formatted(Formatting.DARK_GREEN),
+                    true
+            );
+            return;
+        }
+
+        // Anchor point slightly off the block face
+        Vec3d anchor = hit.getPos().add(Vec3d.of(hit.getSide().getVector()).multiply(0.3));
+
+        // Initial pull direction
+        Vec3d pullDir = anchor.subtract(serverPlayer.getPos()).normalize().multiply(1.2);
+
+        ACTIVE_DASHES.put(
+                serverPlayer.getUuid(),
+                new DashData(12, pullDir, anchor, new HashSet<>())
+        );
 
         // Cooldown, sound, and message
         world.playSound(null, player.getBlockPos(), SoundEvents.ITEM_TRIDENT_RIPTIDE_1, SoundCategory.PLAYERS, 1.5F, 1.2F);
@@ -91,7 +118,18 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
                 ServerWorld world = player.getServerWorld();
 
                 // Apply velocity forward
-                player.setVelocity(data.velocity);
+                Vec3d toAnchor = data.anchor.subtract(player.getPos());
+                double distance = toAnchor.length();
+
+                // Stop early if close enough
+                if (distance < 2.0) {
+                    it.remove();
+                    continue;
+                }
+
+                // Smooth pull
+                Vec3d pull = toAnchor.normalize().multiply(1.1);
+                player.setVelocity(pull);
                 player.velocityModified = true;
 
                 // Particles for visual feedback
@@ -118,7 +156,6 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
         if (!holding) return;
 
         ServerWorld serverWorld = (ServerWorld) world;
-        // Use helper — true = this is the sword
         net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil.handleBondedRegen(serverWorld, player, true);
     }
 
@@ -126,7 +163,7 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Regen I while Held, Regen 3 if blade and bow are held nearby").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Vine Grip - An omnidirectional dash that poisons and stuns enemies in the way").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Active: Vine Grip - An omnidirectional dash that poisons enemies in the way").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
     }
 
@@ -145,9 +182,13 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
             // Damage
             target.damage(world.getDamageSources().magic(), 5.0F);
 
-            // Apply stun and poison effects
-            StunUtil.tryApplyStun(target, 10, 0);
+            // Apply poison
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.POISON, 60, 1));
+
+            // Knocks player upwards
+            Vec3d knockUp = new Vec3d(0, 0.6, 0); // ~2–3 blocks total over gravity
+            target.addVelocity(knockUp.x, knockUp.y, knockUp.z);
+            target.velocityModified = true;
         }
     }
 
@@ -161,13 +202,16 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
 
     private static class DashData {
         int remainingTicks;
-        final Vec3d velocity;
+        Vec3d velocity;
+        final Vec3d anchor;
         final Set<UUID> hit;
 
-        DashData(int ticks, Vec3d velocity, Set<UUID> hit) {
+        DashData(int ticks, Vec3d velocity, Vec3d anchor, Set<UUID> hit) {
             this.remainingTicks = ticks;
             this.velocity = velocity;
+            this.anchor = anchor;
             this.hit = hit;
         }
     }
+
 }
