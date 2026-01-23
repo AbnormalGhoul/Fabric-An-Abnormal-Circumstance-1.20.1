@@ -39,14 +39,31 @@ public class TransmogTokenItem extends Item {
             "anabnormalcircumstance:magnetite_sword",
             "anabnormalcircumstance:demonic_blade",
             "anabnormalcircumstance:cursed_blade",
-            "anabnormalcircumstance:oceanic_might"
+            "anabnormalcircumstance:oceanic_might",
+            "anabnormalcircumstance:beecomb_sword",
+            "anabnormalcircumstance:mana_spear",
+            "anabnormalcircumstance:death_grip",
+            "anabnormalcircumstance:witch_scythe",
+            "anabnormalcircumstance:battle_standard",
+            "anabnormalcircumstance:flowering_madness"
     );
 
     private static final Set<String> AXE_TRANSMOGS = Set.of(
             "anabnormalcircumstance:gargoyle_axe",
             "anabnormalcircumstance:magma_club",
             "anabnormalcircumstance:abyssal_axe",
-            "anabnormalcircumstance:mana_axe"
+            "anabnormalcircumstance:mana_axe",
+            "anabnormalcircumstance:fire_mace",
+            "anabnormalcircumstance:dark_moon",
+            "anabnormalcircumstance:soul_steel_hatchet",
+            "anabnormalcircumstance:forge_hammer",
+            "anabnormalcircumstance:hellspawn_axe"
+    );
+
+    private static final Set<String> BOW_TRANSMOGS = Set.of(
+            "anabnormalcircumstance:arachnid_bow",
+            "anabnormalcircumstance:eternal_bow",
+            "anabnormalcircumstance:basalt_bow"
     );
 
     public TransmogTokenItem(Settings settings) {
@@ -69,9 +86,10 @@ public class TransmogTokenItem extends Item {
 
         boolean isBlade = mainhand.isOf(ModItems.ARCANE_BLADE);
         boolean isAxe = mainhand.isOf(ModItems.ARCANE_AXE);
+        boolean isBow   = mainhand.isOf(ModItems.ARCANE_BOW);
 
         // Must be holding a valid base item
-        if (!isBlade && !isAxe) {
+        if (!isBlade && !isAxe && !isBow) {
             return TypedActionResult.fail(token);
         }
 
@@ -97,6 +115,15 @@ public class TransmogTokenItem extends Item {
         if (isAxe && !AXE_TRANSMOGS.contains(itemId)) {
             player.sendMessage(Text.literal("That appearance cannot be applied to the Arcane Axe!")
                     .formatted(Formatting.RED), true);
+            return TypedActionResult.fail(token);
+        }
+
+        if (isBow && !BOW_TRANSMOGS.contains(itemId)) {
+            player.sendMessage(
+                    Text.literal("That appearance cannot be applied to the Arcane Bow!")
+                            .formatted(Formatting.RED),
+                    true
+            );
             return TypedActionResult.fail(token);
         }
 

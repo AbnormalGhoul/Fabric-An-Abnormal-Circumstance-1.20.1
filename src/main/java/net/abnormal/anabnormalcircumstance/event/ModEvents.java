@@ -26,6 +26,13 @@ public class ModEvents {
         AdamantiteArmorSetHandler.register();
         AdamantiteKillHandler.register();
         PlayerHeadDropHandler.register();
+        PhoenixFireHandler.register();
+        StunEventHandler.register();
+
+        AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
+            AdamantiteBonusHandler.onPlayerAttack(player, entity);
+            return ActionResult.PASS;
+        });
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             if (!world.isClient && entity instanceof LivingEntity target) {
@@ -64,6 +71,7 @@ public class ModEvents {
                 MoltenFurySpell.tick(player);
                 FireAspectSpell.tick(player);
                 ControlWeatherSpell.tick(player);
+                AdamantiteBonusHandler.tick(player);
             }
         });
     }

@@ -1,13 +1,12 @@
 package net.abnormal.anabnormalcircumstance.item.unique;
 
 import dev.emi.trinkets.api.TrinketsApi;
-import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
-import net.abnormal.anabnormalcircumstance.util.StunUtil;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -15,34 +14,28 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+import java.util.*;
 
 public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
     private static final String PRIMED_ARROW_KEY = "FirstLeafPrimedArrow";
+    private static final Map<UUID, MistArea> ACTIVE_MIST = new HashMap<>();
 
     @SuppressWarnings("deprecation")
     public FirstLeafBowItem(Settings settings) {
         super(settings, () -> Ingredient.EMPTY);
-
-        this.config(new RangedConfig(
-                15,   // pull time
-                10.0F,   // damage (2x vanilla)
-                3.0F  // projectile velocity
-        ));
+        this.config(new RangedConfig(15, 10.0F, 3.0F));
     }
-
-    public static void applyStun(LivingEntity target) {
-        StunUtil.tryApplyStun(target, 100, 0);
-    }
-
 
     @Override
     public void useUniqueAbility(PlayerEntity player) {
@@ -59,9 +52,10 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(net.minecraft.text.Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
+            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)"), true);
             return;
         }
+
         ItemStack bowStack = player.getMainHandStack().isOf(this)
                 ? player.getMainHandStack()
                 : player.getOffHandStack().isOf(this)
@@ -70,7 +64,10 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
 
         if (bowStack.isEmpty()) return;
 
+        // Prime next arrow
         bowStack.getOrCreateNbt().putBoolean(PRIMED_ARROW_KEY, true);
+
+        // Warden sound for prime
         player.getWorld().playSound(
                 null,
                 player.getBlockPos(),
@@ -80,10 +77,8 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
                 1.0f
         );
 
-        player.sendMessage(Text.literal("Next arrow will stun your target!").formatted(Formatting.GOLD), true);
-
-        UniqueItemCooldownManager.setCooldown(player, 60 * 1000); // cooldown
-
+        player.sendMessage(Text.literal("Next arrow will summon a mist cloud!").formatted(Formatting.GOLD), true);
+        UniqueItemCooldownManager.setCooldown(player, 75 * 1000);
     }
 
     @Override
@@ -97,48 +92,127 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
 
         super.onStoppedUsing(stack, world, user, remainingUseTicks);
 
-        // Only run on server and if primed
         if (!world.isClient && primed && user instanceof PlayerEntity player) {
-            // Find the most recent arrow shot by this player in a reasonable radius
             PersistentProjectileEntity arrow = world.getEntitiesByClass(
                     PersistentProjectileEntity.class,
                     player.getBoundingBox().expand(64),
                     e -> e.getOwner() == player && !e.isRemoved()
-            ).stream().max((a, b) -> Long.compare(b.age, a.age)).orElse(null);
+            ).stream().max(Comparator.comparingInt(a -> a.age)).orElse(null);
 
             if (arrow != null) {
-                // mark the arrow with a custom name instead of using entity NBT APIs
                 arrow.setCustomName(Text.literal(PRIMED_ARROW_KEY));
+                arrow.setNoGravity(false);
+                arrow.setDamage(arrow.getDamage() * 0.9);
             }
         }
     }
 
-    // Passive: Grants regeneration 2 while held
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
         if (world.isClient()) return;
-        if (entity instanceof PlayerEntity player) {
-            boolean holding = selected || player.getOffHandStack() == stack;
-            if (holding) {
-                StatusEffectInstance current = player.getStatusEffect(StatusEffects.REGENERATION);
-                if (current == null || current.getDuration() <= 10) {
-                    player.addStatusEffect(new StatusEffectInstance(
-                            StatusEffects.REGENERATION,
-                            100, // 5 seconds
-                            1,   // Regen II
-                            true,
-                            false,
-                            true
-                    ));
+        if (!(entity instanceof PlayerEntity player)) return;
+
+        boolean holding = selected || player.getOffHandStack() == stack;
+        if (!holding) return;
+
+        ServerWorld serverWorld = (ServerWorld) world;
+        // Use helper — false = this is the bow
+        net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil.handleBondedRegen(serverWorld, player, false);
+
+        if (!world.isClient && entity.age % 5 == 0) {
+            ACTIVE_MIST.values().removeIf(MistArea::isExpired);
+        }
+    }
+
+
+    static {
+        ServerTickEvents.END_SERVER_TICK.register(server -> {
+            Iterator<MistArea> it = ACTIVE_MIST.values().iterator();
+            while (it.hasNext()) {
+                MistArea area = it.next();
+                if (area.isExpired()) {
+                    it.remove();
+                    continue;
                 }
+
+                ServerWorld world = area.world;
+                spawnMistParticles(world, area);
+                applyBlindness(world, area);
+                area.ticksRemaining--;
             }
+        });
+    }
+
+    public static void triggerMist(ServerWorld world, Vec3d pos, PlayerEntity caster) {
+        ACTIVE_MIST.put(UUID.randomUUID(), new MistArea(world, pos, 7, 15 * 20, caster));
+        world.playSound(null, pos.x, pos.y, pos.z, SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.AMBIENT, 3.0f, 0.8f);
+    }
+
+    private static void spawnMistParticles(ServerWorld world, MistArea area) {
+        // Fade density as the mist dissipates
+        double lifeRatio = (double) area.ticksRemaining / (15 * 20);
+        int particleCount = (int) (40 * lifeRatio); // fewer particles as it fades
+
+        for (int i = 0; i < particleCount; i++) {
+            double angle = world.random.nextDouble() * Math.PI * 2;
+            double distance = world.random.nextDouble() * area.radius;
+            double height = (world.random.nextDouble() - 0.5) * area.radius;
+            double x = area.center.x + Math.cos(angle) * distance;
+            double y = area.center.y + height;
+            double z = area.center.z + Math.sin(angle) * distance;
+
+            // Campfire smoke (dense, rising mist)
+            world.spawnParticles(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, x, y, z, 1, 0.02, 0.1, 0.02, 0.01);
+        }
+    }
+
+    private static void applyBlindness(ServerWorld world, MistArea area) {
+        List<LivingEntity> targets = world.getEntitiesByClass(
+                LivingEntity.class,
+                new net.minecraft.util.math.Box(area.center.subtract(area.radius, area.radius, area.radius),
+                        area.center.add(area.radius, area.radius, area.radius)),
+                e -> {
+                    if (!e.isAlive()) return false;
+                    if (e instanceof PlayerEntity player) {
+                        // Exclude caster and caster's teammates
+                        if (player.equals(area.caster) || (area.caster != null && player.isTeammate(area.caster))) {
+                            return false;
+                        }
+                    }
+                    return e.getPos().distanceTo(area.center) <= area.radius;
+                }
+        );
+
+        for (LivingEntity target : targets) {
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.BLINDNESS, 40, 0, true, true, true));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 40, 1, true, true, true));
+        }
+    }
+
+    private static class MistArea {
+        final ServerWorld world;
+        final Vec3d center;
+        final double radius;
+        final PlayerEntity caster;
+        int ticksRemaining;
+
+        MistArea(ServerWorld world, Vec3d center, double radius, int durationTicks, PlayerEntity caster) {
+            this.world = world;
+            this.center = center;
+            this.radius = radius;
+            this.ticksRemaining = durationTicks;
+            this.caster = caster;
+        }
+
+        boolean isExpired() {
+            return ticksRemaining <= 0;
         }
     }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Regeneration II while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Next arrow stuns for 5s").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Passive: Regen I while Held, Regen 3 if blade and bow are held nearby").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Next fired arrow creates a Mist Cloud for 15s, blinding enemies").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 75s").formatted(Formatting.GRAY));
     }
 }

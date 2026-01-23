@@ -59,6 +59,30 @@
     {
       "predicate": { "anabnormalcircumstance:transmog": 0.14 },
       "model": "anabnormalcircumstance:item/oceanic_might"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.15 },
+      "model": "anabnormalcircumstance:item/flowering_madness"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.16 },
+      "model": "anabnormalcircumstance:item/battle_standard"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.17 },
+      "model": "anabnormalcircumstance:item/witch_scythe"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.18 },
+      "model": "anabnormalcircumstance:item/death_grip"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.19 },
+      "model": "anabnormalcircumstance:item/mana_spear"
+    },
+    {
+      "predicate": { "anabnormalcircumstance:transmog": 0.20 },
+      "model": "anabnormalcircumstance:item/beecomb_sword"
     }
   ]
 }

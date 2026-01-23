@@ -42,6 +42,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
         itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.LAST_LEAF, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.ALLY_PENDANT, Models.GENERATED);
         itemModelGenerator.register(ModItems.FOREST_PENDANT, Models.GENERATED);

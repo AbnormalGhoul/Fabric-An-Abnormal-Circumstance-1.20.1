@@ -1,11 +1,32 @@
 {
-	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
 		"1": "anabnormalcircumstance:item/arachnid_bow_anim",
 		"2": "anabnormalcircumstance:item/arachnid_bow"
 	},
+	"overrides": [
+		{
+			"predicate": {
+				"pulling": 1
+			},
+			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_0"
+		},
+		{
+			"predicate": {
+				"pulling": 1,
+				"pull": 0.65
+			},
+			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_1"
+		},
+		{
+			"predicate": {
+				"pulling": 1,
+				"pull": 0.9
+			},
+			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_2"
+		}
+	],
 	"elements": [
 		{
 			"from": [7.475, 4.525, 8.175],
@@ -981,28 +1002,5 @@
 			"color": 0,
 			"children": [88, 89, 90]
 		}
-	],
-	"overrides": [
-		{
-			"predicate": {
-				"pulling": 1
-			},
-			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_0"
-		},
-		{
-			"predicate": {
-				"pulling": 1,
-				"pull": 0.65
-			},
-			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_1"
-		},
-		{
-			"predicate": {
-				"pulling": 1,
-				"pull": 0.9
-			},
-			"model": "anabnormalcircumstance:item/arachnid_bow_pulling_2"
-		}
-	],
-	"mcmodels": "ba219c1f12b92ed6b293552281de1743"
+	]
 }

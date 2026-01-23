@@ -24,12 +24,28 @@ public final class TransmogModels {
         register("anabnormalcircumstance:demonic_blade",     0.12F);
         register("anabnormalcircumstance:cursed_blade",      0.13F);
         register("anabnormalcircumstance:oceanic_might",     0.14F);
+        register("anabnormalcircumstance:flowering_madness", 0.15F);
+        register("anabnormalcircumstance:battle_standard",   0.16F);
+        register("anabnormalcircumstance:witch_scythe",      0.17F);
+        register("anabnormalcircumstance:death_grip",        0.18F);
+        register("anabnormalcircumstance:mana_spear",        0.19F);
+        register("anabnormalcircumstance:beecomb_sword",     0.20F);
 
         // Axe Transmogs
         register("anabnormalcircumstance:gargoyle_axe",      0.51F);
         register("anabnormalcircumstance:magma_club",        0.52F);
         register("anabnormalcircumstance:abyssal_axe",       0.53F);
         register("anabnormalcircumstance:mana_axe",          0.54F);
+        register("anabnormalcircumstance:hellspawn_axe",     0.55F);
+        register("anabnormalcircumstance:forge_hammer",      0.56F);
+        register("anabnormalcircumstance:soul_steel_hatchet",0.57F);
+        register("anabnormalcircumstance:dark_moon",         0.58F);
+        register("anabnormalcircumstance:fire_mace",         0.59F);
+
+        // Bow Transmogs
+        register("anabnormalcircumstance:arachnid_bow",      0.81F);
+        register("anabnormalcircumstance:eternal_bow",    0.82F);
+        register("anabnormalcircumstance:basalt_bow",        0.83F);
     }
 
     private static void register(String id, float value) {

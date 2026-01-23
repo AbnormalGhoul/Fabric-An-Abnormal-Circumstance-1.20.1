@@ -7,6 +7,13 @@
     { "predicate": { "anabnormalcircumstance:transmog": 0.51 }, "model": "anabnormalcircumstance:item/gargoyle_axe" },
     { "predicate": { "anabnormalcircumstance:transmog": 0.52 }, "model": "anabnormalcircumstance:item/magma_club" },
     { "predicate": { "anabnormalcircumstance:transmog": 0.53 }, "model": "anabnormalcircumstance:item/abyssal_axe" },
-    { "predicate": { "anabnormalcircumstance:transmog": 0.54 }, "model": "anabnormalcircumstance:item/mana_axe" }
+    { "predicate": { "anabnormalcircumstance:transmog": 0.54 }, "model": "anabnormalcircumstance:item/mana_axe" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.55 }, "model": "anabnormalcircumstance:item/hellspawn_axe" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.56 }, "model": "anabnormalcircumstance:item/forge_hammer" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.57 }, "model": "anabnormalcircumstance:item/soul_steel_hatchet" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.58 }, "model": "anabnormalcircumstance:item/dark_moon" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.59 }, "model": "anabnormalcircumstance:item/fire_mace" }
+
+
   ]
 }

@@ -173,6 +173,12 @@ public class ModItems {
     public static final Item ARCANE_BOW = registerItem("arcane_bow", new ArcaneBow(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof().maxDamage(750)));
 
     // Champion Weapons
+    public static final Item LAST_LEAF = registerItem("last_leaf", new LastLeafItem(
+            ModToolMaterials.UNIQUE,
+            9,
+            -2.4f,
+            new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
+    ));
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()));
     public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC).fireproof(), 100, 13, Items.NETHERITE_INGOT));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
@@ -214,27 +220,27 @@ public class ModItems {
     public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
 
     // Ingots
-    public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new AdamantiteIngotItem(new Item.Settings().fireproof()));
-    public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new MithrilIngotItem(new Item.Settings().fireproof()));
+    public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new Item(new Item.Settings().fireproof()));
+    public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new Item(new Item.Settings().fireproof()));
 
     // Armors
     public static final Item ADAMANTITE_HELMET = registerItem("adamantite_helmet",
-            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+            new AdamantiteArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
     public static final Item ADAMANTITE_CHESTPLATE = registerItem("adamantite_chestplate",
-            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+            new AdamantiteArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
     public static final Item ADAMANTITE_LEGGINGS = registerItem("adamantite_leggings",
-            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+            new AdamantiteArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
     public static final Item ADAMANTITE_BOOTS = registerItem("adamantite_boots",
-            new ArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+            new AdamantiteArmorItem(ModArmorMaterials.ADAMANTITE, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
     public static final Item MITHRIL_HELMET = registerItem("mithril_helmet",
-            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+            new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
     public static final Item MITHRIL_CHESTPLATE = registerItem("mithril_chestplate",
-            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+            new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
     public static final Item MITHRIL_LEGGINGS = registerItem("mithril_leggings",
-            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+            new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
     public static final Item MITHRIL_BOOTS = registerItem("mithril_boots",
-            new ArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+            new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
     // Donator Items
     public static final Item CROWN_BLADE = registerItem("crown_blade", new Item(new Item.Settings().maxCount(1)));
@@ -256,6 +262,20 @@ public class ModItems {
     public static final Item CURSED_BLADE = registerItem("cursed_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item MANA_AXE = registerItem("mana_axe", new Item(new Item.Settings().maxCount(1)));
     public static final Item OCEANIC_MIGHT = registerItem("oceanic_might", new Item(new Item.Settings().maxCount(1)));
+
+    public static final Item FLOWERING_MADNESS = registerItem("flowering_madness", new Item(new Item.Settings().maxCount(1)));
+    public static final Item FIRE_MACE = registerItem("fire_mace", new Item(new Item.Settings().maxCount(1)));
+    public static final Item BATTLE_STANDARD = registerItem("battle_standard", new Item(new Item.Settings().maxCount(1)));
+    public static final Item WITCH_SCYTHE = registerItem("witch_scythe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item ROGUE_DAGGER = registerItem("rogue_dagger", new Item(new Item.Settings().maxCount(1)));
+    public static final Item HELLSPAWN_AXE = registerItem("hellspawn_axe", new Item(new Item.Settings().maxCount(1)));
+    public static final Item FORGE_HAMMER = registerItem("forge_hammer", new Item(new Item.Settings().maxCount(1)));
+    public static final Item DEATH_GRIP = registerItem("death_grip", new Item(new Item.Settings().maxCount(1)));
+    public static final Item SOUL_STEEL_HATCHET = registerItem("soul_steel_hatchet", new Item(new Item.Settings().maxCount(1)));
+    public static final Item DARK_MOON = registerItem("dark_moon", new Item(new Item.Settings().maxCount(1)));
+    public static final Item MANA_SPEAR = registerItem("mana_spear", new Item(new Item.Settings().maxCount(1)));
+    public static final Item BEECOMB_SWORD = registerItem("beecomb_sword", new Item(new Item.Settings().maxCount(1)));
+
 
     public static final Item ARACHNID_BOW = registerItem("arachnid_bow", new BowItem(new Item.Settings().maxCount(1)));
     public static final Item BASALT_BOW = registerItem("basalt_bow", new BowItem(new Item.Settings().maxCount(1)));

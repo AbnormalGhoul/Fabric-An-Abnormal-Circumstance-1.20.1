@@ -3,43 +3,41 @@ package net.abnormal.anabnormalcircumstance.effect.custom;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.AttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 
-import java.util.UUID;
-
 public class StunEffect extends StatusEffect {
     public StunEffect(StatusEffectCategory category, int color) {
         super(category, color);
-
-        this.addAttributeModifier(
-                EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                STUN_SLOW_UUID.toString(),
-                -0.99,
-                EntityAttributeModifier.Operation.MULTIPLY_TOTAL
-        );
     }
-
-    private static final UUID STUN_SLOW_UUID =
-            UUID.fromString("c1c6b2e1-9e5b-4f7a-9c8f-1cde3f7eaaaa");
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
+        // Gravity baseline (~0.08)
+        double gravity = entity.hasNoGravity() ? 0.0 : 0.08;
 
-        // Stops all movement every tick
-        if (!entity.getWorld().isClient) {
-            entity.setVelocity(0.0, entity.getVelocity().y <= 0 ? -0.08 : 0.0, 0.0);
-            entity.velocityDirty = true;
-        }
+        // Gets current velocity
+        double vy = entity.getVelocity().y;
 
-        // Prevent jump lift
-        entity.fallDistance = 0.0F;
+        // Stops all horizontal motion
+        double vx = 0.0;
+        double vz = 0.0;
 
-        // Stop mobs
+        // Vertical logic
+        // Prevent jumping / upward motion
+        if (vy > 0) vy = 0;
+
+        // Apply gravity if applicable
+        if (!entity.hasNoGravity()) vy -= gravity;
+
+        // Apply final velocity
+        entity.setVelocity(vx, vy, vz);
+        entity.velocityDirty = true;
+        entity.setJumping(false);
+
+        // Disable AI movement / targeting
         if (!entity.getWorld().isClient && entity instanceof MobEntity mob) {
             mob.getNavigation().stop();
             mob.getMoveControl().moveTo(mob.getX(), mob.getY(), mob.getZ(), 0);
@@ -64,9 +62,8 @@ public class StunEffect extends StatusEffect {
         }
     }
 
-
     @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
-        return true; // run every tick
+        return true; // apply every tick
     }
 }

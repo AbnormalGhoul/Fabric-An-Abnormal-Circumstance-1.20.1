@@ -19,6 +19,7 @@ public class ModItemGroups {
 
                         // Champion Weapons
                         entries.add(ModItems.FIRST_LEAF);
+                        entries.add(ModItems.LAST_LEAF);
                         entries.add(ModItems.FORGEFATHER_JUDGMENT);
                         entries.add(ModItems.WILL_BREAKER);
                         entries.add(ModItems.REEDTHORN);
@@ -91,7 +92,6 @@ public class ModItemGroups {
                     .icon(() -> new ItemStack(ModItems.SPELL_SCROLL)).entries((displayContext, entries) -> {
 
                         entries.add(ModItems.SPELL_SCROLL);
-
 
                         // Hydromancy Spells
                         ItemStack hydroScroll = new ItemStack(ModItems.SPELL_SCROLL);
@@ -371,6 +371,18 @@ public class ModItemGroups {
                         entries.add(ModItems.BASALT_BOW);
                         entries.add(ModItems.ARACHNID_BOW);
                         entries.add(ModItems.ETERNAL_BOW);
+                        entries.add(ModItems.FLOWERING_MADNESS);
+                        entries.add(ModItems.FIRE_MACE);
+                        entries.add(ModItems.BATTLE_STANDARD);
+                        entries.add(ModItems.WITCH_SCYTHE);
+                        entries.add(ModItems.ROGUE_DAGGER);
+                        entries.add(ModItems.HELLSPAWN_AXE);
+                        entries.add(ModItems.FORGE_HAMMER);
+                        entries.add(ModItems.DEATH_GRIP);
+                        entries.add(ModItems.SOUL_STEEL_HATCHET);
+                        entries.add(ModItems.DARK_MOON);
+                        entries.add(ModItems.MANA_SPEAR);
+                        entries.add(ModItems.BEECOMB_SWORD);
 
                     }).build());
 

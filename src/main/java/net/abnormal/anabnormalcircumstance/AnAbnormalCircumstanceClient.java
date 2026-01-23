@@ -34,6 +34,10 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
 
         // Specific Registrations
         ModModelPredicate.registerBow(ModItems.FIRST_LEAF);
+        ModModelPredicate.registerBow(ModItems.ARCANE_BOW);
+        ModModelPredicate.registerBow(ModItems.ARACHNID_BOW);
+        ModModelPredicate.registerBow(ModItems.ETERNAL_BOW);
+        ModModelPredicate.registerBow(ModItems.BASALT_BOW);
         HandledScreens.register(ModScreenHandlers.HEPHAESTUS_ALTAR_SCREEN_HANDLER, HephaestusAltarScreen::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.HEPHAESTUS_ALTAR_BLOCK_ENTITY_BLOCK, HephaestusAltarBlockEntityRenderer::new);
 
@@ -69,6 +73,18 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
                 }
         );
 
+        // Arcane Bow transmog predicate
+        ModelPredicateProviderRegistry.register(
+                ModItems.ARCANE_BOW,
+                new Identifier("anabnormalcircumstance", "transmog"),
+                (stack, world, entity, seed) -> {
+                    if (!stack.hasNbt()) return 0.0F;
+                    String raw = stack.getNbt().getString("anabnormalcircumstance:transmog_item");
+                    if (raw.isEmpty()) return 0.0F;
+                    Identifier id = Identifier.tryParse(raw);
+                    return id == null ? 0.0F : TransmogModels.getModelValue(id);
+                }
+        );
 
 
     }
