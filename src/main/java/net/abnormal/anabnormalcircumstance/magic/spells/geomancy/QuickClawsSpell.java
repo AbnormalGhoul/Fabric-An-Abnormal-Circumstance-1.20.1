@@ -26,8 +26,8 @@ public class QuickClawsSpell extends Spell {
                 id,
                 SpellElement.GEOMANCY,
                 SpellTier.TIER_1,
-                25,             // mana
-                45,             // cooldown seconds
+                35,
+                35,
                 icon,
                 "Quick Claws",
                 "Boosts your mining and action speed for a short period."
