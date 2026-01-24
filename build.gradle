@@ -71,8 +71,8 @@ dependencies {
     modImplementation "maven.modrinth:midnightlib:${project.midnightlib_version}"
     modImplementation "com.github.Chocohead:Fabric-ASM:v${project.fabricasm_version}"
 
-    // Shield Lib
-    modImplementation "maven.modrinth:shieldlib:${project.shieldlib_version}-fabric"
+    // Shield API
+    modImplementation "maven.modrinth:shield-api:${project.shield_api_version}"
 
     // Reach Entity Attributes
     include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")

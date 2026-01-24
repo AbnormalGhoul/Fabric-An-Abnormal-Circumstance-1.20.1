@@ -4,6 +4,7 @@
     "layer0": "anabnormalcircumstance:item/karambit"
   },
   "overrides": [
-    { "predicate": { "anabnormalcircumstance:transmog": 0.02 }, "model": "anabnormalcircumstance:item/druid_staff" }
+    { "predicate": { "anabnormalcircumstance:transmog": 0.81 }, "model": "anabnormalcircumstance:item/druid_staff" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.82 }, "model": "anabnormalcircumstance:item/vulkan_blade" }
   ]
 }

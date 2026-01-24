@@ -1,35 +1,41 @@
 package net.abnormal.anabnormalcircumstance.item.unique;
 
-import com.github.crimsondawn45.fabricshieldlib.lib.object.FabricShieldItem;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
+import net.fabric_extras.shield_api.item.CustomShieldItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Supplier;
 
-public class IcicleShardItem extends FabricShieldItem implements UniqueAbilityItem {
+public class IcicleShardItem extends CustomShieldItem implements UniqueAbilityItem {
 
-    public IcicleShardItem(Settings settings, int coolDownTicks, int enchantability, Item... repairItems) {
-        super(settings, coolDownTicks, enchantability, repairItems);
+    public IcicleShardItem(@Nullable SoundEvent equipSound, Supplier<Ingredient> repairIngredientSupplier, List<Pair<EntityAttribute, EntityAttributeModifier>> attributeModifierList, Settings settings) {
+        super(equipSound, repairIngredientSupplier, attributeModifierList, settings);
     }
 
     @Override

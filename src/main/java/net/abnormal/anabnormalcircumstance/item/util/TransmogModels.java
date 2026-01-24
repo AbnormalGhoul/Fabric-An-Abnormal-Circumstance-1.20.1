@@ -11,6 +11,7 @@ public final class TransmogModels {
     static {
         // Sword Transmogs
         register("anabnormalcircumstance:crown_blade",       0.01F);
+        register("anabnormalcircumstance:crimson_bident",    0.02F);
         register("anabnormalcircumstance:sylvestrian_blade", 0.03F);
         register("anabnormalcircumstance:last_rose",         0.04F);
         register("anabnormalcircumstance:great_sword",       0.05F);
@@ -42,8 +43,9 @@ public final class TransmogModels {
         register("anabnormalcircumstance:fire_mace",         0.59F);
 
         // Karambit Transmogs
-        register("anabnormalcircumstance:druid_staff",       0.02F);
-        
+        register("anabnormalcircumstance:druid_staff",       0.81F);
+        register("anabnormalcircumstance:vulkan_blade",       0.82F);
+
         // Bow Transmogs
         register("anabnormalcircumstance:arachnid_bow",      0.81F);
         register("anabnormalcircumstance:eternal_bow",       0.82F);

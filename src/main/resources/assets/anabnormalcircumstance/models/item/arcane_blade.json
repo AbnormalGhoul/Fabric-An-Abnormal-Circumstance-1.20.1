@@ -10,7 +10,7 @@
     },
     {
       "predicate": { "anabnormalcircumstance:transmog": 0.02 },
-      "model": "anabnormalcircumstance:item/druid_staff"
+      "model": "anabnormalcircumstance:item/crimson_bident"
     },
     {
       "predicate": { "anabnormalcircumstance:transmog": 0.03 },

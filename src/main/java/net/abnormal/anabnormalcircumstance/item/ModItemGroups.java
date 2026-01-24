@@ -383,6 +383,8 @@ public class ModItemGroups {
                         entries.add(ModItems.DARK_MOON);
                         entries.add(ModItems.MANA_SPEAR);
                         entries.add(ModItems.BEECOMB_SWORD);
+                        entries.add(ModItems.CRIMSON_BIDENT);
+                        entries.add(ModItems.VULKAN_BLADE);
 
                     }).build());
 

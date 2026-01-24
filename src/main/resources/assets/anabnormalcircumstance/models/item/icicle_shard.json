@@ -1,15 +1,46 @@
 {
-    "parent":"fabricshieldlib:item/fabric_shield",
-    "textures":{
-      "shield":"anabnormalcircumstance:item/icicle_shard"
-    },
-    "gui_light": "front",
-    "overrides": [
-    {
-      "predicate": {
-        "blocking": 1
-      },
-      "model": "anabnormalcircumstance:item/icicle_shard_blocking"
-    }
-  ]
+	"parent": "anabnormalcircumstance:item/icicle_shard_template",
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, 90, 0],
+			"translation": [10, 6, -5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, 0],
+			"translation": [10, 6, 11]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, 180, 5],
+			"translation": [-10, 2, -10],
+			"scale": [1.00, 1.00, 1.00]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, 180, 5],
+			"translation": [10, 0, -10],
+			"scale": [1.00, 1.00, 1.00]
+		},
+		"ground": {
+			"translation": [2, 4, 2],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [15, -25, -5],
+			"translation": [2, 3, 0],
+			"scale": [0.55, 0.55, 0.55]
+		},
+		"fixed": {
+			"rotation": [0, 180, 0],
+			"translation": [-4.5, 4.5, -5],
+			"scale": [0.55, 0.55, 0.55]
+		}
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "anabnormalcircumstance:item/icicle_shard_blocking"
+		}
+	]
 }

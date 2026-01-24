@@ -1,8 +1,29 @@
 {
-  "parent": "fabricshieldlib:item/fabric_shield_blocking",
-  "textures": {
-    "shield": "anabnormalcircumstance:item/icicle_shard"
-  },
-  "gui_light": "front"
+  "parent": "anabnormalcircumstance:item/icicle_shard_template",
+  "gui_light": "front",
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [45, 135, 0],
+      "translation": [3, 14, -3]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [45, 135, 0],
+      "translation": [14.5, 6, 5]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 180, -5],
+      "translation": [-9, 5, -11],
+      "scale": [1.00, 1.00, 1.00]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 180, -5],
+      "translation": [9, 5, -11],
+      "scale": [1.00, 1.00, 1.00]
+    },
+    "gui": {
+      "rotation": [15, -25, -5],
+      "translation": [2, 3, 0],
+      "scale": [0.55, 0.55, 0.55]
+    }
+  }
 }
-

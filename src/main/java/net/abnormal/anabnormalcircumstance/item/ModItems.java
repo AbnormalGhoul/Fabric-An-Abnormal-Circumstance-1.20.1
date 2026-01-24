@@ -13,10 +13,14 @@ import net.abnormal.anabnormalcircumstance.item.util.SoundFoodItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+
+import java.util.List;
 
 public class ModItems {
 
@@ -179,8 +183,22 @@ public class ModItems {
             -2.4f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
-    public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()));
-    public static final Item ICICLE_SHARD  = registerItem("icicle_shard", new IcicleShardItem(new Item.Settings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC).fireproof(), 100, 13, Items.NETHERITE_INGOT));
+    public static final Item ICICLE_SHARD = registerItem(
+            "icicle_shard",
+            new IcicleShardItem(
+                    SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
+                    () -> Ingredient.ofItems(Items.NETHERITE_INGOT),
+                    List.of(),
+                    new FabricItemSettings()
+                            .maxCount(1)
+                            .maxDamage(2500)
+                            .rarity(Rarity.EPIC)
+                            .fireproof()
+            )
+    );
+    public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(
+            new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()
+    ));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
             11,
@@ -243,6 +261,8 @@ public class ModItems {
             new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
     // Donator Items
+    public static final Item VULKAN_BLADE = registerItem("vulkan_blade", new Item(new Item.Settings().maxCount(1)));
+    public static final Item CRIMSON_BIDENT = registerItem("crimson_bident", new Item(new Item.Settings().maxCount(1)));
     public static final Item CROWN_BLADE = registerItem("crown_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item DRUIDS_STAFF = registerItem("druid_staff", new Item(new Item.Settings().maxCount(1)));
     public static final Item SYLVESTRIAN_BLADE = registerItem("sylvestrian_blade", new Item(new Item.Settings().maxCount(1)));

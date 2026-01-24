@@ -38,6 +38,13 @@ public class BroodGemItem extends Item implements Trinket {
                         4.0,
                         EntityAttributeModifier.Operation.ADDITION
                 ),
+                EntityAttributes.GENERIC_ARMOR_TOUGHNESS,
+                new EntityAttributeModifier(
+                        uuid,
+                        "Brood Gem toughness bonus",
+                        2.0,
+                        EntityAttributeModifier.Operation.ADDITION
+                ),
                 EntityAttributes.GENERIC_ARMOR,
                 new EntityAttributeModifier(
                         UUID.nameUUIDFromBytes((uuid.toString() + ":armor").getBytes()),
