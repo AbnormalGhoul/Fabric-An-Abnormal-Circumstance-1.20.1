@@ -22,6 +22,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> consumer) {
 
+        // GILDED_BLACKSTONE
+        ShapedRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.GILDED_BLACKSTONE, 1)
+                .pattern("Q#Q")
+                .pattern("#Q#")
+                .pattern("Q#Q")
+                .input('#', Items.BLACKSTONE)
+                .input('Q', Items.GOLD_INGOT)
+                .showNotification(true)
+                .criterion("has_blackstone", conditionsFromItem(Items.BLACKSTONE))
+                .offerTo(consumer, new Identifier(getRecipeName(Items.GILDED_BLACKSTONE)));
+
         // MITHRIL_INGOT
         new ShapelessRecipeJsonBuilder(RecipeCategory.MISC, ModItems.MITHRIL_INGOT, 1)
                 .input(Items.NETHERITE_SCRAP)
