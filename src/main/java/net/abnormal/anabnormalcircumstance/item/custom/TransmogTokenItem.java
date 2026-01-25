@@ -68,7 +68,8 @@ public class TransmogTokenItem extends Item {
 
     private static final Set<String> KARAMBIT_TRANSMOGS = Set.of(
             "anabnormalcircumstance:druid_staff",
-            "anabnormalcircumstance:vulkan_blade"
+            "anabnormalcircumstance:vulkan_blade",
+            "anabnormalcircumstance:rogue_dagger"
     );
 
     public TransmogTokenItem(Settings settings) {

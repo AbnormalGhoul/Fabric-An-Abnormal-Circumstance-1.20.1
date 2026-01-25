@@ -5,6 +5,7 @@
   },
   "overrides": [
     { "predicate": { "anabnormalcircumstance:transmog": 0.81 }, "model": "anabnormalcircumstance:item/druid_staff" },
-    { "predicate": { "anabnormalcircumstance:transmog": 0.82 }, "model": "anabnormalcircumstance:item/vulkan_blade" }
+    { "predicate": { "anabnormalcircumstance:transmog": 0.82 }, "model": "anabnormalcircumstance:item/vulkan_blade" },
+    { "predicate": { "anabnormalcircumstance:transmog": 0.83 }, "model": "anabnormalcircumstance:item/rogue_dagger" }
   ]
 }

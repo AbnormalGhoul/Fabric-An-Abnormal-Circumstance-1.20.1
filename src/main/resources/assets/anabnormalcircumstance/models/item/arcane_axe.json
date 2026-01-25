@@ -13,7 +13,5 @@
     { "predicate": { "anabnormalcircumstance:transmog": 0.57 }, "model": "anabnormalcircumstance:item/soul_steel_hatchet" },
     { "predicate": { "anabnormalcircumstance:transmog": 0.58 }, "model": "anabnormalcircumstance:item/dark_moon" },
     { "predicate": { "anabnormalcircumstance:transmog": 0.59 }, "model": "anabnormalcircumstance:item/fire_mace" }
-
-
   ]
 }

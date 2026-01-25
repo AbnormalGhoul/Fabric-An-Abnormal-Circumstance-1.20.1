@@ -15,7 +15,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(EnderPearlItem.class)
 public abstract class EnderPearlItemMixin {
-    // set desired cooldown in ticks (20 ticks = 1 second)
     @Unique
     private static final int COOLDOWN_TICKS = (25 * 20); // 25S
 

@@ -44,12 +44,13 @@ public final class TransmogModels {
 
         // Karambit Transmogs
         register("anabnormalcircumstance:druid_staff",       0.81F);
-        register("anabnormalcircumstance:vulkan_blade",       0.82F);
+        register("anabnormalcircumstance:vulkan_blade",      0.82F);
+        register("anabnormalcircumstance:rogue_dagger",      0.83F);
 
         // Bow Transmogs
-        register("anabnormalcircumstance:arachnid_bow",      0.81F);
-        register("anabnormalcircumstance:eternal_bow",       0.82F);
-        register("anabnormalcircumstance:basalt_bow",        0.83F);
+        register("anabnormalcircumstance:arachnid_bow",      0.91F);
+        register("anabnormalcircumstance:eternal_bow",       0.92F);
+        register("anabnormalcircumstance:basalt_bow",        0.93F);
     }
 
     private static void register(String id, float value) {
