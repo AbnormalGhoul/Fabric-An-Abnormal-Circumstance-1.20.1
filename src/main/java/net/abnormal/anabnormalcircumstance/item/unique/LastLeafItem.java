@@ -3,9 +3,11 @@ package net.abnormal.anabnormalcircumstance.item.unique;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -156,7 +158,7 @@ public class LastLeafItem extends SwordItem implements UniqueAbilityItem {
         if (!holding) return;
 
         ServerWorld serverWorld = (ServerWorld) world;
-        net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil.handleBondedRegen(serverWorld, player, true);
+        FirstLeafBondUtil.handleBondedRegen(serverWorld, player, true);
     }
 
 

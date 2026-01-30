@@ -3,11 +3,13 @@ package net.abnormal.anabnormalcircumstance.item.unique;
 import dev.emi.trinkets.api.TrinketsApi;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
+import net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.fabric_extras.ranged_weapon.api.CustomBow;
 import net.fabric_extras.ranged_weapon.api.RangedConfig;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -108,7 +110,7 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (world.isClient()) return;
         if (!(entity instanceof PlayerEntity player)) return;
 
@@ -116,14 +118,12 @@ public class FirstLeafBowItem extends CustomBow implements UniqueAbilityItem {
         if (!holding) return;
 
         ServerWorld serverWorld = (ServerWorld) world;
-        // Use helper — false = this is the bow
-        net.abnormal.anabnormalcircumstance.util.FirstLeafBondUtil.handleBondedRegen(serverWorld, player, false);
+        FirstLeafBondUtil.handleBondedRegen(serverWorld, player, false);
 
-        if (!world.isClient && entity.age % 5 == 0) {
+        if (!world.isClient() && entity.age % 5 == 0) {
             ACTIVE_MIST.values().removeIf(MistArea::isExpired);
         }
     }
-
 
     static {
         ServerTickEvents.END_SERVER_TICK.register(server -> {

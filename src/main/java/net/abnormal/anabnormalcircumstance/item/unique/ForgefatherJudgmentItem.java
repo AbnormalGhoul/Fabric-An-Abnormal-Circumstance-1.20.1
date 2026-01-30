@@ -5,8 +5,10 @@ import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -65,7 +67,6 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
         // Apply effects
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 3, false, true, true));
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 2, false, true, true));
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 200, 5, false, true, true));
 
         player.sendMessage(Text.literal("You are overcharged with divine power!").formatted(Formatting.GOLD, Formatting.BOLD), true);
 
@@ -73,13 +74,26 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
         UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
     }
 
-    // Passive: Grants haste 2 while held
     @Override
-    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        if (!attacker.getWorld().isClient()) {
+            target.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.MINING_FATIGUE,
+                    40,
+                    1,
+                    false,
+                    true,
+                    true
+            ));
+        }
+        return super.postHit(stack, target, attacker);
+    }
+
+    @Override
+    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         if (world.isClient()) return;
         if (entity instanceof PlayerEntity player) {
             if (player.getMainHandStack() == stack) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.HASTE, 45, 1, true, false, true));
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 45, 0, true, false, true));
             }
         }
@@ -87,8 +101,8 @@ public class ForgefatherJudgmentItem extends AxeItem implements UniqueAbilityIte
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Passive: Grants Haste II & Resistance I while held").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Overcharges the player with Lightning, grants Resistance IV, Regen III & Haste VI").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Passive: Grants resistance I while held and inflicts mining fatigue II on hit.").formatted(Formatting.AQUA));
+        tooltip.add(Text.literal("Active: Overcharges the player with lightning, granting Resistance IV, Regeneration III and Absorption II.").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 

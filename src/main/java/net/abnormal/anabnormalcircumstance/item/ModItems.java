@@ -25,57 +25,47 @@ import java.util.List;
 public class ModItems {
 
     // Pendants
-    public static final Item NIGHT_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item NIGHT_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "night_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
-    public static final Item SHROOM_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item SHROOM_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "shroom_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
-    public static final Item SOULBOUND_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item SOULBOUND_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "soulbound_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
-    public static final Item FOREST_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item FOREST_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "forest_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
-    public static final Item RAIN_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item RAIN_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "rain_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
-    public static final Item ALLY_PENDANT = Registry.register(
-            Registries.ITEM,
+    public static final Item ALLY_PENDANT = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "ally_pendant"),
             new PendantItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
 
     // Unique Items
-    public static final Item BERSERKERS_VIAL = Registry.register(
-            Registries.ITEM,
+    public static final Item BERSERKERS_VIAL = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "berserker_vial"),
             new BerserkersVialItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
     );
-    public static final Item PRISMATIC_STAFF = Registry.register(
-            Registries.ITEM,
+    public static final Item PRISMATIC_STAFF = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "prismatic_staff"),
             new PrismaticStaffItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
     );
-    public static final Item VARNIA_STAFF = Registry.register(
-            Registries.ITEM,
+    public static final Item VARNIA_STAFF = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "varnia_staff"),
             new VarniaStaffItem(new Item.Settings().rarity(Rarity.RARE).fireproof().maxCount(1))
     );
 
     // Trinkets
-    public static final Item WIDOWS_GEM = Registry.register(
-            Registries.ITEM,
+    public static final Item WIDOWS_GEM = Registry.register(Registries.ITEM,
             new Identifier("anabnormalcircumstance", "widows_gem"),
             new WidowsGemItem(new Item.Settings().maxCount(1).rarity(Rarity.RARE).fireproof())
     );
@@ -89,6 +79,7 @@ public class ModItems {
         TrinketsApi.registerTrinket(WIDOWS_GEM, (Trinket) WIDOWS_GEM);
     }
 
+    // Crests
     public static final Item CHAMPIONS_CREST = Registry.register(
             Registries.ITEM,
             new Identifier("anabnormalcircumstance", "champions_crest"),
@@ -138,10 +129,15 @@ public class ModItems {
             new ExtendoGripItem(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof()));
 
     // Blades
+    public static final Item DWARVEN_PICKAXE = registerItem("dwarven_pickaxe", new DwarvenPickaxeItem(
+            ModToolMaterials.UNIQUE,
+            9,
+            -2.8f,
+            new FabricItemSettings().fireproof().rarity(Rarity.RARE)));
     public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(
-                ModToolMaterials.UNIQUE, // Tool Material
-                8,                       // Attack damage bonus
-                -2.4f,                   // Attack speed
+                ModToolMaterials.UNIQUE,
+                8,
+                -2.4f,
                 new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
             ));
     public static final Item GEO_BLADE = registerItem("geo_blade", new GeoBladeItem(
@@ -177,32 +173,24 @@ public class ModItems {
     public static final Item ARCANE_BOW = registerItem("arcane_bow", new ArcaneBow(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE).fireproof().maxDamage(750)));
 
     // Champion Weapons
+    public static final Item ICICLE_SHARD = registerItem("icicle_shard", new IcicleShardItem(
+                    SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
+                    () -> Ingredient.ofItems(Items.NETHERITE_INGOT),
+                    List.of(), new FabricItemSettings().maxCount(1).maxDamage(2500).rarity(Rarity.EPIC).fireproof()
+    ));
     public static final Item LAST_LEAF = registerItem("last_leaf", new LastLeafItem(
             ModToolMaterials.UNIQUE,
             9,
             -2.4f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
-    public static final Item ICICLE_SHARD = registerItem(
-            "icicle_shard",
-            new IcicleShardItem(
-                    SoundEvents.ITEM_ARMOR_EQUIP_NETHERITE,
-                    () -> Ingredient.ofItems(Items.NETHERITE_INGOT),
-                    List.of(),
-                    new FabricItemSettings()
-                            .maxCount(1)
-                            .maxDamage(2500)
-                            .rarity(Rarity.EPIC)
-                            .fireproof()
-            )
-    );
     public static final Item FIRST_LEAF = registerItem("first_leaf", new FirstLeafBowItem(
             new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item FORGEFATHER_JUDGMENT = registerItem("forgefather_judgment", new ForgefatherJudgmentItem(
             ModToolMaterials.UNIQUE,
             11,
-            -3f,
+            -3.0f,
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
     public static final Item WILL_BREAKER = registerItem("will_breaker", new WillBreakerItem(
@@ -230,10 +218,6 @@ public class ModItems {
             new Item.Settings().maxCount(1).rarity(Rarity.EPIC).fireproof()
     ));
 
-    public static final Item DWARVEN_PICKAXE = registerItem("dwarven_pickaxe",
-            new DwarvenPickaxeItem(ModToolMaterials.UNIQUE, 5, -2.8f,
-                    new FabricItemSettings().fireproof().rarity(Rarity.RARE)));
-
     // Carcan Item
     public static final Item CRAB_CLAW = registerItem("crab_claw", new Item(new Item.Settings().maxCount(1)));
 
@@ -260,13 +244,14 @@ public class ModItems {
     public static final Item MITHRIL_BOOTS = registerItem("mithril_boots",
             new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
-    // Donator Items
+    // Supporter Items
     public static final Item VULKAN_BLADE = registerItem("vulkan_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item CRIMSON_BIDENT = registerItem("crimson_bident", new Item(new Item.Settings().maxCount(1)));
     public static final Item CROWN_BLADE = registerItem("crown_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item DRUIDS_STAFF = registerItem("druid_staff", new Item(new Item.Settings().maxCount(1)));
     public static final Item SYLVESTRIAN_BLADE = registerItem("sylvestrian_blade", new Item(new Item.Settings().maxCount(1)));
 
+    // Donator Items
     public static final Item LAST_ROSE = registerItem("last_rose", new Item(new Item.Settings().maxCount(1)));
     public static final Item GARGOYLE_AXE = registerItem("gargoyle_axe", new Item(new Item.Settings().maxCount(1)));
     public static final Item GREAT_SWORD = registerItem("great_sword", new Item(new Item.Settings().maxCount(1)));
@@ -282,7 +267,6 @@ public class ModItems {
     public static final Item CURSED_BLADE = registerItem("cursed_blade", new Item(new Item.Settings().maxCount(1)));
     public static final Item MANA_AXE = registerItem("mana_axe", new Item(new Item.Settings().maxCount(1)));
     public static final Item OCEANIC_MIGHT = registerItem("oceanic_might", new Item(new Item.Settings().maxCount(1)));
-
     public static final Item FLOWERING_MADNESS = registerItem("flowering_madness", new Item(new Item.Settings().maxCount(1)));
     public static final Item FIRE_MACE = registerItem("fire_mace", new Item(new Item.Settings().maxCount(1)));
     public static final Item BATTLE_STANDARD = registerItem("battle_standard", new Item(new Item.Settings().maxCount(1)));
@@ -295,8 +279,7 @@ public class ModItems {
     public static final Item DARK_MOON = registerItem("dark_moon", new Item(new Item.Settings().maxCount(1)));
     public static final Item MANA_SPEAR = registerItem("mana_spear", new Item(new Item.Settings().maxCount(1)));
     public static final Item BEECOMB_SWORD = registerItem("beecomb_sword", new Item(new Item.Settings().maxCount(1)));
-
-
+    // Donator Bows
     public static final Item ARACHNID_BOW = registerItem("arachnid_bow", new BowItem(new Item.Settings().maxCount(1)));
     public static final Item BASALT_BOW = registerItem("basalt_bow", new BowItem(new Item.Settings().maxCount(1)));
     public static final Item ETERNAL_BOW = registerItem("eternal_bow", new BowItem(new Item.Settings().maxCount(1)));
@@ -309,27 +292,35 @@ public class ModItems {
     public static final Item SILVER_NECKLACE = registerItem("silver_necklace", new Item(new Item.Settings()));
     public static final Item GOLDEN_EARRINGS = registerItem("golden_earrings", new Item(new Item.Settings()));
     public static final Item DIAMOND_RING = registerItem("diamond_ring", new Item(new Item.Settings()));
-    public static final Item RUSTED_KEY = registerItem("rusted_key", new Item(new Item.Settings()));
+
+    // Other Loot
     public static final Item BOTTLED_LIGHTNING = registerItem("bottled_lightning", new Item(new Item.Settings()));
+    public static final Item RUSTED_KEY = registerItem("rusted_key", new Item(new Item.Settings()));
+
+    // Orc Loot
     public static final Item ORC_HIDE = registerItem("orc_hide", new Item(new Item.Settings()));
     public static final Item ORC_CHAMPION_FANG = registerItem("orc_champion_fang", new Item(new Item.Settings()));
+
+    // Brood Loot
     public static final Item ARACHNID_SILK = registerItem("arachnid_silk", new Item(new Item.Settings()));
     public static final Item BROODMOTHER_EGG = registerItem("broodmother_egg", new Item(new Item.Settings()));
 
-    // Shrine Loot
+    // Catalysts
     public static final Item HYDRO_CATALYST = registerItem("hydro_catalyst", new Item(new Item.Settings()));
     public static final Item PYRO_CATALYST = registerItem("pyro_catalyst", new Item(new Item.Settings()));
     public static final Item GEO_CATALYST = registerItem("geo_catalyst", new Item(new Item.Settings()));
     public static final Item AERO_CATALYST = registerItem("aero_catalyst", new Item(new Item.Settings()));
 
-    // Consumable Essences/Souls
+    // Essences
     public static final Item HYDRO_ESSENCE = registerItem("hydro_essence", new SoundFoodItem(ModFoodComponents.HYDRO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
     public static final Item PYRO_ESSENCE = registerItem("pyro_essence", new SoundFoodItem(ModFoodComponents.PYRO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
     public static final Item GEO_ESSENCE = registerItem("geo_essence", new SoundFoodItem(ModFoodComponents.GEO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
     public static final Item AERO_ESSENCE = registerItem("aero_essence", new SoundFoodItem(ModFoodComponents.AERO_ESSENCE, new Item.Settings().maxCount(16).rarity(Rarity.EPIC)));
 
+    // Souls
     public static final Item ORC_CHAMPION_SOUL = registerItem("orc_champion_soul", new SoundFoodItem(ModFoodComponents.ORC_CHAMPION_SOUL, new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON)));
     public static final Item BROODMOTHER_SOUL = registerItem("broodmother_soul", new SoundFoodItem(ModFoodComponents.BROODMOTHER_SOUL, new Item.Settings().maxCount(16).rarity(Rarity.UNCOMMON)));
+
     // Currency
     public static final Item COPPER_COIN = registerItem("copper_coin", new Item(new Item.Settings()));
     public static final Item SILVER_COIN = registerItem("silver_coin", new Item(new Item.Settings()));
@@ -347,10 +338,9 @@ public class ModItems {
     public static final Item ORIGIN_RUNE = registerItem("origin_rune", new OriginRuneItem(new Item.Settings()));
     public static final Item NATION_RUNE = registerItem("nation_rune", new NationRuneItem(new Item.Settings()));
     public static final Item TRANSMOG_TOKEN = registerItem("transmog_token", new TransmogTokenItem(new Item.Settings().fireproof().maxCount(1).rarity(Rarity.EPIC)));
-    public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic",
-            new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));
-
+    public static final Item ABNORMAL_RELIC = registerItem("abnormal_relic", new AbnormalRelicItem(new Item.Settings().fireproof().rarity(Rarity.EPIC)));
     public static final Item TOTEM_OF_PURITY = registerItem("totem_of_purity", new VillagerTotemItem(new Item.Settings().maxCount(16)));
+
 
     // Regular Spark
     public static final Item WATER_SPARK = registerItem("water_spark",  new Item(new Item.Settings().maxCount(16)));
@@ -387,7 +377,7 @@ public class ModItems {
                     StatusEffects.REGENERATION, 90 * 20, 0));
     public static final Item SPARK_OF_STRONG_REGENERATION = registerItem("spark_of_strong_regeneration",
             new SparkItem(new FabricItemSettings().maxCount(16),
-                    StatusEffects.REGENERATION, 22 * 20 + 10, 1));  // ~22.5s → 22s + 10 ticks
+                    StatusEffects.REGENERATION, 22 * 20 + 10, 1));
 
     // Slow Falling
     public static final Item SPARK_OF_SLOW_FALLING = registerItem("spark_of_slow_falling",
@@ -431,6 +421,7 @@ public class ModItems {
     public static final Item SPARK_OF_LONG_NIGHT_VISION = registerItem("spark_of_long_night_vision",
             new SparkItem(new FabricItemSettings().maxCount(16),
                     StatusEffects.NIGHT_VISION, 480 * 20, 0));
+
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, new Identifier(AnAbnormalCircumstance.MOD_ID, name), item);

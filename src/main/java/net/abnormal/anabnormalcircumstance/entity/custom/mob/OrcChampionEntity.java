@@ -65,11 +65,12 @@ public class OrcChampionEntity extends HostileEntity implements GeoEntity {
     // Attributes
     public static DefaultAttributeContainer.Builder setAttributes() {
         return HostileEntity.createHostileAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 1000.0D)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 2000.0D)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 30.0D)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.30D)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0D)
-                .add(EntityAttributes.GENERIC_ARMOR, 20.0D);
+                .add(EntityAttributes.GENERIC_ARMOR, 20.0D)
+                .add(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, 8.0D);
     }
 
     // AI Goals

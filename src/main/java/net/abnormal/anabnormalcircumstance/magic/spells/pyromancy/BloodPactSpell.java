@@ -63,7 +63,7 @@ public class BloodPactSpell extends Spell {
 
         // Apply Strength III
         StatusEffectInstance strength =
-                new StatusEffectInstance(StatusEffects.STRENGTH, 25 * 20, 2, false, true, true);
+                new StatusEffectInstance(StatusEffects.STRENGTH, 20 * 20, 2, false, true, true);
 
         // Apply to self
         caster.addStatusEffect(strength);

@@ -39,17 +39,17 @@ public class AeroBladeItem extends SwordItem implements UniqueAbilityItem {
         super.inventoryTick(stack, world, entity, slot, selected);
     }
 
-    // On hit Apply Mining Fatigue I for 5 seconds
+    // On hit Apply Mining Fatigue I
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.getWorld().isClient()) {
             target.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.MINING_FATIGUE, // Effect type
-                    30,
-                    0,      // Amplifier
-                    false,  // Ambient
-                    true,   // Show particles
-                    true    // Show icon
+                    StatusEffects.MINING_FATIGUE,
+                    40,
+                    0,
+                    false,
+                    true,
+                    true
             ));
         }
         return super.postHit(stack, target, attacker);

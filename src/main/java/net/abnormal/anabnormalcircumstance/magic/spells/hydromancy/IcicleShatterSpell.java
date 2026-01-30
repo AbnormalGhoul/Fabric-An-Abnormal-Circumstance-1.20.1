@@ -79,7 +79,7 @@ public class IcicleShatterSpell extends Spell {
 
         for (LivingEntity target : targets) {
             target.setFrozenTicks(target.getFrozenTicks() + 400);
-            target.damage(world.getDamageSources().magic(), 25.0f);
+            target.damage(world.getDamageSources().playerAttack(caster), 35.0f);
         }
     }
 

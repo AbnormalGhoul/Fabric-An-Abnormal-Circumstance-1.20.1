@@ -1,21 +1,20 @@
 package net.abnormal.anabnormalcircumstance.util;
 
 import net.abnormal.anabnormalcircumstance.item.ModItems;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 
 import java.util.List;
 
 public class FirstLeafBondUtil {
+
     public static final double LINK_RADIUS = 15.0;
 
-    // Checks if another player within 15 blocks is holding the "linked" item.
-    // If both are holding LastLeaf + FirstLeafBow, both get Regen III instead of Regen I.
     public static void handleBondedRegen(ServerWorld world, PlayerEntity player, boolean isHoldingSword) {
         // Base regen amplifier
-        int regenLevel = 0; // Regen I default
+        int regenLevel = 0;
 
         // Check for nearby player with the complementary item
         List<PlayerEntity> nearby = world.getEntitiesByClass(PlayerEntity.class,
@@ -35,14 +34,18 @@ public class FirstLeafBondUtil {
             }
         }
 
-        // Apply appropriate regeneration
-        player.addStatusEffect(new StatusEffectInstance(
-                StatusEffects.REGENERATION,
-                105,
-                regenLevel,
-                true,
-                false,
-                true
-        ));
+        StatusEffectInstance current = player.getStatusEffect(StatusEffects.REGENERATION);
+
+        // Only refresh when missing or almost expired
+        if (current == null || current.getAmplifier() != regenLevel || current.getDuration() <= 20) {
+            player.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.REGENERATION,
+                    105,
+                    regenLevel,
+                    true,
+                    false,
+                    true
+            ));
+        }
     }
 }

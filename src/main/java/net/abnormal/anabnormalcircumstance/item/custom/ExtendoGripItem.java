@@ -22,7 +22,7 @@ public class ExtendoGripItem extends Item {
     private static final EntityAttributeModifier REACH_MODIFIER =
             new EntityAttributeModifier(REACH_MODIFIER_ID, "Extendo Grip reach bonus", 2.0, EntityAttributeModifier.Operation.ADDITION);
     private static final EntityAttributeModifier ATTACK_RANGE_MODIFIER =
-            new EntityAttributeModifier(ATTACK_RANGE_MODIFIER_ID, "Extendo Grip attack range bonus", 1.0, EntityAttributeModifier.Operation.ADDITION);
+            new EntityAttributeModifier(ATTACK_RANGE_MODIFIER_ID, "Extendo Grip attack range bonus", 0.5, EntityAttributeModifier.Operation.ADDITION);
 
     public ExtendoGripItem(Settings settings) {
         super(settings);
@@ -61,6 +61,6 @@ public class ExtendoGripItem extends Item {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, net.minecraft.client.item.TooltipContext context) {
         tooltip.add(Text.literal("Extends attack and placement reach").formatted(Formatting.GRAY));
-        tooltip.add(Text.literal("+1 Attack Range, +2 Block Reach").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("+0.5 Attack Range, +2 Block Reach").formatted(Formatting.GRAY));
     }
 }

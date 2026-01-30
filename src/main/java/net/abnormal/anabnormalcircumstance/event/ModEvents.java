@@ -1,9 +1,11 @@
 package net.abnormal.anabnormalcircumstance.event;
 
-
 import net.abnormal.anabnormalcircumstance.event.custom.*;
+import net.abnormal.anabnormalcircumstance.util.AbnormalMagicCommand;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
 import net.abnormal.anabnormalcircumstance.magic.spells.aeromancy.SoaringStrideSpell;
 import net.abnormal.anabnormalcircumstance.magic.spells.hydromancy.BileWaterSpell;
@@ -14,6 +16,7 @@ import net.fabricmc.fabric.api.event.player.AttackEntityCallback;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -21,6 +24,13 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
 public class ModEvents {
     public static void registerEvents() {
+
+        CommandRegistrationCallback.EVENT.register(
+                (dispatcher, registryAccess, environment) -> {
+                    AbnormalMagicCommand.register(dispatcher);
+                }
+        );
+
         ModAttackEvent.register();
         MarkOfAChampionEvents.register();
         AdamantiteArmorSetHandler.register();
@@ -28,6 +38,25 @@ public class ModEvents {
         PlayerHeadDropHandler.register();
         PhoenixFireHandler.register();
         StunEventHandler.register();
+
+        // Arrow Fired Event
+        ServerEntityEvents.ENTITY_LOAD.register((entity, world) -> {
+            if (!(entity instanceof PersistentProjectileEntity projectile)) return;
+            if (!(projectile.getOwner() instanceof ServerPlayerEntity player)) return;
+
+            FireAspectSpell.onArrowFired(player, projectile);
+        });
+
+        // Arrow Hit Event
+        ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, source, amount) -> {
+            Entity directSource = source.getSource();
+
+            if (directSource instanceof PersistentProjectileEntity projectile) {
+                FireAspectSpell.onArrowHit(projectile, entity);
+            }
+            return true; // always allow the damage
+        });
+
 
         AttackEntityCallback.EVENT.register((player, world, hand, entity, hitResult) -> {
             AdamantiteBonusHandler.onPlayerAttack(player, entity);
@@ -65,7 +94,6 @@ public class ModEvents {
 
         // Tick every world and spawn aura particles for players with active buff
         ServerTickEvents.END_WORLD_TICK.register(world -> {
-            // world is a ServerWorld
             for (ServerPlayerEntity player : world.getPlayers()) {
                 SoaringStrideSpell.tick(player);
                 MoltenFurySpell.tick(player);
@@ -73,7 +101,10 @@ public class ModEvents {
                 ControlWeatherSpell.tick(player);
                 AdamantiteBonusHandler.tick(player);
             }
+
+            FireAspectSpell.cleanup(world);
         });
+
     }
 
     private static float getAttackDamage(ServerPlayerEntity player, LivingEntity target) {

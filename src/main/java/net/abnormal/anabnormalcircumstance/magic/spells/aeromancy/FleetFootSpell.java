@@ -22,16 +22,10 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
-/**
- * Fleet Foot (Aeromancy, Tier 2)
- * Cost: 40 mana | Cooldown: 45 seconds
- *
- * Grants Speed III to yourself and nearby allies.
- */
 public class FleetFootSpell extends Spell {
 
-    private static final int DURATION_TICKS = 15 * 20;
-    private static final int SPEED_LEVEL = 2; // Speed III
+    private static final int DURATION_TICKS = 20 * 20;
+    private static final int SPEED_LEVEL = 2;
     private static final double RADIUS = 5.0;
 
     public FleetFootSpell(Identifier id, Identifier icon) {

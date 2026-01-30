@@ -19,19 +19,7 @@ public class DwarvenPickaxeItem extends PickaxeItem {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
-        if (!world.isClient && entity instanceof PlayerEntity player) {
-            // Check if held in main hand
-            if (player.getMainHandStack() == stack) {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 45, 1, true, false, true));
-            }
-        }
-        super.inventoryTick(stack, world, entity, slot, selected);
-    }
-
-    @Override
     public void appendTooltip(ItemStack stack, World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.literal("Inflicts Slowness II while held").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Forged in the deep caverns of the Antrum").formatted(Formatting.GOLD));
         tooltip.add(Text.literal("It hums with ancient craftsmanship and unmatched precision").formatted(Formatting.GOLD));
         super.appendTooltip(stack, world, tooltip, context);

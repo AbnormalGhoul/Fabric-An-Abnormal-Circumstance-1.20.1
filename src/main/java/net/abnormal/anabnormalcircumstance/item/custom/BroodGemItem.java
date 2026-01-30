@@ -31,13 +31,6 @@ public class BroodGemItem extends Item implements Trinket {
             UUID uuid
     ) {
         return ImmutableMultimap.of(
-                EntityAttributes.GENERIC_MAX_HEALTH,
-                new EntityAttributeModifier(
-                        uuid,
-                        "Brood Gem health bonus",
-                        4.0,
-                        EntityAttributeModifier.Operation.ADDITION
-                ),
                 EntityAttributes.GENERIC_ARMOR_TOUGHNESS,
                 new EntityAttributeModifier(
                         uuid,

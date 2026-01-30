@@ -29,7 +29,7 @@ public class EarthquakeSpell extends Spell {
     private static final int DURATION_TICKS = 20 * 20;
     private static final int DAMAGE_INTERVAL = 20; // every 1s
     private static final double RADIUS = 12.0;
-    private static final float DAMAGE = 20.0f;
+    private static final float DAMAGE = 15.0f;
     private static final int RING_POINTS = 48;
     private static final double RING_THICKNESS = 0.4;
 

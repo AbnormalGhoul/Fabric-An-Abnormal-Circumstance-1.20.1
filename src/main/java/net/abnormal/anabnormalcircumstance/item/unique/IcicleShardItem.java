@@ -1,7 +1,6 @@
 package net.abnormal.anabnormalcircumstance.item.unique;
 
 import dev.emi.trinkets.api.TrinketsApi;
-import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.abnormal.anabnormalcircumstance.item.ModItems;
 import net.abnormal.anabnormalcircumstance.item.util.UniqueAbilityItem;
 import net.abnormal.anabnormalcircumstance.util.UniqueItemCooldownManager;
@@ -13,7 +12,6 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Ingredient;
@@ -42,26 +40,15 @@ public class IcicleShardItem extends CustomShieldItem implements UniqueAbilityIt
     public void useUniqueAbility(PlayerEntity player) {
         if (player.getWorld().isClient()) return;
 
-        boolean hasMark = TrinketsApi.getTrinketComponent(player)
-                .map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST))
-                .orElse(false);
-
+        boolean hasMark = TrinketsApi.getTrinketComponent(player).map(comp -> comp.isEquipped(ModItems.CHAMPIONS_CREST)).orElse(false);
         if (!hasMark) {
-            player.sendMessage(
-                    Text.literal("You must equip the Champion's Crest to use this shield")
-                            .formatted(Formatting.DARK_RED),
-                    true
-            );
+            player.sendMessage(Text.literal("You must equip the Champion's Crest to use this shield").formatted(Formatting.DARK_RED), true);
             return;
         }
 
         if (UniqueItemCooldownManager.isOnCooldown(player)) {
             long remaining = UniqueItemCooldownManager.getRemaining(player);
-            player.sendMessage(
-                    Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)")
-                            .formatted(Formatting.WHITE),
-                    true
-            );
+            player.sendMessage(Text.literal("Ability Cooldown (" + (remaining / 1000) + "s)").formatted(Formatting.WHITE), true);
             return;
         }
 
@@ -75,19 +62,10 @@ public class IcicleShardItem extends CustomShieldItem implements UniqueAbilityIt
         double height = 2.0;
 
         // Large box for candidate collection
-        Box searchBox = player.getBoundingBox().expand(4.0, 2.0, 4.0);
+        Box searchBox = player.getBoundingBox().expand(6.0, 2.0, 6.0);
 
-        List<LivingEntity> targets = world.getEntitiesByClass(
-                LivingEntity.class,
-                searchBox,
-                e -> e != player && e.isAlive() && !player.isTeammate(e)
-        );
-
-        player.sendMessage(
-                Text.literal("Frost Bash!")
-                        .formatted(Formatting.GOLD),
-                true
-        );
+        List<LivingEntity> targets = world.getEntitiesByClass(LivingEntity.class, searchBox, e -> e != player && e.isAlive() && !player.isTeammate(e));
+        player.sendMessage(Text.literal("Frost Bash!").formatted(Formatting.GOLD), true);
 
         for (LivingEntity target : targets) {
             Vec3d toTarget = target.getPos().subtract(origin);
@@ -105,13 +83,10 @@ public class IcicleShardItem extends CustomShieldItem implements UniqueAbilityIt
             if (sideways.lengthSquared() > halfWidth * halfWidth) continue;
 
             // Apply damage
-            target.damage(
-                    world.getDamageSources().playerAttack(player),
-                    25.0F
-            );
+            target.damage(world.getDamageSources().playerAttack(player), 35.0F);
 
-            // Freeze (20 seconds)
-            target.setFrozenTicks(20 * 20);
+            // Freeze
+            target.setFrozenTicks(20 * 20 * 2);
 
             // Launch away
             Vec3d knockback = target.getPos()
@@ -167,29 +142,9 @@ public class IcicleShardItem extends CustomShieldItem implements UniqueAbilityIt
         UniqueItemCooldownManager.setCooldown(player, 30 * 1000);
     }
 
-
-
     @Override
     public void inventoryTick(ItemStack stack, World world, net.minecraft.entity.Entity entity, int slot, boolean selected) {
-        if (world.isClient()) {
-//            if (entity instanceof PlayerEntity player) {
-//                boolean holding = player.getOffHandStack() == stack;
-//                if (holding && world.getTime() % 5 == 0) {
-//                    double offsetX = (world.random.nextDouble() - 0.5) * 1.2;
-//                    double offsetY = world.random.nextDouble() * 1.8;
-//                    double offsetZ = (world.random.nextDouble() - 0.5) * 1.2;
-//
-//                    world.addParticle(
-//                            net.minecraft.particle.ParticleTypes.SNOWFLAKE,
-//                            player.getX() + offsetX,
-//                            player.getY() + offsetY,
-//                            player.getZ() + offsetZ,
-//                            0.0, 0.02, 0.0
-//                    );
-//                }
-//            }
-            return; }
-
+        if (world.isClient()) { return; }
         if (entity instanceof PlayerEntity player) {
             boolean holdingOffhand = player.getOffHandStack() == stack;
             if (holdingOffhand) {

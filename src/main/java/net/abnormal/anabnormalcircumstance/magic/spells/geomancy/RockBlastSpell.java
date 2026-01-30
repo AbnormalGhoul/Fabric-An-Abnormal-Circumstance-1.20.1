@@ -30,8 +30,8 @@ public class RockBlastSpell extends Spell {
                 id,
                 SpellElement.GEOMANCY,
                 SpellTier.TIER_1,
-                30,          // mana
-                45,                   // cooldown (seconds)
+                30,
+                45,
                 icon,
                 "Rock Blast",
                 "Sends out a forceful shock that pushes enemies away from you."

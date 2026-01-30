@@ -50,7 +50,7 @@ public class CleansingFluidsSpell extends Spell {
 
 
         // Give caster 4 absorption hearts (8 health)
-        caster.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 20 * 60, 1, false, false, true));
+        caster.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 20 * 60, 2, false, false, true));
 
         return true;
     }
@@ -67,14 +67,6 @@ public class CleansingFluidsSpell extends Spell {
         }
     }
 
-    /**
-     * Creates a swirling ring of water particles around the caster.
-     * @param world   The server world.
-     * @param caster  The player casting the spell.
-     * @param radius  Horizontal radius of the swirl.
-     * @param height  Vertical height of the spiral.
-     * @param points  How many particles to use.
-     */
     private void spawnWaterSwirl(ServerWorld world, ServerPlayerEntity caster, double radius, double height, int points) {
         Vec3d origin = caster.getPos().add(0, 1, 0);
         for (int i = 0; i < points; i++) {

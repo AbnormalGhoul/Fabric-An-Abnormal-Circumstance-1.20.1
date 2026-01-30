@@ -60,14 +60,14 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
         );
 
         for (LivingEntity target : targets) {
-            target.damage(world.getDamageSources().playerAttack(player), 45.0F);
+            target.damage(world.getDamageSources().magic(), 45.0F);
             target.setOnFireFor(5);
             target.addStatusEffect(new StatusEffectInstance(ModEffects.BLEEDING, 60, 2));
         }
 
         world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS, 5.0F, 1.0F);
         player.sendMessage(Text.literal("§6Inferno Strike unleashed!").formatted(Formatting.GOLD), true);
-        UniqueItemCooldownManager.setCooldown(player, 45 * 1000);
+        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
 
         // Fire swirl particle effect (visible to all)
         spawnFireSwirl((ServerWorld) world, player);
@@ -117,7 +117,7 @@ public class WillBreakerItem extends SwordItem implements UniqueAbilityItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Causes Bleeding & Fire damage; Grants Fire Resistance").formatted(Formatting.AQUA));
-        tooltip.add(Text.literal("Active: Inferno Strike - unleash a fiery blast dealing 45 damage").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Active: Inferno Strike - unleash a fiery blast dealing 50 damage").formatted(Formatting.GOLD));
+        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
     }
 }

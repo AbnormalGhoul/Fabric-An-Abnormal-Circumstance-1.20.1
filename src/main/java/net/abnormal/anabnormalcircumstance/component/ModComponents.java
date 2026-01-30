@@ -51,5 +51,5 @@ public final class ModComponents implements EntityComponentInitializer {
         });
     }
 
-    // keep this method removed/unused — server tick registration moved into the entrypoint
+    // server tick registration moved into the entrypoint
 }

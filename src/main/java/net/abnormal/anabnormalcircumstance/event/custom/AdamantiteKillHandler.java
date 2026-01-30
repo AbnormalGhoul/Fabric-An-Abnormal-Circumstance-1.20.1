@@ -3,9 +3,11 @@ package net.abnormal.anabnormalcircumstance.event.custom;
 import net.abnormal.anabnormalcircumstance.effect.ModEffects;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.TntEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.projectile.ExplosiveProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -23,7 +25,7 @@ public final class AdamantiteKillHandler {
             }
 
             Entity src = source.getSource();
-            if (src instanceof ProjectileEntity) {
+            if (src instanceof ProjectileEntity || src instanceof TntEntity) {
                 return;
             }
 
@@ -63,7 +65,7 @@ public final class AdamantiteKillHandler {
         player.addStatusEffect(new StatusEffectInstance(
                 StatusEffects.ABSORPTION,
                 100,
-                1, // Absorption II
+                0, // Absorption I
                 false,
                 true,
                 true

@@ -22,10 +22,6 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
-/**
- * Cinder Cloaking (Pyromancy Tier 1)
- * Applies Glowing to all ENEMY entities in a 30-block radius for 30 seconds.
- */
 public class CinderCloakingSpell extends Spell {
 
     public CinderCloakingSpell(Identifier id, Identifier icon) {

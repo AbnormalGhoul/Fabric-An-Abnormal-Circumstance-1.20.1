@@ -86,7 +86,7 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
 
         // Sound and cooldown
         world.playSound(null, player.getBlockPos(), SoundEvents.ENTITY_PLAYER_ATTACK_SWEEP, SoundCategory.PLAYERS, 1.2f, 1.2f);
-        UniqueItemCooldownManager.setCooldown(player, 60 * 1000);
+        UniqueItemCooldownManager.setCooldown(player, 45 * 1000);
     }
 
     @Override
@@ -129,6 +129,6 @@ public class ReedthornItem extends SwordItem implements UniqueAbilityItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.literal("Passive: Extended Attack Reach, And Inflicts Poison II").formatted(Formatting.AQUA));
         tooltip.add(Text.literal("Active: Confusion Charge - Confuses all entities in the way of the charge").formatted(Formatting.GOLD));
-        tooltip.add(Text.literal("Cooldown: 1 minute").formatted(Formatting.GRAY));
+        tooltip.add(Text.literal("Cooldown: 45s").formatted(Formatting.GRAY));
     }
 }
