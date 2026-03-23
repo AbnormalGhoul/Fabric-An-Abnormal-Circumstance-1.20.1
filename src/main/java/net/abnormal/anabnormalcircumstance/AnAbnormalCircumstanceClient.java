@@ -1,5 +1,6 @@
 package net.abnormal.anabnormalcircumstance;
 
+import net.abnormal.anabnormalcircumstance.block.ModBlocks;
 import net.abnormal.anabnormalcircumstance.block.entity.ModBlockEntities;
 import net.abnormal.anabnormalcircumstance.block.entity.renderer.HephaestusAltarBlockEntityRenderer;
 import net.abnormal.anabnormalcircumstance.entity.ModEntityRenderers;
@@ -13,12 +14,14 @@ import net.abnormal.anabnormalcircumstance.screen.ModScreenHandlers;
 import net.abnormal.anabnormalcircumstance.util.KeyBindingHandler;
 import net.abnormal.anabnormalcircumstance.util.ModModelPredicate;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 
 public class AnAbnormalCircumstanceClient implements ClientModInitializer {
@@ -46,6 +49,12 @@ public class AnAbnormalCircumstanceClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(KeyBindingHandler::onClientTick);
         HudRenderCallback.EVENT.register(new net.abnormal.anabnormalcircumstance.magic.client.SpellHudRenderer());
         PacketHandlerClient.register();
+
+        // Temporary Cobweb Render Layer
+        BlockRenderLayerMap.INSTANCE.putBlock(
+                ModBlocks.TEMPORARY_COBWEB,
+                RenderLayer.getCutout()
+        );
 
         // Arcane Blade transmog predicate
         ModelPredicateProviderRegistry.register(

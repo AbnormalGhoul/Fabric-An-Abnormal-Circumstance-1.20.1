@@ -40,7 +40,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.LEADERS_CREST, Models.GENERATED);
         itemModelGenerator.register(ModItems.ABNORMAL_RELIC, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.NATION_RUNE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.EXTENDO_GRIP, Models.HANDHELD_ROD);
         itemModelGenerator.register(ModItems.LAST_LEAF, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.ALLY_PENDANT, Models.GENERATED);
@@ -54,6 +54,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.VARNIA_STAFF, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.MITHRIL_INGOT, Models.GENERATED);
+        itemModelGenerator.register(ModItems.COBALT_INGOT, Models.GENERATED);
         itemModelGenerator.register(ModItems.ADAMANTITE_INGOT, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.AERO_BLADE, Models.HANDHELD);
@@ -153,7 +154,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.AWKWARD_SPARK, Models.GENERATED);
         itemModelGenerator.register(ModItems.WATER_SPARK, Models.GENERATED);
 
-
         // Armors
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_HELMET));
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.ADAMANTITE_CHESTPLATE));
@@ -164,5 +164,10 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_CHESTPLATE));
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_LEGGINGS));
         itemModelGenerator.registerArmor(((ArmorItem) ModItems.MITHRIL_BOOTS));
+
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.COBALT_HELMET));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.COBALT_CHESTPLATE));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.COBALT_LEGGINGS));
+        itemModelGenerator.registerArmor(((ArmorItem) ModItems.COBALT_BOOTS));
     }
 }

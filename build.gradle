@@ -12,6 +12,7 @@ base {
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs << "-Xlint:deprecation"
+    options.release = 17
 }
 
 // To retrieve dependencies from custom repositories:
@@ -28,7 +29,7 @@ repositories {
     }
     maven {
         name = "TerraformersMC"
-        url = "https://maven.terraformersmc.com/"
+        url = "https://maven.terraformersmc.com/releases"
     }
     maven {
         name = "Ladysnake Mods"
@@ -78,14 +79,11 @@ dependencies {
     include modImplementation("com.jamieswhiteshirt:reach-entity-attributes:${project.reach_entity_attributes_version}")
 
     // Trinkets
-    modImplementation "dev.emi:trinkets:${trinkets_version}"
+    modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
     // Cardinal Components API
     modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
     modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
-
-    include "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
-    include "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
 
     // GeckoLib
     modImplementation("software.bernie.geckolib:geckolib-fabric-${minecraft_version}:${geckolib_version}")
@@ -101,10 +99,6 @@ processResources {
 	filesMatching("fabric.mod.json") {
 		expand "version": inputs.properties.version
 	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 17
 }
 
 java {

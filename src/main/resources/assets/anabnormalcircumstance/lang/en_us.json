@@ -86,10 +86,13 @@
   "effect.anabnormalcircumstance.rage.desc": "You deal and take 10% more damage per level",
   "effect.anabnormalcircumstance.adamantite_power": "Adamantite Power",
   "effect.anabnormalcircumstance.adamantite_power.desc": "Every Hostile Entity Kill rejuvenates you",
+  "effect.anabnormalcircumstance.cobalt_power": "Cobalt Power",
+  "effect.anabnormalcircumstance.cobalt_power.desc": "20% Attack Speed buff, and 10% more movement speed",
   "effect.anabnormalcircumstance.stun_immunity": "Stun Immunity",
   "effect.anabnormalcircumstance.stun_immunity.desc": "Immune to stun effects",
 
   "block.anabnormalcircumstance.dark_sand": "Dark Sand",
+  "block.anabnormalcircumstance.temporary_cobweb": "Temporary Cobweb",
   "block.anabnormalcircumstance.hephaestus_altar": "Hephaestus's Altar",
 
   "item.anabnormalcircumstance.night_pendant": "Night Pendant",
@@ -121,16 +124,22 @@
   "item.anabnormalcircumstance.arcane_axe": "Arcane Axe",
   "item.anabnormalcircumstance.aero_blade": "Aeromancy Blade",
   "item.anabnormalcircumstance.hydro_blade": "Hydromancy Blade",
-  "item.anabnormalcircumstance.geo_blade": "Geomancy Blade",
+  "item.anabnormalcircumstance.geo_blade": "Geomancy Axe",
   "item.anabnormalcircumstance.pyro_blade": "Pyromancy Blade",
 
   "item.anabnormalcircumstance.adamantite_ingot": "Adamantite Ingot",
   "item.anabnormalcircumstance.mithril_ingot": "Mithril Ingot",
+  "item.anabnormalcircumstance.cobalt_ingot": "Cobalt Ingot",
 
   "item.anabnormalcircumstance.adamantite_helmet": "Adamantite Helm",
   "item.anabnormalcircumstance.adamantite_chestplate": "Adamantite Chestplate",
   "item.anabnormalcircumstance.adamantite_leggings": "Adamantite Leggings",
   "item.anabnormalcircumstance.adamantite_boots": "Adamantite Boots",
+
+  "item.anabnormalcircumstance.cobalt_helmet": "Cobalt Helm",
+  "item.anabnormalcircumstance.cobalt_chestplate": "Cobalt Chestplate",
+  "item.anabnormalcircumstance.cobalt_leggings": "Cobalt Leggings",
+  "item.anabnormalcircumstance.cobalt_boots": "Cobalt Boots",
 
   "item.anabnormalcircumstance.mithril_helmet": "Mithril Helm",
   "item.anabnormalcircumstance.mithril_chestplate": "Mithril Chestplate",
@@ -199,7 +208,7 @@
   "item.anabnormalcircumstance.claim_rune": "Claim Rune",
   "item.anabnormalcircumstance.origin_rune": "Origin Rune",
   "item.anabnormalcircumstance.spell_rune": "Spell Rune",
-  "item.anabnormalcircumstance.extendo_grip": "Extendo Grip",
+  "item.anabnormalcircumstance.extendo_grip": "Hunter's Claw",
 
 
   "item.anabnormalcircumstance.awkward_spark": "Awkward Spark",

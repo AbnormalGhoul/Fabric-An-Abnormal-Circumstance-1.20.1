@@ -21,7 +21,6 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.ActionResult;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 
-
 public class ModEvents {
     public static void registerEvents() {
 
@@ -35,6 +34,7 @@ public class ModEvents {
         MarkOfAChampionEvents.register();
         AdamantiteArmorSetHandler.register();
         AdamantiteKillHandler.register();
+        CobaltArmorSetHandler.register();
         PlayerHeadDropHandler.register();
         PhoenixFireHandler.register();
         StunEventHandler.register();
@@ -84,9 +84,7 @@ public class ModEvents {
                 // Check if the damage source is fall damage
                 DamageSource fall = player.getDamageSources().fall();
                 if (source.getTypeRegistryEntry() == fall.getTypeRegistryEntry()) {
-                    if (SoaringStrideSpell.shouldCancelFallDamage(player)) {
-                        return false; // cancel the damage event entirely
-                    }
+                    return !SoaringStrideSpell.shouldCancelFallDamage(player); // cancel the damage event entirely
                 }
             }
             return true; // allow all other damage

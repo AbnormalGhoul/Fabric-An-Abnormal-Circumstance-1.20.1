@@ -45,6 +45,10 @@ public class ModItemGroups {
                         entries.add(ModItems.MITHRIL_CHESTPLATE);
                         entries.add(ModItems.MITHRIL_LEGGINGS);
                         entries.add(ModItems.MITHRIL_BOOTS);
+                        entries.add(ModItems.COBALT_HELMET);
+                        entries.add(ModItems.COBALT_CHESTPLATE);
+                        entries.add(ModItems.COBALT_LEGGINGS);
+                        entries.add(ModItems.COBALT_BOOTS);
 
                         // Other Tools
                         entries.add(ModItems.VARNIA_STAFF);
@@ -281,8 +285,9 @@ public class ModItemGroups {
                         entries.add(ModItems.AERO_CATALYST);
 
                         // Ingots
-                        entries.add(ModItems.MITHRIL_INGOT);
                         entries.add(ModItems.ADAMANTITE_INGOT);
+                        entries.add(ModItems.MITHRIL_INGOT);
+                        entries.add(ModItems.COBALT_INGOT);
 
                         // Arcane Materials
                         entries.add(ModItems.ARCANE_ESSENCE);
@@ -291,6 +296,7 @@ public class ModItemGroups {
                         // Blocks
                         entries.add(ModBlocks.HEPHAESTUS_ALTAR);
                         entries.add(ModBlocks.DARK_SAND);
+                        entries.add(ModBlocks.TEMPORARY_COBWEB);
 
                     }).build());
 

@@ -3,6 +3,7 @@ package net.abnormal.anabnormalcircumstance.block;
 import net.abnormal.anabnormalcircumstance.AnAbnormalCircumstance;
 import net.abnormal.anabnormalcircumstance.block.custom.DarkSandBlock;
 import net.abnormal.anabnormalcircumstance.block.custom.HephaestusAltarBlock;
+import net.abnormal.anabnormalcircumstance.block.custom.TemporaryCobwebBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -22,6 +23,9 @@ public class ModBlocks {
 
     public static final Block HEPHAESTUS_ALTAR = registerBlock("hephaestus_altar",
             new HephaestusAltarBlock(FabricBlockSettings.copyOf(Blocks.BEDROCK)));
+
+    public static final Block TEMPORARY_COBWEB = registerBlock("temporary_cobweb",
+            new TemporaryCobwebBlock(FabricBlockSettings.copyOf(Blocks.COBWEB)));
 
     private static Block registerBlock(String name, Block block) {
         registerBlockItem(name, block);

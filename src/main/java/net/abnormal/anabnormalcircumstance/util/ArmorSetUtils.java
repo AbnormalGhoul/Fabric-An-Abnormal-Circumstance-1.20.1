@@ -32,4 +32,16 @@ public final class ArmorSetUtils {
         }
         return true;
     }
+
+    public static boolean hasFullCobalt(PlayerEntity player) {
+        for (ItemStack stack : player.getInventory().armor) {
+            if (!(stack.getItem() instanceof ArmorItem armor)) {
+                return false;
+            }
+            if (armor.getMaterial() != ModArmorMaterials.COBALT) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

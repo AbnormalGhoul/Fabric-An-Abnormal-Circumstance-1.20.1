@@ -132,7 +132,7 @@ public class ModItems {
     public static final Item DWARVEN_PICKAXE = registerItem("dwarven_pickaxe", new DwarvenPickaxeItem(
             ModToolMaterials.UNIQUE,
             9,
-            -2.8f,
+            -2.7f,
             new FabricItemSettings().fireproof().rarity(Rarity.RARE)));
     public static final Item AERO_BLADE = registerItem("aero_blade", new AeroBladeItem(
                 ModToolMaterials.UNIQUE,
@@ -224,6 +224,7 @@ public class ModItems {
     // Ingots
     public static final Item ADAMANTITE_INGOT = registerItem("adamantite_ingot", new Item(new Item.Settings().fireproof()));
     public static final Item MITHRIL_INGOT = registerItem("mithril_ingot", new Item(new Item.Settings().fireproof()));
+    public static final Item COBALT_INGOT = registerItem("cobalt_ingot", new Item(new Item.Settings().fireproof()));
 
     // Armors
     public static final Item ADAMANTITE_HELMET = registerItem("adamantite_helmet",
@@ -243,6 +244,15 @@ public class ModItems {
             new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
     public static final Item MITHRIL_BOOTS = registerItem("mithril_boots",
             new MithrilArmorItem(ModArmorMaterials.MITHRIL, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
+
+    public static final Item COBALT_HELMET = registerItem("cobalt_helmet",
+            new CobaltArmorItem(ModArmorMaterials.COBALT, ArmorItem.Type.HELMET, new FabricItemSettings().fireproof()));
+    public static final Item COBALT_CHESTPLATE = registerItem("cobalt_chestplate",
+            new CobaltArmorItem(ModArmorMaterials.COBALT, ArmorItem.Type.CHESTPLATE, new FabricItemSettings().fireproof()));
+    public static final Item COBALT_LEGGINGS = registerItem("cobalt_leggings",
+            new CobaltArmorItem(ModArmorMaterials.COBALT, ArmorItem.Type.LEGGINGS, new FabricItemSettings().fireproof()));
+    public static final Item COBALT_BOOTS = registerItem("cobalt_boots",
+            new CobaltArmorItem(ModArmorMaterials.COBALT, ArmorItem.Type.BOOTS, new FabricItemSettings().fireproof()));
 
     // Supporter Items
     public static final Item VULKAN_BLADE = registerItem("vulkan_blade", new Item(new Item.Settings().maxCount(1)));
